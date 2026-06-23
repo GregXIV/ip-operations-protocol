@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:paymentExecuted",
+  "title": "Payment Executed",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:paymentExecuted"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "paymentReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "authorizationReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "executedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "executingUserContext": {
+          "$ref": "urn:ipproto:schema:0.1:userContext"
+        },
+        "executedAmount": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "number"
+            },
+            "currency": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/iso4217"
+            }
+          },
+          "required": [
+            "amount",
+            "currency"
+          ]
+        },
+        "executionDeviation": {
+          "type": "object"
+        },
+        "executionEvidence": {
+          "$ref": "urn:ipproto:schema:0.1:evidenceCollection"
+        },
+        "executionOutcome": {
+          "enum": [
+            "successfullyExecuted",
+            "executionFailed",
+            "executionPartial",
+            "executionPending"
+          ]
+        },
+        "failureDetails": {
+          "type": "object",
+          "properties": {
+            "failureCategory": {
+              "enum": [
+                "insufficientFunds",
+                "bankingSystemError",
+                "payeeRejection",
+                "complianceHold",
+                "currencyConversionFailure",
+                "other"
+              ]
+            },
+            "failureNarrative": {
+              "type": "string"
+            },
+            "recoverable": {
+              "type": "boolean"
+            },
+            "suggestedRemediation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "paymentReference",
+        "authorizationReference",
+        "executedAt",
+        "executedAmount",
+        "executionEvidence",
+        "executionOutcome"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

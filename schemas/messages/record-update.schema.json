@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:recordUpdate",
+  "title": "Record Update",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:recordUpdate"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "updatedRecord": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "updateNarrative": {
+          "type": "string"
+        },
+        "updateCategory": {
+          "enum": [
+            "correction",
+            "internalReorganization",
+            "routineMaintenance",
+            "metadataRefresh",
+            "other"
+          ]
+        }
+      },
+      "required": [
+        "updatedRecord",
+        "updateNarrative",
+        "updateCategory"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

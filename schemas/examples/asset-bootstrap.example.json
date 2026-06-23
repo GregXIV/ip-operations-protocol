@@ -1,0 +1,75 @@
+{
+  "messageUri": "urn:ipproto:message:assetBootstrap-example-0001",
+  "messageType": "urn:ipproto:message:assetBootstrap",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:reg-observer-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-04-28T07:30:00Z",
+  "payload": {
+    "asset": {
+      "assetUri": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+      "assetType": "patent",
+      "identifiers": [
+        {
+          "scheme": "urn:ipproto:scheme:office-application",
+          "officeCode": "EP",
+          "value": "21712345.6",
+          "referenceType": "application",
+          "issueDate": "2021-04-15"
+        },
+        {
+          "scheme": "urn:ipproto:scheme:office-publication",
+          "officeCode": "EP",
+          "value": "EP3987654",
+          "kindCode": "A1",
+          "referenceType": "publication",
+          "issueDate": "2022-10-20"
+        }
+      ],
+      "displayLabel": "EP 21712345.6"
+    },
+    "bootstrapBasis": {
+      "basisType": "registerDetection",
+      "triggeringReference": "urn:ipproto:registerEvent:r71-3-detection-001"
+    },
+    "initialAssertions": [
+      {
+        "assertionUri": "urn:ipproto:assertion:a-assignees",
+        "recordUri": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+        "sectionPath": "/assignees",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:epo",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001"
+        },
+        "assertionContent": {
+          "contentType": "fullValue",
+          "value": [
+            "Northwind Industries SE"
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:claim-001",
+        "assertedAt": "2026-04-28T07:15:00Z"
+      }
+    ],
+    "initialAuthorityClaims": [
+      {
+        "claimUri": "urn:ipproto:authorityClaim:claim-001",
+        "recordUri": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+        "sectionPath": "/legalStatus",
+        "claimant": {
+          "actorUri": "urn:ipproto:actor:epo",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001"
+        },
+        "claimType": "sourceOfTruth",
+        "claimBasis": "urn:ipproto:basis:registerSourceOfTruth",
+        "effectiveFrom": "2026-04-28T07:15:00Z"
+      }
+    ]
+  }
+}

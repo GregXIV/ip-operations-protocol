@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:entityReference",
+  "title": "Entity Reference",
+  "type": "object",
+  "properties": {
+    "literal": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "sourceType": {
+              "enum": [
+                "register",
+                "corporateRecord",
+                "selfDeclaration",
+                "derivedDocument",
+                "other"
+              ]
+            },
+            "sourceActorUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "sourcePublicationDate": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDate"
+            },
+            "sourceDocumentReference": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            }
+          },
+          "required": [
+            "sourceType"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "source"
+      ]
+    },
+    "resolution": {
+      "type": "object",
+      "properties": {
+        "resolvedEntityUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "resolvedAt": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        },
+        "confidenceLevel": {
+          "enum": [
+            "exact",
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "resolutionMethod": {
+          "enum": [
+            "deterministicIdentifier",
+            "attributeMatching",
+            "humanReview",
+            "priorAssertion",
+            "automated"
+          ]
+        },
+        "resolutionBasis": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "resolvedEntityUri",
+        "resolvedAt"
+      ]
+    },
+    "crossActorReferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "actorUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "entityUriInActor": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          }
+        },
+        "required": [
+          "actorUri",
+          "entityUriInActor"
+        ]
+      }
+    }
+  },
+  "required": [
+    "literal"
+  ]
+}

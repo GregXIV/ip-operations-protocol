@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:milestoneStarted",
+  "title": "Milestone Started",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:milestoneStarted"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "milestoneReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "startedAt": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        },
+        "actualResources": {
+          "type": "object",
+          "properties": {
+            "assignedUsers": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:userContext"
+              }
+            },
+            "expectedCompletionEstimate": {
+              "type": "object",
+              "properties": {
+                "estimatedCompletionDate": {
+                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+                },
+                "confidenceLevel": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "startupNotes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "milestoneReference",
+        "startedAt"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

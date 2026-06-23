@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:milestoneFailed",
+  "title": "Milestone Failed",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:milestoneFailed"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "milestoneReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "failedAt": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        },
+        "failureReason": {
+          "type": "object",
+          "properties": {
+            "reasonCategory": {
+              "enum": [
+                "technicalFailure",
+                "externalDependencyUnavailable",
+                "dataInsufficient",
+                "qualityThresholdNotMet",
+                "deadlineMissed",
+                "policyViolation",
+                "humanError",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            },
+            "recoverable": {
+              "type": "boolean"
+            },
+            "suggestedRemediation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reasonCategory",
+            "reasonNarrative",
+            "recoverable"
+          ]
+        },
+        "partialOutputs": {
+          "type": "object"
+        },
+        "failureImpact": {
+          "type": "object",
+          "properties": {
+            "affectedDownstreamMilestones": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "affectedDeadlines": {
+              "type": "array"
+            },
+            "requiredAction": {
+              "enum": [
+                "escalateToCorporate",
+                "retryAutomatic",
+                "redesignWorkstream",
+                "abandonWorkstream",
+                "noActionRequired"
+              ]
+            }
+          },
+          "required": [
+            "requiredAction"
+          ]
+        }
+      },
+      "required": [
+        "milestoneReference",
+        "failedAt",
+        "failureReason",
+        "failureImpact"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

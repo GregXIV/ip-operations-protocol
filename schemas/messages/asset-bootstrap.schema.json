@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:assetBootstrap",
+  "title": "Asset Bootstrap",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:assetBootstrap"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "asset": {
+          "$ref": "urn:ipproto:schema:0.1:assetReference"
+        },
+        "bootstrapBasis": {
+          "type": "object",
+          "properties": {
+            "basisType": {
+              "enum": [
+                "registerDetection",
+                "corporateIntroduction",
+                "serviceProviderInitialization",
+                "protocolMigration",
+                "manualEntry"
+              ]
+            },
+            "triggeringReference": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            }
+          },
+          "required": [
+            "basisType"
+          ]
+        },
+        "initialAssertions": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:dataAssertion"
+          }
+        },
+        "initialAuthorityClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:authorityClaim"
+          }
+        },
+        "subscriptionInvitations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "asset",
+        "bootstrapBasis",
+        "initialAssertions",
+        "initialAuthorityClaims"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

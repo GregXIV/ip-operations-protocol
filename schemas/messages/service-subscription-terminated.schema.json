@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:serviceSubscriptionTerminated",
+  "title": "Service Subscription Terminated",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:serviceSubscriptionTerminated"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "subscriptionReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "terminationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terminationReason": {
+          "type": "object",
+          "properties": {
+            "reasonCategory": {
+              "enum": [
+                "subscriberWithdrawal",
+                "providerWithdrawal",
+                "assetStatusChange",
+                "commercialDispute",
+                "delegationCessation",
+                "policyChange",
+                "scopeNaturalCompletion",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            },
+            "terminationInitiator": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "terminationUserContext": {
+              "$ref": "urn:ipproto:schema:0.1:userContext"
+            }
+          },
+          "required": [
+            "reasonCategory",
+            "reasonNarrative",
+            "terminationInitiator"
+          ]
+        },
+        "effectiveTerminationTiming": {
+          "type": "object",
+          "properties": {
+            "terminationType": {
+              "enum": [
+                "immediate",
+                "endOfPeriod",
+                "customDate",
+                "gracefulShutdown"
+              ]
+            },
+            "effectiveDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "gracePeriodHandling": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "terminationType",
+            "effectiveDate"
+          ]
+        },
+        "finalSettlement": {
+          "type": "object"
+        },
+        "postTerminationObligations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "subscriptionReference",
+        "terminationDate",
+        "terminationReason",
+        "effectiveTerminationTiming"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:identityResolutionDispute",
+  "title": "Identity Resolution Dispute",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:identityResolutionDispute"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "disputeReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "disputedLiteral": {
+          "type": "object",
+          "properties": {
+            "literal": {
+              "type": "object"
+            },
+            "appearanceContext": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "literal"
+          ]
+        },
+        "competingResolutions": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "assertingActorUri": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              },
+              "resolvedEntityUri": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              },
+              "resolutionMethod": {
+                "type": "string"
+              },
+              "confidenceLevel": {
+                "type": "string"
+              },
+              "resolutionBasis": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "assertingActorUri",
+              "resolvedEntityUri"
+            ]
+          }
+        },
+        "materialImpact": {
+          "type": "object",
+          "properties": {
+            "impactDescription": {
+              "type": "string"
+            },
+            "affectedAssertions": {
+              "type": "array"
+            },
+            "affectedDecisions": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "impactDescription"
+          ]
+        },
+        "disputeNarrative": {
+          "type": "string"
+        },
+        "disputeRoutingTarget": {
+          "type": "object",
+          "properties": {
+            "targetActorUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "targetRoleDeclaration": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "routingBasis": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "targetActorUri"
+          ]
+        },
+        "responseDeadline": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "disputeReference",
+        "disputedLiteral",
+        "competingResolutions",
+        "materialImpact",
+        "disputeNarrative"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

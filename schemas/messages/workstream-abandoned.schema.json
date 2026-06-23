@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:workstreamAbandoned",
+  "title": "Workstream Abandoned",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:workstreamAbandoned"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "workstreamReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "abandonmentReason": {
+          "type": "object",
+          "properties": {
+            "reasonType": {
+              "enum": [
+                "corporateWithdrawal",
+                "disputeDeadlock",
+                "forceMajeure",
+                "assetStatusChange",
+                "externalEvent",
+                "policyChange",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            },
+            "abandonmentInitiator": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "abandonmentUserContext": {
+              "$ref": "urn:ipproto:schema:0.1:userContext"
+            }
+          },
+          "required": [
+            "reasonType",
+            "reasonNarrative",
+            "abandonmentInitiator"
+          ]
+        },
+        "milestoneStateAtAbandonment": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestoneUri": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              },
+              "statusAtAbandonment": {
+                "type": "string"
+              },
+              "dispositionAfterAbandonment": {
+                "enum": [
+                  "completedBeforeAbandonment",
+                  "inProgressAtAbandonment",
+                  "cancelled",
+                  "partialDeliverableRetained"
+                ]
+              }
+            },
+            "required": [
+              "milestoneUri",
+              "statusAtAbandonment",
+              "dispositionAfterAbandonment"
+            ]
+          }
+        },
+        "partialOutcomes": {
+          "type": "object"
+        },
+        "abandonmentAssertions": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:dataAssertion"
+          }
+        },
+        "unwindObligations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "workstreamReference",
+        "abandonmentReason",
+        "milestoneStateAtAbandonment",
+        "abandonmentAssertions"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

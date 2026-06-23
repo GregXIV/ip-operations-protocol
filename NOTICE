@@ -1,0 +1,9 @@
+IP Operations Protocol
+Copyright 2026 Dr. Jonas Block
+
+Specification text (spec/ and repository root): licensed under CC-BY-4.0.
+Schemas and reference implementation (schemas/): licensed under Apache-2.0.
+
+This product references, aligns with, or scopes around standards published by
+WIPO and ISO. Those standards remain the property of their respective bodies;
+this protocol does not redefine them. See spec/01 - Front Matter/Reference Standards.md.

@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:artifactReady",
+  "title": "Artifact Ready",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:artifactReady"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "artifactReference": {
+          "type": "object",
+          "properties": {
+            "documentReferences": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "structuredArtifactContent": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "documentReferences"
+          ]
+        },
+        "actionDeclaration": {
+          "type": "object",
+          "properties": {
+            "actionCategory": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "actionTarget": {
+              "type": "object",
+              "properties": {
+                "targetSystem": {
+                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                },
+                "targetUri": {
+                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                },
+                "targetCredentialIssuer": {
+                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                }
+              }
+            },
+            "actionInstructions": {
+              "type": "object"
+            },
+            "actionDeadline": {
+              "type": "object",
+              "properties": {
+                "deadlineDate": {
+                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+                },
+                "deadlineSource": {
+                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                },
+                "deadlineImpact": {
+                  "enum": [
+                    "bindingLegal",
+                    "proceduralRequirement",
+                    "internalSchedule",
+                    "advisory"
+                  ]
+                }
+              }
+            }
+          },
+          "required": [
+            "actionCategory",
+            "actionTarget"
+          ]
+        },
+        "expectedConfirmation": {
+          "type": "object",
+          "properties": {
+            "confirmationMessage": {
+              "enum": [
+                "clientActionCompleted",
+                "paymentExecuted",
+                "custom"
+              ]
+            },
+            "confirmationDeadline": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+            },
+            "evidenceExpectations": {
+              "type": "object",
+              "properties": {
+                "evidenceTypes": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                  }
+                },
+                "evidenceMandatory": {
+                  "enum": [
+                    "required",
+                    "recommended",
+                    "optional"
+                  ]
+                }
+              }
+            }
+          },
+          "required": [
+            "confirmationMessage"
+          ]
+        },
+        "expectedRegisterConfirmation": {
+          "type": "object",
+          "properties": {
+            "expectedRegisterEventType": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "expectedRegisterEventWindow": {
+              "type": "object",
+              "properties": {
+                "minimumDelayDays": {
+                  "type": "number"
+                },
+                "expectedDelayDays": {
+                  "type": "number"
+                },
+                "maximumDelayDays": {
+                  "type": "number"
+                }
+              }
+            },
+            "divergenceHandling": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "required": [
+        "artifactReference",
+        "actionDeclaration",
+        "expectedConfirmation",
+        "expectedRegisterConfirmation"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

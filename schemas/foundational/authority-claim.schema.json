@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:authorityClaim",
+  "title": "Authority Claim",
+  "type": "object",
+  "properties": {
+    "claimUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "recordUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "sectionPath": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/jsonPointer"
+    },
+    "claimant": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/claimantRef"
+    },
+    "claimType": {
+      "enum": [
+        "exclusive",
+        "sourceOfTruth",
+        "advisory"
+      ]
+    },
+    "claimBasis": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "effectiveFrom": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+    },
+    "effectiveTo": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+    },
+    "claimAgreementReference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    }
+  },
+  "required": [
+    "claimUri",
+    "recordUri",
+    "sectionPath",
+    "claimant",
+    "claimType",
+    "claimBasis",
+    "effectiveFrom"
+  ]
+}

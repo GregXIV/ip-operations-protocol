@@ -1,0 +1,37 @@
+{
+  "messageUri": "urn:ipproto:message:clientActionCompleted-example-0001",
+  "messageType": "urn:ipproto:message:clientActionCompleted",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-04-28T07:30:00Z",
+  "payload": {
+    "artifactReadyReference": "urn:ipproto:message:ar-001",
+    "actionPerformedAt": "2026-06-12T14:30:00Z",
+    "evidence": {
+      "evidenceItems": [
+        {
+          "evidenceType": "urn:ipproto:evidence:epoConfirmationNumber",
+          "evidenceContent": {
+            "confirmationNumber": "EPO-FILING-2026-12345-DE",
+            "evidenceCapturedAt": "2026-06-12T14:31:00Z"
+          },
+          "evidenceProvenance": {
+            "captureMethod": "automatedSystemExport"
+          }
+        }
+      ]
+    },
+    "actionOutcome": "successfullyPerformed"
+  },
+  "userContext": {
+    "userIdentifier": "counsel@northwind.example",
+    "roleAtActor": "Senior IP Counsel"
+  }
+}

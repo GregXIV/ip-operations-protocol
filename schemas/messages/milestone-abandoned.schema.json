@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:milestoneAbandoned",
+  "title": "Milestone Abandoned",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:milestoneAbandoned"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "milestoneReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "abandonedAt": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        },
+        "abandonmentReason": {
+          "type": "object",
+          "properties": {
+            "reasonCategory": {
+              "enum": [
+                "corporateWithdrawal",
+                "strategicRedirection",
+                "cascadingFromUpstream",
+                "disputeUnresolvable",
+                "assetStatusChange",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            },
+            "decisionAuthority": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "decisionUserContext": {
+              "$ref": "urn:ipproto:schema:0.1:userContext"
+            }
+          },
+          "required": [
+            "reasonCategory",
+            "reasonNarrative",
+            "decisionAuthority"
+          ]
+        },
+        "partialOutputs": {
+          "type": "object"
+        },
+        "abandonmentImpact": {
+          "type": "object",
+          "properties": {
+            "cascadingAbandonments": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "releasedResources": {
+              "type": "string"
+            },
+            "unwindObligations": {
+              "type": "array"
+            }
+          }
+        }
+      },
+      "required": [
+        "milestoneReference",
+        "abandonedAt",
+        "abandonmentReason",
+        "abandonmentImpact"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:serviceSubscriptionStarted",
+  "title": "Service Subscription Started",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:serviceSubscriptionStarted"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "subscriptionReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "subscriptionType": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "subscriptionScope": {
+          "type": "object",
+          "properties": {
+            "scopedAssetReferences": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "scopedDefinition": {
+              "type": "object"
+            },
+            "scopeStartDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "scopeEndDate": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "scopedAssetReferences",
+            "scopeStartDate"
+          ]
+        },
+        "actorAssignments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "actorUri": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              },
+              "roleDeclarationUri": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              },
+              "assignmentType": {
+                "enum": [
+                  "subscriptionProvider",
+                  "subscriptionContractHolder",
+                  "subscriptionOperator",
+                  "subscriber",
+                  "payor",
+                  "accountableTo"
+                ]
+              }
+            },
+            "required": [
+              "actorUri",
+              "roleDeclarationUri",
+              "assignmentType"
+            ]
+          }
+        },
+        "cadence": {
+          "type": "object",
+          "properties": {
+            "cadenceType": {
+              "enum": [
+                "eventDriven",
+                "periodic",
+                "hybrid"
+              ]
+            },
+            "periodicSchedule": {
+              "type": "object"
+            },
+            "eventTriggers": {
+              "type": "array"
+            }
+          },
+          "required": [
+            "cadenceType"
+          ]
+        },
+        "commercialTerms": {
+          "type": "object",
+          "properties": {
+            "feeStructure": {
+              "enum": [
+                "flatPeriodicFee",
+                "perFindingFee",
+                "tieredFee",
+                "custom"
+              ]
+            },
+            "feeAmount": {
+              "type": "object"
+            },
+            "billingCadence": {
+              "enum": [
+                "inAdvance",
+                "inArrears",
+                "perFinding",
+                "custom"
+              ]
+            },
+            "commercialAgreementReference": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "feeStructure",
+            "billingCadence"
+          ]
+        },
+        "findingsConfiguration": {
+          "type": "object",
+          "properties": {
+            "findingDeliveryMethod": {
+              "enum": [
+                "serviceFinding",
+                "aggregatedReport",
+                "notificationOnly"
+              ]
+            },
+            "findingSeverityThresholds": {
+              "type": "object"
+            },
+            "findingRecipients": {
+              "type": "array"
+            }
+          },
+          "required": [
+            "findingDeliveryMethod"
+          ]
+        },
+        "subscriptionAuthorityClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:authorityClaim"
+          }
+        }
+      },
+      "required": [
+        "subscriptionReference",
+        "subscriptionType",
+        "subscriptionScope",
+        "actorAssignments",
+        "cadence",
+        "commercialTerms",
+        "findingsConfiguration",
+        "subscriptionAuthorityClaims"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

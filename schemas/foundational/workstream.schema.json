@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:workstream",
+  "title": "Workstream",
+  "type": "object",
+  "properties": {
+    "workstreamUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "workstreamType": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "assetReferences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    },
+    "triggeringEvent": {
+      "type": "object",
+      "properties": {
+        "eventType": {
+          "enum": [
+            "registerEvent",
+            "clientRequest",
+            "subscriptionFinding",
+            "internalDecision",
+            "manualEntry"
+          ]
+        },
+        "eventReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "triggeredAt": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        }
+      },
+      "required": [
+        "eventType",
+        "triggeredAt"
+      ]
+    },
+    "goalStatement": {
+      "type": "object",
+      "properties": {
+        "goalText": {
+          "type": "string"
+        },
+        "goalCategory": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "goalConstraints": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "goalText"
+      ]
+    },
+    "milestoneChain": {
+      "type": "object",
+      "properties": {
+        "milestones": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:milestone"
+          }
+        },
+        "chainExecutionPolicy": {
+          "enum": [
+            "strict",
+            "optimistic",
+            "manual"
+          ]
+        }
+      },
+      "required": [
+        "milestones"
+      ]
+    },
+    "workstreamStatus": {
+      "enum": [
+        "proposed",
+        "committed",
+        "inProgress",
+        "completed",
+        "abandoned",
+        "disputed"
+      ]
+    },
+    "statusHistory": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "authorityRegistry": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    },
+    "createdAt": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+    },
+    "committedAt": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+    },
+    "completedAt": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+    },
+    "relatedWorkstreams": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "workstreamUri",
+    "workstreamType",
+    "assetReferences",
+    "triggeringEvent",
+    "goalStatement",
+    "milestoneChain",
+    "workstreamStatus"
+  ]
+}

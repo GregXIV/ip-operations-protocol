@@ -1,0 +1,50 @@
+{
+  "messageUri": "urn:ipproto:message:milestoneCompleted-example-0001",
+  "messageType": "urn:ipproto:message:milestoneCompleted",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-04-28T07:30:00Z",
+  "payload": {
+    "milestoneReference": "urn:ipproto:milestone:m1-validation-analysis",
+    "completedAt": "2026-05-04T16:25:00Z",
+    "actuals": {
+      "actualCost": {
+        "amount": 720,
+        "currency": "EUR"
+      },
+      "actualDuration": 4,
+      "varianceFromEstimate": "Completed 1 day under expected."
+    },
+    "outputs": {
+      "producedDocuments": [
+        "urn:ipproto:document:9c2e4f81-validation-analysis"
+      ]
+    },
+    "completionType": "definitiveCompletion",
+    "acknowledgmentRequired": true
+  },
+  "assertions": [
+    {
+      "assertionUri": "urn:ipproto:assertion:a-milestoneStatus",
+      "recordUri": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+      "sectionPath": "/milestoneStatus",
+      "asserter": {
+        "actorUri": "urn:ipproto:actor:epo",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001"
+      },
+      "assertionContent": {
+        "contentType": "fullValue",
+        "value": "completed"
+      },
+      "claimReference": "urn:ipproto:authorityClaim:claim-001",
+      "assertedAt": "2026-04-28T07:15:00Z"
+    }
+  ]
+}

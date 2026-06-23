@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:evidenceCollection",
+  "title": "Evidence Collection",
+  "type": "object",
+  "properties": {
+    "evidenceItems": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "evidenceType": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "evidenceContent": {
+            "type": "object"
+          },
+          "evidenceProvenance": {
+            "type": "object",
+            "properties": {
+              "captureMethod": {
+                "enum": [
+                  "automatedSystemExport",
+                  "manualEntry",
+                  "screenshot",
+                  "signedReceipt"
+                ]
+              },
+              "captureUserContext": {
+                "$ref": "urn:ipproto:schema:0.1:userContext"
+              },
+              "integrityHash": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "evidenceType",
+          "evidenceContent"
+        ]
+      }
+    }
+  },
+  "required": [
+    "evidenceItems"
+  ]
+}

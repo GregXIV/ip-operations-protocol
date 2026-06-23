@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:goalDecomposition",
+  "title": "Goal Decomposition",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:goalDecomposition"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "proposedWorkstream": {
+          "$ref": "urn:ipproto:schema:0.1:workstream"
+        },
+        "proposalRationale": {
+          "type": "object",
+          "properties": {
+            "analyticsSummary": {
+              "type": "string"
+            },
+            "dataInputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "inputType": {
+                    "type": "string"
+                  },
+                  "inputDescription": {
+                    "type": "string"
+                  },
+                  "inputDocumentUri": {
+                    "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                  }
+                },
+                "required": [
+                  "inputType",
+                  "inputDescription"
+                ]
+              }
+            },
+            "alternativesConsidered": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "analyticsSummary",
+            "dataInputs"
+          ]
+        },
+        "deliveryRouteSimulations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "acceptanceConstraints": {
+          "type": "object"
+        },
+        "responseDeadline": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        }
+      },
+      "required": [
+        "proposedWorkstream",
+        "proposalRationale",
+        "responseDeadline"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

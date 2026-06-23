@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:serviceFinding",
+  "title": "Service Finding",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:serviceFinding"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "findingReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "producingSubscription": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "findingCategory": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "relatedAssetReferences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          }
+        },
+        "findingSeverity": {
+          "enum": [
+            "informational",
+            "recommendation",
+            "warning",
+            "critical"
+          ]
+        },
+        "findingTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "findingContent": {
+          "type": "object"
+        },
+        "findingSource": {
+          "type": "object",
+          "properties": {
+            "sourceType": {
+              "enum": [
+                "registerEvent",
+                "automatedAnalysis",
+                "humanReview",
+                "combinedSourceDerivation"
+              ]
+            },
+            "sourceDocumentReferences": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "sourceRegisterEventReferences": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "analysisUserContext": {
+              "$ref": "urn:ipproto:schema:0.1:userContext"
+            }
+          },
+          "required": [
+            "sourceType"
+          ]
+        },
+        "recommendedActions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "findingReference",
+        "producingSubscription",
+        "findingCategory",
+        "relatedAssetReferences",
+        "findingSeverity",
+        "findingTimestamp",
+        "findingContent",
+        "findingSource"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

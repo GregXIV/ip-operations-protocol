@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:orchestrationCommitted",
+  "title": "Orchestration Committed",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:orchestrationCommitted"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "proposalReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "commitmentDecision": {
+          "enum": [
+            "committed",
+            "committedWithModifications",
+            "committedWithRouteSelection",
+            "rejected",
+            "deferred"
+          ]
+        },
+        "modifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "modificationType": {
+                "enum": [
+                  "addMilestone",
+                  "removeMilestone",
+                  "modifyMilestone",
+                  "modifyDependency",
+                  "modifyExecutionMode",
+                  "modifyActorAssignment",
+                  "modifyEstimate",
+                  "modifyGoalConstraint"
+                ]
+              },
+              "targetMilestoneUri": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              },
+              "modificationContent": {
+                "type": "object"
+              },
+              "modificationRationale": {
+                "type": "string"
+              },
+              "modificationUserContext": {
+                "$ref": "urn:ipproto:schema:0.1:userContext"
+              }
+            },
+            "required": [
+              "modificationType"
+            ]
+          }
+        },
+        "selectedRoute": {
+          "type": "object",
+          "properties": {
+            "routeName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "routeName"
+          ]
+        },
+        "commitmentAssertions": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:dataAssertion"
+          }
+        },
+        "rejectionReason": {
+          "type": "string"
+        },
+        "deferralExpiry": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        }
+      },
+      "required": [
+        "proposalReference",
+        "commitmentDecision",
+        "commitmentAssertions"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:disputeResolutionDecision",
+  "title": "Dispute Resolution Decision",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:disputeResolutionDecision"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "disputeReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "decidedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "decisionUserContext": {
+          "$ref": "urn:ipproto:schema:0.1:userContext"
+        },
+        "decisionType": {
+          "enum": [
+            "claimUpheld",
+            "claimRevoked",
+            "claimNarrowed",
+            "claimTransferred",
+            "claimsCoexistAsAdvisory",
+            "acknowledgeRegisterArrival",
+            "actionRequiresReExecution",
+            "actionAcknowledgedAdministrative",
+            "actionDisputed",
+            "oneResolutionDesignatedCanonical",
+            "bothResolutionsRetained",
+            "resolutionDeferredToBilateral",
+            "resolutionRequiresHumanInvestigation"
+          ]
+        },
+        "decisionDetails": {
+          "$ref": "urn:ipproto:schema:0.1:outcomeDetails"
+        },
+        "decisionRationale": {
+          "type": "string"
+        },
+        "cascadeActions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "actionType": {
+                "enum": [
+                  "releaseBlockedMilestone",
+                  "applyHeldAssertion",
+                  "terminateClaim",
+                  "recordResolutionForRouting",
+                  "produceCorrectiveMessage"
+                ]
+              },
+              "actionTarget": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              },
+              "actionTiming": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "disputeReference",
+        "decidedAt",
+        "decisionType",
+        "decisionDetails",
+        "decisionRationale"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

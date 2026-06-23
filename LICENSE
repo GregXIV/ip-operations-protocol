@@ -1,0 +1,22 @@
+IP Operations Protocol — Specification Text
+Copyright 2026 Dr. Jonas Block
+
+The specification text in this repository (the contents of spec/ and the
+repository-root documentation) is licensed under the Creative Commons
+Attribution 4.0 International License (CC-BY-4.0).
+
+SPDX-License-Identifier: CC-BY-4.0
+
+You are free to share and adapt this material, including for commercial
+purposes, provided you give appropriate credit, link to the license, and
+indicate if changes were made.
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+NOTE: Before tagging a public release, replace this notice with the full
+CC-BY-4.0 legal code text (or keep this pointer if your hosting platform's
+license detection accepts SPDX identifiers — GitHub does).
+
+The JSON Schemas and reference implementation under schemas/ are licensed
+separately under the Apache License 2.0; see schemas/LICENSE.

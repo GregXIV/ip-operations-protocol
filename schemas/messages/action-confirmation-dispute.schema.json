@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:actionConfirmationDispute",
+  "title": "Action Confirmation Dispute",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:actionConfirmationDispute"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "disputeReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "claimingMessage": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "expectedConfirmation": {
+          "type": "object",
+          "properties": {
+            "expectedRegisterEventType": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "expectedActorReference": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "windowStartedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "windowExpectedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "windowExpiredAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "divergenceDetectedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "partialEvidence": {
+          "type": "object"
+        },
+        "disputeRoutingTarget": {
+          "type": "object",
+          "properties": {
+            "targetActorUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "targetRoleDeclaration": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "routingBasis": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "targetActorUri"
+          ]
+        },
+        "disputeImpact": {
+          "type": "object",
+          "properties": {
+            "blockedAssertions": {
+              "type": "array"
+            },
+            "blockedMilestones": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "blockedWorkstreams": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            }
+          }
+        },
+        "investigativeActions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "responseDeadline": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "disputeReference",
+        "claimingMessage",
+        "expectedConfirmation",
+        "divergenceDetectedAt",
+        "disputeRoutingTarget",
+        "disputeImpact",
+        "responseDeadline"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

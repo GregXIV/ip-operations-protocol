@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:dataAssertion",
+  "title": "Data Assertion",
+  "type": "object",
+  "properties": {
+    "assertionUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "recordUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "sectionPath": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/jsonPointer"
+    },
+    "asserter": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/claimantRef"
+    },
+    "assertionContent": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "contentType": {
+              "const": "fullValue"
+            },
+            "value": {}
+          },
+          "required": [
+            "contentType",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "contentType": {
+              "const": "patches"
+            },
+            "operations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "enum": [
+                      "add",
+                      "remove",
+                      "replace",
+                      "test"
+                    ]
+                  },
+                  "path": {
+                    "$ref": "urn:ipproto:schema:0.1:defs#/$defs/jsonPointer"
+                  },
+                  "value": {}
+                },
+                "required": [
+                  "op",
+                  "path"
+                ]
+              }
+            }
+          },
+          "required": [
+            "contentType",
+            "operations"
+          ]
+        }
+      ]
+    },
+    "claimReference": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "assertedAt": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    },
+    "evidenceReference": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    }
+  },
+  "required": [
+    "assertionUri",
+    "recordUri",
+    "sectionPath",
+    "asserter",
+    "assertionContent",
+    "claimReference",
+    "assertedAt"
+  ]
+}

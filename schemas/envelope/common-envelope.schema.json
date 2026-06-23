@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:commonEnvelope",
+  "title": "Common Envelope",
+  "type": "object",
+  "properties": {
+    "messageUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "messageType": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "protocolVersion": {
+      "type": "string"
+    },
+    "originatingActor": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "originatingRoleDeclaration": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "addressedTo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "actorUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "expectedRole": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          }
+        },
+        "required": [
+          "actorUri"
+        ]
+      }
+    },
+    "producedAt": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+    },
+    "userContext": {
+      "$ref": "urn:ipproto:schema:0.1:userContext"
+    },
+    "correlation": {
+      "type": "object",
+      "properties": {
+        "correlatedToMessageUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "workstreamUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "milestoneUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "subscriptionUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "eventChainUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        }
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:dataAssertion"
+      }
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "messageUri",
+    "messageType",
+    "protocolVersion",
+    "originatingActor",
+    "originatingRoleDeclaration",
+    "addressedTo",
+    "producedAt",
+    "payload"
+  ]
+}

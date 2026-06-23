@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:resolvedAsset",
+  "title": "Resolved Asset",
+  "description": "A resolver's emission: the canonical Asset Reference plus the provenance of how it was resolved.",
+  "type": "object",
+  "properties": {
+    "assetReference": {
+      "$ref": "urn:ipproto:schema:0.1:assetReference"
+    },
+    "resolutionProvenance": {
+      "$ref": "urn:ipproto:schema:0.1:resolutionProvenance"
+    }
+  },
+  "required": [
+    "assetReference",
+    "resolutionProvenance"
+  ]
+}

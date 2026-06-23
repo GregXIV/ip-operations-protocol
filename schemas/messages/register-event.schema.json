@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:registerEvent",
+  "title": "Register Event",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:registerEvent"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "registerEventReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "publishingRegister": {
+          "type": "object",
+          "properties": {
+            "registerActorUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "observerActorUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            }
+          },
+          "required": [
+            "registerActorUri"
+          ]
+        },
+        "registerEventCategory": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "st27Mapping": {
+          "type": "object",
+          "properties": {
+            "st27Code": {
+              "type": "string"
+            },
+            "st27Subcategory": {
+              "type": "string"
+            },
+            "st27Version": {
+              "type": "string"
+            }
+          }
+        },
+        "relatedAssetReferences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          }
+        },
+        "registerPublicationDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "registerEventContent": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "registerEventReference",
+        "publishingRegister",
+        "registerEventCategory",
+        "relatedAssetReferences",
+        "registerPublicationDate",
+        "registerEventContent"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

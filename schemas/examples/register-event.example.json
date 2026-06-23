@@ -1,0 +1,61 @@
+{
+  "messageUri": "urn:ipproto:message:registerEvent-example-0001",
+  "messageType": "urn:ipproto:message:registerEvent",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:reg-observer-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-07-02T11:30:00Z",
+  "payload": {
+    "registerEventReference": "urn:ipproto:registerEvent:r71-3-detection-001",
+    "publishingRegister": {
+      "registerActorUri": "urn:ipproto:actor:epo",
+      "observerActorUri": "urn:ipproto:actor:meridian-ip-group"
+    },
+    "registerEventCategory": "urn:ipproto:registerEvent:intentionToGrant",
+    "st27Mapping": {
+      "st27Code": "A06",
+      "st27Subcategory": "intentionToGrant",
+      "st27Version": "1.6"
+    },
+    "relatedAssetReferences": [
+      "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8"
+    ],
+    "registerPublicationDate": "2026-04-28",
+    "registerEventContent": {
+      "targetAsset": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+      "intentionDate": "2026-04-28",
+      "responseDeadline": "2026-08-28"
+    }
+  },
+  "assertions": [
+    {
+      "assertionUri": "urn:ipproto:assertion:ls-1",
+      "recordUri": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+      "sectionPath": "/legalStatus/events",
+      "asserter": {
+        "actorUri": "urn:ipproto:actor:epo",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001"
+      },
+      "assertionContent": {
+        "contentType": "patches",
+        "operations": [
+          {
+            "op": "add",
+            "path": "/-",
+            "value": {
+              "eventType": "intentionToGrant"
+            }
+          }
+        ]
+      },
+      "claimReference": "urn:ipproto:authorityClaim:claim-001",
+      "assertedAt": "2026-04-28T07:15:00Z"
+    }
+  ]
+}

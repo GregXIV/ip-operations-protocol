@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:serviceDeliverable",
+  "title": "Service Deliverable",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:serviceDeliverable"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "deliverableReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "producingMilestone": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "deliverableType": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "deliverableContent": {
+          "type": "object",
+          "properties": {
+            "documentReferences": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "structuredContent": {
+              "type": "object",
+              "properties": {
+                "schemaIdentifier": {
+                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                },
+                "content": {},
+                "schemaConformanceLevel": {
+                  "enum": [
+                    "strict",
+                    "extended",
+                    "partial"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deliverableSummary": {
+          "type": "object",
+          "properties": {
+            "executiveSummary": {
+              "type": "string"
+            },
+            "keyFindings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "findingCategory": {
+                    "type": "string"
+                  },
+                  "findingDescription": {
+                    "type": "string"
+                  },
+                  "findingSeverity": {
+                    "enum": [
+                      "informational",
+                      "recommendation",
+                      "warning",
+                      "critical"
+                    ]
+                  }
+                }
+              }
+            },
+            "actionsRecommended": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "executiveSummary"
+          ]
+        },
+        "producerAttestation": {
+          "type": "object",
+          "properties": {
+            "qualityLevel": {
+              "enum": [
+                "draft",
+                "review",
+                "final"
+              ]
+            },
+            "confidenceLevel": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "professionalReview": {
+              "type": "object"
+            },
+            "disclosures": {
+              "type": "array"
+            }
+          },
+          "required": [
+            "qualityLevel"
+          ]
+        },
+        "acknowledgmentExpectation": {
+          "enum": [
+            "acknowledgmentRequired",
+            "acknowledgmentRequested",
+            "acknowledgmentNotRequired"
+          ]
+        },
+        "assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:dataAssertion"
+          }
+        }
+      },
+      "required": [
+        "deliverableReference",
+        "producingMilestone",
+        "deliverableType",
+        "deliverableContent",
+        "deliverableSummary",
+        "producerAttestation",
+        "acknowledgmentExpectation"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

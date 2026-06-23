@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:assetMatchInquiry",
+  "title": "Asset Match Inquiry",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:assetMatchInquiry"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "assetReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "inquiryType": {
+          "enum": [
+            "recognitionAndAuthorization",
+            "enrichment",
+            "correspondenceMatch",
+            "authorityVerification"
+          ]
+        },
+        "inquiryScope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assertedResolution": {
+          "type": "object",
+          "properties": {
+            "entityReferences": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:entityReference"
+              }
+            }
+          }
+        },
+        "responseDeadline": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "operationalContext": {
+          "type": "object",
+          "properties": {
+            "workstreamUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "triggeringEventUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "urgency": {
+              "enum": [
+                "routine",
+                "expedited",
+                "urgent"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "assetReference",
+        "inquiryType",
+        "inquiryScope"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "messageUri": "urn:ipproto:message:assetMatchResponse-example-0001",
+  "messageType": "urn:ipproto:message:assetMatchResponse",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-07-02T11:30:00Z",
+  "payload": {
+    "inquiryReference": "urn:ipproto:message:c2e8f1a3-inq",
+    "responseOutcome": "confirmed",
+    "outcomeDetails": {
+      "outcomeType": "confirmed",
+      "details": {
+        "narrative": "Recognized; Meridian IP Group authorized for EP post-grant validation."
+      }
+    }
+  }
+}

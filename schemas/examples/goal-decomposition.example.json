@@ -1,0 +1,90 @@
+{
+  "messageUri": "urn:ipproto:message:goalDecomposition-example-0001",
+  "messageType": "urn:ipproto:message:goalDecomposition",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-04-28T07:30:00Z",
+  "payload": {
+    "proposedWorkstream": {
+      "workstreamUri": "urn:ipproto:workstream:8a4b1c92-001",
+      "workstreamType": "urn:ipproto:workstream:epPostGrantValidation",
+      "assetReferences": [
+        "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8"
+      ],
+      "triggeringEvent": {
+        "eventType": "registerEvent",
+        "eventReference": "urn:ipproto:registerEvent:r71-3-detection-001",
+        "triggeredAt": "2026-04-28T07:15:00Z"
+      },
+      "goalStatement": {
+        "goalText": "Validate the EP grant in DE, FR, GB; pay grant fee.",
+        "goalCategory": "urn:ipproto:goal:epPostGrantValidation",
+        "goalConstraints": {
+          "costCeiling": {
+            "amount": 18000,
+            "currency": "EUR"
+          }
+        }
+      },
+      "milestoneChain": {
+        "chainExecutionPolicy": "strict",
+        "milestones": [
+          {
+            "milestoneUri": "urn:ipproto:milestone:m1-validation-analysis",
+            "milestoneSequence": 1,
+            "milestoneTitle": "EP validation analysis",
+            "milestoneCategory": "urn:ipproto:milestoneCategory:validationAnalysis",
+            "actorAssignments": [
+              {
+                "actorUri": "urn:ipproto:actor:meridian-ip-group",
+                "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001",
+                "assignmentType": "primary"
+              },
+              {
+                "actorUri": "urn:ipproto:actor:northwind-industries",
+                "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001",
+                "assignmentType": "accountableTo"
+              }
+            ],
+            "executionMode": "serviceProviderManaged",
+            "serviceProviderActorUri": "urn:ipproto:actor:meridian-ip-group",
+            "dependencies": [],
+            "milestoneStatus": "proposed",
+            "estimates": {
+              "estimatedCost": {
+                "amount": 850,
+                "currency": "EUR"
+              },
+              "estimatedDuration": {
+                "minimumDays": 3,
+                "expectedDays": 5,
+                "maximumDays": 10
+              }
+            },
+            "milestoneAuthorityClaims": [
+              "urn:ipproto:authorityClaim:claim-001"
+            ]
+          }
+        ]
+      },
+      "workstreamStatus": "proposed"
+    },
+    "proposalRationale": {
+      "analyticsSummary": "Validation in DE, FR, GB recommended based on portfolio history and market data.",
+      "dataInputs": [
+        {
+          "inputType": "portfolioHistory",
+          "inputDescription": "Northwind Industries EP validations 2021-2025"
+        }
+      ]
+    },
+    "responseDeadline": "2026-05-05T17:00:00Z"
+  }
+}

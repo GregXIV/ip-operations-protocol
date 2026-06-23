@@ -1,0 +1,38 @@
+{
+  "name": "@ipproto/schemas",
+  "version": "0.1.0",
+  "description": "JSON Schemas, validated examples, generated TypeScript types, and a reference validator for the IP Operations Protocol v0.1.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "types": "./types/ipproto.d.ts",
+  "exports": {
+    "./index": "./index.json",
+    "./types": "./types/ipproto.d.ts",
+    "./validate": "./validate.mjs",
+    "./schemas/*": "./*"
+  },
+  "files": [
+    "defs",
+    "envelope",
+    "foundational",
+    "messages",
+    "examples",
+    "types",
+    "index.json",
+    "validate.mjs",
+    "README.md"
+  ],
+  "scripts": {
+    "validate": "node validate.mjs"
+  },
+  "peerDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "keywords": [
+    "ip-operations-protocol",
+    "ipproto",
+    "patent",
+    "json-schema"
+  ]
+}

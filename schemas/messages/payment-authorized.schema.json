@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:paymentAuthorized",
+  "title": "Payment Authorized",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:paymentAuthorized"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "paymentReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "paymentPurpose": {
+          "type": "object",
+          "properties": {
+            "purposeCategory": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "purposeNarrative": {
+              "type": "string"
+            },
+            "relatedMilestoneUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "relatedSubscriptionUri": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            }
+          },
+          "required": [
+            "purposeCategory"
+          ]
+        },
+        "paymentAmount": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "number"
+            },
+            "currency": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/iso4217"
+            },
+            "amountBreakdown": {
+              "type": "array"
+            },
+            "taxHandling": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "amount",
+            "currency"
+          ]
+        },
+        "payee": {
+          "type": "object",
+          "properties": {
+            "payeeType": {
+              "enum": [
+                "officeAuthority",
+                "actor"
+              ]
+            },
+            "officeCode": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/st3Code"
+            },
+            "payeeIdentifier": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "payeeActorReference": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "payeeAccountReference": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "payeeType"
+          ]
+        },
+        "paymentAgent": {
+          "type": "object",
+          "properties": {
+            "agentActorReference": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "agentRoleDeclaration": {
+              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            },
+            "executionAuthorityReference": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "agentActorReference",
+            "agentRoleDeclaration"
+          ]
+        },
+        "payorReferences": {
+          "type": "object"
+        },
+        "executionWindow": {
+          "type": "object",
+          "properties": {
+            "executeNotBefore": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "executeBy": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "urgency": {
+              "enum": [
+                "routine",
+                "expedited",
+                "urgent"
+              ]
+            }
+          },
+          "required": [
+            "executeBy"
+          ]
+        },
+        "expectedConfirmation": {
+          "type": "object"
+        },
+        "expectedExternalConfirmation": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "paymentReference",
+        "paymentPurpose",
+        "paymentAmount",
+        "payee",
+        "paymentAgent",
+        "payorReferences",
+        "executionWindow",
+        "expectedConfirmation"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

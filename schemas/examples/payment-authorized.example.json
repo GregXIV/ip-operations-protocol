@@ -1,0 +1,58 @@
+{
+  "messageUri": "urn:ipproto:message:paymentAuthorized-example-0001",
+  "messageType": "urn:ipproto:message:paymentAuthorized",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-07-02T11:30:00Z",
+  "payload": {
+    "paymentReference": "urn:ipproto:payment:p-001-grant-fee",
+    "paymentPurpose": {
+      "purposeCategory": "urn:ipproto:paymentPurpose:officeFee",
+      "purposeNarrative": "EP grant fee",
+      "relatedMilestoneUri": "urn:ipproto:milestone:m4-grant-fee"
+    },
+    "paymentAmount": {
+      "amount": 1080.0,
+      "currency": "EUR"
+    },
+    "payee": {
+      "payeeType": "officeAuthority",
+      "officeCode": "EP",
+      "payeeIdentifier": "urn:ipproto:officePaymentEndpoint:epo:fee"
+    },
+    "paymentAgent": {
+      "agentActorReference": "urn:ipproto:actor:meridian-ip-group",
+      "agentRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+      "executionAuthorityReference": "Northwind Industries-DM-MSA-2024-EU#payment-mandate"
+    },
+    "payorReferences": {
+      "purchaseOrderReference": "Northwind Industries-PO-2026-04473",
+      "costCenterReference": "Northwind Industries-CC-IP-COATINGS-DE"
+    },
+    "executionWindow": {
+      "executeBy": "2026-08-20T17:00:00Z",
+      "urgency": "routine"
+    },
+    "expectedConfirmation": {
+      "confirmationMessageType": "paymentExecuted",
+      "confirmationDeadline": "2026-08-25T17:00:00Z",
+      "evidenceExpectations": {
+        "evidenceTypes": [
+          "urn:ipproto:evidence:bankingTransactionReference"
+        ],
+        "evidenceMandatory": "required"
+      }
+    }
+  },
+  "userContext": {
+    "userIdentifier": "counsel@northwind.example",
+    "roleAtActor": "Senior IP Counsel"
+  }
+}

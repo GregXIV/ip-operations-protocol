@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:userContext",
+  "title": "User Context",
+  "type": "object",
+  "properties": {
+    "userIdentifier": {
+      "type": "string"
+    },
+    "displayLabel": {
+      "type": "string"
+    },
+    "roleAtActor": {
+      "type": "string"
+    },
+    "automatedAgentIndicator": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "userIdentifier"
+  ]
+}

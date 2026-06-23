@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:actorRoleDeclaration",
+  "title": "Actor Role Declaration",
+  "type": "object",
+  "properties": {
+    "roleDeclarationUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "actorUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "role": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "scopeType": {
+          "enum": [
+            "asset",
+            "workstream",
+            "milestone",
+            "subscription",
+            "global"
+          ]
+        },
+        "scopeUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "effectiveFrom": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        },
+        "effectiveTo": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        }
+      },
+      "required": [
+        "scopeType",
+        "effectiveFrom"
+      ]
+    },
+    "delegationChain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "delegatingActorUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "delegatedRoleUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "delegationBasis": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "delegationReference": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "delegatingActorUri",
+          "delegatedRoleUri",
+          "delegationBasis"
+        ]
+      }
+    }
+  },
+  "required": [
+    "roleDeclarationUri",
+    "actorUri",
+    "role",
+    "scope"
+  ]
+}

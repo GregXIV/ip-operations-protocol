@@ -1,0 +1,77 @@
+{
+  "messageUri": "urn:ipproto:message:serviceSubscriptionStarted-example-0001",
+  "messageType": "urn:ipproto:message:serviceSubscriptionStarted",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-07-02T11:30:00Z",
+  "payload": {
+    "subscriptionReference": "urn:ipproto:subscription:renewal-mon-001",
+    "subscriptionType": "urn:ipproto:subscription:renewalMonitoring",
+    "subscriptionScope": {
+      "scopedAssetReferences": [
+        "urn:ipproto:asset:de-validation-001"
+      ],
+      "scopeStartDate": "2026-08-02T00:00:00Z"
+    },
+    "actorAssignments": [
+      {
+        "actorUri": "urn:ipproto:actor:meridian-ip-group",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001",
+        "assignmentType": "subscriptionProvider"
+      },
+      {
+        "actorUri": "urn:ipproto:actor:northwind-industries",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001",
+        "assignmentType": "subscriber"
+      }
+    ],
+    "cadence": {
+      "cadenceType": "hybrid",
+      "periodicSchedule": {
+        "intervalUnit": "month",
+        "intervalCount": 1,
+        "firstFindingDate": "2026-09-01T00:00:00Z"
+      }
+    },
+    "commercialTerms": {
+      "feeStructure": "flatPeriodicFee",
+      "feeAmount": {
+        "amount": 280.0,
+        "currency": "EUR",
+        "period": "annual"
+      },
+      "billingCadence": "inAdvance",
+      "commercialAgreementReference": "Northwind Industries-DM-MSA-2024-EU#renewal"
+    },
+    "findingsConfiguration": {
+      "findingDeliveryMethod": "serviceFinding",
+      "findingRecipients": [
+        {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001"
+        }
+      ]
+    },
+    "subscriptionAuthorityClaims": [
+      {
+        "claimUri": "urn:ipproto:authorityClaim:claim-001",
+        "recordUri": "urn:ipproto:subscription:renewal-mon-001",
+        "sectionPath": "",
+        "claimant": {
+          "actorUri": "urn:ipproto:actor:meridian-ip-group",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001"
+        },
+        "claimType": "sourceOfTruth",
+        "claimBasis": "urn:ipproto:basis:contractualService",
+        "effectiveFrom": "2026-08-02T00:00:00Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:actorReference",
+  "title": "Actor Reference",
+  "type": "object",
+  "properties": {
+    "actorUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "actorType": {
+      "enum": [
+        "corporateIpDepartment",
+        "serviceProvider",
+        "externalCounsel",
+        "registerAuthority",
+        "registerObserver",
+        "ipmsVendor",
+        "platformOperator",
+        "paymentInstitution",
+        "other"
+      ]
+    },
+    "identifiers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "scheme": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "value": {
+            "type": "string"
+          },
+          "verifiedAt": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+          }
+        },
+        "required": [
+          "scheme",
+          "value"
+        ]
+      }
+    },
+    "legalName": {
+      "type": "string"
+    },
+    "jurisdictionCode": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/st3Code"
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "displayLabel": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "actorUri",
+    "actorType",
+    "identifiers",
+    "legalName"
+  ]
+}

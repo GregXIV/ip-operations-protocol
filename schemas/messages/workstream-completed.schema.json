@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:workstreamCompleted",
+  "title": "Workstream Completed",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:workstreamCompleted"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "workstreamReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "completionSummary": {
+          "type": "object",
+          "properties": {
+            "completionOutcome": {
+              "enum": [
+                "fullSuccess",
+                "partialSuccess",
+                "mixedOutcome"
+              ]
+            },
+            "aggregatedActuals": {
+              "type": "object"
+            },
+            "outputArtifacts": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "subscriptionsCreated": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "derivedAssetsCreated": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            }
+          },
+          "required": [
+            "completionOutcome"
+          ]
+        },
+        "completionAssertions": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.1:dataAssertion"
+          }
+        },
+        "postCompletionState": {
+          "type": "object",
+          "properties": {
+            "assetStateNotes": {
+              "type": "string"
+            },
+            "outstandingObligations": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "auditCompletionDate": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "workstreamReference",
+        "completionSummary",
+        "completionAssertions",
+        "postCompletionState"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

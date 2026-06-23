@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:deliverableAcknowledged",
+  "title": "Deliverable Acknowledged",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:deliverableAcknowledged"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "deliverableReference": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "acknowledgmentType": {
+          "enum": [
+            "simpleAcknowledgment",
+            "acceptance",
+            "conditionalAcceptance",
+            "objection"
+          ]
+        },
+        "acknowledgedAt": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        },
+        "receiverUserContext": {
+          "$ref": "urn:ipproto:schema:0.1:userContext"
+        },
+        "reviewSummary": {
+          "type": "string"
+        },
+        "annotations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "objectionDetails": {
+          "type": "object"
+        },
+        "downstreamMilestoneRelease": {
+          "type": "object",
+          "properties": {
+            "releasedMilestones": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              }
+            },
+            "blockedMilestones": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "deliverableReference",
+        "acknowledgmentType",
+        "acknowledgedAt",
+        "downstreamMilestoneRelease"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

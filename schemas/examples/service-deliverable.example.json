@@ -1,0 +1,39 @@
+{
+  "messageUri": "urn:ipproto:message:serviceDeliverable-example-0001",
+  "messageType": "urn:ipproto:message:serviceDeliverable",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-04-28T07:30:00Z",
+  "payload": {
+    "deliverableReference": "urn:ipproto:deliverable:val-an-001",
+    "producingMilestone": "urn:ipproto:milestone:m1-validation-analysis",
+    "deliverableType": "urn:ipproto:deliverable:validationAnalysis",
+    "deliverableContent": {
+      "documentReferences": [
+        "urn:ipproto:document:9c2e4f81-validation-analysis"
+      ]
+    },
+    "deliverableSummary": {
+      "executiveSummary": "Validation in DE, FR, GB recommended.",
+      "keyFindings": [
+        {
+          "findingCategory": "urn:ipproto:finding:jurisdictionalCoverage",
+          "findingDescription": "Recommended jurisdictions cover 92% of revenue exposure.",
+          "findingSeverity": "informational"
+        }
+      ]
+    },
+    "producerAttestation": {
+      "qualityLevel": "final",
+      "confidenceLevel": "high"
+    },
+    "acknowledgmentExpectation": "acknowledgmentRequired"
+  }
+}

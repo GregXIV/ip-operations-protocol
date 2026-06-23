@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:assetReference",
+  "title": "Asset Reference",
+  "type": "object",
+  "properties": {
+    "assetUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "assetType": {
+      "enum": [
+        "patent",
+        "utilityModel",
+        "designRegistration",
+        "trademark",
+        "plantVariety",
+        "geographicalIndication",
+        "otherIp"
+      ]
+    },
+    "identifiers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "scheme": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "officeCode": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/st3Code"
+          },
+          "value": {
+            "type": "string"
+          },
+          "kindCode": {
+            "type": "string"
+          },
+          "referenceType": {
+            "enum": [
+              "application",
+              "publication",
+              "grant",
+              "internalReference"
+            ]
+          },
+          "issueDate": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDate"
+          }
+        },
+        "required": [
+          "scheme",
+          "value"
+        ]
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relatedAssetUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "relationshipType": {
+            "type": "string"
+          },
+          "effectiveDate": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDate"
+          }
+        },
+        "required": [
+          "relatedAssetUri",
+          "relationshipType"
+        ]
+      }
+    },
+    "displayLabel": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "assetUri",
+    "assetType",
+    "identifiers"
+  ]
+}

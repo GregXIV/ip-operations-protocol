@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:milestone",
+  "title": "Milestone",
+  "type": "object",
+  "properties": {
+    "milestoneUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "milestoneSequence": {
+      "type": "integer"
+    },
+    "milestoneTitle": {
+      "type": "string"
+    },
+    "milestoneDescription": {
+      "type": "string"
+    },
+    "milestoneCategory": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "actorAssignments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "actorUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "roleDeclarationUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "assignmentType": {
+            "enum": [
+              "primary",
+              "delegatedFrom",
+              "accountableTo",
+              "payor",
+              "observer"
+            ]
+          }
+        },
+        "required": [
+          "actorUri",
+          "roleDeclarationUri",
+          "assignmentType"
+        ]
+      }
+    },
+    "executionMode": {
+      "enum": [
+        "serviceProviderManaged",
+        "selfService",
+        "thirdPartyRfp"
+      ]
+    },
+    "serviceProviderActorUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dependsOnMilestoneUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "requiredState": {
+            "enum": [
+              "committed",
+              "started",
+              "completed"
+            ]
+          }
+        },
+        "required": [
+          "dependsOnMilestoneUri",
+          "requiredState"
+        ]
+      }
+    },
+    "milestoneStatus": {
+      "enum": [
+        "proposed",
+        "committed",
+        "notReady",
+        "ready",
+        "inProgress",
+        "awaitingExternalAction",
+        "completed",
+        "failed",
+        "abandoned"
+      ]
+    },
+    "statusHistory": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "estimates": {
+      "type": "object",
+      "properties": {
+        "estimatedCost": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/money"
+        },
+        "estimatedDuration": {
+          "type": "object",
+          "properties": {
+            "minimumDays": {
+              "type": "number"
+            },
+            "expectedDays": {
+              "type": "number"
+            },
+            "maximumDays": {
+              "type": "number"
+            }
+          }
+        },
+        "estimatedAt": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+        }
+      }
+    },
+    "actuals": {
+      "type": "object"
+    },
+    "deliverables": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    },
+    "milestoneAuthorityClaims": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    }
+  },
+  "required": [
+    "milestoneUri",
+    "milestoneSequence",
+    "milestoneTitle",
+    "milestoneCategory",
+    "actorAssignments",
+    "executionMode",
+    "milestoneStatus",
+    "estimates",
+    "milestoneAuthorityClaims"
+  ],
+  "if": {
+    "properties": {
+      "executionMode": {
+        "const": "serviceProviderManaged"
+      }
+    }
+  },
+  "then": {
+    "required": [
+      "serviceProviderActorUri"
+    ]
+  }
+}

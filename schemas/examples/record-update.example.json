@@ -1,0 +1,36 @@
+{
+  "messageUri": "urn:ipproto:message:recordUpdate-example-0001",
+  "messageType": "urn:ipproto:message:recordUpdate",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-07-02T11:30:00Z",
+  "payload": {
+    "updatedRecord": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+    "updateNarrative": "Cost center updated after Q3 reorganization.",
+    "updateCategory": "internalReorganization"
+  },
+  "assertions": [
+    {
+      "assertionUri": "urn:ipproto:assertion:cc-1",
+      "recordUri": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+      "sectionPath": "/internalReferences/costCenter",
+      "asserter": {
+        "actorUri": "urn:ipproto:actor:northwind-industries",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:rd-001"
+      },
+      "assertionContent": {
+        "contentType": "fullValue",
+        "value": "Northwind Industries-CC-PERF-MATERIALS-DE"
+      },
+      "claimReference": "urn:ipproto:authorityClaim:claim-001",
+      "assertedAt": "2026-09-01T09:00:00Z"
+    }
+  ]
+}

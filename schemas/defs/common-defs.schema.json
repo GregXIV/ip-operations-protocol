@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:defs",
+  "title": "Common Defs",
+  "$defs": {
+    "uri": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "isoDateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isoDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "st3Code": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "WIPO ST.3 office/country code"
+    },
+    "iso4217": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 currency code"
+    },
+    "iso639": {
+      "type": "string",
+      "description": "ISO 639-1 language code"
+    },
+    "jsonPointer": {
+      "type": "string",
+      "description": "RFC 6901 JSON Pointer"
+    },
+    "money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "currency": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/iso4217"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ]
+    },
+    "claimantRef": {
+      "type": "object",
+      "properties": {
+        "actorUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "roleDeclarationUri": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        }
+      },
+      "required": [
+        "actorUri",
+        "roleDeclarationUri"
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "messageUri": "urn:ipproto:message:disputeResolutionDecision-example-0001",
+  "messageType": "urn:ipproto:message:disputeResolutionDecision",
+  "protocolVersion": "0.1",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-07-02T11:30:00Z",
+  "payload": {
+    "disputeReference": "urn:ipproto:dispute:auth-001",
+    "decidedAt": "2026-05-13T15:30:00Z",
+    "decisionType": "claimRevoked",
+    "decisionDetails": {
+      "outcomeType": "claimRevoked",
+      "details": {
+        "affectedClaim": "urn:ipproto:authorityClaim:lawfirm-x-002",
+        "effectiveDate": "2026-05-13T15:30:00Z"
+      }
+    },
+    "decisionRationale": "Northwind Industries confirms Meridian IP Group exclusive per MSA 2024-EU.",
+    "cascadeActions": [
+      {
+        "actionType": "releaseBlockedMilestone",
+        "actionTarget": "urn:ipproto:milestone:m2-doc-prep"
+      }
+    ]
+  },
+  "userContext": {
+    "userIdentifier": "counsel@northwind.example",
+    "roleAtActor": "Senior IP Counsel"
+  }
+}

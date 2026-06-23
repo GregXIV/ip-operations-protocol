@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.1:documentReference",
+  "title": "Document Reference",
+  "type": "object",
+  "properties": {
+    "documentUri": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "documentType": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "documentKind": {
+      "type": "object",
+      "properties": {
+        "kindCode": {
+          "type": "string"
+        },
+        "kindAuthority": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        }
+      }
+    },
+    "assetReferences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    },
+    "originator": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "originationDate": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "string",
+          "format": "date"
+        }
+      ]
+    },
+    "languageCode": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/iso639"
+    },
+    "storageLocations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "locationUri": {
+            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          },
+          "locationType": {
+            "enum": [
+              "httpsRest",
+              "s3Bucket",
+              "vault",
+              "officeRegister",
+              "email",
+              "filesystem",
+              "other"
+            ]
+          },
+          "accessRequirements": {
+            "type": "object",
+            "properties": {
+              "authMethodHint": {
+                "type": "string"
+              },
+              "credentialIssuerActorUri": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              },
+              "accessExpiresAt": {
+                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+              }
+            }
+          },
+          "mediaType": {
+            "type": "string"
+          },
+          "contentHash": {
+            "type": "object",
+            "properties": {
+              "algorithm": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "algorithm",
+              "value"
+            ]
+          },
+          "contentSizeBytes": {
+            "type": "integer"
+          },
+          "pageCount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "locationUri",
+          "locationType"
+        ]
+      }
+    },
+    "structuredContentReference": {
+      "type": "object",
+      "properties": {
+        "schemaIdentifier": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        },
+        "schemaConformanceLevel": {
+          "enum": [
+            "strict",
+            "extended",
+            "partial"
+          ]
+        },
+        "structuredContentLocation": {
+          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+        }
+      }
+    },
+    "supersedes": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "supersededBy": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "versionLabel": {
+      "type": "string"
+    },
+    "derivedFrom": {
+      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+    },
+    "relatedDocuments": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      }
+    }
+  },
+  "required": [
+    "documentUri",
+    "documentType",
+    "assetReferences",
+    "originator",
+    "originationDate",
+    "storageLocations"
+  ]
+}
