@@ -70,7 +70,7 @@ Then either:
 - [Deferred to v1-x](05%20-%20Decisions/Deferred%20to%20v1-x.md)
 
 ### Reference
-- [Glossary](Glossary.md)
+- [Glossary](../Glossary.md)
 
 ## Spec status
 
