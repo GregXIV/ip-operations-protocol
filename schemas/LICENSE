@@ -1,0 +1,17 @@
+IP Operations Protocol — Schemas and Reference Implementation
+Copyright 2026 Dr. Jonas Block
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use these files except in compliance with the License.
+
+SPDX-License-Identifier: Apache-2.0
+
+You may obtain a copy of the License at:
+    http://www.apache.org/licenses/LICENSE-2.0
+
+The Apache-2.0 license is used here (rather than a license without a patent
+clause) deliberately: it carries an express grant of patent rights from
+contributors to users, which is appropriate for a standard in the patent domain.
+
+NOTE: Before tagging a public release, replace this notice with the full
+Apache-2.0 license text.
