@@ -106,11 +106,19 @@
                 "flatPeriodicFee",
                 "perFindingFee",
                 "tieredFee",
+                "revenueShare",
                 "custom"
               ]
             },
             "feeAmount": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "sharePercent": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
             },
             "billingCadence": {
               "enum": [
@@ -122,12 +130,55 @@
             },
             "commercialAgreementReference": {
               "type": "string"
+            },
+            "planReference": {
+              "type": "string"
+            },
+            "trial": {
+              "type": "object",
+              "properties": {
+                "trialEndsAt": {
+                  "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+                },
+                "afterTrial": {
+                  "enum": [
+                    "convertsToPaid",
+                    "endsUnlessConfirmed"
+                  ]
+                }
+              },
+              "required": [
+                "trialEndsAt",
+                "afterTrial"
+              ]
             }
           },
           "required": [
             "feeStructure",
             "billingCadence"
-          ]
+          ],
+          "if": {
+            "properties": {
+              "feeStructure": {
+                "const": "revenueShare"
+              }
+            },
+            "required": [
+              "feeStructure"
+            ]
+          },
+          "then": {
+            "required": [
+              "feeAmount"
+            ],
+            "properties": {
+              "feeAmount": {
+                "required": [
+                  "sharePercent"
+                ]
+              }
+            }
+          }
         },
         "findingsConfiguration": {
           "type": "object",

@@ -1,7 +1,7 @@
 ---
 type: message
 category: subscriptions
-status: v0.1
+status: v0.2
 ---
 
 # Service Subscription Started
@@ -60,10 +60,22 @@ Type: structured, required
 ### `commercialTerms`
 Type: structured, required
 
-- `feeStructure` — `flatPeriodicFee`, `perFindingFee`, `tieredFee`, `custom`
+- `feeStructure` — `flatPeriodicFee`, `perFindingFee`, `tieredFee`, `revenueShare`, `custom`
 - `feeAmount` — type-specific
 - `billingCadence` — `inAdvance`, `inArrears`, `perFinding`, `custom`
 - `commercialAgreementReference` — string
+- `planReference` — optional string
+- `trial` — optional structured: `trialEndsAt`, `afterTrial`
+
+Three parts were added in 0.2, all optional:
+
+- **`revenueShare`** as a value of `feeStructure`. The provider is paid a share of what customers are billed. `feeAmount` then carries `sharePercent`, a number from 0 to 100.
+- **`planReference`.** The plan or tier the subscription is on, as an identifier of the provider's own catalogue. The protocol does not define tiers.
+- **`trial`.** `trialEndsAt` is the ISO 8601 datetime the trial ends. `afterTrial` says what follows: `convertsToPaid` — the subscription continues on the stated terms — or `endsUnlessConfirmed` — it ends unless the subscriber confirms.
+
+With these an application can be a supplier without a further message. The application is an actor of type `softwareService` (see [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md)); a customer's licence for it is a subscription; a step it performs in a workstream is an ordinary milestone with the application as `primary` actor.
+
+A subscription an actor holds with a platform operator for the use of the platform itself is not exchanged between actors and is not protocol matter.
 
 ### `findingsConfiguration`
 Type: structured, required
@@ -147,6 +159,32 @@ For a delegation chain where Meridian IP Group holds the contract and D&A operat
 ```
 
 The operator's [Actor Role Declaration](../../02%20-%20Foundational%20Structures/Actor%20Role%20Declaration.md) carries the delegation chain showing D&A operates under Meridian IP Group's contract.
+
+## Worked example — application licence with revenue share and trial
+
+Added in 0.2. A customer licenses a translation application through a contract holder. The application's provider is paid 70 percent of what the customer is billed; the first month is a trial that converts.
+
+```json
+{
+  "payload": {
+    "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
+    "subscriptionType": "urn:litware-translate:subscription:translationWorkbench",
+    "actorAssignments": [
+      {"actorUri": "urn:ipproto:actor:meridian-ip-group", "roleDeclarationUri": "...", "assignmentType": "subscriptionContractHolder"},
+      {"actorUri": "urn:ipproto:actor:litware-translate", "roleDeclarationUri": "...", "assignmentType": "subscriptionOperator"},
+      {"actorUri": "urn:ipproto:actor:northwind-industries", "roleDeclarationUri": "...", "assignmentType": "subscriber"}
+    ],
+    "commercialTerms": {
+      "feeStructure": "revenueShare",
+      "feeAmount": {"sharePercent": 70},
+      "billingCadence": "inArrears",
+      "commercialAgreementReference": "meridian-app-terms-2026#revenue-share",
+      "planReference": "litware-translate#professional",
+      "trial": {"trialEndsAt": "2026-12-16T00:00:00Z", "afterTrial": "convertsToPaid"}
+    }
+  }
+}
+```
 
 ## Behavior on receipt
 
