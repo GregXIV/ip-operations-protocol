@@ -1,17 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:actorRoleDeclaration",
+  "$id": "urn:ipproto:schema:0.2:actorRoleDeclaration",
   "title": "Actor Role Declaration",
   "type": "object",
   "properties": {
     "roleDeclarationUri": {
-      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
     },
     "actorUri": {
-      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
     },
     "role": {
-      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
     },
     "scope": {
       "type": "object",
@@ -26,13 +26,13 @@
           ]
         },
         "scopeUri": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
         },
         "effectiveFrom": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
         },
         "effectiveTo": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
         }
       },
       "required": [
@@ -46,13 +46,13 @@
         "type": "object",
         "properties": {
           "delegatingActorUri": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
           },
           "delegatedRoleUri": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
           },
           "delegationBasis": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
           },
           "delegationReference": {
             "type": "string"

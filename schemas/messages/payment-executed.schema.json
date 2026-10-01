@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:paymentExecuted",
+  "$id": "urn:ipproto:schema:0.2:paymentExecuted",
   "title": "Payment Executed",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,17 +16,17 @@
       "type": "object",
       "properties": {
         "paymentReference": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
         },
         "authorizationReference": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
         },
         "executedAt": {
           "type": "string",
           "format": "date-time"
         },
         "executingUserContext": {
-          "$ref": "urn:ipproto:schema:0.1:userContext"
+          "$ref": "urn:ipproto:schema:0.2:userContext"
         },
         "executedAmount": {
           "type": "object",
@@ -35,7 +35,7 @@
               "type": "number"
             },
             "currency": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/iso4217"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/iso4217"
             }
           },
           "required": [
@@ -47,7 +47,7 @@
           "type": "object"
         },
         "executionEvidence": {
-          "$ref": "urn:ipproto:schema:0.1:evidenceCollection"
+          "$ref": "urn:ipproto:schema:0.2:evidenceCollection"
         },
         "executionOutcome": {
           "enum": [

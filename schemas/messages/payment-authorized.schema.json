@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:paymentAuthorized",
+  "$id": "urn:ipproto:schema:0.2:paymentAuthorized",
   "title": "Payment Authorized",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,22 +16,22 @@
       "type": "object",
       "properties": {
         "paymentReference": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
         },
         "paymentPurpose": {
           "type": "object",
           "properties": {
             "purposeCategory": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             },
             "purposeNarrative": {
               "type": "string"
             },
             "relatedMilestoneUri": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             },
             "relatedSubscriptionUri": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             }
           },
           "required": [
@@ -45,7 +45,7 @@
               "type": "number"
             },
             "currency": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/iso4217"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/iso4217"
             },
             "amountBreakdown": {
               "type": "array"
@@ -69,13 +69,13 @@
               ]
             },
             "officeCode": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/st3Code"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/st3Code"
             },
             "payeeIdentifier": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             },
             "payeeActorReference": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             },
             "payeeAccountReference": {
               "type": "string"
@@ -89,10 +89,10 @@
           "type": "object",
           "properties": {
             "agentActorReference": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             },
             "agentRoleDeclaration": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             },
             "executionAuthorityReference": {
               "type": "string"

@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:actorReference",
+  "$id": "urn:ipproto:schema:0.2:actorReference",
   "title": "Actor Reference",
   "type": "object",
   "properties": {
     "actorUri": {
-      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
     },
     "actorType": {
       "enum": [
@@ -27,13 +27,13 @@
         "type": "object",
         "properties": {
           "scheme": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
           },
           "value": {
             "type": "string"
           },
           "verifiedAt": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
           }
         },
         "required": [
@@ -46,7 +46,7 @@
       "type": "string"
     },
     "jurisdictionCode": {
-      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/st3Code"
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/st3Code"
     },
     "addresses": {
       "type": "array",

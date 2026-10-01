@@ -1,4 +1,4 @@
 {
-  "resolution-provenance.example.json": "urn:ipproto:schema:0.1:resolutionProvenance",
-  "resolved-asset.example.json": "urn:ipproto:schema:0.1:resolvedAsset"
+  "resolution-provenance.example.json": "urn:ipproto:schema:0.2:resolutionProvenance",
+  "resolved-asset.example.json": "urn:ipproto:schema:0.2:resolvedAsset"
 }
