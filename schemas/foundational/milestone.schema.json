@@ -127,6 +127,15 @@
     "actuals": {
       "type": "object"
     },
+    "agreedPrice": {
+      "$ref": "urn:ipproto:schema:0.2:agreedPrice"
+    },
+    "serviceLevels": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:ipproto:schema:0.2:serviceLevel"
+      }
+    },
     "deliverables": {
       "type": "array",
       "items": {
@@ -138,6 +147,9 @@
       "items": {
         "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
       }
+    },
+    "parentMilestoneUri": {
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
     }
   },
   "required": [

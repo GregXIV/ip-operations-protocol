@@ -1,0 +1,73 @@
+{
+  "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent",
+  "milestoneSequence": 1,
+  "milestoneTitle": "EP validation in Spain: translation filing at the OEPM",
+  "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+  "actorAssignments": [
+    {
+      "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:fabrikam-work-provider-b",
+      "assignmentType": "primary"
+    },
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-work-requester-b",
+      "assignmentType": "accountableTo"
+    },
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-work-requester-b",
+      "assignmentType": "payor"
+    }
+  ],
+  "executionMode": "serviceProviderManaged",
+  "serviceProviderActorUri": "urn:ipproto:actor:fabrikam-patentes",
+  "dependencies": [],
+  "milestoneStatus": "committed",
+  "estimates": {
+    "estimatedDuration": {
+      "minimumDays": 5,
+      "expectedDays": 8,
+      "maximumDays": 10
+    }
+  },
+  "agreedPrice": {
+    "amount": 1490.0,
+    "currency": "EUR",
+    "priceBasis": "fixed",
+    "lineItems": [
+      {
+        "lineItemType": "urn:ipproto:lineItem:professionalFee",
+        "amount": 380.0
+      },
+      {
+        "lineItemType": "urn:ipproto:lineItem:translation",
+        "amount": 850.0,
+        "quantity": 21
+      },
+      {
+        "lineItemType": "urn:ipproto:lineItem:officialFee",
+        "amount": 260.0
+      }
+    ],
+    "officialFeesIncluded": true,
+    "agreementReference": "meridian-agent-terms-v4#rates-es"
+  },
+  "serviceLevels": [
+    {
+      "serviceLevelKind": "urn:ipproto:serviceLevel:acknowledgement",
+      "dueAt": "2026-10-28T17:00:00Z",
+      "agreedDurationHours": 24
+    },
+    {
+      "serviceLevelKind": "urn:ipproto:serviceLevel:delivery",
+      "dueAt": "2026-11-06T17:00:00Z",
+      "agreedDurationHours": 240,
+      "agreementReference": "meridian-agent-terms-v4#validation"
+    }
+  ],
+  "milestoneAuthorityClaims": [
+    "urn:ipproto:authorityClaim:claim-b-001"
+  ],
+  "parentMilestoneUri": "urn:ipproto:milestone:a1-es-validation"
+}

@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.2
 ---
 
 # Workstream
@@ -47,6 +47,21 @@ Type: structured, required
 - `goalText` — human-readable goal
 - `goalCategory` — URI
 - `goalConstraints` — optional structured: `costCeiling`, `deadlineConstraints`, `executionModeConstraints`
+
+### `instructingCapacity`
+Type: enumeration, optional
+
+Added in 0.2. In which capacity the work requester asks for the work:
+
+- `own` — for itself. The default when the field is absent
+- `onBehalf` — for another party, named in `beneficiary`. A law firm ordering for its client is the typical case
+
+### `beneficiary`
+Type: [Entity Reference](Entity%20Reference.md), conditional
+
+Added in 0.2. Required when `instructingCapacity == onBehalf`. The party the work is for.
+
+The requester stays the `workRequester` and usually the `payor`. The beneficiary holds the role `ultimateBeneficiary` scoped to the workstream (see [Actor Role Declaration](Actor%20Role%20Declaration.md)); it does not have to take part in the exchange. Suppliers check conflicts of interest against the beneficiary, not against the instructing requester alone.
 
 ### `milestoneChain`
 Type: structured, required
@@ -126,7 +141,8 @@ The orchestrator computes status changes and publishes them through `statusHisto
 
 ## See also
 
-- [Milestone](Milestone.md) — units of work within the workstream
+- [Milestone](Milestone.md) — units of work within the workstream; `parentMilestoneUri` links milestones across two workstreams
+- [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) — the request that states capacity and beneficiary first
 - [Goal Decomposition](../03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md) — proposes the workstream
 - [Orchestration Committed](../03%20-%20Messages/Workstream%20Lifecycle/Orchestration%20Committed.md) — authorizes the workstream
 - [Workstream Completed](../03%20-%20Messages/Workstream%20Lifecycle/Workstream%20Completed.md), [Workstream Abandoned](../03%20-%20Messages/Workstream%20Lifecycle/Workstream%20Abandoned.md) — terminal events

@@ -24,6 +24,11 @@
       "path": "schemas/foundational/actor-role-declaration.schema.json"
     },
     {
+      "$id": "urn:ipproto:schema:0.2:agreedPrice",
+      "title": "Agreed Price",
+      "path": "schemas/foundational/agreed-price.schema.json"
+    },
+    {
       "$id": "urn:ipproto:schema:0.2:assetReference",
       "title": "Asset Reference",
       "path": "schemas/foundational/asset-reference.schema.json"
@@ -72,6 +77,11 @@
       "$id": "urn:ipproto:schema:0.2:resolvedAsset",
       "title": "Resolved Asset",
       "path": "schemas/foundational/resolved-asset.schema.json"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:serviceLevel",
+      "title": "Service Level",
+      "path": "schemas/foundational/service-level.schema.json"
     },
     {
       "$id": "urn:ipproto:schema:0.2:userContext",
