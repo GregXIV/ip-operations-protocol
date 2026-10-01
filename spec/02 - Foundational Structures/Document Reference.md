@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.2
 ---
 
 # Document Reference
@@ -39,6 +39,13 @@ Typed classification. Standard types in `urn:ipproto:doctype:` namespace:
 **Evidence:**
 - `executionEvidence` — confirmation receipts, screenshots
 - `paymentEvidence` — payment confirmations
+- `filingReceipt` — proof that a filing was received by an office (added in 0.2)
+- `officialFeeReceipt` — proof that an official fee was paid (added in 0.2)
+
+**Commercial:**
+- `invoice` — an invoice as a document, referenced by [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) (added in 0.2). Before 0.2 `invoice` existed only as a deliverable type
+
+`filingReceipt` and `officialFeeReceipt` are the standard labels for what a provider hands back after a filing or a fee payment; a [Work Instruction](../03%20-%20Messages/Work%20Instruction/Work%20Instruction.md) names them in `expectedDeliverables`. They classify the document. The evidence type `urn:ipproto:evidence:officeFeeReceipt` of an [Evidence Collection](Evidence%20Collection.md) classifies the evidence item that may point at such a document.
 
 Custom types allowed through namespaced URNs.
 
@@ -157,4 +164,5 @@ Documents are **federated** — content lives wherever the originating actor sto
 
 - [Service Deliverable](../03%20-%20Messages/Deliverable%20Handoff/Service%20Deliverable.md) — produces document references
 - [Artifact Ready](../03%20-%20Messages/Prepared-Action%20Handoff/Artifact%20Ready.md) — references prepared artifacts
+- [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) — references the invoice document
 - [Reference Standards](../01%20-%20Front%20Matter/Reference%20Standards.md) — ST.96 alignment for structured content

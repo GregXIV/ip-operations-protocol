@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.2
 ---
 
 # Actor Reference
@@ -23,7 +23,11 @@ Stable protocol identifier of the form `urn:ipproto:actor:{uuid}` for protocol-a
 ### `actorType`
 Type: enumeration, required
 
-One of: `corporateIpDepartment`, `serviceProvider`, `externalCounsel`, `registerAuthority`, `registerObserver`, `ipmsVendor`, `platformOperator`, `paymentInstitution`, `other`.
+One of: `corporateIpDepartment`, `serviceProvider`, `externalCounsel`, `registerAuthority`, `registerObserver`, `ipmsVendor`, `platformOperator`, `paymentInstitution`, `softwareService`, `other`.
+
+`softwareService` (added in 0.2) is an application that performs work without a person in the loop — a translation engine, a form generator, a search or docketing service. Before 0.2 an application could only appear as a `serviceProvider` whose messages carried the `automatedAgentIndicator` of [User Context](User%20Context.md), which hid what the actor is. The indicator remains: it says who produced one message; the actor type says what the actor is.
+
+Custom actor types use namespaced URNs that identify the defining authority (`urn:example-org:actorType:translationBureau`), as [Ratified Decisions](../05%20-%20Decisions/Ratified%20Decisions.md) decision 3 states. Since 0.2 the schema accepts such values; the 0.1 schema listed the standard values as a closed enumeration. A receiver that does not recognize an actor type treats it as `other`.
 
 The actorType drives default authority semantics — register authorities typically claim source-of-truth over legal status sections; corporate IP departments typically claim ownership over internal sections.
 
@@ -99,3 +103,4 @@ ActorReferences are immutable once registered. Legal name changes, jurisdiction 
 
 - [Reference Standards](../01%20-%20Front%20Matter/Reference%20Standards.md) for ISO 17442 (LEI) treatment
 - [Open Questions for Consortium](../05%20-%20Decisions/Open%20Questions%20for%20Consortium.md) for actor-type extensibility
+- [Ratified Decisions](../05%20-%20Decisions/Ratified%20Decisions.md) — decision 3 on custom actor types and the 0.2.0 entries
