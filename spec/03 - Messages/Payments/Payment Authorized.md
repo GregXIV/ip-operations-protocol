@@ -1,7 +1,7 @@
 ---
 type: message
 category: payments
-status: v0.1
+status: v0.2
 ---
 
 # Payment Authorized
@@ -145,6 +145,7 @@ The agent executes the payment through their banking infrastructure and produces
 
 ## Related messages
 
+- May follow an [Invoice Issued](Invoice%20Issued.md), which states what is owed (added in 0.2)
 - Followed by [Payment Executed](Payment%20Executed.md)
 - Office-fee payments: confirmed by [Register Event](../Steady-State%20Events/Register%20Event.md)
 - Divergence: [Action Confirmation Dispute](../Disputes/Action%20Confirmation%20Dispute.md)

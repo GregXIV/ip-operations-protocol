@@ -83,7 +83,7 @@ The catalogue entry, terms version or contract the price comes from. In a catalo
     {"lineItemType": "urn:ipproto:lineItem:handling", "amount": 80.00}
   ],
   "officialFeesIncluded": true,
-  "agreementReference": "meridian-catalogue-2026#ep-validation-es"
+  "agreementReference": "meridian-catalogue-2026#ep-validation"
 }
 ```
 

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:instructionDeclined",
+  "title": "Instruction Declined",
+  "description": "A work provider declines a work instruction, with the reason.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:instructionDeclined"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "instructionReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "declineReason": {
+          "type": "object",
+          "properties": {
+            "reasonCategory": {
+              "enum": [
+                "conflictOfInterest",
+                "noCapacity",
+                "outsideCompetence",
+                "priceNotAccepted",
+                "serviceLevelNotFeasible",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reasonCategory"
+          ]
+        }
+      },
+      "required": [
+        "instructionReference",
+        "declineReason"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

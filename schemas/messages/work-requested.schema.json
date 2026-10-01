@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:workRequested",
+  "title": "Work Requested",
+  "description": "A work requester places an order or asks for work. Opens a catalogue order or one of the three procurement paths.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:workRequested"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "requestReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "goalStatement": {
+          "type": "object",
+          "properties": {
+            "goalText": {
+              "type": "string"
+            },
+            "goalCategory": {
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+            },
+            "goalConstraints": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "goalText"
+          ]
+        },
+        "assetReferences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          }
+        },
+        "requestedWork": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestoneCategory": {
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              },
+              "jurisdictionCode": {
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/st3Code"
+              }
+            },
+            "required": [
+              "milestoneCategory"
+            ]
+          }
+        },
+        "instructingCapacity": {
+          "enum": [
+            "own",
+            "onBehalf"
+          ]
+        },
+        "beneficiary": {
+          "$ref": "urn:ipproto:schema:0.2:entityReference"
+        },
+        "requestMode": {
+          "enum": [
+            "catalogueOrder",
+            "directQuote",
+            "panel",
+            "openRfp"
+          ]
+        },
+        "offerReference": {
+          "type": "string"
+        },
+        "preAuthorized": {
+          "type": "boolean"
+        },
+        "responseDeadline": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+        }
+      },
+      "required": [
+        "requestReference",
+        "goalStatement",
+        "assetReferences",
+        "requestedWork",
+        "instructingCapacity",
+        "requestMode"
+      ],
+      "if": {
+        "properties": {
+          "instructingCapacity": {
+            "const": "onBehalf"
+          }
+        },
+        "required": [
+          "instructingCapacity"
+        ]
+      },
+      "then": {
+        "required": [
+          "beneficiary"
+        ]
+      }
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

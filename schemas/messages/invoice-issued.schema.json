@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:invoiceIssued",
+  "title": "Invoice Issued",
+  "description": "A payee issues an invoice to a payor. One message for supplier invoices and for the customer invoice; payee and payor say which it is.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:invoiceIssued"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "invoiceReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "invoiceNumber": {
+          "type": "string"
+        },
+        "payee": {
+          "type": "object",
+          "properties": {
+            "actorUri": {
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+            },
+            "roleDeclarationUri": {
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+            }
+          },
+          "required": [
+            "actorUri"
+          ]
+        },
+        "payor": {
+          "type": "object",
+          "properties": {
+            "actorUri": {
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+            },
+            "roleDeclarationUri": {
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+            }
+          },
+          "required": [
+            "actorUri"
+          ]
+        },
+        "invoiceLines": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestoneReference": {
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              },
+              "lineItemType": {
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              },
+              "amount": {
+                "type": "number"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "milestoneReference",
+              "lineItemType",
+              "amount"
+            ]
+          }
+        },
+        "totalAmount": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/money"
+        },
+        "taxHandling": {
+          "type": "object",
+          "properties": {
+            "taxTreatment": {
+              "enum": [
+                "taxed",
+                "reverseCharge",
+                "exempt",
+                "outsideScope"
+              ]
+            },
+            "taxRatePercent": {
+              "type": "number"
+            },
+            "taxAmount": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "taxTreatment"
+          ]
+        },
+        "dueDate": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDate"
+        },
+        "invoiceDocument": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        }
+      },
+      "required": [
+        "invoiceReference",
+        "invoiceNumber",
+        "payee",
+        "payor",
+        "invoiceLines",
+        "totalAmount",
+        "taxHandling",
+        "dueDate",
+        "invoiceDocument"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

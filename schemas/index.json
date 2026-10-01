@@ -160,6 +160,24 @@
       "messageType": "urn:ipproto:message:identityResolutionDispute"
     },
     {
+      "$id": "urn:ipproto:schema:0.2:instructionAccepted",
+      "title": "Instruction Accepted",
+      "path": "schemas/messages/instruction-accepted.schema.json",
+      "messageType": "urn:ipproto:message:instructionAccepted"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:instructionDeclined",
+      "title": "Instruction Declined",
+      "path": "schemas/messages/instruction-declined.schema.json",
+      "messageType": "urn:ipproto:message:instructionDeclined"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:invoiceIssued",
+      "title": "Invoice Issued",
+      "path": "schemas/messages/invoice-issued.schema.json",
+      "messageType": "urn:ipproto:message:invoiceIssued"
+    },
+    {
       "$id": "urn:ipproto:schema:0.2:milestoneAbandoned",
       "title": "Milestone Abandoned",
       "path": "schemas/messages/milestone-abandoned.schema.json",
@@ -236,6 +254,18 @@
       "title": "Service Subscription Terminated",
       "path": "schemas/messages/service-subscription-terminated.schema.json",
       "messageType": "urn:ipproto:message:serviceSubscriptionTerminated"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:workInstruction",
+      "title": "Work Instruction",
+      "path": "schemas/messages/work-instruction.schema.json",
+      "messageType": "urn:ipproto:message:workInstruction"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:workRequested",
+      "title": "Work Requested",
+      "path": "schemas/messages/work-requested.schema.json",
+      "messageType": "urn:ipproto:message:workRequested"
     },
     {
       "$id": "urn:ipproto:schema:0.2:workstreamAbandoned",
