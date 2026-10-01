@@ -1,0 +1,95 @@
+{
+  "messageUri": "urn:ipproto:message:workInstruction-example-0001",
+  "messageType": "urn:ipproto:message:workInstruction",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-work-requester-b",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2026-10-27T08:15:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:b-agent-es-001",
+    "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent"
+  },
+  "payload": {
+    "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
+    "instruction": {
+      "instructionText": "Validate EP 3 987 654 in Spain: translate the specification into Spanish, file the translation at the OEPM and pay the publication fee.",
+      "instructionConstraints": {
+        "requesterReference": "MIG-2026-1042-ES"
+      }
+    },
+    "agreedPrice": {
+      "amount": 1490.0,
+      "currency": "EUR",
+      "priceBasis": "fixed",
+      "lineItems": [
+        {
+          "lineItemType": "urn:ipproto:lineItem:professionalFee",
+          "amount": 380.0
+        },
+        {
+          "lineItemType": "urn:ipproto:lineItem:translation",
+          "amount": 850.0,
+          "quantity": 21
+        },
+        {
+          "lineItemType": "urn:ipproto:lineItem:officialFee",
+          "amount": 260.0
+        }
+      ],
+      "officialFeesIncluded": true,
+      "agreementReference": "meridian-agent-terms-v4#rates-es"
+    },
+    "serviceLevels": [
+      {
+        "serviceLevelKind": "urn:ipproto:serviceLevel:acknowledgement",
+        "dueAt": "2026-10-28T17:00:00Z",
+        "agreedDurationHours": 24
+      },
+      {
+        "serviceLevelKind": "urn:ipproto:serviceLevel:delivery",
+        "dueAt": "2026-11-06T17:00:00Z",
+        "agreedDurationHours": 240,
+        "agreementReference": "meridian-agent-terms-v4#validation"
+      }
+    ],
+    "providedDocuments": [
+      "urn:ipproto:document:ep3987654-b1-granted-text"
+    ],
+    "expectedDeliverables": [
+      {
+        "deliverableType": "urn:ipproto:deliverable:preparedTranslation",
+        "documentType": "urn:ipproto:doctype:translation"
+      },
+      {
+        "documentType": "urn:ipproto:doctype:filingReceipt"
+      },
+      {
+        "documentType": "urn:ipproto:doctype:officialFeeReceipt"
+      }
+    ],
+    "responseDeadline": "2026-10-28T17:00:00Z"
+  },
+  "assertions": [
+    {
+      "assertionUri": "urn:ipproto:assertion:b1-parent-link",
+      "recordUri": "urn:ipproto:milestone:b1-es-validation-agent",
+      "sectionPath": "/parentMilestoneUri",
+      "asserter": {
+        "actorUri": "urn:ipproto:actor:meridian-ip-group",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-work-requester-b"
+      },
+      "assertionContent": {
+        "contentType": "fullValue",
+        "value": "urn:ipproto:milestone:a1-es-validation"
+      },
+      "claimReference": "urn:ipproto:authorityClaim:claim-b-001",
+      "assertedAt": "2026-10-27T08:15:00Z"
+    }
+  ]
+}

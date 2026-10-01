@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:workInstruction",
+  "title": "Work Instruction",
+  "description": "A work requester instructs a work provider to perform one milestone at an agreed price and under agreed service levels.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:workInstruction"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "milestoneReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "instruction": {
+          "type": "object",
+          "properties": {
+            "instructionText": {
+              "type": "string"
+            },
+            "instructionConstraints": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "instructionText"
+          ]
+        },
+        "agreedPrice": {
+          "$ref": "urn:ipproto:schema:0.2:agreedPrice"
+        },
+        "serviceLevels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "urn:ipproto:schema:0.2:serviceLevel"
+          }
+        },
+        "providedDocuments": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          }
+        },
+        "expectedDeliverables": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "deliverableType": {
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              },
+              "documentType": {
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "deliverableType"
+                ]
+              },
+              {
+                "required": [
+                  "documentType"
+                ]
+              }
+            ]
+          }
+        },
+        "responseDeadline": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+        }
+      },
+      "required": [
+        "milestoneReference",
+        "instruction",
+        "agreedPrice",
+        "serviceLevels",
+        "providedDocuments",
+        "expectedDeliverables",
+        "responseDeadline"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}
