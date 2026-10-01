@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:bidInvitation",
+  "title": "Bid Invitation",
+  "description": "An orchestrator invites suppliers to bid on one milestone. Opens the procurement sequence behind the execution mode thirdPartyRfp.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:bidInvitation"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "requestReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "milestoneReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "scope": {
+          "type": "object",
+          "properties": {
+            "scopeText": {
+              "type": "string"
+            },
+            "milestoneCategory": {
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+            },
+            "jurisdictionCode": {
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/st3Code"
+            },
+            "assetReferences": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              }
+            }
+          },
+          "required": [
+            "scopeText"
+          ]
+        },
+        "lineItemTemplate": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          }
+        },
+        "bidDeadline": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+        },
+        "audience": {
+          "enum": [
+            "single",
+            "panel",
+            "open"
+          ]
+        },
+        "conflictParties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "partyRole": {
+                "enum": [
+                  "beneficiary",
+                  "adverseParty",
+                  "other"
+                ]
+              },
+              "party": {
+                "$ref": "urn:ipproto:schema:0.2:entityReference"
+              }
+            },
+            "required": [
+              "partyRole",
+              "party"
+            ]
+          }
+        },
+        "requesterIdentityWithheld": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "requestReference",
+        "milestoneReference",
+        "scope",
+        "lineItemTemplate",
+        "bidDeadline",
+        "audience",
+        "conflictParties"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

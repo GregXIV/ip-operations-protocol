@@ -1,0 +1,64 @@
+{
+  "messageUri": "urn:ipproto:message:bidInvitation-example-0001",
+  "messageType": "urn:ipproto:message:bidInvitation",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-orchestrator-c",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "expectedRole": "urn:ipproto:role:bidder"
+    }
+  ],
+  "producedAt": "2026-11-02T10:00:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:c-opposition-defence-001",
+    "milestoneUri": "urn:ipproto:milestone:c1-opposition-response"
+  },
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1107",
+    "milestoneReference": "urn:ipproto:milestone:c1-opposition-response",
+    "scope": {
+      "scopeText": "Represent the patent proprietor in EPO opposition proceedings: analyse the notice of opposition, draft and file the reply, up to and excluding oral proceedings.",
+      "milestoneCategory": "urn:ipproto:milestoneCategory:responseDrafting",
+      "jurisdictionCode": "EP",
+      "assetReferences": [
+        "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8"
+      ]
+    },
+    "lineItemTemplate": [
+      "urn:ipproto:lineItem:professionalFee",
+      "urn:ipproto:lineItem:disbursement"
+    ],
+    "bidDeadline": "2026-11-09T17:00:00Z",
+    "audience": "panel",
+    "conflictParties": [
+      {
+        "partyRole": "beneficiary",
+        "party": {
+          "literal": {
+            "value": "Northwind Industries SE",
+            "source": {
+              "sourceType": "selfDeclaration",
+              "sourceActorUri": "urn:ipproto:actor:northwind-industries"
+            }
+          }
+        }
+      },
+      {
+        "partyRole": "adverseParty",
+        "party": {
+          "literal": {
+            "value": "Wingtip Components GmbH",
+            "source": {
+              "sourceType": "register",
+              "sourceActorUri": "urn:ipproto:actor:epo",
+              "sourcePublicationDate": "2026-10-21"
+            }
+          }
+        }
+      }
+    ],
+    "requesterIdentityWithheld": false
+  }
+}

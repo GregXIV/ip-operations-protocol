@@ -1,0 +1,58 @@
+{
+  "messageUri": "urn:ipproto:message:bidSubmitted-example-0001",
+  "messageType": "urn:ipproto:message:bidSubmitted",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:woodgrove-ip",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:woodgrove-bidder-c1",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:workRequester"
+    }
+  ],
+  "producedAt": "2026-11-05T11:45:00Z",
+  "userContext": {
+    "userIdentifier": "m.hale@woodgrove-ip.example",
+    "roleAtActor": "Partner"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:c-opposition-defence-001",
+    "milestoneUri": "urn:ipproto:milestone:c1-opposition-response",
+    "correlatedToMessageUri": "urn:ipproto:message:bidInvitation-example-0001"
+  },
+  "payload": {
+    "bidReference": "urn:ipproto:bid:woodgrove-c1-001",
+    "invitationReference": "urn:ipproto:message:bidInvitation-example-0001",
+    "price": {
+      "amount": 9800.0,
+      "currency": "EUR",
+      "priceBasis": "capped",
+      "lineItems": [
+        {
+          "lineItemType": "urn:ipproto:lineItem:professionalFee",
+          "amount": 9200.0,
+          "quantity": 23,
+          "note": "Hours at blended rate, capped"
+        },
+        {
+          "lineItemType": "urn:ipproto:lineItem:disbursement",
+          "amount": 600.0
+        }
+      ],
+      "officialFeesIncluded": false,
+      "bindingUntil": "2026-11-30T17:00:00Z"
+    },
+    "committedTurnaroundDays": 30,
+    "staffing": [
+      {
+        "roleAtActor": "Lead attorney",
+        "qualification": "European Patent Attorney, 14 years in opposition practice"
+      },
+      {
+        "roleAtActor": "Associate",
+        "qualification": "European Patent Attorney"
+      }
+    ],
+    "comments": "Reply to be filed two weeks before the term set by the Opposition Division."
+  }
+}

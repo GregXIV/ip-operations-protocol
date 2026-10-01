@@ -130,10 +130,58 @@
       "messageType": "urn:ipproto:message:assetMatchResponse"
     },
     {
+      "$id": "urn:ipproto:schema:0.2:awardConfirmed",
+      "title": "Award Confirmed",
+      "path": "schemas/messages/award-confirmed.schema.json",
+      "messageType": "urn:ipproto:message:awardConfirmed"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:awardDeclined",
+      "title": "Award Declined",
+      "path": "schemas/messages/award-declined.schema.json",
+      "messageType": "urn:ipproto:message:awardDeclined"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:awardProposed",
+      "title": "Award Proposed",
+      "path": "schemas/messages/award-proposed.schema.json",
+      "messageType": "urn:ipproto:message:awardProposed"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:bidDeclined",
+      "title": "Bid Declined",
+      "path": "schemas/messages/bid-declined.schema.json",
+      "messageType": "urn:ipproto:message:bidDeclined"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:bidInvitation",
+      "title": "Bid Invitation",
+      "path": "schemas/messages/bid-invitation.schema.json",
+      "messageType": "urn:ipproto:message:bidInvitation"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:bidSubmitted",
+      "title": "Bid Submitted",
+      "path": "schemas/messages/bid-submitted.schema.json",
+      "messageType": "urn:ipproto:message:bidSubmitted"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:bidWithdrawn",
+      "title": "Bid Withdrawn",
+      "path": "schemas/messages/bid-withdrawn.schema.json",
+      "messageType": "urn:ipproto:message:bidWithdrawn"
+    },
+    {
       "$id": "urn:ipproto:schema:0.2:clientActionCompleted",
       "title": "Client Action Completed",
       "path": "schemas/messages/client-action-completed.schema.json",
       "messageType": "urn:ipproto:message:clientActionCompleted"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.2:conflictCheckAttested",
+      "title": "Conflict Check Attested",
+      "path": "schemas/messages/conflict-check-attested.schema.json",
+      "messageType": "urn:ipproto:message:conflictCheckAttested"
     },
     {
       "$id": "urn:ipproto:schema:0.2:deliverableAcknowledged",

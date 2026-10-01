@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:bidSubmitted",
+  "title": "Bid Submitted",
+  "description": "A bidder submits a binding bid in answer to a bid invitation.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:bidSubmitted"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "bidReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "invitationReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "price": {
+          "allOf": [
+            {
+              "$ref": "urn:ipproto:schema:0.2:agreedPrice"
+            },
+            {
+              "required": [
+                "lineItems",
+                "bindingUntil"
+              ]
+            }
+          ]
+        },
+        "committedTurnaroundDays": {
+          "type": "number"
+        },
+        "staffing": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "roleAtActor": {
+                "type": "string"
+              },
+              "qualification": {
+                "type": "string"
+              },
+              "userContext": {
+                "$ref": "urn:ipproto:schema:0.2:userContext"
+              }
+            }
+          }
+        },
+        "comments": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "bidReference",
+        "invitationReference",
+        "price",
+        "committedTurnaroundDays"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

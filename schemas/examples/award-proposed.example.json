@@ -1,0 +1,26 @@
+{
+  "messageUri": "urn:ipproto:message:awardProposed-example-0001",
+  "messageType": "urn:ipproto:message:awardProposed",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-work-requester-c",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "expectedRole": "urn:ipproto:role:bidder"
+    }
+  ],
+  "producedAt": "2026-11-10T08:40:00Z",
+  "userContext": {
+    "userIdentifier": "counsel@northwind.example",
+    "roleAtActor": "Senior IP Counsel"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:c-opposition-defence-001",
+    "milestoneUri": "urn:ipproto:milestone:c1-opposition-response"
+  },
+  "payload": {
+    "bidReference": "urn:ipproto:bid:woodgrove-c1-001",
+    "confirmationDeadline": "2026-11-12T17:00:00Z"
+  }
+}

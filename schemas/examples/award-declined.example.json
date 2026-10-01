@@ -1,0 +1,30 @@
+{
+  "messageUri": "urn:ipproto:message:awardDeclined-example-0001",
+  "messageType": "urn:ipproto:message:awardDeclined",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:woodgrove-ip",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:woodgrove-bidder-c1",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:workRequester"
+    },
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:orchestrator"
+    }
+  ],
+  "producedAt": "2026-11-11T13:10:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:c-opposition-defence-001",
+    "milestoneUri": "urn:ipproto:milestone:c1-opposition-response",
+    "correlatedToMessageUri": "urn:ipproto:message:awardProposed-example-0001"
+  },
+  "payload": {
+    "awardReference": "urn:ipproto:message:awardProposed-example-0001",
+    "declineReason": {
+      "reasonCategory": "conflictOfInterest",
+      "reasonNarrative": "A conflict arose after the bid was submitted."
+    }
+  }
+}
