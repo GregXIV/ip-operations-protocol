@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:artifactReady",
+  "$id": "urn:ipproto:schema:0.2:artifactReady",
   "title": "Artifact Ready",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
     }
   ],
   "type": "object",
@@ -21,7 +21,7 @@
             "documentReferences": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
               }
             },
             "structuredArtifactContent": {
@@ -36,19 +36,19 @@
           "type": "object",
           "properties": {
             "actionCategory": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             },
             "actionTarget": {
               "type": "object",
               "properties": {
                 "targetSystem": {
-                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                  "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
                 },
                 "targetUri": {
-                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                  "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
                 },
                 "targetCredentialIssuer": {
-                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                  "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
                 }
               }
             },
@@ -59,10 +59,10 @@
               "type": "object",
               "properties": {
                 "deadlineDate": {
-                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+                  "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
                 },
                 "deadlineSource": {
-                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                  "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
                 },
                 "deadlineImpact": {
                   "enum": [
@@ -91,7 +91,7 @@
               ]
             },
             "confirmationDeadline": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDateTime"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
             },
             "evidenceExpectations": {
               "type": "object",
@@ -99,7 +99,7 @@
                 "evidenceTypes": {
                   "type": "array",
                   "items": {
-                    "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                    "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
                   }
                 },
                 "evidenceMandatory": {
@@ -120,7 +120,7 @@
           "type": "object",
           "properties": {
             "expectedRegisterEventType": {
-              "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
             },
             "expectedRegisterEventWindow": {
               "type": "object",

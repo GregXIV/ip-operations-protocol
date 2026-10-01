@@ -29,9 +29,10 @@ schemas/
 ## Conventions
 
 - **Dialect:** JSON Schema draft 2020-12.
-- **`$id`:** `urn:ipproto:schema:0.1:<name>`. The version is part of the identity and is
-  never reused across versions (see ../VERSIONING.md). Cross-schema `$ref`s use these URNs;
-  a validator registers all schemas so the URN refs resolve.
+- **`$id`:** `urn:ipproto:schema:0.2:<name>`. The version is part of the identity and is
+  never reused across versions (see ../VERSIONING.md), so the whole set is re-issued under
+  `0.2`; the `0.1` identifiers keep naming the 0.1.0 set and nothing else. Cross-schema
+  `$ref`s use these URNs; a validator registers all schemas so the URN refs resolve.
 - **Open extension:** `additionalProperties` is intentionally left open. The protocol's
   stated behavior is that receivers degrade gracefully on unknown fields rather than
   rejecting, so the schemas enforce shape, required fields, enums, and formats without
