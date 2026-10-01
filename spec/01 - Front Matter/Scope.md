@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.1
+status: v0.2
 ---
 
 # Scope
@@ -14,11 +14,14 @@ The protocol's scope is the **operational layer** — the messages flowing betwe
 Specifically:
 
 - **Asset bootstrapping** from registers and from corporate IP management systems — see [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md), [Asset Match Inquiry](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Inquiry.md), [Asset Match Response](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Response.md)
+- **Requests for work** from the customer's side, by catalogue order or for procurement — see [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) (added in 0.2)
 - **Decomposition of operational goals into milestone chains** — see [Goal Decomposition](../03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md), [Orchestration Committed](../03%20-%20Messages/Workstream%20Lifecycle/Orchestration%20Committed.md)
 - **Authorization and execution of milestones** across multiple actors — see [Milestone Started](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Started.md), [Milestone Completed](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Completed.md), [Milestone Failed](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Failed.md), [Milestone Abandoned](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Abandoned.md)
+- **Instruction of suppliers** at an agreed price and under agreed service levels — see [Work Instruction](../03%20-%20Messages/Work%20Instruction/Work%20Instruction.md), [Instruction Accepted](../03%20-%20Messages/Work%20Instruction/Instruction%20Accepted.md), [Instruction Declined](../03%20-%20Messages/Work%20Instruction/Instruction%20Declined.md) (added in 0.2)
+- **Procurement of work** through invitation, conflict attestation, binding bids and award — see [Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md), [Conflict Check Attested](../03%20-%20Messages/Procurement/Conflict%20Check%20Attested.md), [Bid Submitted](../03%20-%20Messages/Procurement/Bid%20Submitted.md), [Bid Withdrawn](../03%20-%20Messages/Procurement/Bid%20Withdrawn.md), [Bid Declined](../03%20-%20Messages/Procurement/Bid%20Declined.md), [Award Proposed](../03%20-%20Messages/Procurement/Award%20Proposed.md), [Award Confirmed](../03%20-%20Messages/Procurement/Award%20Confirmed.md), [Award Declined](../03%20-%20Messages/Procurement/Award%20Declined.md) (added in 0.2)
 - **Handoffs between actors and external systems** — see [Artifact Ready](../03%20-%20Messages/Prepared-Action%20Handoff/Artifact%20Ready.md), [Client Action Completed](../03%20-%20Messages/Prepared-Action%20Handoff/Client%20Action%20Completed.md)
 - **Long-running service subscriptions** for renewal monitoring, opposition watch, portfolio monitoring — see [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md), [Service Subscription Terminated](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Terminated.md)
-- **Payment authorization and execution** for office fees, professional fees, third-party counsel — see [Payment Authorized](../03%20-%20Messages/Payments/Payment%20Authorized.md), [Payment Executed](../03%20-%20Messages/Payments/Payment%20Executed.md)
+- **Payment authorization and execution** for office fees, professional fees, third-party counsel — see [Payment Authorized](../03%20-%20Messages/Payments/Payment%20Authorized.md), [Payment Executed](../03%20-%20Messages/Payments/Payment%20Executed.md), and since 0.2 invoices through [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md)
 - **Register events** carrying legal status changes — see [Register Event](../03%20-%20Messages/Steady-State%20Events/Register%20Event.md)
 - **Authority assertions** over sections of asset records — see [Authority Claim](../02%20-%20Foundational%20Structures/Authority%20Claim.md), [Data Assertion](../02%20-%20Foundational%20Structures/Data%20Assertion.md)
 - **Dispute mechanics** for conflicts that cannot be auto-resolved — see [Asset Authority Dispute](../03%20-%20Messages/Disputes/Asset%20Authority%20Dispute.md), [Action Confirmation Dispute](../03%20-%20Messages/Disputes/Action%20Confirmation%20Dispute.md), [Identity Resolution Dispute](../03%20-%20Messages/Disputes/Identity%20Resolution%20Dispute.md), [Dispute Resolution Decision](../03%20-%20Messages/Disputes/Dispute%20Resolution%20Decision.md)
@@ -35,7 +38,7 @@ The protocol formalizes patterns that current practice handles either ad hoc or 
 
 ## Adjacent topics — see [Non-Scope](Non-Scope.md)
 
-This protocol does **not** cover identity governance, authentication, transport protocols, document content standards, or commercial terms. Those are handled elsewhere or are explicitly out of scope. See [Non-Scope](Non-Scope.md) for the full list.
+This protocol does **not** cover identity governance, authentication, transport protocols, document content standards, or pricing models and contractual terms. Those are handled elsewhere or are explicitly out of scope. See [Non-Scope](Non-Scope.md) for the full list.
 
 ## Reference standards — see [Reference Standards](Reference%20Standards.md)
 

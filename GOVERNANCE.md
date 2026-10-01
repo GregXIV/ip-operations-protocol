@@ -26,7 +26,7 @@ Nothing in this document asserts that a consortium currently exists. It describe
 
 ## Contributing
 
-Implementation feedback, issues, and proposals are welcome via the repository. Substantive protocol changes are evaluated against the single scoping principle in [Non-Scope](spec/01%20-%20Front%20Matter/Non-Scope.md): *the protocol standardizes the patent-operations data layer and nothing else.*
+Implementation feedback, issues, and proposals are welcome via the repository. Substantive protocol changes are evaluated against the single scoping principle in [Non-Scope](spec/01%20-%20Front%20Matter/Non-Scope.md): *the protocol standardizes the IP-operations data layer and nothing else.*
 
 ## WIPO coordination
 
