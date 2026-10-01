@@ -1,0 +1,75 @@
+{
+  "messageUri": "urn:ipproto:message:serviceSubscriptionStarted-example-0002",
+  "messageType": "urn:ipproto:message:serviceSubscriptionStarted",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-contract-holder-app",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:litware-translate",
+      "expectedRole": "urn:ipproto:role:subscriptionOperator"
+    }
+  ],
+  "producedAt": "2026-11-16T09:00:00Z",
+  "payload": {
+    "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
+    "subscriptionType": "urn:litware-translate:subscription:translationWorkbench",
+    "subscriptionScope": {
+      "scopedAssetReferences": [],
+      "scopedDefinition": {
+        "seats": 5
+      },
+      "scopeStartDate": "2026-11-16T00:00:00Z"
+    },
+    "actorAssignments": [
+      {
+        "actorUri": "urn:ipproto:actor:meridian-ip-group",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-contract-holder-app",
+        "assignmentType": "subscriptionContractHolder"
+      },
+      {
+        "actorUri": "urn:ipproto:actor:litware-translate",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:litware-operator-app",
+        "assignmentType": "subscriptionOperator"
+      },
+      {
+        "actorUri": "urn:ipproto:actor:northwind-industries",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-subscriber-app",
+        "assignmentType": "subscriber"
+      }
+    ],
+    "cadence": {
+      "cadenceType": "eventDriven"
+    },
+    "commercialTerms": {
+      "feeStructure": "revenueShare",
+      "feeAmount": {
+        "sharePercent": 70
+      },
+      "billingCadence": "inArrears",
+      "commercialAgreementReference": "meridian-app-terms-2026#revenue-share",
+      "planReference": "litware-translate#professional",
+      "trial": {
+        "trialEndsAt": "2026-12-16T00:00:00Z",
+        "afterTrial": "convertsToPaid"
+      }
+    },
+    "findingsConfiguration": {
+      "findingDeliveryMethod": "notificationOnly"
+    },
+    "subscriptionAuthorityClaims": [
+      {
+        "claimUri": "urn:ipproto:authorityClaim:claim-app-001",
+        "recordUri": "urn:ipproto:subscription:litware-translate-nw-001",
+        "sectionPath": "",
+        "claimant": {
+          "actorUri": "urn:ipproto:actor:meridian-ip-group",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-contract-holder-app"
+        },
+        "claimType": "sourceOfTruth",
+        "claimBasis": "urn:ipproto:basis:contractualService",
+        "effectiveFrom": "2026-11-16T00:00:00Z"
+      }
+    ]
+  }
+}
