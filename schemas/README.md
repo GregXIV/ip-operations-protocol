@@ -1,7 +1,7 @@
 # Schemas
 
 JSON Schemas, validated examples, generated TypeScript types, and a reference validator
-for the IP Operations Protocol **v0.1**. Packaged as `@ipproto/schemas`.
+for the IP Operations Protocol **v0.2**. Packaged as `@ipproto/schemas`.
 
 **License:** Apache-2.0 (see [LICENSE](LICENSE)) — the explicit patent grant is deliberate
 for a standard in the patent domain.
@@ -12,13 +12,18 @@ for a standard in the patent domain.
 schemas/
 ├── defs/            common-defs.schema.json   (money, codes, dates, JSON Pointer)
 ├── envelope/        common-envelope.schema.json
-├── foundational/    12 structures: asset/entity/document/actor references, actor role
+├── foundational/    14 structures: asset/entity/document/actor references, actor role
 │                    declaration, user context, authority claim, data assertion,
-│                    workstream, milestone, outcome details, evidence collection
-├── messages/        all 26 messages: asset bootstrap/match inquiry/match response;
+│                    workstream, milestone, outcome details, evidence collection,
+│                    agreed price, service level (plus the two resolver profile structures)
+├── messages/        all 39 messages: asset bootstrap/match inquiry/match response;
 │                    orchestration committed; milestone started/completed/failed/abandoned;
 │                    workstream completed/abandoned; service deliverable;
-│                    deliverable acknowledged; artifact ready; client action completed
+│                    deliverable acknowledged; artifact ready; client action completed;
+│                    and since 0.2 work requested; work instruction, instruction
+│                    accepted/declined; invoice issued; bid invitation, conflict check
+│                    attested, bid submitted/withdrawn/declined, award
+│                    proposed/confirmed/declined
 ├── examples/        complete, validated message instances
 ├── types/           ipproto.d.ts — TypeScript types GENERATED from the schemas
 ├── index.json       manifest: messageType / structure -> $id -> path
@@ -56,8 +61,14 @@ Types are generated from the schemas — regenerate them when the spec versions;
 
 ## Coverage
 
-This release schematizes the **complete protocol surface**: the envelope, all 12 foundational
-structures, and all 26 messages plus the Resolution Provenance / Resolved Asset profile structures — bootstrap/discovery, workstream and milestone lifecycle,
-deliverable and prepared-action handoff, payments, subscriptions, steady-state events
-(register events, service findings), the full dispute machinery, and the generic record update.
-Thirteen complete examples (messages + resolver structures) validate against the set.
+This release schematizes the **complete protocol surface**: the envelope, all 14 foundational
+structures, and all 39 messages plus the Resolution Provenance / Resolved Asset profile structures — bootstrap/discovery, workstream and milestone lifecycle,
+work instruction, procurement, deliverable and prepared-action handoff, payments and invoices,
+subscriptions, steady-state events (register events, service findings), the full dispute
+machinery, and the generic record update. That is 57 schema files: common defs, the envelope,
+16 under `foundational/` and 39 under `messages/`.
+
+Thirty-one complete examples (messages + structures) validate against the set. The thirteen
+carried over from 0.1 keep `"protocolVersion": "0.1"` on purpose: they show that a 0.1
+message validates unchanged against the 0.2 schemas. The eighteen added in 0.2 cover every
+new message and structure, the new Workstream and Milestone fields, and the new subscription terms.

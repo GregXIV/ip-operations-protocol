@@ -3,6 +3,59 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [0.2.0] — 2026-10 (working draft)
+
+A minor version: additions only. Nothing existing is renamed or removed, so a 0.1
+receiver keeps working and treats the additions as unknown. Ratified by the maintainer
+on 2026-10-01 (Ratified Decisions 29 and 30). The protocol now has 39 message types in
+12 categories.
+
+### Added
+- **Messages (13).** `workRequested` (workstream lifecycle), with `requestMode`,
+  `offerReference` and the `preAuthorized` flag of the one-step catalogue order;
+  `workInstruction`, `instructionAccepted`, `instructionDeclined` (new category
+  *Work Instruction*); `invoiceIssued` (payments), one message for supplier and
+  customer invoices; `bidInvitation`, `conflictCheckAttested`, `bidSubmitted`,
+  `bidWithdrawn`, `bidDeclined`, `awardProposed`, `awardConfirmed`, `awardDeclined`
+  (new category *Procurement*), which give the execution mode `thirdPartyRfp` its mechanics.
+- **Foundational structures (2).** Agreed Price, a binding price beside a milestone's
+  estimates; Service Level, a clock on one step of the work.
+- **Fields, all optional.** `agreedPrice`, `serviceLevels` and `parentMilestoneUri` on
+  Milestone, the last with the addressing rule that keeps a delegated milestone's
+  messages out of the parent workstream; `instructingCapacity` and `beneficiary` on
+  Workstream; `planReference` and `trial` on the `commercialTerms` of Service
+  Subscription Started.
+- **Vocabulary values.** Actor type `softwareService`; roles `orchestrator`, `bidder`,
+  `ultimateBeneficiary`; document types `filingReceipt`, `officialFeeReceipt`, `invoice`;
+  fee structure `revenueShare` with `sharePercent`.
+- **Namespaces.** `urn:ipproto:lineItem:` (`professionalFee`, `translation`,
+  `officialFee`, `handling`, `disbursement`) and `urn:ipproto:serviceLevel:`
+  (`acknowledgement`, `delivery`, `bidResponse`, `introduction`).
+- **Worked example.** Exclusive Delivery and Open Services Walkthrough: two linked
+  workstreams, and a panel procurement from request to award.
+- **Decisions.** Ratified Decisions 29 (the 0.2.0 extension) and 30 (one-step catalogue
+  order), and six defaults taken from the extension proposal's recommendations (31 to 36).
+- **Schemas.** Schemas for the 13 messages and the 2 structures; 18 further validated
+  examples (31 in all).
+
+### Changed
+- **Non-Scope, Commercial terms.** Pricing models and contractual terms stay out of
+  scope. How a binding price, a bid and an award are exchanged is now in scope.
+- **Guiding principle.** "patent-operations data layer" now reads "IP-operations data
+  layer", in Non-Scope and in GOVERNANCE.md.
+- **Actor type in the schema.** The closed enumeration is opened to namespaced custom
+  URNs, as Ratified Decision 3 already stated.
+- **Schema identifiers.** Every schema `$id` is re-issued as
+  `urn:ipproto:schema:0.2:<name>`, since VERSIONING.md forbids reusing an identifier
+  across versions. The `0.1` identifiers keep naming the 0.1.0 set. `protocolVersion`
+  in new messages is `0.2`.
+- **Generated TypeScript types** regenerated from the 0.2 schemas.
+
+### Pending before tagging 0.2.0
+- The maintainer's confirmation of defaults 31 to 36 in Ratified Decisions.
+- An annotated tag for 0.1.0, which does not exist yet, so that the 0.1 schema set
+  stays addressable once 0.2.0 is tagged.
+
 ## [0.1.0] — 2026-06 (working draft)
 
 First public release of the working draft.
