@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:bidWithdrawn",
+  "title": "Bid Withdrawn",
+  "description": "A bidder withdraws a bid it has submitted.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:bidWithdrawn"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "bidReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "withdrawalReason": {
+          "type": "object",
+          "properties": {
+            "reasonCategory": {
+              "enum": [
+                "conflictOfInterest",
+                "noCapacity",
+                "pricingError",
+                "scopeChanged",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reasonCategory"
+          ]
+        }
+      },
+      "required": [
+        "bidReference",
+        "withdrawalReason"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

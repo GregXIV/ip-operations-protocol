@@ -1,0 +1,48 @@
+{
+  "messageUri": "urn:ipproto:message:conflictCheckAttested-example-0001",
+  "messageType": "urn:ipproto:message:conflictCheckAttested",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:woodgrove-ip",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:woodgrove-bidder-c1",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:orchestrator"
+    }
+  ],
+  "producedAt": "2026-11-03T15:20:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:c-opposition-defence-001",
+    "milestoneUri": "urn:ipproto:milestone:c1-opposition-response",
+    "correlatedToMessageUri": "urn:ipproto:message:bidInvitation-example-0001"
+  },
+  "payload": {
+    "invitationReference": "urn:ipproto:message:bidInvitation-example-0001",
+    "checkedParties": [
+      {
+        "literal": {
+          "value": "Northwind Industries SE",
+          "source": {
+            "sourceType": "selfDeclaration",
+            "sourceActorUri": "urn:ipproto:actor:northwind-industries"
+          }
+        }
+      },
+      {
+        "literal": {
+          "value": "Wingtip Components GmbH",
+          "source": {
+            "sourceType": "register",
+            "sourceActorUri": "urn:ipproto:actor:epo",
+            "sourcePublicationDate": "2026-10-21"
+          }
+        }
+      }
+    ],
+    "outcome": "clear",
+    "attestedBy": {
+      "userIdentifier": "conflicts@woodgrove-ip.example",
+      "roleAtActor": "Conflicts Partner"
+    }
+  }
+}
