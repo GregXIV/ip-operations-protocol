@@ -1,4 +1,4 @@
-/* IP Operations Protocol v0.1 — TypeScript types.
+/* IP Operations Protocol v0.2 — TypeScript types.
  * GENERATED from the JSON Schemas. Do not edit by hand; regenerate when the spec versions.
  */
 
@@ -33,10 +33,66 @@ export type AssetMatchInquiry = CommonEnvelope;
  */
 export type AssetMatchResponse = CommonEnvelope;
 /**
+ * One side confirms a proposed award. The award stands when both the bidder and the work requester have confirmed, which commits the milestone.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "AwardConfirmed".
+ */
+export type AwardConfirmed = CommonEnvelope;
+/**
+ * A bidder declines a proposed award, with the reason.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "AwardDeclined".
+ */
+export type AwardDeclined = CommonEnvelope;
+/**
+ * A work requester proposes to award the milestone to one bid.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "AwardProposed".
+ */
+export type AwardProposed = CommonEnvelope;
+/**
+ * A work requester declines a bid, with its reasons. The ranking behind the decision is not exchanged.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "BidDeclined".
+ */
+export type BidDeclined = CommonEnvelope;
+/**
+ * An orchestrator invites suppliers to bid on one milestone. Opens the procurement sequence behind the execution mode thirdPartyRfp.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "BidInvitation".
+ */
+export type BidInvitation = CommonEnvelope;
+/**
+ * A bidder submits a binding bid in answer to a bid invitation.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "BidSubmitted".
+ */
+export type BidSubmitted = CommonEnvelope;
+/**
+ * A bidder withdraws a bid it has submitted.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "BidWithdrawn".
+ */
+export type BidWithdrawn = CommonEnvelope;
+/**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "ClientActionCompleted".
  */
 export type ClientActionCompleted = CommonEnvelope;
+/**
+ * A bidder attests the outcome of its conflict check against the parties named in a bid invitation. Only the attestation is exchanged, not the method.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "ConflictCheckAttested".
+ */
+export type ConflictCheckAttested = CommonEnvelope;
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "DeliverableAcknowledged".
@@ -57,6 +113,27 @@ export type GoalDecomposition = CommonEnvelope;
  * via the `definition` "IdentityResolutionDispute".
  */
 export type IdentityResolutionDispute = CommonEnvelope;
+/**
+ * A work provider accepts a work instruction. Binds both sides to the instruction's price and service levels and commits the milestone.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "InstructionAccepted".
+ */
+export type InstructionAccepted = CommonEnvelope;
+/**
+ * A work provider declines a work instruction, with the reason.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "InstructionDeclined".
+ */
+export type InstructionDeclined = CommonEnvelope;
+/**
+ * A payee issues an invoice to a payor. One message for supplier invoices and for the customer invoice; payee and payor say which it is.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "InvoiceIssued".
+ */
+export type InvoiceIssued = CommonEnvelope;
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "MilestoneAbandoned".
@@ -122,6 +199,20 @@ export type ServiceSubscriptionStarted = CommonEnvelope;
  * via the `definition` "ServiceSubscriptionTerminated".
  */
 export type ServiceSubscriptionTerminated = CommonEnvelope;
+/**
+ * A work requester instructs a work provider to perform one milestone at an agreed price and under agreed service levels.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "WorkInstruction".
+ */
+export type WorkInstruction = CommonEnvelope;
+/**
+ * A work requester places an order or asks for work. Opens a catalogue order or one of the three procurement paths.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "WorkRequested".
+ */
+export type WorkRequested = CommonEnvelope;
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "WorkstreamAbandoned".
@@ -231,15 +322,19 @@ export interface DataAssertion {
 export interface ActorReference {
   actorUri: string;
   actorType:
-    | "corporateIpDepartment"
-    | "serviceProvider"
-    | "externalCounsel"
-    | "registerAuthority"
-    | "registerObserver"
-    | "ipmsVendor"
-    | "platformOperator"
-    | "paymentInstitution"
-    | "other";
+    | (
+        | "corporateIpDepartment"
+        | "serviceProvider"
+        | "externalCounsel"
+        | "registerAuthority"
+        | "registerObserver"
+        | "ipmsVendor"
+        | "platformOperator"
+        | "paymentInstitution"
+        | "softwareService"
+        | "other"
+      )
+    | string;
   /**
    * @minItems 1
    */
@@ -283,6 +378,29 @@ export interface ActorRoleDeclaration {
     delegationBasis: string;
     delegationReference?: string;
   }[];
+}
+/**
+ * A binding price for a unit of work, as opposed to an estimate. Carried on a milestone, in a work instruction and as the price of a bid.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "AgreedPrice".
+ */
+export interface AgreedPrice {
+  amount: number;
+  /**
+   * ISO 4217 currency code
+   */
+  currency: string;
+  priceBasis: "fixed" | "capped" | "hourly";
+  lineItems?: {
+    lineItemType: string;
+    amount: number;
+    quantity?: number;
+    note?: string;
+  }[];
+  officialFeesIncluded: boolean;
+  bindingUntil?: string;
+  agreementReference?: string;
 }
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
@@ -527,8 +645,23 @@ export interface Milestone {
     estimatedAt?: string;
   };
   actuals?: {};
+  agreedPrice?: AgreedPrice;
+  serviceLevels?: ServiceLevel[];
   deliverables?: string[];
   milestoneAuthorityClaims: string[];
+  parentMilestoneUri?: string;
+}
+/**
+ * A clock on one step of the work: what is measured and when it runs out. The protocol carries the clock, not the consequence of missing it.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "ServiceLevel".
+ */
+export interface ServiceLevel {
+  serviceLevelKind: string;
+  dueAt: string;
+  agreedDurationHours?: number;
+  agreementReference?: string;
 }
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
@@ -588,6 +721,8 @@ export interface Workstream {
     goalCategory?: string;
     goalConstraints?: {};
   };
+  instructingCapacity?: "own" | "onBehalf";
+  beneficiary?: EntityReference;
   milestoneChain: {
     milestones: Milestone[];
     chainExecutionPolicy?: "strict" | "optimistic" | "manual";
