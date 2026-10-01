@@ -1,0 +1,27 @@
+{
+  "amount": 2140.0,
+  "currency": "EUR",
+  "priceBasis": "fixed",
+  "lineItems": [
+    {
+      "lineItemType": "urn:ipproto:lineItem:professionalFee",
+      "amount": 620.0
+    },
+    {
+      "lineItemType": "urn:ipproto:lineItem:translation",
+      "amount": 1180.0,
+      "quantity": 21,
+      "note": "Full specification into Spanish, 21 pages"
+    },
+    {
+      "lineItemType": "urn:ipproto:lineItem:officialFee",
+      "amount": 260.0
+    },
+    {
+      "lineItemType": "urn:ipproto:lineItem:handling",
+      "amount": 80.0
+    }
+  ],
+  "officialFeesIncluded": true,
+  "agreementReference": "meridian-catalogue-2026#ep-validation-es"
+}

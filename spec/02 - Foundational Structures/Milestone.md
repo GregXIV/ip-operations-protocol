@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.2
 ---
 
 # Milestone
@@ -65,7 +65,7 @@ Type: enumeration, required
 
 - `serviceProviderManaged` — performed by the contracted service provider
 - `selfService` — performed by the corporate's own staff
-- `thirdPartyRfp` — procured through marketplace RFP
+- `thirdPartyRfp` — procured through marketplace RFP. Since 0.2 the [procurement messages](../03%20-%20Messages/Procurement/Bid%20Invitation.md) give this mode its mechanics: invitation, bids and award. Until the award stands the milestone has no `primary` assignment
 
 ### `serviceProviderActorUri`
 Type: [Actor Reference](Actor%20Reference.md) URI, conditional
@@ -107,11 +107,41 @@ Type: structured, optional
 
 Populated as the milestone progresses. Same shape as `estimates` plus `varianceExplanation`.
 
+### `agreedPrice`
+Type: [Agreed Price](Agreed%20Price.md), optional
+
+Added in 0.2. The binding price of the milestone, beside `estimates`. Present when a price has been agreed: a catalogue price in a [Goal Decomposition](../03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md), the price of an accepted [Work Instruction](../03%20-%20Messages/Work%20Instruction/Work%20Instruction.md), or the price of the awarded bid.
+
+### `serviceLevels`
+Type: array of [Service Level](Service%20Level.md) structures, optional
+
+Added in 0.2. The clocks that run on this milestone.
+
 ### `deliverables`
 Type: array of [Document Reference](Document%20Reference.md) URIs, optional
 
 ### `milestoneAuthorityClaims`
 Type: array of [Authority Claim](Authority%20Claim.md) URIs, required
+
+### `parentMilestoneUri`
+Type: milestoneUri, optional
+
+Added in 0.2. Links this milestone to the milestone in **another** workstream on whose behalf it is performed. See *Passing work on* below.
+
+## Passing work on
+
+Added in 0.2. Work is passed on to another actor without a relay message, by linking two workstreams:
+
+- The customer and the orchestrator share one workstream. The orchestrator is the `primary` actor of each of its milestones.
+- The orchestrator and the agent share a second workstream. Its milestones point at the milestones of the first through `parentMilestoneUri`. In it the orchestrator is the `workRequester` and the agent the `workProvider`.
+
+The customer never receives a message of the second workstream, so it never sees the agent. The `delegationChain` of the agent's [Actor Role Declaration](Actor%20Role%20Declaration.md) records the delegation itself.
+
+**Addressing rule.** A message that carries `parentMilestoneUri` is not addressed to actors of the parent workstream unless they are also actors of the child workstream.
+
+The link points one way, from child to parent. The parent milestone carries no reference to its children, so nothing in the customer's workstream reveals that work was passed on, or to whom. The pattern nests: a child milestone can itself be the parent of a milestone in a further workstream.
+
+The orchestrator keeps the two in step. When the child milestone is started, completed, failed or abandoned, the orchestrator decides what that means for the parent and reports it in the parent workstream with the ordinary lifecycle messages, under its own name.
 
 ## Worked example
 
@@ -150,7 +180,46 @@ Type: array of [Authority Claim](Authority%20Claim.md) URIs, required
 }
 ```
 
+## Worked example — milestone passed on to an agent
+
+The agent's milestone in the second workstream. It points at the customer-facing milestone `a1-es-validation`, carries the price agreed between orchestrator and agent, and two clocks.
+
+```json
+{
+  "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent",
+  "milestoneSequence": 1,
+  "milestoneTitle": "EP validation in Spain: translation filing at the OEPM",
+  "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+  "actorAssignments": [
+    {"actorUri": "urn:ipproto:actor:fabrikam-patentes", "roleDeclarationUri": "...", "assignmentType": "primary"},
+    {"actorUri": "urn:ipproto:actor:meridian-ip-group", "roleDeclarationUri": "...", "assignmentType": "accountableTo"},
+    {"actorUri": "urn:ipproto:actor:meridian-ip-group", "roleDeclarationUri": "...", "assignmentType": "payor"}
+  ],
+  "executionMode": "serviceProviderManaged",
+  "serviceProviderActorUri": "urn:ipproto:actor:fabrikam-patentes",
+  "milestoneStatus": "committed",
+  "estimates": {
+    "estimatedDuration": {"minimumDays": 5, "expectedDays": 8, "maximumDays": 10}
+  },
+  "agreedPrice": {
+    "amount": 1490.00,
+    "currency": "EUR",
+    "priceBasis": "fixed",
+    "officialFeesIncluded": true,
+    "agreementReference": "meridian-agent-terms-v4#rates-es"
+  },
+  "serviceLevels": [
+    {"serviceLevelKind": "urn:ipproto:serviceLevel:acknowledgement", "dueAt": "2026-10-28T17:00:00Z", "agreedDurationHours": 24},
+    {"serviceLevelKind": "urn:ipproto:serviceLevel:delivery", "dueAt": "2026-11-06T17:00:00Z", "agreedDurationHours": 240}
+  ],
+  "milestoneAuthorityClaims": ["urn:ipproto:authorityClaim:..."],
+  "parentMilestoneUri": "urn:ipproto:milestone:a1-es-validation"
+}
+```
+
 ## See also
 
 - [Workstream](Workstream.md) — the container
+- [Agreed Price](Agreed%20Price.md), [Service Level](Service%20Level.md) — the binding price and the clocks
+- [Exclusive Delivery and Open Services Walkthrough](../04%20-%20Worked%20Examples/Exclusive%20Delivery%20and%20Open%20Services%20Walkthrough.md) — two linked workstreams end to end
 - [Milestone Started](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Started.md), [Milestone Completed](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Completed.md), [Milestone Failed](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Failed.md), [Milestone Abandoned](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Abandoned.md) — lifecycle messages

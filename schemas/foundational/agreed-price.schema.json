@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:agreedPrice",
+  "title": "Agreed Price",
+  "description": "A binding price for a unit of work, as opposed to an estimate. Carried on a milestone, in a work instruction and as the price of a bid.",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number"
+    },
+    "currency": {
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/iso4217"
+    },
+    "priceBasis": {
+      "enum": [
+        "fixed",
+        "capped",
+        "hourly"
+      ]
+    },
+    "lineItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lineItemType": {
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "lineItemType",
+          "amount"
+        ]
+      }
+    },
+    "officialFeesIncluded": {
+      "type": "boolean"
+    },
+    "bindingUntil": {
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+    },
+    "agreementReference": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount",
+    "currency",
+    "priceBasis",
+    "officialFeesIncluded"
+  ]
+}

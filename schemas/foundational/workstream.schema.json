@@ -58,6 +58,15 @@
         "goalText"
       ]
     },
+    "instructingCapacity": {
+      "enum": [
+        "own",
+        "onBehalf"
+      ]
+    },
+    "beneficiary": {
+      "$ref": "urn:ipproto:schema:0.2:entityReference"
+    },
     "milestoneChain": {
       "type": "object",
       "properties": {
@@ -125,5 +134,20 @@
     "goalStatement",
     "milestoneChain",
     "workstreamStatus"
-  ]
+  ],
+  "if": {
+    "properties": {
+      "instructingCapacity": {
+        "const": "onBehalf"
+      }
+    },
+    "required": [
+      "instructingCapacity"
+    ]
+  },
+  "then": {
+    "required": [
+      "beneficiary"
+    ]
+  }
 }

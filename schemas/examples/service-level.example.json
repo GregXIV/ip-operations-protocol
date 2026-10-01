@@ -1,0 +1,6 @@
+{
+  "serviceLevelKind": "urn:ipproto:serviceLevel:delivery",
+  "dueAt": "2026-11-06T17:00:00Z",
+  "agreedDurationHours": 240,
+  "agreementReference": "meridian-agent-terms-v4#validation"
+}
