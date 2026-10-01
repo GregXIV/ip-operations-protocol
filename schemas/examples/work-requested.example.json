@@ -1,0 +1,52 @@
+{
+  "messageUri": "urn:ipproto:message:workRequested-example-0001",
+  "messageType": "urn:ipproto:message:workRequested",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:contoso-legal",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:contoso-work-requester",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:orchestrator"
+    }
+  ],
+  "producedAt": "2026-10-26T09:10:00Z",
+  "userContext": {
+    "userIdentifier": "a.reyes@contoso-legal.example",
+    "roleAtActor": "Patent Attorney"
+  },
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1042",
+    "goalStatement": {
+      "goalText": "Validate the granted European patent in Spain and Italy.",
+      "goalCategory": "urn:ipproto:goal:epPostGrantValidation"
+    },
+    "assetReferences": [
+      "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8"
+    ],
+    "requestedWork": [
+      {
+        "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+        "jurisdictionCode": "ES"
+      },
+      {
+        "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+        "jurisdictionCode": "IT"
+      }
+    ],
+    "instructingCapacity": "onBehalf",
+    "beneficiary": {
+      "literal": {
+        "value": "Northwind Industries SE",
+        "source": {
+          "sourceType": "selfDeclaration",
+          "sourceActorUri": "urn:ipproto:actor:contoso-legal"
+        }
+      }
+    },
+    "requestMode": "catalogueOrder",
+    "offerReference": "meridian-catalogue-2026#ep-validation",
+    "preAuthorized": true,
+    "responseDeadline": "2026-10-28T17:00:00Z"
+  }
+}

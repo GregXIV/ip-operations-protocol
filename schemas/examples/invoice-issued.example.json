@@ -1,0 +1,59 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceIssued-example-0001",
+  "messageType": "urn:ipproto:message:invoiceIssued",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:fabrikam-patentes",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:fabrikam-work-provider-b",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:payor"
+    }
+  ],
+  "producedAt": "2026-11-09T10:30:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:b-agent-es-001",
+    "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:fabrikam-2026-3381",
+    "invoiceNumber": "FP-2026-3381",
+    "payee": {
+      "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:fabrikam-work-provider-b"
+    },
+    "payor": {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-work-requester-b"
+    },
+    "invoiceLines": [
+      {
+        "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
+        "lineItemType": "urn:ipproto:lineItem:professionalFee",
+        "amount": 380.0
+      },
+      {
+        "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
+        "lineItemType": "urn:ipproto:lineItem:translation",
+        "amount": 850.0,
+        "description": "Specification into Spanish, 21 pages"
+      },
+      {
+        "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
+        "lineItemType": "urn:ipproto:lineItem:officialFee",
+        "amount": 260.0,
+        "description": "OEPM publication fee"
+      }
+    ],
+    "totalAmount": {
+      "amount": 1490.0,
+      "currency": "EUR"
+    },
+    "taxHandling": {
+      "taxTreatment": "reverseCharge",
+      "taxAmount": 0.0
+    },
+    "dueDate": "2026-12-09",
+    "invoiceDocument": "urn:ipproto:document:fabrikam-inv-2026-3381"
+  }
+}

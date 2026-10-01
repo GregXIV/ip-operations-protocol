@@ -1,0 +1,27 @@
+{
+  "messageUri": "urn:ipproto:message:instructionAccepted-example-0001",
+  "messageType": "urn:ipproto:message:instructionAccepted",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:fabrikam-patentes",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:fabrikam-work-provider-b",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:workRequester"
+    }
+  ],
+  "producedAt": "2026-10-27T14:02:00Z",
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:workInstruction-example-0001",
+    "workstreamUri": "urn:ipproto:workstream:b-agent-es-001",
+    "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent"
+  },
+  "payload": {
+    "instructionReference": "urn:ipproto:message:workInstruction-example-0001",
+    "acceptedAt": "2026-10-27T14:02:00Z",
+    "responsibleUser": {
+      "userIdentifier": "l.ortega@fabrikam-patentes.example",
+      "roleAtActor": "European Patent Attorney"
+    }
+  }
+}

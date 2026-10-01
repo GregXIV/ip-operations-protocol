@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.1
+status: v0.2
 ---
 
 # Goal Decomposition
@@ -16,7 +16,7 @@ This is the structured, machine-readable proposal of how patent operations work 
 
 ## Producer
 
-The orchestrator after [Asset Match Response](../Bootstrap%20and%20Discovery/Asset%20Match%20Response.md) returns confirmation. Typically a service provider's orchestrator; can be a corporate's own orchestrator for internal workstreams.
+The orchestrator after [Asset Match Response](../Bootstrap%20and%20Discovery/Asset%20Match%20Response.md) returns confirmation or, since 0.2, in answer to a [Work Requested](Work%20Requested.md). Typically a service provider's orchestrator; can be a corporate's own orchestrator for internal workstreams.
 
 ## Recipients
 
@@ -28,6 +28,10 @@ The actor with `decisionAuthority` role on the workstream. Typically the corpora
 Type: full [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) structure, required
 
 With `workstreamStatus = "proposed"` and a complete milestone chain. All milestones in `proposed` status.
+
+Since 0.2 each milestone may carry an `agreedPrice` ([Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md)) beside its `estimates`: the binding price the requester commits to. In answer to a catalogue order every milestone carries one.
+
+One exception to the `proposed` status, added in 0.2: in answer to a pre-authorized catalogue order whose prices match the offer, the workstream and its milestones are issued in status `committed`. See *One-step catalogue order* in [Work Requested](Work%20Requested.md).
 
 ### `proposalRationale`
 Type: structured, required
@@ -111,6 +115,7 @@ If conditions change before commitment (cost estimates wrong, actor unavailable,
 
 ## Related messages
 
+- Answers [Work Requested](Work%20Requested.md) where the workstream starts from a customer's request (added in 0.2)
 - Answered by [Orchestration Committed](Orchestration%20Committed.md)
 - Built on [Asset Match Response](../Bootstrap%20and%20Discovery/Asset%20Match%20Response.md) confirmation
 - Resulting workstream tracked through [Milestone Started](../Milestone%20Lifecycle/Milestone%20Started.md) etc.

@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.1
+status: v0.2
 ---
 
 # Orchestration Committed
@@ -11,6 +11,12 @@ status: v0.1
 ## Purpose
 
 Authorizes the workstream to begin, with any modifications the authorizer applies. Once committed, the workstream's status moves from `proposed` to `committed` and milestones whose dependencies are satisfied move to `ready`.
+
+Since 0.2 work is also committed on three paths that do not use this message:
+
+- a pre-authorized catalogue order whose prices match the offer — see *One-step catalogue order* in [Work Requested](Work%20Requested.md)
+- an instruction accepted by the provider — [Instruction Accepted](../Work%20Instruction/Instruction%20Accepted.md)
+- an award confirmed by both sides — [Award Confirmed](../Procurement/Award%20Confirmed.md)
 
 ## Producer
 

@@ -1,0 +1,202 @@
+{
+  "messageUri": "urn:ipproto:message:goalDecomposition-example-0002",
+  "messageType": "urn:ipproto:message:goalDecomposition",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-orchestrator-a",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:contoso-legal",
+      "expectedRole": "urn:ipproto:role:decisionAuthority"
+    }
+  ],
+  "producedAt": "2026-10-26T11:40:00Z",
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:workRequested-example-0001",
+    "workstreamUri": "urn:ipproto:workstream:a-validation-order-001"
+  },
+  "payload": {
+    "proposedWorkstream": {
+      "workstreamUri": "urn:ipproto:workstream:a-validation-order-001",
+      "workstreamType": "urn:ipproto:workstream:epPostGrantValidation",
+      "assetReferences": [
+        "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8"
+      ],
+      "triggeringEvent": {
+        "eventType": "clientRequest",
+        "eventReference": "urn:ipproto:request:req-2026-1042",
+        "triggeredAt": "2026-10-26T09:10:00Z"
+      },
+      "goalStatement": {
+        "goalText": "Validate the granted European patent in Spain and Italy.",
+        "goalCategory": "urn:ipproto:goal:epPostGrantValidation"
+      },
+      "instructingCapacity": "onBehalf",
+      "beneficiary": {
+        "literal": {
+          "value": "Northwind Industries SE",
+          "source": {
+            "sourceType": "selfDeclaration",
+            "sourceActorUri": "urn:ipproto:actor:contoso-legal"
+          }
+        }
+      },
+      "milestoneChain": {
+        "chainExecutionPolicy": "strict",
+        "milestones": [
+          {
+            "milestoneUri": "urn:ipproto:milestone:a1-es-validation",
+            "milestoneSequence": 1,
+            "milestoneTitle": "EP validation in Spain",
+            "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+            "actorAssignments": [
+              {
+                "actorUri": "urn:ipproto:actor:meridian-ip-group",
+                "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-orchestrator-a",
+                "assignmentType": "primary"
+              },
+              {
+                "actorUri": "urn:ipproto:actor:contoso-legal",
+                "roleDeclarationUri": "urn:ipproto:roleDeclaration:contoso-work-requester",
+                "assignmentType": "accountableTo"
+              },
+              {
+                "actorUri": "urn:ipproto:actor:contoso-legal",
+                "roleDeclarationUri": "urn:ipproto:roleDeclaration:contoso-work-requester",
+                "assignmentType": "payor"
+              }
+            ],
+            "executionMode": "serviceProviderManaged",
+            "serviceProviderActorUri": "urn:ipproto:actor:meridian-ip-group",
+            "dependencies": [],
+            "milestoneStatus": "committed",
+            "estimates": {
+              "estimatedDuration": {
+                "minimumDays": 8,
+                "expectedDays": 12,
+                "maximumDays": 15
+              }
+            },
+            "agreedPrice": {
+              "amount": 2140.0,
+              "currency": "EUR",
+              "priceBasis": "fixed",
+              "lineItems": [
+                {
+                  "lineItemType": "urn:ipproto:lineItem:professionalFee",
+                  "amount": 620.0
+                },
+                {
+                  "lineItemType": "urn:ipproto:lineItem:translation",
+                  "amount": 1180.0,
+                  "quantity": 21
+                },
+                {
+                  "lineItemType": "urn:ipproto:lineItem:officialFee",
+                  "amount": 260.0
+                },
+                {
+                  "lineItemType": "urn:ipproto:lineItem:handling",
+                  "amount": 80.0
+                }
+              ],
+              "officialFeesIncluded": true,
+              "agreementReference": "meridian-catalogue-2026#ep-validation"
+            },
+            "serviceLevels": [
+              {
+                "serviceLevelKind": "urn:ipproto:serviceLevel:delivery",
+                "dueAt": "2026-11-10T17:00:00Z",
+                "agreementReference": "meridian-customer-terms-2026#delivery"
+              }
+            ],
+            "milestoneAuthorityClaims": [
+              "urn:ipproto:authorityClaim:claim-a-001"
+            ]
+          },
+          {
+            "milestoneUri": "urn:ipproto:milestone:a2-it-validation",
+            "milestoneSequence": 2,
+            "milestoneTitle": "EP validation in Italy",
+            "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+            "actorAssignments": [
+              {
+                "actorUri": "urn:ipproto:actor:meridian-ip-group",
+                "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-orchestrator-a",
+                "assignmentType": "primary"
+              },
+              {
+                "actorUri": "urn:ipproto:actor:contoso-legal",
+                "roleDeclarationUri": "urn:ipproto:roleDeclaration:contoso-work-requester",
+                "assignmentType": "accountableTo"
+              },
+              {
+                "actorUri": "urn:ipproto:actor:contoso-legal",
+                "roleDeclarationUri": "urn:ipproto:roleDeclaration:contoso-work-requester",
+                "assignmentType": "payor"
+              }
+            ],
+            "executionMode": "serviceProviderManaged",
+            "serviceProviderActorUri": "urn:ipproto:actor:meridian-ip-group",
+            "dependencies": [],
+            "milestoneStatus": "committed",
+            "estimates": {
+              "estimatedDuration": {
+                "minimumDays": 8,
+                "expectedDays": 12,
+                "maximumDays": 15
+              }
+            },
+            "agreedPrice": {
+              "amount": 2380.0,
+              "currency": "EUR",
+              "priceBasis": "fixed",
+              "lineItems": [
+                {
+                  "lineItemType": "urn:ipproto:lineItem:professionalFee",
+                  "amount": 690.0
+                },
+                {
+                  "lineItemType": "urn:ipproto:lineItem:translation",
+                  "amount": 1390.0,
+                  "quantity": 21
+                },
+                {
+                  "lineItemType": "urn:ipproto:lineItem:officialFee",
+                  "amount": 220.0
+                },
+                {
+                  "lineItemType": "urn:ipproto:lineItem:handling",
+                  "amount": 80.0
+                }
+              ],
+              "officialFeesIncluded": true,
+              "agreementReference": "meridian-catalogue-2026#ep-validation"
+            },
+            "serviceLevels": [
+              {
+                "serviceLevelKind": "urn:ipproto:serviceLevel:delivery",
+                "dueAt": "2026-11-10T17:00:00Z",
+                "agreementReference": "meridian-customer-terms-2026#delivery"
+              }
+            ],
+            "milestoneAuthorityClaims": [
+              "urn:ipproto:authorityClaim:claim-a-002"
+            ]
+          }
+        ]
+      },
+      "workstreamStatus": "committed"
+    },
+    "proposalRationale": {
+      "analyticsSummary": "Catalogue order: one milestone per requested country at the catalogue price named in the request.",
+      "dataInputs": [
+        {
+          "inputType": "userPreference",
+          "inputDescription": "Pre-authorized catalogue order urn:ipproto:request:req-2026-1042 at offer meridian-catalogue-2026#ep-validation"
+        }
+      ]
+    },
+    "responseDeadline": "2026-10-28T17:00:00Z"
+  }
+}
