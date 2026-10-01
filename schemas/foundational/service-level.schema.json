@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:serviceLevel",
+  "title": "Service Level",
+  "description": "A clock on one step of the work: what is measured and when it runs out. The protocol carries the clock, not the consequence of missing it.",
+  "type": "object",
+  "properties": {
+    "serviceLevelKind": {
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+    },
+    "dueAt": {
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+    },
+    "agreedDurationHours": {
+      "type": "number"
+    },
+    "agreementReference": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "serviceLevelKind",
+    "dueAt"
+  ]
+}

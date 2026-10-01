@@ -1,4 +1,7 @@
 {
+  "agreed-price.example.json": "urn:ipproto:schema:0.2:agreedPrice",
+  "milestone-delegated.example.json": "urn:ipproto:schema:0.2:milestone",
   "resolution-provenance.example.json": "urn:ipproto:schema:0.2:resolutionProvenance",
-  "resolved-asset.example.json": "urn:ipproto:schema:0.2:resolvedAsset"
+  "resolved-asset.example.json": "urn:ipproto:schema:0.2:resolvedAsset",
+  "service-level.example.json": "urn:ipproto:schema:0.2:serviceLevel"
 }
