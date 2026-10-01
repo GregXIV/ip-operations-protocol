@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.2:awardDeclined",
+  "title": "Award Declined",
+  "description": "A bidder declines a proposed award, with the reason.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:awardDeclined"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "awardReference": {
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+        },
+        "declineReason": {
+          "type": "object",
+          "properties": {
+            "reasonCategory": {
+              "enum": [
+                "conflictOfInterest",
+                "noCapacity",
+                "bidExpired",
+                "scopeChanged",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reasonCategory"
+          ]
+        }
+      },
+      "required": [
+        "awardReference",
+        "declineReason"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

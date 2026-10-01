@@ -1,0 +1,25 @@
+{
+  "messageUri": "urn:ipproto:message:bidWithdrawn-example-0001",
+  "messageType": "urn:ipproto:message:bidWithdrawn",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:tailspin-legal",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:tailspin-bidder-c1",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:workRequester"
+    }
+  ],
+  "producedAt": "2026-11-07T09:05:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:c-opposition-defence-001",
+    "milestoneUri": "urn:ipproto:milestone:c1-opposition-response"
+  },
+  "payload": {
+    "bidReference": "urn:ipproto:bid:tailspin-c1-001",
+    "withdrawalReason": {
+      "reasonCategory": "noCapacity",
+      "reasonNarrative": "The proposed lead attorney is no longer available within the stated turnaround."
+    }
+  }
+}

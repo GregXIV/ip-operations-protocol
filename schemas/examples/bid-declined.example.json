@@ -1,0 +1,34 @@
+{
+  "messageUri": "urn:ipproto:message:bidDeclined-example-0001",
+  "messageType": "urn:ipproto:message:bidDeclined",
+  "protocolVersion": "0.2",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-work-requester-c",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:tailspin-legal",
+      "expectedRole": "urn:ipproto:role:bidder"
+    }
+  ],
+  "producedAt": "2026-11-12T09:30:00Z",
+  "userContext": {
+    "userIdentifier": "counsel@northwind.example",
+    "roleAtActor": "Senior IP Counsel"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:c-opposition-defence-001",
+    "milestoneUri": "urn:ipproto:milestone:c1-opposition-response"
+  },
+  "payload": {
+    "bidReference": "urn:ipproto:bid:tailspin-c1-001",
+    "declineReasons": [
+      {
+        "reasonCategory": "anotherBidAwarded"
+      },
+      {
+        "reasonCategory": "turnaround",
+        "reasonNarrative": "Committed turnaround of 45 days exceeds the term we need to keep."
+      }
+    ]
+  }
+}
