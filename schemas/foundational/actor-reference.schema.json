@@ -8,16 +8,26 @@
       "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
     },
     "actorType": {
-      "enum": [
-        "corporateIpDepartment",
-        "serviceProvider",
-        "externalCounsel",
-        "registerAuthority",
-        "registerObserver",
-        "ipmsVendor",
-        "platformOperator",
-        "paymentInstitution",
-        "other"
+      "anyOf": [
+        {
+          "enum": [
+            "corporateIpDepartment",
+            "serviceProvider",
+            "externalCounsel",
+            "registerAuthority",
+            "registerObserver",
+            "ipmsVendor",
+            "platformOperator",
+            "paymentInstitution",
+            "softwareService",
+            "other"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^urn:[A-Za-z0-9][A-Za-z0-9-]{0,31}:.+$",
+          "description": "Custom actor type: a namespaced URN identifying the defining authority"
+        }
       ]
     },
     "identifiers": {
