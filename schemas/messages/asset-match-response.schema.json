@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:assetMatchResponse",
+  "$id": "urn:ipproto:schema:0.2:assetMatchResponse",
   "title": "Asset Match Response",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "inquiryReference": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
         },
         "responseOutcome": {
           "enum": [
@@ -28,12 +28,12 @@
           ]
         },
         "outcomeDetails": {
-          "$ref": "urn:ipproto:schema:0.1:outcomeDetails"
+          "$ref": "urn:ipproto:schema:0.2:outcomeDetails"
         },
         "additionalAuthorityClaims": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.1:authorityClaim"
+            "$ref": "urn:ipproto:schema:0.2:authorityClaim"
           }
         }
       },

@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:serviceDeliverable",
+  "$id": "urn:ipproto:schema:0.2:serviceDeliverable",
   "title": "Service Deliverable",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.1:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,13 +16,13 @@
       "type": "object",
       "properties": {
         "deliverableReference": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
         },
         "producingMilestone": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
         },
         "deliverableType": {
-          "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
         },
         "deliverableContent": {
           "type": "object",
@@ -30,14 +30,14 @@
             "documentReferences": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
               }
             },
             "structuredContent": {
               "type": "object",
               "properties": {
                 "schemaIdentifier": {
-                  "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+                  "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
                 },
                 "content": {},
                 "schemaConformanceLevel": {
@@ -128,7 +128,7 @@
         "assertions": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.1:dataAssertion"
+            "$ref": "urn:ipproto:schema:0.2:dataAssertion"
           }
         }
       },

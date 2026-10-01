@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:assetReference",
+  "$id": "urn:ipproto:schema:0.2:assetReference",
   "title": "Asset Reference",
   "type": "object",
   "properties": {
     "assetUri": {
-      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
     },
     "assetType": {
       "enum": [
@@ -25,10 +25,10 @@
         "type": "object",
         "properties": {
           "scheme": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
           },
           "officeCode": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/st3Code"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/st3Code"
           },
           "value": {
             "type": "string"
@@ -45,7 +45,7 @@
             ]
           },
           "issueDate": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDate"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDate"
           }
         },
         "required": [
@@ -60,13 +60,13 @@
         "type": "object",
         "properties": {
           "relatedAssetUri": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
           },
           "relationshipType": {
             "type": "string"
           },
           "effectiveDate": {
-            "$ref": "urn:ipproto:schema:0.1:defs#/$defs/isoDate"
+            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDate"
           }
         },
         "required": [

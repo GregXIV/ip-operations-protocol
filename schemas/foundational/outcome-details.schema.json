@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:outcomeDetails",
+  "$id": "urn:ipproto:schema:0.2:outcomeDetails",
   "title": "Outcome Details",
   "type": "object",
   "properties": {

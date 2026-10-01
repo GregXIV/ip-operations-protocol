@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.1:resolutionProvenance",
+  "$id": "urn:ipproto:schema:0.2:resolutionProvenance",
   "title": "Resolution Provenance",
   "description": "How an observed-identifier set was resolved to a canonical asset. Produced by any resolver. Defined in the Asset Identification and Resolution profile.",
   "type": "object",
   "properties": {
     "resolvedAssetUri": {
-      "$ref": "urn:ipproto:schema:0.1:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
     },
     "resolvedAt": {
       "type": "string",
