@@ -94,6 +94,10 @@
         },
         "requesterIdentityWithheld": {
           "type": "boolean"
+        },
+        "requester": {
+          "$ref": "urn:ipproto:schema:0.4:actorReference",
+          "description": "The work requester, as in Requester Disclosed. Included when the requester's identity is not withheld; must be absent while requesterIdentityWithheld is true. Not required, so that a 0.3 invitation stays valid. Added in 0.4."
         }
       },
       "required": [
@@ -117,6 +121,7 @@
       },
       "then": {
         "properties": {
+          "requester": false,
           "scope": {
             "properties": {
               "prospectiveRights": {
