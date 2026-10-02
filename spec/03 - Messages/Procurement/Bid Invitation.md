@@ -1,7 +1,7 @@
 ---
 type: message
 category: procurement
-status: v0.2
+status: v0.3
 ---
 
 # Bid Invitation
@@ -16,12 +16,13 @@ The same message serves all three paths of open services. A direct quote is the 
 
 ## The procurement sequence
 
-The eight procurement messages run between three actors. A [Work Requested](../Workstream%20Lifecycle/Work%20Requested.md) opens the sequence and the existing milestone messages close it; everything between is in this category.
+The nine procurement messages run between three actors. A [Work Requested](../Workstream%20Lifecycle/Work%20Requested.md) opens the sequence and the existing milestone messages close it; everything between is in this category.
 
 | Step | Message | Sender to receiver |
 |---|---|---|
 | 1 | Bid Invitation | Orchestrator to bidders |
 | 2 | [Conflict Check Attested](Conflict%20Check%20Attested.md) | Bidder to orchestrator |
+| 2a | [Requester Disclosed](Requester%20Disclosed.md) | Orchestrator to the bidder, only where the requester's identity was withheld |
 | 3 | [Bid Submitted](Bid%20Submitted.md) | Bidder to work requester |
 | 3a | [Bid Withdrawn](Bid%20Withdrawn.md) | Bidder to work requester |
 | 4 | [Award Proposed](Award%20Proposed.md) | Work requester to bidder |
@@ -33,7 +34,7 @@ The orchestrator carries the messages between requester and bidders and does not
 
 Five rules hold across the family:
 
-1. **Identity before attestation.** A bidder learns the beneficiary and the adverse party at the latest with the invitation's `conflictParties`. The requester's own identity may be withheld until [Conflict Check Attested](Conflict%20Check%20Attested.md) returns `clear`.
+1. **Identity before attestation.** A bidder learns the beneficiary and the adverse party at the latest with the invitation's `conflictParties`. The requester's own identity may be withheld until [Conflict Check Attested](Conflict%20Check%20Attested.md) returns `clear`; the orchestrator then discloses it with [Requester Disclosed](Requester%20Disclosed.md) (added in 0.3). A bidder that attests `conflict` never learns it.
 2. **A bid is binding** until its `bindingUntil`. A [Bid Submitted](Bid%20Submitted.md) for the same invitation replaces the earlier bid of that bidder.
 3. **The award commits the milestone.** After both confirmations the milestone is `committed`, with the winner as `primary` actor and the bid's price as `agreedPrice`. No separate [Orchestration Committed](../Workstream%20Lifecycle/Orchestration%20Committed.md) is needed for it.
 4. **Clocks.** `bidDeadline`, `confirmationDeadline` and the introduction deadline are [Service Levels](../../02%20-%20Foundational%20Structures/Service%20Level.md) on the milestone.
@@ -100,7 +101,7 @@ The parties a bidder checks for conflicts of interest. Each entry:
 ### `requesterIdentityWithheld`
 Type: boolean, optional
 
-`true` when the requester acts on behalf of a beneficiary and its own identity is not disclosed to bidders yet. It follows once the bidder has attested `clear`. Absent means not withheld.
+`true` when the requester acts on behalf of a beneficiary and its own identity is not disclosed to bidders yet. It follows in a [Requester Disclosed](Requester%20Disclosed.md) once the bidder has attested `clear`. Absent means not withheld.
 
 ## Worked example — panel invitation
 
@@ -141,12 +142,13 @@ Type: boolean, optional
 
 The bidder checks conflicts against `conflictParties` and answers with [Conflict Check Attested](Conflict%20Check%20Attested.md). If the outcome is `clear` and it wants the work, it submits a bid before `bidDeadline`. A supplier that does not want to bid need not answer.
 
-While `requesterIdentityWithheld` is `true`, the bidder addresses its messages for the work requester to the orchestrator, with `expectedRole` `workRequester`. The orchestrator passes them on unchanged. After a `clear` attestation the orchestrator makes the requester's [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md) known to the bidder.
+While `requesterIdentityWithheld` is `true`, the bidder addresses its messages for the work requester to the orchestrator, with `expectedRole` `workRequester`. The orchestrator passes them on unchanged. After a `clear` attestation the orchestrator sends the bidder a [Requester Disclosed](Requester%20Disclosed.md) with the requester's [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md), and the bidder addresses the requester directly from then on. In 0.2 this step had no message.
 
 ## Related messages
 
 - Follows [Work Requested](../Workstream%20Lifecycle/Work%20Requested.md) with `requestMode` `directQuote`, `panel` or `openRfp`
 - Answered by [Conflict Check Attested](Conflict%20Check%20Attested.md), then [Bid Submitted](Bid%20Submitted.md)
+- [Requester Disclosed](Requester%20Disclosed.md) follows a `clear` attestation where `requesterIdentityWithheld` is `true`
 
 ## See also
 
