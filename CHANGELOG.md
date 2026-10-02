@@ -53,10 +53,6 @@ now has 39 message types in 12 categories.
   in new messages is `0.2`.
 - **Generated TypeScript types** regenerated from the 0.2 schemas.
 
-### Pending before tagging 0.2.0
-- An annotated tag for 0.1.0, which does not exist yet, so that the 0.1 schema set
-  stays addressable once 0.2.0 is tagged.
-
 ## [0.1.0] — 2026-06 (working draft)
 
 First public release of the working draft.
