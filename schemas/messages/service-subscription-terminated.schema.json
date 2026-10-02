@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:serviceSubscriptionTerminated",
+  "$id": "urn:ipproto:schema:0.3:serviceSubscriptionTerminated",
   "title": "Service Subscription Terminated",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "subscriptionReference": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
         },
         "terminationDate": {
           "type": "string",
@@ -41,10 +41,10 @@
               "type": "string"
             },
             "terminationInitiator": {
-              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
             },
             "terminationUserContext": {
-              "$ref": "urn:ipproto:schema:0.2:userContext"
+              "$ref": "urn:ipproto:schema:0.3:userContext"
             }
           },
           "required": [

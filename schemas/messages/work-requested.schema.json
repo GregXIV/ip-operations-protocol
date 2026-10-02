@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:workRequested",
+  "$id": "urn:ipproto:schema:0.3:workRequested",
   "title": "Work Requested",
   "description": "A work requester places an order or asks for work. Opens a catalogue order or one of the three procurement paths.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,7 +17,7 @@
       "type": "object",
       "properties": {
         "requestReference": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
         },
         "goalStatement": {
           "type": "object",
@@ -26,7 +26,7 @@
               "type": "string"
             },
             "goalCategory": {
-              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
             },
             "goalConstraints": {
               "type": "object"
@@ -40,7 +40,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
           }
         },
         "requestedWork": {
@@ -50,10 +50,10 @@
             "type": "object",
             "properties": {
               "milestoneCategory": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               },
               "jurisdictionCode": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/st3Code"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/st3Code"
               }
             },
             "required": [
@@ -68,7 +68,7 @@
           ]
         },
         "beneficiary": {
-          "$ref": "urn:ipproto:schema:0.2:entityReference"
+          "$ref": "urn:ipproto:schema:0.3:entityReference"
         },
         "requestMode": {
           "enum": [
@@ -85,7 +85,7 @@
           "type": "boolean"
         },
         "responseDeadline": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
         }
       },
       "required": [

@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:orchestrationCommitted",
+  "$id": "urn:ipproto:schema:0.3:orchestrationCommitted",
   "title": "Orchestration Committed",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "proposalReference": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
         },
         "commitmentDecision": {
           "enum": [
@@ -45,7 +45,7 @@
                 ]
               },
               "targetMilestoneUri": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               },
               "modificationContent": {
                 "type": "object"
@@ -54,7 +54,7 @@
                 "type": "string"
               },
               "modificationUserContext": {
-                "$ref": "urn:ipproto:schema:0.2:userContext"
+                "$ref": "urn:ipproto:schema:0.3:userContext"
               }
             },
             "required": [
@@ -76,14 +76,14 @@
         "commitmentAssertions": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.2:dataAssertion"
+            "$ref": "urn:ipproto:schema:0.3:dataAssertion"
           }
         },
         "rejectionReason": {
           "type": "string"
         },
         "deferralExpiry": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
         }
       },
       "required": [

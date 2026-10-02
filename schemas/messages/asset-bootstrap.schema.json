@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:assetBootstrap",
+  "$id": "urn:ipproto:schema:0.3:assetBootstrap",
   "title": "Asset Bootstrap",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "asset": {
-          "$ref": "urn:ipproto:schema:0.2:assetReference"
+          "$ref": "urn:ipproto:schema:0.3:assetReference"
         },
         "bootstrapBasis": {
           "type": "object",
@@ -31,7 +31,7 @@
               ]
             },
             "triggeringReference": {
-              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
             }
           },
           "required": [
@@ -41,13 +41,13 @@
         "initialAssertions": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.2:dataAssertion"
+            "$ref": "urn:ipproto:schema:0.3:dataAssertion"
           }
         },
         "initialAuthorityClaims": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.2:authorityClaim"
+            "$ref": "urn:ipproto:schema:0.3:authorityClaim"
           }
         },
         "subscriptionInvitations": {
