@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.2
+status: v0.3
 ---
 
 # Non-Scope
@@ -54,6 +54,12 @@ Pricing is competitive and confidential. Trying to standardize it would either p
 
 This section was amended in 0.2 (see [Ratified Decisions](../05%20-%20Decisions/Ratified%20Decisions.md), decision 29). In 0.1 it excluded "pricing models, billing structures, or contractual terms" and the protocol carried only resulting amounts.
 
+## Free-text messaging
+
+Free-text messaging between parties, such as chat, comment threads or e-mail, is outside the protocol. The protocol carries structured operational messages. A narrative field in one of them, like `reasonNarrative` or `instructionText`, explains that message and is not a channel for conversation.
+
+Decided on 2026-10-01 and written down in 0.3 (see [Ratified Decisions](../05%20-%20Decisions/Ratified%20Decisions.md), decision 42).
+
 ## Identity governance, registry sharing, schema evolution governance
 
 These are out of scope for the protocol but in scope for the consortium's governance model. See [Relationship to WIPO](Relationship%20to%20WIPO.md) for the consortium's governance posture.
@@ -62,6 +68,6 @@ These are out of scope for the protocol but in scope for the consortium's govern
 
 The exclusions above are stated as a single coherent principle: **the protocol standardizes the IP-operations data layer and nothing else**.
 
-Stating the exclusion as one principle rather than five separate rules is what gives the consortium a tool: when someone proposes adding something, the question becomes "is this IP-operations data, or is it one of the out-of-scope categories?" Answering that question is much easier than re-debating each topic on its merits.
+Stating the exclusion as one principle rather than six separate rules is what gives the consortium a tool: when someone proposes adding something, the question becomes "is this IP-operations data, or is it one of the out-of-scope categories?" Answering that question is much easier than re-debating each topic on its merits.
 
 Until 0.2 the principle spoke of the *patent-operations* data layer. The asset model has covered trademarks, designs and other IP rights from the start, so the wording now says IP operations.
