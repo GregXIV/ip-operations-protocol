@@ -3,6 +3,49 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [0.4.1] — 2026-10 (working draft)
+
+Three rules for the sender of a Bid Invitation, decided by the maintainer on 2026-10-02
+(Ratified Decisions 53 to 55). They settle points that the 0.4.0 build had left open and
+that were decided after 0.4.0 was tagged.
+
+A patch version, **and more than editorial.** VERSIONING.md reserves a patch for changes
+without behavioural effect. This release changes what a sender does, in three places, and
+nothing else: no schema, no schema identifier, no field and no message type. It is numbered
+0.4.1 because nothing a receiver or a validator sees is different, and it says so here
+instead of passing as editorial. `protocolVersion` stays `0.4`, and the identifiers stay
+`urn:ipproto:schema:0.4:<name>`.
+
+### Compatibility
+- **Every 0.4.0 message validates as before.** The schemas are those of 0.4.0, unchanged.
+- **A receiver needs no change**, with one caution: a bidder no longer reads the
+  `intendedJurisdictions` of an entry on an invitation as the complete filing plan.
+- **A sender built for 0.4.0 checks two things.** Whether it lists an applicant who is
+  neither requester nor beneficiary among the `conflictParties`, and whether a withheld
+  invitation names the requester as the source of an Entity Reference. No schema checks
+  either rule.
+
+### Changed
+- **Bid Invitation: every applicant is a conflict party.** An applicant of a prospective
+  right who is neither the requester nor the beneficiary is listed in `conflictParties`,
+  with role `other` unless another role describes it. A bidder sees every party it would
+  act for before it bids, also while the requester is withheld and `applicant` is left out
+  of the entries. Requester Disclosed gains no field. Work Requested and Requester
+  Disclosed say the same from their side.
+- **Bid Invitation: a withheld requester is not named indirectly.** While
+  `requesterIdentityWithheld` is true, no Entity Reference in the invitation carries the
+  requester as its source or names it in another field; the orchestrator re-states such a
+  reference under its own name or without a source actor. A rule the sender follows; the
+  schema cannot check it.
+- **Bid Invitation: the sender may limit `intendedJurisdictions`.** On an invitation the
+  list of an entry may be limited to the jurisdictions the invitation covers. The request
+  and the workstream keep the full list. This reverses a sentence of 0.4.0, which said that
+  the entry is not cut down to the invitation.
+- **Example.** The withheld first-filing invitation lists the applicant, a company
+  of the beneficiary's group, as a conflict party, names no requester in any source, and shows
+  only the jurisdiction it covers.
+- **Decisions.** Ratified Decisions 53 to 55.
+
 ## [0.4.0] — 2026-10 (working draft)
 
 The six points that 0.3.0 left open, decided by the maintainer on 2026-10-02 (Ratified
