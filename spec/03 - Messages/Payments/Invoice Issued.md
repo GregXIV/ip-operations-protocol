@@ -18,7 +18,7 @@ The invoice states what is owed. Paying it is the business of [Payment Authorize
 
 ## Producer
 
-The payee: the actor that performed the work, or the orchestrator towards its customer.
+The payee: the actor that performed the work, the orchestrator towards its customer, or for a subscription its provider or contract holder.
 
 ## Recipients
 
