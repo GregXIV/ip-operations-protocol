@@ -38,7 +38,7 @@ The protocol formalizes patterns that current practice handles either ad hoc or 
 
 ## Adjacent topics — see [Non-Scope](Non-Scope.md)
 
-This protocol does **not** cover identity governance, authentication, transport protocols, document content standards, or pricing models and contractual terms. Those are handled elsewhere or are explicitly out of scope. See [Non-Scope](Non-Scope.md) for the full list.
+This protocol does **not** cover identity governance, authentication, transport protocols, document content standards, pricing models and contractual terms, or free-text messaging between parties. Those are handled elsewhere or are explicitly out of scope. See [Non-Scope](Non-Scope.md) for the full list.
 
 ## Reference standards — see [Reference Standards](Reference%20Standards.md)
 
