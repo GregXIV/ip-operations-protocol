@@ -1,7 +1,7 @@
 ---
 type: message
 category: payments
-status: v0.3
+status: v0.4
 ---
 
 # Invoice Issued
@@ -55,6 +55,7 @@ Type: array of structured entries, required (at least one)
 Each entry:
 - `milestoneReference` — milestoneUri, conditional. The milestone the line is charged for
 - `subscriptionReference` — URI, conditional. Added in 0.3. The subscription the line is charged for: the `subscriptionReference` of its [Service Subscription Started](../Subscriptions/Service%20Subscription%20Started.md)
+- `billingPeriod` — structured, optional, only on a line that carries `subscriptionReference`. Added in 0.4. The period the line is charged for: `from` and `to`, both ISO 8601 dates, both required
 - `lineItemType` — URI, required, in the `urn:ipproto:lineItem:` namespace of [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md)
 - `amount` — decimal, required, net of tax, in the currency of `totalAmount`
 - `description` — optional string
@@ -62,6 +63,10 @@ Each entry:
 Each line carries exactly one of `milestoneReference` and `subscriptionReference`. In 0.2 every line needed a milestone, so a subscription, such as an application licence or a watch service, could not be invoiced line by line. One invoice may hold lines of both kinds.
 
 A subscription line normally uses the line item type `urn:ipproto:lineItem:subscriptionFee`, added in 0.3 for this purpose. The other five standard types describe work on a milestone.
+
+**Billing period.** A subscription is charged for a period, and anyone who reconciles invoices needs it as data. Since 0.4 a subscription line states it in `billingPeriod`. `from` is the first day the line covers and `to` the last; both days are included, so a month from 16 December to 15 January is `"from": "2026-12-16", "to": "2027-01-15"`, and a single day has the same date twice. `to` is not before `from`. In 0.3 the period could only be written into `description`.
+
+The field is optional: a 0.3 subscription line has none and remains valid, and a fee that is not charged for a period, such as a fee per finding, needs none. It belongs to subscription lines only. The schema rejects a `billingPeriod` on a line that carries a `milestoneReference`, and one that lacks `from` or `to`. That `to` is not before `from` is a rule the sender follows; JSON Schema cannot compare two values, so a receiver that depends on the order checks it itself.
 
 ### `totalAmount`
 Type: structured, required
@@ -153,7 +158,7 @@ The orchestrator invoices the customer for both countries of the order. The line
 
 ## Worked example — subscription invoice
 
-Added in 0.3. The contract holder invoices the subscriber for the first paid month of an application licence. The line refers to the subscription; there is no milestone.
+Added in 0.3. The contract holder invoices the subscriber for the first paid month of an application licence. The line refers to the subscription; there is no milestone. Since 0.4 the month is stated in `billingPeriod` instead of in the description.
 
 ```json
 {
@@ -170,9 +175,10 @@ Added in 0.3. The contract holder invoices the subscriber for the first paid mon
     "invoiceLines": [
       {
         "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
+        "billingPeriod": {"from": "2026-12-16", "to": "2027-01-15"},
         "lineItemType": "urn:ipproto:lineItem:subscriptionFee",
         "amount": 245.00,
-        "description": "Litware Translate, plan professional, 5 seats, 16 December 2026 to 15 January 2027"
+        "description": "Litware Translate, plan professional, 5 seats"
       }
     ],
     "totalAmount": {"amount": 245.00, "currency": "EUR"},
@@ -185,7 +191,7 @@ Added in 0.3. The contract holder invoices the subscriber for the first paid mon
 
 ## Behavior on receipt
 
-The payor checks milestone lines against the `agreedPrice` of the milestones they name, and subscription lines against the `commercialTerms` of the subscription. Where the two agree, the payor authorizes payment through [Payment Authorized](Payment%20Authorized.md), with `payeeType: "actor"`.
+The payor checks milestone lines against the `agreedPrice` of the milestones they name, and subscription lines against the `commercialTerms` of the subscription, for the `billingPeriod` where the line states one. Where the two agree, the payor authorizes payment through [Payment Authorized](Payment%20Authorized.md), with `payeeType: "actor"`.
 
 The protocol does not match invoices to prices and does not reject an invoice that exceeds one. A disagreement over an invoice is settled between the parties.
 
