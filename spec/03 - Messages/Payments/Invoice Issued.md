@@ -1,7 +1,7 @@
 ---
 type: message
 category: payments
-status: v0.2
+status: v0.3
 ---
 
 # Invoice Issued
@@ -10,7 +10,7 @@ status: v0.2
 
 ## Purpose
 
-Added in 0.2. Carries an invoice as structured data: who invoices whom, for which milestones, in which lines, how much in total, and where the invoice document is.
+Added in 0.2. Carries an invoice as structured data: who invoices whom, for which milestones or subscriptions, in which lines, how much in total, and where the invoice document is.
 
 One message serves both directions of a delivery chain. A supplier invoices the orchestrator for its milestone; the orchestrator invoices the customer once for the whole order. `payee` and `payor` say which it is.
 
@@ -22,7 +22,7 @@ The payee: the actor that performed the work, or the orchestrator towards its cu
 
 ## Recipients
 
-The actor with `payor` assignment on the invoiced milestones.
+The actor with `payor` assignment on the invoiced milestones or on the invoiced subscription. Where a subscription names no payor, the subscriber.
 
 A supplier's invoice belongs to the workstream the supplier shares with the orchestrator. Under the addressing rule of [Milestone](../../02%20-%20Foundational%20Structures/Milestone.md) it is not addressed to the customer.
 
@@ -53,10 +53,15 @@ Same shape as `payee`.
 Type: array of structured entries, required (at least one)
 
 Each entry:
-- `milestoneReference` — milestoneUri, required. The milestone the line is charged for
+- `milestoneReference` — milestoneUri, conditional. The milestone the line is charged for
+- `subscriptionReference` — URI, conditional. Added in 0.3. The subscription the line is charged for: the `subscriptionReference` of its [Service Subscription Started](../Subscriptions/Service%20Subscription%20Started.md)
 - `lineItemType` — URI, required, in the `urn:ipproto:lineItem:` namespace of [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md)
 - `amount` — decimal, required, net of tax, in the currency of `totalAmount`
 - `description` — optional string
+
+Each line carries exactly one of `milestoneReference` and `subscriptionReference`. In 0.2 every line needed a milestone, so a subscription, such as an application licence or a watch service, could not be invoiced line by line. One invoice may hold lines of both kinds.
+
+The five standard line item types describe work on a milestone. A subscription line uses a custom type in a namespaced URN.
 
 ### `totalAmount`
 Type: structured, required
@@ -144,15 +149,48 @@ The orchestrator invoices the customer for both countries of the order. The line
 }
 ```
 
+## Worked example — subscription invoice
+
+Added in 0.3. The contract holder invoices the subscriber for the first paid month of an application licence. The line refers to the subscription; there is no milestone.
+
+```json
+{
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "addressedTo": [
+    {"actorUri": "urn:ipproto:actor:northwind-industries", "expectedRole": "urn:ipproto:role:subscriber"}
+  ],
+  "correlation": {"subscriptionUri": "urn:ipproto:subscription:litware-translate-nw-001"},
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:meridian-2027-00112",
+    "invoiceNumber": "MIG-2027-00112",
+    "payee": {"actorUri": "urn:ipproto:actor:meridian-ip-group"},
+    "payor": {"actorUri": "urn:ipproto:actor:northwind-industries"},
+    "invoiceLines": [
+      {
+        "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
+        "lineItemType": "urn:meridian-ip-group:lineItem:subscriptionFee",
+        "amount": 245.00,
+        "description": "Litware Translate, plan professional, 5 seats, 16 December 2026 to 15 January 2027"
+      }
+    ],
+    "totalAmount": {"amount": 245.00, "currency": "EUR"},
+    "taxHandling": {"taxTreatment": "reverseCharge", "taxAmount": 0.00},
+    "dueDate": "2027-02-15",
+    "invoiceDocument": "urn:ipproto:document:meridian-inv-2027-00112"
+  }
+}
+```
+
 ## Behavior on receipt
 
-The payor checks the lines against the `agreedPrice` of the milestones they name. Where the two agree, the payor authorizes payment through [Payment Authorized](Payment%20Authorized.md), with `payeeType: "actor"`.
+The payor checks milestone lines against the `agreedPrice` of the milestones they name, and subscription lines against the `commercialTerms` of the subscription. Where the two agree, the payor authorizes payment through [Payment Authorized](Payment%20Authorized.md), with `payeeType: "actor"`.
 
 The protocol does not match invoices to prices and does not reject an invoice that exceeds one. A disagreement over an invoice is settled between the parties.
 
 ## Related messages
 
 - Follows [Milestone Completed](../Milestone%20Lifecycle/Milestone%20Completed.md) for the invoiced milestones
+- For a subscription line, follows the billing cadence of the subscription begun with [Service Subscription Started](../Subscriptions/Service%20Subscription%20Started.md)
 - Paid through [Payment Authorized](Payment%20Authorized.md) and [Payment Executed](Payment%20Executed.md)
 
 ## See also

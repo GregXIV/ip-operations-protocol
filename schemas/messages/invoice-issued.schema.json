@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:ipproto:schema:0.3:invoiceIssued",
   "title": "Invoice Issued",
-  "description": "A payee issues an invoice to a payor. One message for supplier invoices and for the customer invoice; payee and payor say which it is.",
+  "description": "A payee issues an invoice to a payor, for milestones, subscriptions or both. One message for supplier invoices and for the customer invoice; payee and payor say which it is.",
   "allOf": [
     {
       "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
@@ -59,6 +59,9 @@
               "milestoneReference": {
                 "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               },
+              "subscriptionReference": {
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+              },
               "lineItemType": {
                 "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               },
@@ -70,9 +73,20 @@
               }
             },
             "required": [
-              "milestoneReference",
               "lineItemType",
               "amount"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "milestoneReference"
+                ]
+              },
+              {
+                "required": [
+                  "subscriptionReference"
+                ]
+              }
             ]
           }
         },
