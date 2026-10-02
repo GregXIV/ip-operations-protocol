@@ -1,4 +1,4 @@
-/* IP Operations Protocol v0.3 — TypeScript types.
+/* IP Operations Protocol v0.4 — TypeScript types.
  * GENERATED from the JSON Schemas. Do not edit by hand; regenerate when the spec versions.
  */
 
