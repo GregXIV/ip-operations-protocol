@@ -1,6 +1,6 @@
 ---
 type: decisions
-status: v0.3
+status: v0.4
 ---
 
 # Ratified Decisions
@@ -99,6 +99,17 @@ Follow-up decisions to 0.2.0, agreed by the maintainer on 2026-10-02. Version 0.
 
 45. **A Document Reference need not name an asset.** `assetReferences` in [Document Reference](../02%20-%20Foundational%20Structures/Document%20Reference.md) is required only where the document relates to an existing asset. This follows from decision 37: the draft a drafting job delivers, or the invoice for a subscription without assets, relates to none. In 0.2 the field was always required.
 46. **`subscriptionFee` is a sixth standard line item type.** It names the recurring fee of a subscription on an invoice line that carries a `subscriptionReference` (decision 40). This extends decision 34, whose five types all describe work on a milestone. See [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md).
+
+## Version 0.4.0 (ratified 2026-10-02)
+
+The six points that 0.3.0 left open, decided by the maintainer on 2026-10-02. Version 0.4.0 is a minor version and purely additive: three optional fields and three clarifications. No rule of 0.3 is relaxed or tightened, and a 0.3 message remains valid.
+
+47. **A subscription may have one start message per audience.** Decision 44 is confirmed as written. Under one `subscriptionReference` the copy of [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md) between the application's provider and the contract holder carries the terms with `sharePercent`, and the copy addressed to the subscriber states the subscriber's own terms. Keeping `sharePercent` out of the subscriber's copy is a rule the sender follows, not one a schema enforces.
+48. **The orchestrator records a resulting asset; what is to be filed stays with the corporate claim.** On a [Workstream](../02%20-%20Foundational%20Structures/Workstream.md) the orchestrator's claim covers adding an asset URI to `assetReferences` and to the `resultingAssetReferences` of a prospective right, provided an [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) exists whose `triggeringReference` names that workstream or one of its milestones. That is recording a fact. Adding, removing or otherwise altering `prospectiveRights` entries, and removing asset references, stay under the corporate claim over goal and chain. This completes decision 37, which had the orchestrator add the asset without saying under whose claim.
+49. **A Bid Invitation may describe rights still to be created.** [Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md) carries an optional `scope.prospectiveRights` with the entries of [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md). While `requesterIdentityWithheld` is true, `applicant` is left out of every entry, so that the invitation cannot reveal who is asking before the conflict check; the parties a bidder needs for the check are in `conflictParties`, as before. `scope` still requires neither `assetReferences` nor `prospectiveRights`, so a 0.3 invitation that describes the work in `scopeText` alone stays valid.
+50. **A subscription line may state its billing period.** A line of [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) that carries `subscriptionReference` may carry `billingPeriod`, with `from` and `to` as ISO dates, both inclusive, `to` not before `from`. The field is not allowed on a milestone line. This extends decision 40.
+51. **The reason categories of Request Declined are confirmed.** The closed list of 0.3.0 stands: `serviceNotOffered`, `offerNotAvailable`, `requesterNotEligible`, `conflictOfInterest`, `noSupplierAvailable`, `insufficientInformation`, `other`. No change to [Request Declined](../03%20-%20Messages/Workstream%20Lifecycle/Request%20Declined.md) or its schema; this confirms the list that decision 38 left to the 0.3.0 text. The points listed under question 7 of [Open Questions for Consortium](Open%20Questions%20for%20Consortium.md), on the tax treatment vocabulary, are not decided by this and remain open.
+52. **A Bid Invitation names the requester where its identity is not withheld.** [Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md) carries an optional `requester`, a full [Actor Reference](../02%20-%20Foundational%20Structures/Actor%20Reference.md) of the same shape as in [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md). A 0.4 sender includes it when the requester's identity is not withheld. It is absent while `requesterIdentityWithheld` is true. It is not required in the other case, because a 0.3 invitation without it must stay valid. Requester Disclosed (decision 39) remains the message for the withheld case.
 
 ## See also
 

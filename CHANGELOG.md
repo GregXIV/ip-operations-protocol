@@ -3,6 +3,77 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [0.4.0] — 2026-10 (working draft)
+
+The six points that 0.3.0 left open, decided by the maintainer on 2026-10-02 (Ratified
+Decisions 47 to 52): three optional fields and three clarifications. No message type is
+added; the protocol still has 41 message types in 12 categories.
+
+A minor version, and **purely additive**. Nothing is renamed, removed or made required,
+and no rule of 0.3 is relaxed or tightened.
+
+### Compatibility
+- **A 0.3 message remains valid under 0.4.** All 37 examples of 0.3.0 validate unchanged
+  against the 0.4 schemas. The 0.4 schemas differ from the 0.3 schemas in two files, Bid
+  Invitation and Invoice Issued, and only by the three new fields and the rules on them.
+- **A 0.3 receiver needs no change.** It may ignore the three fields. Nothing it relies
+  on is gone or optional now.
+- **Strict validators.** A receiver that validates strictly against the 0.3 schemas
+  accepts every 0.4 message, because 0.4 adds fields only: no message type and no
+  enumeration value. Unknown fields pass the 0.3 schemas, which leave
+  `additionalProperties` open. Such a validator does not check the three rules that come
+  with the new fields; only the 0.4 schemas do.
+- **One caution.** The names `requester` and `scope.prospectiveRights` on Bid Invitation
+  and `billingPeriod` on an invoice line are now defined. An implementation that used one
+  of them as a private extension of its own must check it against the 0.4 shape.
+
+### Added
+- **Fields, all optional (3).**
+  - `scope.prospectiveRights` on Bid Invitation: the rights the work is to create, with
+    the entries of Work Requested (`assetType`, `workingTitle`, `intendedJurisdictions`,
+    `applicant`). While `requesterIdentityWithheld` is true, no entry carries an
+    `applicant`; the schema enforces it. `scope` still requires only `scopeText`.
+  - `requester` on Bid Invitation: the work requester as a full Actor Reference, the same
+    shape as in Requester Disclosed. A 0.4 sender includes it when the requester's
+    identity is not withheld. The schema rejects it while `requesterIdentityWithheld` is
+    true and does not require it otherwise.
+  - `billingPeriod` on the lines of Invoice Issued: `from` and `to`, ISO dates, both
+    inclusive, `to` not before `from`. The schema allows it only on a line that carries
+    `subscriptionReference`. The order of the two dates is a rule of the page; JSON Schema
+    cannot express it.
+- **Decisions.** Ratified Decisions 47 to 52.
+- **Examples.** Two Bid Invitations for a first filing, one with the requester withheld
+  and no applicant, one with the requester named (39 validated examples in all).
+
+### Changed
+- **Service Subscription Started.** The page states that one subscription may have one
+  start message per audience under the same `subscriptionReference`: the copy between the
+  application's provider and the contract holder carries the terms with `sharePercent`,
+  the copy addressed to the subscriber states the subscriber's own terms. That the
+  subscriber's copy carries no `sharePercent` is a rule the sender follows, not one a
+  schema enforces. Wording only.
+- **Workstream, Authority Claim, Asset Bootstrap.** The orchestrator's claim covers adding
+  an asset URI to `assetReferences` and to the `resultingAssetReferences` of a prospective
+  right, provided an Asset Bootstrap exists whose `triggeringReference` names the
+  workstream or one of its milestones. Changing what is to be filed, and removing asset
+  references, stay under the corporate claim over goal and chain. Wording only.
+- **Request Declined.** The seven reason categories are confirmed as the closed list of
+  0.3.0. No change to the list or the schema.
+- **Bid Invitation and Requester Disclosed** show side by side which of the two carries
+  the requester: the invitation where the identity is not withheld, Requester Disclosed
+  where it is.
+- **Examples.** The subscription invoice example states its month in `billingPeriod`
+  instead of in the line's description, and says `"protocolVersion": "0.4"`.
+- **Schema identifiers.** Every schema `$id` is re-issued as
+  `urn:ipproto:schema:0.4:<name>`. The `0.3` identifiers keep naming the 0.3.0 set.
+  `protocolVersion` in new messages is `0.4`.
+- **Generated TypeScript types** regenerated from the 0.4 schemas.
+
+### Fixed
+- **Actor Reference, worked example.** The invented company carried the street address of
+  a real company's head office and an identifier in LEI format. Both are replaced by
+  values that are plainly invented; the identifier fails the LEI check digits.
+
 ## [0.3.0] — 2026-10 (working draft)
 
 Follow-up to 0.2.0, agreed by the maintainer on 2026-10-02 (Ratified Decisions 37 to 46).
