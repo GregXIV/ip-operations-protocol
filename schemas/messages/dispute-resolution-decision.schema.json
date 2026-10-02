@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:disputeResolutionDecision",
+  "$id": "urn:ipproto:schema:0.4:disputeResolutionDecision",
   "title": "Dispute Resolution Decision",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,14 +16,14 @@
       "type": "object",
       "properties": {
         "disputeReference": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "decidedAt": {
           "type": "string",
           "format": "date-time"
         },
         "decisionUserContext": {
-          "$ref": "urn:ipproto:schema:0.3:userContext"
+          "$ref": "urn:ipproto:schema:0.4:userContext"
         },
         "decisionType": {
           "enum": [
@@ -43,7 +43,7 @@
           ]
         },
         "decisionDetails": {
-          "$ref": "urn:ipproto:schema:0.3:outcomeDetails"
+          "$ref": "urn:ipproto:schema:0.4:outcomeDetails"
         },
         "decisionRationale": {
           "type": "string"
@@ -63,7 +63,7 @@
                 ]
               },
               "actionTarget": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               },
               "actionTiming": {
                 "type": "string"

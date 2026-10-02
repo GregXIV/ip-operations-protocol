@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:workInstruction",
+  "$id": "urn:ipproto:schema:0.4:workInstruction",
   "title": "Work Instruction",
   "description": "A work requester instructs a work provider to perform one milestone at an agreed price and under agreed service levels.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,7 +17,7 @@
       "type": "object",
       "properties": {
         "milestoneReference": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "instruction": {
           "type": "object",
@@ -34,19 +34,19 @@
           ]
         },
         "agreedPrice": {
-          "$ref": "urn:ipproto:schema:0.3:agreedPrice"
+          "$ref": "urn:ipproto:schema:0.4:agreedPrice"
         },
         "serviceLevels": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "urn:ipproto:schema:0.3:serviceLevel"
+            "$ref": "urn:ipproto:schema:0.4:serviceLevel"
           }
         },
         "providedDocuments": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
           }
         },
         "expectedDeliverables": {
@@ -56,10 +56,10 @@
             "type": "object",
             "properties": {
               "deliverableType": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               },
               "documentType": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               }
             },
             "anyOf": [
@@ -77,7 +77,7 @@
           }
         },
         "responseDeadline": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
         }
       },
       "required": [

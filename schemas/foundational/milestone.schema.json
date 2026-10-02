@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:milestone",
+  "$id": "urn:ipproto:schema:0.4:milestone",
   "title": "Milestone",
   "type": "object",
   "properties": {
     "milestoneUri": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "milestoneSequence": {
       "type": "integer"
@@ -17,7 +17,7 @@
       "type": "string"
     },
     "milestoneCategory": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "actorAssignments": {
       "type": "array",
@@ -26,10 +26,10 @@
         "type": "object",
         "properties": {
           "actorUri": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
           },
           "roleDeclarationUri": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
           },
           "assignmentType": {
             "enum": [
@@ -56,7 +56,7 @@
       ]
     },
     "serviceProviderActorUri": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "dependencies": {
       "type": "array",
@@ -64,7 +64,7 @@
         "type": "object",
         "properties": {
           "dependsOnMilestoneUri": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
           },
           "requiredState": {
             "enum": [
@@ -103,7 +103,7 @@
       "type": "object",
       "properties": {
         "estimatedCost": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/money"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/money"
         },
         "estimatedDuration": {
           "type": "object",
@@ -120,7 +120,7 @@
           }
         },
         "estimatedAt": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
         }
       }
     },
@@ -128,28 +128,28 @@
       "type": "object"
     },
     "agreedPrice": {
-      "$ref": "urn:ipproto:schema:0.3:agreedPrice"
+      "$ref": "urn:ipproto:schema:0.4:agreedPrice"
     },
     "serviceLevels": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.3:serviceLevel"
+        "$ref": "urn:ipproto:schema:0.4:serviceLevel"
       }
     },
     "deliverables": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
       }
     },
     "milestoneAuthorityClaims": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
       }
     },
     "parentMilestoneUri": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     }
   },
   "required": [
