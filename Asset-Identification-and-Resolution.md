@@ -5,13 +5,13 @@ status: v0.1
 
 # Asset Identification and Resolution
 
-> A normative profile companion to [Asset Reference](Asset%20Reference.md): how an asset is uniquely identified, how office numbers are represented, and how observed identifiers resolve to one canonical asset.
+> A normative profile companion to [Asset Reference](spec/02%20-%20Foundational%20Structures/Asset%20Reference.md): how an asset is uniquely identified, how office numbers are represented, and how observed identifiers resolve to one canonical asset.
 
 ## Purpose and scope
 
 This profile answers a single question the operational layer must answer before any other work can proceed: *given some office numbers, which asset is this, and what is the one identifier everything else should point to?*
 
-It does **not** define a new numbering scheme. It builds on the WIPO numbering standards already in use — [ST.3](../01%20-%20Front%20Matter/Reference%20Standards.md) for office codes and ST.16 for kind codes — and adds only the operational structure around them: a stable canonical handle, a descriptive record of every office number, and an explicit, auditable resolution model.
+It does **not** define a new numbering scheme. It builds on the WIPO numbering standards already in use — [ST.3](spec/01%20-%20Front%20Matter/Reference%20Standards.md) for office codes and ST.16 for kind codes — and adds only the operational structure around them: a stable canonical handle, a descriptive record of every office number, and an explicit, auditable resolution model.
 
 The profile is normative for any actor that bootstraps, references, or resolves assets — orchestrators, service providers, IPMS vendors, and registers alike.
 
@@ -19,7 +19,7 @@ The profile is normative for any actor that bootstraps, references, or resolves 
 
 Every asset has exactly one canonical identifier: `urn:ipproto:asset:{uuid}` (the `assetUri`).
 
-- **Assigned once.** Minted at the asset's first appearance in the protocol (an [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md)), and never reassigned.
+- **Assigned once.** Minted at the asset's first appearance in the protocol (an [Asset Bootstrap](spec/03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md)), and never reassigned.
 - **Immutable for life.** Office numbers change as an asset moves from application to publication to grant to national validations; the `assetUri` does not.
 - **Opaque.** It encodes no meaning. It is a join key, not a number to be parsed. All semantics live in the descriptive identifiers below.
 
@@ -91,7 +91,7 @@ Resolution is the operation of turning observed identifiers into a canonical `as
 
 ### Resolution provenance (required)
 
-Every resolution records its confidence and method, mirroring how [Entity Reference](Entity%20Reference.md) already treats identity resolution. This makes a weak or automated match visible and auditable rather than silent. It is schematized as the `Resolution Provenance` structure (`urn:ipproto:schema:0.1:resolutionProvenance`); a resolver's full emission — the Asset Reference plus its provenance — validates as `Resolved Asset` (`urn:ipproto:schema:0.1:resolvedAsset`). The fields:
+Every resolution records its confidence and method, mirroring how [Entity Reference](spec/02%20-%20Foundational%20Structures/Entity%20Reference.md) already treats identity resolution. This makes a weak or automated match visible and auditable rather than silent. It is schematized as the `Resolution Provenance` structure (`urn:ipproto:schema:0.1:resolutionProvenance`); a resolver's full emission — the Asset Reference plus its provenance — validates as `Resolved Asset` (`urn:ipproto:schema:0.1:resolvedAsset`). The fields:
 
 - `resolvedAssetUri` — the canonical asset the identifiers were resolved to
 - `resolvedAt` — ISO 8601 datetime
@@ -105,7 +105,7 @@ As with identity, resolution is **per-actor**: the protocol does not force a sin
 
 When two actors independently bootstrap the same asset into two different `assetUri`s, the protocol does **not** quietly merge them.
 
-The divergence surfaces as an [Asset Authority Dispute](../03%20-%20Messages/Disputes/Asset%20Authority%20Dispute.md) (or an [Identity Resolution Dispute](../03%20-%20Messages/Disputes/Identity%20Resolution%20Dispute.md) when the disagreement is about entity rather than asset identity) and closes with a [Dispute Resolution Decision](../03%20-%20Messages/Disputes/Dispute%20Resolution%20Decision.md). The decision designates the canonical `assetUri` for the relevant scope and preserves the full audit trail of how two views became one. Bilateral cross-references between an actor's local identifiers may additionally be carried using the Entity Reference `crossActorReferences` pattern, which is out-of-protocol-validation.
+The divergence surfaces as an [Asset Authority Dispute](spec/03%20-%20Messages/Disputes/Asset%20Authority%20Dispute.md) (or an [Identity Resolution Dispute](spec/03%20-%20Messages/Disputes/Identity%20Resolution%20Dispute.md) when the disagreement is about entity rather than asset identity) and closes with a [Dispute Resolution Decision](spec/03%20-%20Messages/Disputes/Dispute%20Resolution%20Decision.md). The decision designates the canonical `assetUri` for the relevant scope and preserves the full audit trail of how two views became one. Bilateral cross-references between an actor's local identifiers may additionally be carried using the Entity Reference `crossActorReferences` pattern, which is out-of-protocol-validation.
 
 This is the same posture the protocol takes everywhere: authority is claimed and reconciled explicitly, never assumed.
 
@@ -131,7 +131,7 @@ Ratified by the maintainer for v0.1, reopenable when a governance body forms:
 
 ## See also
 
-- [Asset Reference](Asset%20Reference.md) — the structure this profile governs
-- [Entity Reference](Entity%20Reference.md) — the parallel per-actor resolution model for entities
-- [Asset Match Inquiry](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Inquiry.md) · [Asset Match Response](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Response.md) — how resolution is validated across actors
-- [Relationship to WIPO](../01%20-%20Front%20Matter/Relationship%20to%20WIPO.md) · [Reference Standards](../01%20-%20Front%20Matter/Reference%20Standards.md)
+- [Asset Reference](spec/02%20-%20Foundational%20Structures/Asset%20Reference.md) — the structure this profile governs
+- [Entity Reference](spec/02%20-%20Foundational%20Structures/Entity%20Reference.md) — the parallel per-actor resolution model for entities
+- [Asset Match Inquiry](spec/03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Inquiry.md) · [Asset Match Response](spec/03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Response.md) — how resolution is validated across actors
+- [Relationship to WIPO](spec/01%20-%20Front%20Matter/Relationship%20to%20WIPO.md) · [Reference Standards](spec/01%20-%20Front%20Matter/Reference%20Standards.md)
