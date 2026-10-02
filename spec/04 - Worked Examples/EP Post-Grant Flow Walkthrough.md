@@ -163,4 +163,3 @@ In current practice, much of this operational sequence is handled through email,
 
 - [Phase-by-Phase Reference](Phase-by-Phase%20Reference.md) — quick reference index of which messages fire in which phase
 - The individual message specs — each linked above
-EOF
