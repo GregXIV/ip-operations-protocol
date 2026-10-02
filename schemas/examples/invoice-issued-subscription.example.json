@@ -1,7 +1,7 @@
 {
   "messageUri": "urn:ipproto:message:invoiceIssued-example-0002",
   "messageType": "urn:ipproto:message:invoiceIssued",
-  "protocolVersion": "0.3",
+  "protocolVersion": "0.4",
   "originatingActor": "urn:ipproto:actor:meridian-ip-group",
   "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-contract-holder-app",
   "addressedTo": [
@@ -28,9 +28,13 @@
     "invoiceLines": [
       {
         "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
+        "billingPeriod": {
+          "from": "2026-12-16",
+          "to": "2027-01-15"
+        },
         "lineItemType": "urn:ipproto:lineItem:subscriptionFee",
         "amount": 245.0,
-        "description": "Litware Translate, plan professional, 5 seats, 16 December 2026 to 15 January 2027"
+        "description": "Litware Translate, plan professional, 5 seats"
       }
     ],
     "totalAmount": {

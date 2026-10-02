@@ -62,6 +62,22 @@
               "subscriptionReference": {
                 "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               },
+              "billingPeriod": {
+                "type": "object",
+                "description": "The period a subscription line is charged for. Both dates are inclusive, and 'to' is not before 'from'; the order of the two dates is a rule of the spec that JSON Schema cannot express. Allowed only on a line that carries subscriptionReference. Added in 0.4.",
+                "properties": {
+                  "from": {
+                    "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDate"
+                  },
+                  "to": {
+                    "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDate"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to"
+                ]
+              },
               "lineItemType": {
                 "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               },
@@ -87,7 +103,12 @@
                   "subscriptionReference"
                 ]
               }
-            ]
+            ],
+            "dependentRequired": {
+              "billingPeriod": [
+                "subscriptionReference"
+              ]
+            }
           }
         },
         "totalAmount": {
