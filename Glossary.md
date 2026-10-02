@@ -1,6 +1,6 @@
 ---
 type: reference
-status: v0.3
+status: v0.4
 ---
 
 # Glossary
@@ -133,7 +133,7 @@ status: v0.3
 
 **Prepared-action handoff** — The protocol's pattern for actions performed through external systems. Pairs [Artifact Ready](spec/03%20-%20Messages/Prepared-Action%20Handoff/Artifact%20Ready.md) with [Client Action Completed](spec/03%20-%20Messages/Prepared-Action%20Handoff/Client%20Action%20Completed.md).
 
-**Prospective right** — A right that does not exist yet and that requested work is to create or prepare: a first filing, or an application to be drafted. Described on a request and its workstream instead of, or beside, an asset; becomes an asset only through [Asset Bootstrap](spec/03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md). Added in 0.3. See [Workstream](spec/02%20-%20Foundational%20Structures/Workstream.md).
+**Prospective right** — A right that does not exist yet and that requested work is to create or prepare: a first filing, or an application to be drafted. Described on a request and its workstream instead of, or beside, an asset, and since 0.4 also in the scope of a bid invitation; becomes an asset only through [Asset Bootstrap](spec/03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md). Added in 0.3. See [Workstream](spec/02%20-%20Foundational%20Structures/Workstream.md).
 
 **Procurement** — The sequence of invitation, conflict attestation, bids and award behind the execution mode `thirdPartyRfp`. Added in 0.2. See [Bid Invitation](spec/03%20-%20Messages/Procurement/Bid%20Invitation.md).
 

@@ -1,7 +1,7 @@
 # Schemas
 
 JSON Schemas, validated examples, generated TypeScript types, and a reference validator
-for the IP Operations Protocol **v0.3**. Packaged as `@ipproto/schemas`.
+for the IP Operations Protocol **v0.4**. Packaged as `@ipproto/schemas`.
 
 **License:** Apache-2.0 (see [LICENSE](LICENSE)) — the explicit patent grant is deliberate
 for a standard in the patent domain.
@@ -36,10 +36,10 @@ schemas/
 ## Conventions
 
 - **Dialect:** JSON Schema draft 2020-12.
-- **`$id`:** `urn:ipproto:schema:0.3:<name>`. The version is part of the identity and is
+- **`$id`:** `urn:ipproto:schema:0.4:<name>`. The version is part of the identity and is
   never reused across versions (see ../VERSIONING.md), so the whole set is re-issued under
-  `0.3`; the `0.1` and `0.2` identifiers keep naming the 0.1.0 and 0.2.0 sets and nothing
-  else. Cross-schema
+  `0.4`; the `0.1`, `0.2` and `0.3` identifiers keep naming the 0.1.0, 0.2.0 and 0.3.0 sets
+  and nothing else. Cross-schema
   `$ref`s use these URNs; a validator registers all schemas so the URN refs resolve.
 - **Open extension:** `additionalProperties` is intentionally left open. The protocol's
   stated behavior is that receivers degrade gracefully on unknown fields rather than
@@ -81,12 +81,22 @@ subscriptions, steady-state events (register events, service findings), the full
 machinery, and the generic record update. That is 59 schema files: common defs, the envelope,
 16 under `foundational/` and 41 under `messages/`.
 
-Thirty-seven complete examples (messages + structures) validate against the set. The thirteen
+Thirty-nine complete examples (messages + structures) validate against the set. The thirteen
 carried over from 0.1 keep `"protocolVersion": "0.1"` and the eighteen added in 0.2 keep
 `"protocolVersion": "0.2"` on purpose: they show that a 0.1 or 0.2 message validates
-unchanged against the 0.3 schemas. The six added in 0.3 cover the two new messages, a
+unchanged against the 0.4 schemas. The six added in 0.3 cover the two messages of 0.3, a
 request and a workstream for a first filing, a document reference without an asset, and
-an invoice for a subscription.
+an invoice for a subscription. Five of them are unchanged and keep `"0.3"`, for the same
+reason. The sixth, the subscription invoice, now states its month in `billingPeriod` and
+says `"0.4"`. The two added in 0.4 are bid invitations for a first filing: one with the
+requester withheld and no applicant, one with the requester named.
 
-The reverse does not hold. A 0.3 message that uses what 0.3 added or relaxed does not
-validate against the 0.2 schemas; see the *Compatibility* section of the changelog.
+Between 0.3 and 0.4 validity holds in both directions. Every 0.3 message validates against
+the 0.4 schemas: all 37 examples of the tag `v0.3.0` do, unchanged. And a 0.4 message
+validates against the 0.3 schemas, because 0.4 adds optional fields only and unknown fields
+pass. A 0.3 validator does not check the rules that come with the new fields: no
+`requester` and no `applicant` while the requester's identity is withheld, and
+`billingPeriod` only on a subscription line.
+
+Further back the reverse does not hold. A 0.3 message that uses what 0.3 added or relaxed
+does not validate against the 0.2 schemas; see the *Compatibility* sections of the changelog.
