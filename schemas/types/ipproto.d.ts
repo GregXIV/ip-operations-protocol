@@ -1,4 +1,4 @@
-/* IP Operations Protocol v0.2 — TypeScript types.
+/* IP Operations Protocol v0.3 — TypeScript types.
  * GENERATED from the JSON Schemas. Do not edit by hand; regenerate when the spec versions.
  */
 
@@ -128,7 +128,7 @@ export type InstructionAccepted = CommonEnvelope;
  */
 export type InstructionDeclined = CommonEnvelope;
 /**
- * A payee issues an invoice to a payor. One message for supplier invoices and for the customer invoice; payee and payor say which it is.
+ * A payee issues an invoice to a payor, for milestones, subscriptions or both. One message for supplier invoices and for the customer invoice; payee and payor say which it is.
  *
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "InvoiceIssued".
@@ -180,6 +180,20 @@ export type RecordUpdate = CommonEnvelope;
  */
 export type RegisterEvent = CommonEnvelope;
 /**
+ * An orchestrator declines a work request, with the reason. No workstream is created.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "RequestDeclined".
+ */
+export type RequestDeclined = CommonEnvelope;
+/**
+ * An orchestrator discloses the work requester to a bidder that has attested a clear conflict check. Sent only where the bid invitation withheld the requester's identity.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "RequesterDisclosed".
+ */
+export type RequesterDisclosed = CommonEnvelope;
+/**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "ServiceDeliverable".
  */
@@ -207,7 +221,7 @@ export type ServiceSubscriptionTerminated = CommonEnvelope;
  */
 export type WorkInstruction = CommonEnvelope;
 /**
- * A work requester places an order or asks for work. Opens a catalogue order or one of the three procurement paths.
+ * A work requester places an order or asks for work, on existing assets, on rights still to be created, or both. Opens a catalogue order or one of the three procurement paths.
  *
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "WorkRequested".
@@ -245,6 +259,52 @@ export interface Money {
 export interface ClaimantRef {
   actorUri: string;
   roleDeclarationUri: string;
+}
+/**
+ * A right that does not exist yet and that the requested work is to create or prepare: a first filing, or an application to be drafted. Added in 0.3.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "ProspectiveRight".
+ */
+export interface ProspectiveRight {
+  assetType:
+    | "patent"
+    | "utilityModel"
+    | "designRegistration"
+    | "trademark"
+    | "plantVariety"
+    | "geographicalIndication"
+    | "otherIp";
+  workingTitle: string;
+  intendedJurisdictions?: string[];
+  applicant?: EntityReference;
+  resultingAssetReferences?: string[];
+}
+/**
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "EntityReference".
+ */
+export interface EntityReference {
+  literal: {
+    value: string;
+    source: {
+      sourceType: "register" | "corporateRecord" | "selfDeclaration" | "derivedDocument" | "other";
+      sourceActorUri?: string;
+      sourcePublicationDate?: string;
+      sourceDocumentReference?: string;
+    };
+  };
+  resolution?: {
+    resolvedEntityUri: string;
+    resolvedAt: string;
+    confidenceLevel?: "exact" | "high" | "medium" | "low";
+    resolutionMethod?: "deterministicIdentifier" | "attributeMatching" | "humanReview" | "priorAssertion" | "automated";
+    resolutionBasis?: {};
+  };
+  crossActorReferences?: {
+    actorUri: string;
+    entityUriInActor: string;
+  }[];
 }
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
@@ -540,32 +600,6 @@ export interface DocumentReference {
 }
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
- * via the `definition` "EntityReference".
- */
-export interface EntityReference {
-  literal: {
-    value: string;
-    source: {
-      sourceType: "register" | "corporateRecord" | "selfDeclaration" | "derivedDocument" | "other";
-      sourceActorUri?: string;
-      sourcePublicationDate?: string;
-      sourceDocumentReference?: string;
-    };
-  };
-  resolution?: {
-    resolvedEntityUri: string;
-    resolvedAt: string;
-    confidenceLevel?: "exact" | "high" | "medium" | "low";
-    resolutionMethod?: "deterministicIdentifier" | "attributeMatching" | "humanReview" | "priorAssertion" | "automated";
-    resolutionBasis?: {};
-  };
-  crossActorReferences?: {
-    actorUri: string;
-    entityUriInActor: string;
-  }[];
-}
-/**
- * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "EvidenceCollection".
  */
 export interface EvidenceCollection {
@@ -710,7 +744,11 @@ export interface Workstream {
   /**
    * @minItems 1
    */
-  assetReferences: [string, ...string[]];
+  assetReferences?: [string, ...string[]];
+  /**
+   * @minItems 1
+   */
+  prospectiveRights?: [ProspectiveRight, ...ProspectiveRight[]];
   triggeringEvent: {
     eventType: "registerEvent" | "clientRequest" | "subscriptionFinding" | "internalDecision" | "manualEntry";
     eventReference?: string;
