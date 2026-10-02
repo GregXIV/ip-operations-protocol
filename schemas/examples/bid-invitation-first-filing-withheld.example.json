@@ -1,0 +1,57 @@
+{
+  "messageUri": "urn:ipproto:message:bidInvitation-example-0002",
+  "messageType": "urn:ipproto:message:bidInvitation",
+  "protocolVersion": "0.4",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-orchestrator-f",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:tailspin-legal",
+      "expectedRole": "urn:ipproto:role:bidder"
+    }
+  ],
+  "producedAt": "2026-12-02T09:30:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:f-patent-first-filing-001",
+    "milestoneUri": "urn:ipproto:milestone:f1-ep-application"
+  },
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1231",
+    "milestoneReference": "urn:ipproto:milestone:f1-ep-application",
+    "scope": {
+      "scopeText": "Draft a European patent application from the invention disclosure and file it at the EPO.",
+      "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+      "jurisdictionCode": "EP",
+      "prospectiveRights": [
+        {
+          "assetType": "patent",
+          "workingTitle": "Rotor blade coating",
+          "intendedJurisdictions": [
+            "EP",
+            "US"
+          ]
+        }
+      ]
+    },
+    "lineItemTemplate": [
+      "urn:ipproto:lineItem:professionalFee",
+      "urn:ipproto:lineItem:officialFee"
+    ],
+    "bidDeadline": "2026-12-09T17:00:00Z",
+    "audience": "panel",
+    "conflictParties": [
+      {
+        "partyRole": "beneficiary",
+        "party": {
+          "literal": {
+            "value": "Northwind Industries SE",
+            "source": {
+              "sourceType": "selfDeclaration"
+            }
+          }
+        }
+      }
+    ],
+    "requesterIdentityWithheld": true
+  }
+}
