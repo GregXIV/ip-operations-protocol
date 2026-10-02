@@ -543,7 +543,7 @@ export interface DocumentReference {
   /**
    * @minItems 1
    */
-  assetReferences: [string, ...string[]];
+  assetReferences?: [string, ...string[]];
   originator: string;
   originationDate: string;
   /**
