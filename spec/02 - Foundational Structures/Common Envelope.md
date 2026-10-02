@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.3
+status: v0.4
 ---
 
 # Common Envelope
@@ -24,7 +24,7 @@ Identifies which message type this is. Form: `urn:ipproto:message:assetBootstrap
 ### `protocolVersion`
 Type: string
 
-The protocol version this message conforms to. `0.3` for this version of the spec. A `0.2` message remains valid under 0.3. A `0.1` message remains valid under 0.2, which only adds. A `0.1` receiver is expected to treat the 0.2 additions as unknown; a receiver that validates strictly against the 0.1 schemas does not do that and rejects some of them (see [VERSIONING](../../VERSIONING.md)).
+The protocol version this message conforms to. `0.4` for this version of the spec. A `0.3` message remains valid under 0.4, which adds optional fields only; a 0.3 receiver may ignore them. A `0.2` message remains valid under 0.3. A `0.1` message remains valid under 0.2, which only adds. A `0.1` receiver is expected to treat the 0.2 additions as unknown; a receiver that validates strictly against the 0.1 schemas does not do that and rejects some of them (see [VERSIONING](../../VERSIONING.md)).
 
 ### `originatingActor`
 Type: [Actor Reference](Actor%20Reference.md) URI
@@ -85,7 +85,7 @@ The message-type-specific content. Each message specification defines the shape 
 {
   "messageUri": "urn:ipproto:message:c2e8f1a3-...",
   "messageType": "urn:ipproto:message:assetMatchInquiry",
-  "protocolVersion": "0.3",
+  "protocolVersion": "0.4",
   "originatingActor": "urn:ipproto:actor:meridian-ip-group",
   "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:orchestrator-001",
   "addressedTo": [

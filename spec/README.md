@@ -1,13 +1,13 @@
 ---
 type: index
-status: v0.3-draft
+status: v0.4-draft
 ---
 
-# IP Operations Protocol — v0.3 Specification
+# IP Operations Protocol — v0.4 Specification
 
-> **Working draft (v0.3), published by an independent maintainer under CC-BY-4.0.** Companion to the executive summary.
+> **Working draft (v0.4), published by an independent maintainer under CC-BY-4.0.** Companion to the executive summary.
 
-This vault contains the full v0.3 technical specification for the IP Operations Protocol — a standard for data exchange between corporate IP departments, service providers, external counsel, and registers performing operational work on patent and other IP assets.
+This vault contains the full v0.4 technical specification for the IP Operations Protocol — a standard for data exchange between corporate IP departments, service providers, external counsel, and registers performing operational work on patent and other IP assets.
 
 For non-technical strategic framing, read the executive summary document. For implementation detail, navigate this vault.
 
@@ -82,4 +82,4 @@ Then either:
 
 ## Spec status
 
-This is **v0.3**, a working draft published by an independent maintainer. v0.2 extended v0.1 by addition only: thirteen messages, two foundational structures, optional fields and vocabulary values, recorded in [Ratified Decisions](05%20-%20Decisions/Ratified%20Decisions.md) under *Version 0.2.0*. v0.3 adds two messages and the description of rights still to be created, and relaxes three rules of v0.2: a workstream no longer needs an existing asset, a document reference no longer needs one either, and an invoice line no longer needs a milestone. It is recorded under *Version 0.3.0*. The protocol is tractable for implementation; the design decisions reserved for a future governance body are recorded in [Open Questions for Consortium](05%20-%20Decisions/Open%20Questions%20for%20Consortium.md), the six v0.1 questions each ratified with a recommended default and reopenable when a consortium forms, and a seventh, added in 0.3, open. v1.0 will lock those decisions.
+This is **v0.4**, a working draft published by an independent maintainer. v0.2 extended v0.1 by addition only: thirteen messages, two foundational structures, optional fields and vocabulary values, recorded in [Ratified Decisions](05%20-%20Decisions/Ratified%20Decisions.md) under *Version 0.2.0*. v0.3 adds two messages and the description of rights still to be created, and relaxes three rules of v0.2: a workstream no longer needs an existing asset, a document reference no longer needs one either, and an invoice line no longer needs a milestone. It is recorded under *Version 0.3.0*. v0.4 extends v0.3 by addition only: a bid invitation can describe a right still to be created and name the requester, and a subscription invoice line can state its billing period. No message type is added and no rule is changed; it is recorded under *Version 0.4.0*. The protocol is tractable for implementation; the design decisions reserved for a future governance body are recorded in [Open Questions for Consortium](05%20-%20Decisions/Open%20Questions%20for%20Consortium.md), the six v0.1 questions each ratified with a recommended default and reopenable when a consortium forms, and a seventh, added in 0.3, open. v1.0 will lock those decisions.
