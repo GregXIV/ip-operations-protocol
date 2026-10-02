@@ -23,11 +23,15 @@
     "README.md"
   ],
   "scripts": {
-    "validate": "node validate.mjs"
+    "validate": "node validate.mjs",
+    "generate-types": "node generate-types.mjs"
   },
   "peerDependencies": {
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "15.0.4"
   },
   "keywords": [
     "ip-operations-protocol",

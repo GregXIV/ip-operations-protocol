@@ -28,6 +28,7 @@ schemas/
 ├── types/           ipproto.d.ts — TypeScript types GENERATED from the schemas
 ├── index.json       manifest: messageType / structure -> $id -> path
 ├── validate.mjs     reference validator (ajv)
+├── generate-types.mjs   generator for types/ipproto.d.ts
 └── package.json     @ipproto/schemas
 ```
 
@@ -58,6 +59,16 @@ import type { GoalDecomposition, Milestone, CommonEnvelope } from "@ipproto/sche
 ```
 
 Types are generated from the schemas — regenerate them when the spec versions; never hand-edit.
+
+```bash
+npm install json-schema-to-typescript@15.0.4
+npm run generate-types            # rewrites types/ipproto.d.ts
+node generate-types.mjs --check   # exits 1 if the committed types are out of date
+```
+
+The generator version is pinned because its output is committed. Every message type comes out
+as an alias of `CommonEnvelope`; payloads are not typed. Rules that say "at least one of" or
+"exactly one of" several fields are left to the validator, and those fields are optional in the types.
 
 ## Coverage
 
