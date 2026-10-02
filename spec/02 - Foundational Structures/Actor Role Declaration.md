@@ -48,7 +48,7 @@ Added in 0.2:
 
 - `orchestrator` — decomposes a goal into a milestone chain, routes the work to providers and holds the workstream together. [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) is addressed to it; it produces [Goal Decomposition](../03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md), [Work Instruction](../03%20-%20Messages/Work%20Instruction/Work%20Instruction.md) and [Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md), and since 0.3 [Request Declined](../03%20-%20Messages/Workstream%20Lifecycle/Request%20Declined.md) and [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md)
 - `bidder` — invited to bid on a milestone. Scoped to that one milestone (`scopeType: milestone`); the declaration ends when the bid is declined or withdrawn, or when the award stands
-- `ultimateBeneficiary` — the party the work is for when the requester acts on someone else's behalf. Scoped to the workstream. See the beneficiary fields of [Workstream](Workstream.md)
+- `ultimateBeneficiary` — the party the work is for when the requester acts on someone else's behalf. Scoped to the workstream. The declaration is made only where the beneficiary is itself an actor; a beneficiary that is not one is identified by the requester in the Entity Reference of the `beneficiary` field, and the declaration is optional (clarified in 0.3). See the beneficiary fields of [Workstream](Workstream.md)
 
 Custom roles allowed through namespaced URNs.
 

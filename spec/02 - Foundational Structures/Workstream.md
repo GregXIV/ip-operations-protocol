@@ -78,6 +78,8 @@ Added in 0.2. Required when `instructingCapacity == onBehalf`. The party the wor
 
 The requester stays the `workRequester` and usually the `payor`. The beneficiary holds the role `ultimateBeneficiary` scoped to the workstream (see [Actor Role Declaration](Actor%20Role%20Declaration.md)); it does not have to take part in the exchange. Suppliers check conflicts of interest against the beneficiary, not against the instructing requester alone.
 
+A beneficiary that is not itself a protocol actor has no `actorUri`. The requester identifies it: the `resolvedEntityUri` in the `resolution` of this Entity Reference is the requester's own identifier for the beneficiary. The protocol issues none, and a receiver may accept that resolution or apply its own, as with any [Entity Reference](Entity%20Reference.md). An [Actor Role Declaration](Actor%20Role%20Declaration.md) needs an `actorUri`, so the `ultimateBeneficiary` declaration is made only where the beneficiary is an actor. Otherwise it is optional and the `beneficiary` field alone states the role. Clarified in 0.3.
+
 ### `milestoneChain`
 Type: structured, required
 
