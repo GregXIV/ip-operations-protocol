@@ -1,7 +1,7 @@
 ---
 type: message
 category: bootstrap
-status: v0.1
+status: v0.3
 ---
 
 # Asset Bootstrap
@@ -109,3 +109,4 @@ If a receiving actor already has the asset under a different protocol URI (indep
 - [EP Post-Grant Flow Walkthrough](../../04%20-%20Worked%20Examples/EP%20Post-Grant%20Flow%20Walkthrough.md) — Phase 0 walkthrough
 - [Common Envelope](../../02%20-%20Foundational%20Structures/Common%20Envelope.md)
 - [Asset Reference](../../02%20-%20Foundational%20Structures/Asset%20Reference.md)
+- [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) — *Work on a right that does not exist yet*: how a workstream picks up the asset that a first filing creates (added in 0.3)

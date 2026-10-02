@@ -63,6 +63,45 @@
         "actorUri",
         "roleDeclarationUri"
       ]
+    },
+    "prospectiveRight": {
+      "type": "object",
+      "description": "A right that does not exist yet and that the requested work is to create or prepare: a first filing, or an application to be drafted. Added in 0.3.",
+      "properties": {
+        "assetType": {
+          "enum": [
+            "patent",
+            "utilityModel",
+            "designRegistration",
+            "trademark",
+            "plantVariety",
+            "geographicalIndication",
+            "otherIp"
+          ]
+        },
+        "workingTitle": {
+          "type": "string"
+        },
+        "intendedJurisdictions": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/st3Code"
+          }
+        },
+        "applicant": {
+          "$ref": "urn:ipproto:schema:0.3:entityReference"
+        },
+        "resultingAssetReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          }
+        }
+      },
+      "required": [
+        "assetType",
+        "workingTitle"
+      ]
     }
   }
 }

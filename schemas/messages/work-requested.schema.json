@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:ipproto:schema:0.3:workRequested",
   "title": "Work Requested",
-  "description": "A work requester places an order or asks for work. Opens a catalogue order or one of the three procurement paths.",
+  "description": "A work requester places an order or asks for work, on existing assets, on rights still to be created, or both. Opens a catalogue order or one of the three procurement paths.",
   "allOf": [
     {
       "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
@@ -41,6 +41,13 @@
           "minItems": 1,
           "items": {
             "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          }
+        },
+        "prospectiveRights": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/prospectiveRight"
           }
         },
         "requestedWork": {
@@ -91,10 +98,21 @@
       "required": [
         "requestReference",
         "goalStatement",
-        "assetReferences",
         "requestedWork",
         "instructingCapacity",
         "requestMode"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "assetReferences"
+          ]
+        },
+        {
+          "required": [
+            "prospectiveRights"
+          ]
+        }
       ],
       "if": {
         "properties": {

@@ -3,5 +3,6 @@
   "milestone-delegated.example.json": "urn:ipproto:schema:0.3:milestone",
   "resolution-provenance.example.json": "urn:ipproto:schema:0.3:resolutionProvenance",
   "resolved-asset.example.json": "urn:ipproto:schema:0.3:resolvedAsset",
-  "service-level.example.json": "urn:ipproto:schema:0.3:serviceLevel"
+  "service-level.example.json": "urn:ipproto:schema:0.3:serviceLevel",
+  "workstream-first-filing.example.json": "urn:ipproto:schema:0.3:workstream"
 }

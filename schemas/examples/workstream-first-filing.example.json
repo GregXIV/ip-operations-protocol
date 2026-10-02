@@ -1,0 +1,106 @@
+{
+  "workstreamUri": "urn:ipproto:workstream:d-trademark-filing-001",
+  "workstreamType": "urn:ipproto:workstream:nationalProsecution",
+  "prospectiveRights": [
+    {
+      "assetType": "trademark",
+      "workingTitle": "NORTHWIND AERO",
+      "intendedJurisdictions": [
+        "EM",
+        "US"
+      ],
+      "applicant": {
+        "literal": {
+          "value": "Northwind Industries SE",
+          "source": {
+            "sourceType": "selfDeclaration",
+            "sourceActorUri": "urn:ipproto:actor:northwind-industries"
+          }
+        }
+      }
+    }
+  ],
+  "triggeringEvent": {
+    "eventType": "clientRequest",
+    "eventReference": "urn:ipproto:request:req-2026-1188",
+    "triggeredAt": "2026-11-18T08:45:00Z"
+  },
+  "goalStatement": {
+    "goalText": "Register the word mark NORTHWIND AERO in the European Union and the United States.",
+    "goalCategory": "urn:ipproto:goal:trademarkFiling"
+  },
+  "instructingCapacity": "own",
+  "milestoneChain": {
+    "chainExecutionPolicy": "strict",
+    "milestones": [
+      {
+        "milestoneUri": "urn:ipproto:milestone:d1-em-filing",
+        "milestoneSequence": 1,
+        "milestoneTitle": "Trademark application at the EUIPO",
+        "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+        "actorAssignments": [
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-work-requester",
+            "assignmentType": "accountableTo"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-work-requester",
+            "assignmentType": "payor"
+          }
+        ],
+        "executionMode": "thirdPartyRfp",
+        "dependencies": [],
+        "milestoneStatus": "proposed",
+        "estimates": {
+          "estimatedDuration": {
+            "minimumDays": 3,
+            "expectedDays": 5,
+            "maximumDays": 10
+          }
+        },
+        "milestoneAuthorityClaims": [
+          "urn:ipproto:authorityClaim:claim-d1-001"
+        ]
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:d2-us-filing",
+        "milestoneSequence": 2,
+        "milestoneTitle": "Trademark application at the USPTO",
+        "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+        "actorAssignments": [
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-work-requester",
+            "assignmentType": "accountableTo"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-work-requester",
+            "assignmentType": "payor"
+          }
+        ],
+        "executionMode": "thirdPartyRfp",
+        "dependencies": [],
+        "milestoneStatus": "proposed",
+        "estimates": {
+          "estimatedDuration": {
+            "minimumDays": 3,
+            "expectedDays": 5,
+            "maximumDays": 10
+          }
+        },
+        "milestoneAuthorityClaims": [
+          "urn:ipproto:authorityClaim:claim-d2-001"
+        ]
+      }
+    ]
+  },
+  "workstreamStatus": "proposed",
+  "statusHistory": [],
+  "authorityRegistry": [
+    "urn:ipproto:authorityClaim:claim-d-workstream-001"
+  ],
+  "createdAt": "2026-11-18T10:05:00Z"
+}

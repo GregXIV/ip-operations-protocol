@@ -1,0 +1,57 @@
+{
+  "messageUri": "urn:ipproto:message:workRequested-example-0002",
+  "messageType": "urn:ipproto:message:workRequested",
+  "protocolVersion": "0.3",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-work-requester",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:orchestrator"
+    }
+  ],
+  "producedAt": "2026-11-18T08:45:00Z",
+  "userContext": {
+    "userIdentifier": "trademarks@northwind.example",
+    "roleAtActor": "Trademark Counsel"
+  },
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1188",
+    "goalStatement": {
+      "goalText": "Register the word mark NORTHWIND AERO in the European Union and the United States.",
+      "goalCategory": "urn:ipproto:goal:trademarkFiling"
+    },
+    "prospectiveRights": [
+      {
+        "assetType": "trademark",
+        "workingTitle": "NORTHWIND AERO",
+        "intendedJurisdictions": [
+          "EM",
+          "US"
+        ],
+        "applicant": {
+          "literal": {
+            "value": "Northwind Industries SE",
+            "source": {
+              "sourceType": "selfDeclaration",
+              "sourceActorUri": "urn:ipproto:actor:northwind-industries"
+            }
+          }
+        }
+      }
+    ],
+    "requestedWork": [
+      {
+        "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+        "jurisdictionCode": "EM"
+      },
+      {
+        "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+        "jurisdictionCode": "US"
+      }
+    ],
+    "instructingCapacity": "own",
+    "requestMode": "panel",
+    "responseDeadline": "2026-11-20T17:00:00Z"
+  }
+}

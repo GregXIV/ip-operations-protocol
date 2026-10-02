@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.2
+status: v0.3
 ---
 
 # Work Requested
@@ -10,7 +10,7 @@ status: v0.2
 
 ## Purpose
 
-Added in 0.2. States what the requester wants done, on which assets, in which countries, for whom, and by which route it is to be sourced. Before 0.2 the protocol began with the orchestrator's [Goal Decomposition](Goal%20Decomposition.md); the customer's own request had no message.
+Added in 0.2. States what the requester wants done, on which assets or for which rights still to be created, in which countries, for whom, and by which route it is to be sourced. Before 0.2 the protocol began with the orchestrator's [Goal Decomposition](Goal%20Decomposition.md); the customer's own request had no message.
 
 The request does not create a workstream. The orchestrator creates it in answer.
 
@@ -35,7 +35,16 @@ Type: structured, required
 Same shape as in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md): `goalText`, optional `goalCategory`, optional `goalConstraints`.
 
 ### `assetReferences`
-Type: array of [Asset Reference](../../02%20-%20Foundational%20Structures/Asset%20Reference.md) URIs, required (at least one)
+Type: array of [Asset Reference](../../02%20-%20Foundational%20Structures/Asset%20Reference.md) URIs, conditional (at least one entry)
+
+The existing assets the work is on. Required unless `prospectiveRights` is present. In 0.2 the field was required without exception.
+
+### `prospectiveRights`
+Type: array of structured entries, conditional (at least one entry)
+
+Added in 0.3. The rights the work is to create or prepare where no asset exists yet: a first filing, or an application to be drafted. Required unless `assetReferences` is present. Same shape as in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md): `assetType`, `workingTitle`, optional `intendedJurisdictions`, optional `applicant`. `resultingAssetReferences` is not used in a request.
+
+A request may carry both fields, for instance a subsequent filing that claims priority from an existing application.
 
 ### `requestedWork`
 Type: array of structured entries, required (at least one)
@@ -123,6 +132,46 @@ A law firm orders the validation of its client's European patent in Spain and It
 }
 ```
 
+## Worked example — first filing through a panel
+
+Added in 0.3. A company asks its panel for the registration of a new word mark. No asset exists, so the request describes the right to be created.
+
+```json
+{
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "addressedTo": [
+    {"actorUri": "urn:ipproto:actor:meridian-ip-group", "expectedRole": "urn:ipproto:role:orchestrator"}
+  ],
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1188",
+    "goalStatement": {
+      "goalText": "Register the word mark NORTHWIND AERO in the European Union and the United States.",
+      "goalCategory": "urn:ipproto:goal:trademarkFiling"
+    },
+    "prospectiveRights": [
+      {
+        "assetType": "trademark",
+        "workingTitle": "NORTHWIND AERO",
+        "intendedJurisdictions": ["EM", "US"],
+        "applicant": {
+          "literal": {
+            "value": "Northwind Industries SE",
+            "source": {"sourceType": "selfDeclaration", "sourceActorUri": "urn:ipproto:actor:northwind-industries"}
+          }
+        }
+      }
+    ],
+    "requestedWork": [
+      {"milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling", "jurisdictionCode": "EM"},
+      {"milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling", "jurisdictionCode": "US"}
+    ],
+    "instructingCapacity": "own",
+    "requestMode": "panel",
+    "responseDeadline": "2026-11-20T17:00:00Z"
+  }
+}
+```
+
 ## One-step catalogue order
 
 Ratified on 2026-10-01 (see [Ratified Decisions](../../05%20-%20Decisions/Ratified%20Decisions.md), decision 30).
@@ -144,7 +193,7 @@ For `catalogueOrder`, the orchestrator answers with a [Goal Decomposition](Goal%
 
 For `directQuote`, `panel` and `openRfp`, the orchestrator creates the workstream with its milestones in execution mode `thirdPartyRfp` and sends a [Bid Invitation](../Procurement/Bid%20Invitation.md) per milestone. A Goal Decomposition may share the workstream with the requester but is not what commits it: the award does.
 
-`instructingCapacity` and `beneficiary` are copied into the workstream unchanged.
+`instructingCapacity`, `beneficiary` and `prospectiveRights` are copied into the workstream unchanged. How the workstream later picks up the asset that a filing creates is described in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Work on a right that does not exist yet*.
 
 A request the orchestrator cannot serve is answered outside this message set in 0.2; there is no decline message for a request.
 
@@ -155,6 +204,6 @@ A request the orchestrator cannot serve is answered outside this message set in 
 
 ## See also
 
-- [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) — `instructingCapacity` and `beneficiary`
+- [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) — `instructingCapacity`, `beneficiary` and `prospectiveRights`
 - [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md)
 - [Exclusive Delivery and Open Services Walkthrough](../../04%20-%20Worked%20Examples/Exclusive%20Delivery%20and%20Open%20Services%20Walkthrough.md)
