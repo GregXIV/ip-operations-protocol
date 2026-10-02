@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:bidDeclined",
+  "$id": "urn:ipproto:schema:0.3:bidDeclined",
   "title": "Bid Declined",
   "description": "A work requester declines a bid, with its reasons. The ranking behind the decision is not exchanged.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,7 +17,7 @@
       "type": "object",
       "properties": {
         "bidReference": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
         },
         "declineReasons": {
           "type": "array",

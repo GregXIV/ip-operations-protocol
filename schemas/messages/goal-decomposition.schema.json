@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:goalDecomposition",
+  "$id": "urn:ipproto:schema:0.3:goalDecomposition",
   "title": "Goal Decomposition",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "proposedWorkstream": {
-          "$ref": "urn:ipproto:schema:0.2:workstream"
+          "$ref": "urn:ipproto:schema:0.3:workstream"
         },
         "proposalRationale": {
           "type": "object",
@@ -36,7 +36,7 @@
                     "type": "string"
                   },
                   "inputDocumentUri": {
-                    "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                    "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
                   }
                 },
                 "required": [
@@ -67,7 +67,7 @@
           "type": "object"
         },
         "responseDeadline": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
         }
       },
       "required": [

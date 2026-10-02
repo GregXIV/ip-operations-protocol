@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:serviceSubscriptionStarted",
+  "$id": "urn:ipproto:schema:0.3:serviceSubscriptionStarted",
   "title": "Service Subscription Started",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,10 +16,10 @@
       "type": "object",
       "properties": {
         "subscriptionReference": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
         },
         "subscriptionType": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
         },
         "subscriptionScope": {
           "type": "object",
@@ -27,7 +27,7 @@
             "scopedAssetReferences": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               }
             },
             "scopedDefinition": {
@@ -54,10 +54,10 @@
             "type": "object",
             "properties": {
               "actorUri": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               },
               "roleDeclarationUri": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               },
               "assignmentType": {
                 "enum": [
@@ -138,7 +138,7 @@
               "type": "object",
               "properties": {
                 "trialEndsAt": {
-                  "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+                  "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
                 },
                 "afterTrial": {
                   "enum": [
@@ -204,7 +204,7 @@
         "subscriptionAuthorityClaims": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.2:authorityClaim"
+            "$ref": "urn:ipproto:schema:0.3:authorityClaim"
           }
         }
       },

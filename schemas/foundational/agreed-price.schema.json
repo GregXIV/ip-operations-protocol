@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:agreedPrice",
+  "$id": "urn:ipproto:schema:0.3:agreedPrice",
   "title": "Agreed Price",
   "description": "A binding price for a unit of work, as opposed to an estimate. Carried on a milestone, in a work instruction and as the price of a bid.",
   "type": "object",
@@ -9,7 +9,7 @@
       "type": "number"
     },
     "currency": {
-      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/iso4217"
+      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/iso4217"
     },
     "priceBasis": {
       "enum": [
@@ -24,7 +24,7 @@
         "type": "object",
         "properties": {
           "lineItemType": {
-            "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
           },
           "amount": {
             "type": "number"
@@ -46,7 +46,7 @@
       "type": "boolean"
     },
     "bindingUntil": {
-      "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
     },
     "agreementReference": {
       "type": "string"
