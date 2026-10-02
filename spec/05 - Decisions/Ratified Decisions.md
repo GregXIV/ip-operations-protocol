@@ -1,6 +1,6 @@
 ---
 type: decisions
-status: v0.2
+status: v0.3
 ---
 
 # Ratified Decisions
@@ -83,6 +83,19 @@ Decisions 31 to 36 follow the recommendations of the extension proposal. They we
 34. **A small core line item vocabulary.** Five standard line item types in `urn:ipproto:lineItem:` — `professionalFee`, `translation`, `officialFee`, `handling`, `disbursement` — with custom types through namespaced URNs. See [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md).
 35. **A missed service level is derived, not announced.** No message reports a missed [Service Level](../02%20-%20Foundational%20Structures/Service%20Level.md); each party derives it from timestamps. A message can be added later without breaking anything.
 36. **The guiding principle speaks of IP operations.** The principle in [Non-Scope](../01%20-%20Front%20Matter/Non-Scope.md) read "patent-operations data layer" in 0.1. The asset model already covers trademarks and designs, so the wording is "IP-operations data layer".
+
+## Version 0.3.0 (ratified 2026-10-02)
+
+Follow-up decisions to 0.2.0, agreed by the maintainer on 2026-10-02. Version 0.3.0 is a minor version under the pre-1.0 rule of [VERSIONING](../../VERSIONING.md) and not purely additive: decisions 37 and 40 relax rules a 0.2 receiver could rely on.
+
+37. **A request and a workstream may describe rights still to be created.** [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) and [Workstream](../02%20-%20Foundational%20Structures/Workstream.md) carry `prospectiveRights` next to `assetReferences`, and at least one of the two is required. In 0.2 at least one asset was required, so a first filing or a drafting job could not be requested. Decision 16 stands: a prospective right is not an asset, and the asset a filing creates enters the protocol through [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md). The orchestrator then adds it to the workstream.
+38. **A request can be declined inside the protocol.** [Request Declined](../03%20-%20Messages/Workstream%20Lifecycle/Request%20Declined.md) is the orchestrator's answer to a request it will not serve, with a reason category and an optional narrative. A declined request creates no workstream.
+39. **A withheld requester is disclosed by a message.** [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md) carries the requester's [Actor Reference](../02%20-%20Foundational%20Structures/Actor%20Reference.md) from the orchestrator to one bidder. It is sent only where the [Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md) withheld the identity, only after that bidder attested `clear`, and never to a bidder that attested `conflict`.
+40. **An invoice line refers to a milestone or to a subscription.** Each line of [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) carries exactly one of `milestoneReference` and `subscriptionReference`. In 0.2 every line needed a milestone, so a subscription could not be invoiced line by line.
+41. **The tax treatment vocabulary is open and provisional.** `taxed`, `reverseCharge`, `exempt` and `outsideScope` stay as standard values of `taxTreatment`; custom values use namespaced URNs. The values are not settled by this decision: nobody who issues invoices has reviewed them. See [Open Questions for Consortium](Open%20Questions%20for%20Consortium.md), question 7.
+42. **Free-text messaging is outside the protocol.** Decided on 2026-10-01 with the 0.2.0 extension and written into [Non-Scope](../01%20-%20Front%20Matter/Non-Scope.md) in 0.3.
+43. **The requester identifies a beneficiary that is not an actor.** Its identifier is the `resolvedEntityUri` the requester gives in the beneficiary's [Entity Reference](../02%20-%20Foundational%20Structures/Entity%20Reference.md). The `ultimateBeneficiary` role declaration is optional in that case. See [Workstream](../02%20-%20Foundational%20Structures/Workstream.md).
+44. **A revenue share is exchanged between provider and contract holder only.** The `commercialTerms` that carry `sharePercent` do not travel to the subscriber, whose message for the same subscription states its own terms. See [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md).
 
 ## See also
 
