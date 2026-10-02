@@ -1,7 +1,7 @@
 {
   "name": "@ipproto/schemas",
-  "version": "0.2.0",
-  "description": "JSON Schemas, validated examples, generated TypeScript types, and a reference validator for the IP Operations Protocol v0.2.",
+  "version": "0.3.0",
+  "description": "JSON Schemas, validated examples, generated TypeScript types, and a reference validator for the IP Operations Protocol v0.3.",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types/ipproto.d.ts",
