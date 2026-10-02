@@ -1,11 +1,11 @@
 ---
 type: foundational
-status: v0.2
+status: v0.3
 ---
 
 # Workstream
 
-> First-class entity representing operational work being performed on one or more assets.
+> First-class entity representing operational work being performed on one or more assets, or on rights that are still to be created.
 
 A workstream is distinct from the asset (workstreams come and go; assets persist) and distinct from individual milestones (milestones are units of work within a workstream). Multiple concurrent workstreams can exist on the same asset — a renewal workstream, an opposition workstream, a recordal workstream — all running independently.
 
@@ -31,7 +31,22 @@ Typed classification. Standard types:
 - `urn:ipproto:workstream:custom`
 
 ### `assetReferences`
-Type: array of [Asset Reference](Asset%20Reference.md) URIs, required (at least one)
+Type: array of [Asset Reference](Asset%20Reference.md) URIs, conditional (at least one entry)
+
+The assets the work is on. Required unless `prospectiveRights` is present. Until 0.3 the field was required without exception.
+
+### `prospectiveRights`
+Type: array of structured entries, conditional (at least one entry)
+
+Added in 0.3. The rights the work is to create or prepare where no asset exists yet: a first filing, or an application to be drafted. Required unless `assetReferences` is present. A workstream may carry both. Each entry:
+
+- `assetType` — enumeration, required. The kind of right, with the values of `assetType` in [Asset Reference](Asset%20Reference.md)
+- `workingTitle` — string, required. What the right is called until it has a number: the working title of the invention or design, or the mark itself
+- `intendedJurisdictions` — array of ST.3 codes, optional. Where protection is sought
+- `applicant` — [Entity Reference](Entity%20Reference.md), optional. The intended applicant, where known
+- `resultingAssetReferences` — array of [Asset Reference](Asset%20Reference.md) URIs, optional. The assets that have come out of this entry. Absent until a filing has been made
+
+See *Work on a right that does not exist yet* below.
 
 ### `triggeringEvent`
 Type: structured, required
@@ -98,6 +113,63 @@ Type: array, optional
 
 Other workstreams related to this one. Each entry: `workstreamUri`, `relationshipType` (`predecessorOf`, `successorOf`, `concurrent`, `triggers`, free-form URN).
 
+## Work on a right that does not exist yet
+
+Added in 0.3. Until 0.3 a workstream needed at least one asset. A first filing could not be expressed, because there the asset is the result of the work and not its object. A prospective right describes what is to be created without pretending that it exists: it has no `assetUri`, no identifiers and no record, and nothing can be asserted about it.
+
+Decision 16 of the [Ratified Decisions](../05%20-%20Decisions/Ratified%20Decisions.md) stands: an asset enters the protocol through [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) and in no other way. The workstream picks up the real asset in three steps:
+
+1. **The filing is made.** The office issues an application number. From now on there is something an [Asset Reference](Asset%20Reference.md) can identify.
+2. **The asset is bootstrapped.** The actor that made the filing, or the orchestrator on its report, publishes an [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) with basis `serviceProviderInitialization`, addressed to the actors of the workstream. Its `triggeringReference` names the milestone under which the filing was made.
+3. **The orchestrator records it on the workstream.** With a [Data Assertion](Data%20Assertion.md) on the workstream record it adds the new `assetUri` to `assetReferences` and to the `resultingAssetReferences` of the prospective right the asset came out of. The assertion travels in the `assertions` of a message of the workstream, typically the one that reports the filing as completed.
+
+From then on the asset is an asset like any other, and later messages refer to it by its `assetUri`. The prospective right stays on the workstream as the record of what was asked for. One entry can lead to several assets, one application per jurisdiction, and each is added as it comes into being. Where the work ends before a filing, as in a drafting job, the entry never receives a `resultingAssetReferences` and the workstream completes without an asset.
+
+Where the work was passed on to an agent in a second workstream (see *Passing work on* in [Milestone](Milestone.md)), the agent's bootstrap is addressed to the orchestrator. The orchestrator introduces the asset to its customer under its own name, with the same `assetUri`.
+
+**Known limit.** A [Document Reference](Document%20Reference.md) still requires at least one asset reference. A document of a workstream that has no asset yet, such as a draft application or an invention disclosure, has no valid Document Reference until the asset exists.
+
+A workstream for a first filing, before the filing:
+
+```json
+{
+  "workstreamUri": "urn:ipproto:workstream:d-trademark-filing-001",
+  "workstreamType": "urn:ipproto:workstream:nationalProsecution",
+  "prospectiveRights": [
+    {
+      "assetType": "trademark",
+      "workingTitle": "NORTHWIND AERO",
+      "intendedJurisdictions": ["EM", "US"],
+      "applicant": {"literal": {"value": "Northwind Industries SE", "source": {"sourceType": "selfDeclaration"}}}
+    }
+  ],
+  "triggeringEvent": {
+    "eventType": "clientRequest",
+    "eventReference": "urn:ipproto:request:req-2026-1188",
+    "triggeredAt": "2026-11-18T08:45:00Z"
+  },
+  "goalStatement": {"goalText": "Register the word mark NORTHWIND AERO in the European Union and the United States."},
+  "milestoneChain": {"milestones": [ /* one office filing per jurisdiction */ ]},
+  "workstreamStatus": "proposed"
+}
+```
+
+After the application at the EUIPO has been filed and bootstrapped, the same workstream carries:
+
+```json
+{
+  "assetReferences": ["urn:ipproto:asset:3b9e61c0-..."],
+  "prospectiveRights": [
+    {
+      "assetType": "trademark",
+      "workingTitle": "NORTHWIND AERO",
+      "intendedJurisdictions": ["EM", "US"],
+      "resultingAssetReferences": ["urn:ipproto:asset:3b9e61c0-..."]
+    }
+  ]
+}
+```
+
 ## Worked example skeleton
 
 ```json
@@ -142,7 +214,8 @@ The orchestrator computes status changes and publishes them through `statusHisto
 ## See also
 
 - [Milestone](Milestone.md) — units of work within the workstream; `parentMilestoneUri` links milestones across two workstreams
-- [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) — the request that states capacity and beneficiary first
+- [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) — the request that states capacity, beneficiary and prospective rights first
+- [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) — how an asset created by the work enters the protocol
 - [Goal Decomposition](../03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md) — proposes the workstream
 - [Orchestration Committed](../03%20-%20Messages/Workstream%20Lifecycle/Orchestration%20Committed.md) — authorizes the workstream
 - [Workstream Completed](../03%20-%20Messages/Workstream%20Lifecycle/Workstream%20Completed.md), [Workstream Abandoned](../03%20-%20Messages/Workstream%20Lifecycle/Workstream%20Abandoned.md) — terminal events
