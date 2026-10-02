@@ -75,7 +75,9 @@ Neither `assetReferences` nor `prospectiveRights` is required. A 0.3 invitation 
 
 **No applicant while the requester is withheld.** While `requesterIdentityWithheld` is `true`, `applicant` is left out of every entry, so that the invitation cannot reveal who is asking before the conflict check. The schema enforces this. It does not hide a party from the bidder's conflict check: an applicant the bidder would act for is among the `conflictParties` (see there).
 
-**Two kinds of jurisdiction.** `scope.jurisdictionCode` is the invitation's own jurisdiction: where the work of this milestone is done. The `intendedJurisdictions` of an entry describe the right: every jurisdiction in which protection is sought, as the request states them. The entry is not cut down to the invitation. A first filing in two jurisdictions is two milestones and two invitations; each carries the same entry with both jurisdictions and its own `jurisdictionCode`, which is normally one of them. A bid prices the work in `jurisdictionCode` only. Where `jurisdictionCode` is absent, as for a drafting job that is not tied to an office, `scopeText` says what the work covers, and `intendedJurisdictions` do not widen it.
+**Two kinds of jurisdiction.** `scope.jurisdictionCode` is the invitation's own jurisdiction: where the work of this milestone is done. The `intendedJurisdictions` of an entry describe the right: the jurisdictions in which protection is sought. The request and the workstream keep the full list. On an invitation the sender may limit the list of an entry to the jurisdictions the invitation covers; it is not required to show the full filing plan to a bidder, and a bidder does not read the list as complete. A first filing in two jurisdictions is two milestones and two invitations; each carries the entry with its own jurisdiction alone or with both, as the sender chooses, and its own `jurisdictionCode`. A bid prices the work in `jurisdictionCode` only. Where `jurisdictionCode` is absent, as for a drafting job that is not tied to an office, `scopeText` says what the work covers, and `intendedJurisdictions` do not widen it.
+
+That the sender may limit the list was stated in 0.4.1. The 0.4.0 text of this paragraph said that the entry is not cut down to the invitation.
 
 ### `lineItemTemplate`
 Type: array of URIs, required (at least one)
@@ -177,7 +179,7 @@ In both messages `requester` is the same full [Actor Reference](../../02%20-%20F
 
 ## Worked example — first filing, requester withheld
 
-Added in 0.4. A law firm asks its panel, for a client, to draft and file a first patent application. The firm's identity is withheld until the conflict check. The right to be created is described without an applicant; the client is among the `conflictParties`. So is the group company in whose name the application is to be filed: an applicant who is neither requester nor beneficiary is a conflict party. Neither reference names the law firm as its source: one has no source actor, the other is re-stated by the orchestrator under its own name. Protection is sought in two jurisdictions, and this invitation covers the European application.
+Added in 0.4. A law firm asks its panel, for a client, to draft and file a first patent application. The firm's identity is withheld until the conflict check. The right to be created is described without an applicant; the client is among the `conflictParties`. So is the group company in whose name the application is to be filed: an applicant who is neither requester nor beneficiary is a conflict party. Neither reference names the law firm as its source: one has no source actor, the other is re-stated by the orchestrator under its own name. The sender has limited `intendedJurisdictions` to the jurisdiction this invitation covers; what else the client plans to file is not shown.
 
 ```json
 {
@@ -197,7 +199,7 @@ Added in 0.4. A law firm asks its panel, for a client, to draft and file a first
       "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
       "jurisdictionCode": "EP",
       "prospectiveRights": [
-        {"assetType": "patent", "workingTitle": "Rotor blade coating", "intendedJurisdictions": ["EP", "US"]}
+        {"assetType": "patent", "workingTitle": "Rotor blade coating", "intendedJurisdictions": ["EP"]}
       ]
     },
     "lineItemTemplate": [
@@ -217,7 +219,7 @@ Added in 0.4. A law firm asks its panel, for a client, to draft and file a first
 
 ## Worked example — first filing, requester not withheld
 
-Added in 0.4. A company asks its panel for the registration of a new word mark and instructs for itself. Nothing is withheld: the invitation names the requester, and the right to be created carries its applicant. The request covers the European Union and the United States; this invitation is the one for the EUIPO.
+Added in 0.4. A company asks its panel for the registration of a new word mark and instructs for itself. Nothing is withheld: the invitation names the requester, and the right to be created carries its applicant. The request covers the European Union and the United States; this invitation is the one for the EUIPO, and its sender has chosen to show the full list.
 
 ```json
 {
