@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.2
+status: v0.3
 ---
 
 # Conventions
@@ -94,4 +94,4 @@ Throughout the spec, JSON examples use the following stylistic conventions:
 
 ## Versioning
 
-The protocol version is carried in every message's `protocolVersion` field. Version `0.1` is the initial draft. Version `0.2` adds messages, structures and vocabulary values and removes or renames nothing. A `0.1` receiver that degrades on unknown message types, fields and values keeps working and treats the additions as unknown; one that validates strictly against the 0.1 schemas rejects the new values `softwareService` and `revenueShare` (see [VERSIONING](../../VERSIONING.md)). Backward compatibility is a goal but not yet a commitment — until v1.0, breaking changes may occur with consortium ratification.
+The protocol version is carried in every message's `protocolVersion` field. Version `0.1` is the initial draft. Version `0.2` adds messages, structures and vocabulary values and removes or renames nothing. A `0.1` receiver that degrades on unknown message types, fields and values keeps working and treats the additions as unknown; one that validates strictly against the 0.1 schemas rejects the new values `softwareService` and `revenueShare` (see [VERSIONING](../../VERSIONING.md)). Version `0.3` adds two messages and relaxes two rules of `0.2`: a workstream no longer needs an existing asset, and an invoice line no longer needs a milestone. A `0.2` message remains valid under `0.3`; a `0.2` receiver that relies on either rule must be changed. Backward compatibility is a goal but not yet a commitment — until v1.0, breaking changes may occur with consortium ratification.
