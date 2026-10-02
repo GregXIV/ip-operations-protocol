@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.2
+status: v0.3
 ---
 
 # Scope
@@ -14,7 +14,7 @@ The protocol's scope is the **operational layer** — the messages flowing betwe
 Specifically:
 
 - **Asset bootstrapping** from registers and from corporate IP management systems — see [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md), [Asset Match Inquiry](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Inquiry.md), [Asset Match Response](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Response.md)
-- **Requests for work** from the customer's side, by catalogue order or for procurement — see [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) (added in 0.2)
+- **Requests for work** from the customer's side, by catalogue order or for procurement — see [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) (added in 0.2) and [Request Declined](../03%20-%20Messages/Workstream%20Lifecycle/Request%20Declined.md) (added in 0.3)
 - **Decomposition of operational goals into milestone chains** — see [Goal Decomposition](../03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md), [Orchestration Committed](../03%20-%20Messages/Workstream%20Lifecycle/Orchestration%20Committed.md)
 - **Authorization and execution of milestones** across multiple actors — see [Milestone Started](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Started.md), [Milestone Completed](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Completed.md), [Milestone Failed](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Failed.md), [Milestone Abandoned](../03%20-%20Messages/Milestone%20Lifecycle/Milestone%20Abandoned.md)
 - **Instruction of suppliers** at an agreed price and under agreed service levels — see [Work Instruction](../03%20-%20Messages/Work%20Instruction/Work%20Instruction.md), [Instruction Accepted](../03%20-%20Messages/Work%20Instruction/Instruction%20Accepted.md), [Instruction Declined](../03%20-%20Messages/Work%20Instruction/Instruction%20Declined.md) (added in 0.2)

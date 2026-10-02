@@ -195,11 +195,12 @@ For `directQuote`, `panel` and `openRfp`, the orchestrator creates the workstrea
 
 `instructingCapacity`, `beneficiary` and `prospectiveRights` are copied into the workstream unchanged. How the workstream later picks up the asset that a filing creates is described in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Work on a right that does not exist yet*.
 
-A request the orchestrator cannot serve is answered outside this message set in 0.2; there is no decline message for a request.
+A request the orchestrator will not serve is answered with [Request Declined](Request%20Declined.md), added in 0.3. In 0.2 there was no message for it.
 
 ## Related messages
 
 - Answered by [Goal Decomposition](Goal%20Decomposition.md) (catalogue order) or followed by [Bid Invitation](../Procurement/Bid%20Invitation.md) (the other three modes)
+- Declined with [Request Declined](Request%20Declined.md)
 - [Orchestration Committed](Orchestration%20Committed.md) — the regular commitment, skipped under the one-step rule
 
 ## See also
