@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.3
+status: v0.4
 ---
 
 # Workstream
@@ -105,7 +105,12 @@ Append-only log of status transitions. Each entry: `previousStatus`, `newStatus`
 ### `authorityRegistry`
 Type: structured, required
 
-References to [Authority Claim](Authority%20Claim.md) URIs governing the workstream's sections. At minimum: a corporate claim over goal/chain modifications and an orchestrator claim over status updates.
+References to [Authority Claim](Authority%20Claim.md) URIs governing the workstream's sections. At minimum:
+
+- **a corporate claim over goal and chain modifications.** It covers what is to be filed as well: adding, removing or altering `prospectiveRights` entries, and removing asset references
+- **an orchestrator claim over status updates and over recording the assets the work has created.** It covers adding an asset URI to `assetReferences` and to the `resultingAssetReferences` of a prospective right, provided an [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) exists whose `triggeringReference` names this workstream or one of its milestones. That is recording a fact, not changing the goal
+
+The second half of each line was stated in 0.4. Until then the page did not say under whose claim a resulting asset is recorded. See *Work on a right that does not exist yet* below.
 
 ### `createdAt`, `committedAt`, `completedAt`
 ISO 8601 datetimes. First required; others populate as workstream progresses.
@@ -122,8 +127,10 @@ Added in 0.3. Until 0.3 a workstream needed at least one asset. A first filing c
 Decision 16 of the [Ratified Decisions](../05%20-%20Decisions/Ratified%20Decisions.md) stands: an asset enters the protocol through [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) and in no other way. The workstream picks up the real asset in three steps:
 
 1. **The filing is made.** The office issues an application number. From now on there is something an [Asset Reference](Asset%20Reference.md) can identify.
-2. **The asset is bootstrapped.** The actor that made the filing, or the orchestrator on its report, publishes an [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) with basis `serviceProviderInitialization`, addressed to the actors of the workstream. Its `triggeringReference` names the milestone under which the filing was made.
-3. **The orchestrator records it on the workstream.** With a [Data Assertion](Data%20Assertion.md) on the workstream record it adds the new `assetUri` to `assetReferences` and to the `resultingAssetReferences` of the prospective right the asset came out of. The assertion travels in the `assertions` of a message of the workstream, typically the one that reports the filing as completed.
+2. **The asset is bootstrapped.** The actor that made the filing, or the orchestrator on its report, publishes an [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) with basis `serviceProviderInitialization`, addressed to the actors of the workstream. Its `triggeringReference` names the milestone under which the filing was made, or the workstream.
+3. **The orchestrator records it on the workstream.** With a [Data Assertion](Data%20Assertion.md) on the workstream record, made under its own authority claim, it adds the new `assetUri` to `assetReferences` and to the `resultingAssetReferences` of the prospective right the asset came out of. The assertion travels in the `assertions` of a message of the workstream, typically the one that reports the filing as completed.
+
+**Who may record what.** Stated in 0.4 (see [Ratified Decisions](../05%20-%20Decisions/Ratified%20Decisions.md), decision 48). Step 3 falls under the orchestrator's claim because it records a fact: the bootstrap of step 2 exists, and its `triggeringReference` names this workstream or one of its milestones. Without such a bootstrap the orchestrator's claim does not cover the addition. Whatever changes what is to be filed stays under the corporate claim over goal and chain: adding or removing a `prospectiveRights` entry, altering an entry in any other way, and removing an asset reference, from `assetReferences` or from `resultingAssetReferences`. An [Authority Claim](Authority%20Claim.md) names a section, not an operation. The line between adding a resulting asset and every other change to these sections is therefore a rule of this page, observed by the two claimants and by receivers; an assertion on the wrong side of it is not covered by the claim it cites.
 
 From then on the asset is an asset like any other, and later messages refer to it by its `assetUri`. The prospective right stays on the workstream as the record of what was asked for. One entry can lead to several assets, one application per jurisdiction, and each is added as it comes into being. Where the work ends before a filing, as in a drafting job, the entry never receives a `resultingAssetReferences` and the workstream completes without an asset.
 

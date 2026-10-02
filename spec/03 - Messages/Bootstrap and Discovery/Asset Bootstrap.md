@@ -1,7 +1,7 @@
 ---
 type: message
 category: bootstrap
-status: v0.3
+status: v0.4
 ---
 
 # Asset Bootstrap
@@ -36,6 +36,8 @@ Type: structured, required
 
 - `basisType` — enumeration: `registerDetection`, `corporateIntroduction`, `serviceProviderInitialization`, `protocolMigration`, `manualEntry`
 - `triggeringReference` — optional URI to the triggering event
+
+For an asset that work in a workstream has created, such as the application a first filing produces, `triggeringReference` names the milestone under which the filing was made, or the workstream. The orchestrator's right to record the new asset on that workstream rests on this reference: its claim covers the addition only where such a bootstrap exists (stated in 0.4; see [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Work on a right that does not exist yet*).
 
 ### `initialAssertions`
 Type: array of [Data Assertion](../../02%20-%20Foundational%20Structures/Data%20Assertion.md) structures, required
@@ -109,4 +111,4 @@ If a receiving actor already has the asset under a different protocol URI (indep
 - [EP Post-Grant Flow Walkthrough](../../04%20-%20Worked%20Examples/EP%20Post-Grant%20Flow%20Walkthrough.md) — Phase 0 walkthrough
 - [Common Envelope](../../02%20-%20Foundational%20Structures/Common%20Envelope.md)
 - [Asset Reference](../../02%20-%20Foundational%20Structures/Asset%20Reference.md)
-- [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) — *Work on a right that does not exist yet*: how a workstream picks up the asset that a first filing creates (added in 0.3)
+- [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) — *Work on a right that does not exist yet*: how a workstream picks up the asset that a first filing creates (added in 0.3), and under whose claim it is recorded (stated in 0.4)

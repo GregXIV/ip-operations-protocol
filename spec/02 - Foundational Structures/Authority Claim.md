@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.4
 ---
 
 # Authority Claim
@@ -27,6 +27,8 @@ The record this claim applies to. Typically an [asset](Asset%20Reference.md), [W
 Type: JSON Pointer string (RFC 6901), required
 
 The section of the record this claim covers. `/legalStatus`, `/internalReferences`, `/serviceEngagements`, `/legalStatus/events`. Empty string `""` claims the whole record.
+
+A claim names a section, not an operation. Where the protocol lets a claimant do one thing within a section and not another, the limit is a rule of the page that defines the record, and the claim's fields do not express it. The one such rule so far is on [Workstream](Workstream.md), stated in 0.4: the orchestrator's claim covers adding the assets the work has created to `/assetReferences` and to the `resultingAssetReferences` of the entries under `/prospectiveRights`, once an [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) names the workstream or one of its milestones; removing them, and every other change to `/prospectiveRights`, stays under the corporate claim over goal and chain.
 
 ### `claimant`
 Type: structured, required
@@ -102,3 +104,4 @@ Multiple `advisory` claims over the same section are permitted; the protocol doe
 - [Data Assertion](Data%20Assertion.md) — the structure governed by authority claims
 - [Asset Authority Dispute](../03%20-%20Messages/Disputes/Asset%20Authority%20Dispute.md) — conflicts surface here
 - [Dispute Resolution Decision](../03%20-%20Messages/Disputes/Dispute%20Resolution%20Decision.md) — disputes resolve here
+- [Workstream](Workstream.md) — the minimum claims of a workstream's authority registry, and who may record a resulting asset
