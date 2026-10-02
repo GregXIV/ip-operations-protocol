@@ -39,6 +39,14 @@
               "items": {
                 "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               }
+            },
+            "prospectiveRights": {
+              "type": "array",
+              "minItems": 1,
+              "description": "The rights the work is to create or prepare where no asset exists yet, as on Work Requested. While requesterIdentityWithheld is true no entry carries an applicant. Added in 0.4.",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/prospectiveRight"
+              }
             }
           },
           "required": [
@@ -96,7 +104,32 @@
         "bidDeadline",
         "audience",
         "conflictParties"
-      ]
+      ],
+      "if": {
+        "properties": {
+          "requesterIdentityWithheld": {
+            "const": true
+          }
+        },
+        "required": [
+          "requesterIdentityWithheld"
+        ]
+      },
+      "then": {
+        "properties": {
+          "scope": {
+            "properties": {
+              "prospectiveRights": {
+                "items": {
+                  "properties": {
+                    "applicant": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "required": [

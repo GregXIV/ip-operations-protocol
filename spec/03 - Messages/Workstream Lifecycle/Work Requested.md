@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.3
+status: v0.4
 ---
 
 # Work Requested
@@ -191,7 +191,7 @@ The pre-authorization covers the named offer and nothing else: not added milesto
 
 For `catalogueOrder`, the orchestrator answers with a [Goal Decomposition](Goal%20Decomposition.md) whose envelope `correlation.correlatedToMessageUri` points at the request. The workstream's `triggeringEvent` is of type `clientRequest` with the `requestReference` as `eventReference`. Each milestone carries an `agreedPrice`.
 
-For `directQuote`, `panel` and `openRfp`, the orchestrator creates the workstream with its milestones in execution mode `thirdPartyRfp` and sends a [Bid Invitation](../Procurement/Bid%20Invitation.md) per milestone. A Goal Decomposition may share the workstream with the requester but is not what commits it: the award does.
+For `directQuote`, `panel` and `openRfp`, the orchestrator creates the workstream with its milestones in execution mode `thirdPartyRfp` and sends a [Bid Invitation](../Procurement/Bid%20Invitation.md) per milestone. Since 0.4 the invitation can carry the request's `prospectiveRights` in its `scope`, without `applicant` while the requester's identity is withheld. A Goal Decomposition may share the workstream with the requester but is not what commits it: the award does.
 
 `instructingCapacity`, `beneficiary` and `prospectiveRights` are copied into the workstream unchanged. How the workstream later picks up the asset that a filing creates is described in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Work on a right that does not exist yet*.
 
