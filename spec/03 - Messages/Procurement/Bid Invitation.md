@@ -107,12 +107,14 @@ The parties a bidder checks for conflicts of interest. Each entry:
 
 **Every applicant is a conflict party.** Stated in 0.4.1. An applicant of a prospective right who is neither the requester nor the beneficiary is listed here, with `partyRole` `other` unless one of the other two roles describes it. A bidder therefore sees every party it would act for before it bids, also while the requester's identity is withheld and `applicant` is left out of the entries of `scope.prospectiveRights`. An applicant who is the beneficiary is listed as `beneficiary` already. An applicant who is the requester becomes known with the requester: from `requester`, or from [Requester Disclosed](Requester%20Disclosed.md).
 
+**A withheld requester is not named indirectly.** Stated in 0.4.1. While `requesterIdentityWithheld` is `true`, no [Entity Reference](../../02%20-%20Foundational%20Structures/Entity%20Reference.md) in the invitation carries the requester as its source (`literal.source.sourceActorUri`) or names it in any other field. A request often states the beneficiary on the requester's own declaration, with the requester as the source actor; copied unchanged into the invitation, that reference would give the requester away. The orchestrator re-states such a reference under its own name or without a source actor. This is a rule the sender follows. The schema cannot check it, because it does not know which actor the requester is.
+
 ### `requesterIdentityWithheld`
 Type: boolean, optional
 
 `true` when the requester acts on behalf of a beneficiary and its own identity is not disclosed to bidders yet. It follows in a [Requester Disclosed](Requester%20Disclosed.md) once the bidder has attested `clear`. Absent means not withheld.
 
-While it is `true`, the invitation carries no `requester` and no `applicant` in `scope.prospectiveRights`. The schema rejects an invitation that has either.
+While it is `true`, the invitation carries no `requester` and no `applicant` in `scope.prospectiveRights`. The schema rejects an invitation that has either. Nor does such an invitation name the requester in the source of an Entity Reference or anywhere else; that part the sender has to see to itself (see `conflictParties`, stated in 0.4.1).
 
 ### `requester`
 Type: [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md), optional; absent while `requesterIdentityWithheld` is `true`
@@ -131,6 +133,7 @@ Two messages can tell a bidder who the work requester is. Which one does depends
 | `requester` in the Bid Invitation | present from a 0.4 sender; absent from a 0.3 sender | absent; the schema rejects it |
 | `applicant` in `scope.prospectiveRights` | may be present | absent; the schema rejects it |
 | An applicant who is neither requester nor beneficiary | among the `conflictParties` | among the `conflictParties` |
+| The requester as the source of an Entity Reference | allowed | not allowed; a rule for the sender, which the schema cannot check |
 | [Requester Disclosed](Requester%20Disclosed.md) | not sent | sent to each bidder after its `clear` attestation, never after `conflict` |
 | The bidder knows the requester | from the invitation | from the disclosure, if it attested `clear`; otherwise never |
 | The bidder addresses the requester | directly, from the start | through the orchestrator until the disclosure, directly after it |
@@ -174,7 +177,7 @@ In both messages `requester` is the same full [Actor Reference](../../02%20-%20F
 
 ## Worked example — first filing, requester withheld
 
-Added in 0.4. A law firm asks its panel, for a client, to draft and file a first patent application. The firm's identity is withheld until the conflict check. The right to be created is described without an applicant; the client is among the `conflictParties`. So is the group company in whose name the application is to be filed: an applicant who is neither requester nor beneficiary is a conflict party. Protection is sought in two jurisdictions, and this invitation covers the European application.
+Added in 0.4. A law firm asks its panel, for a client, to draft and file a first patent application. The firm's identity is withheld until the conflict check. The right to be created is described without an applicant; the client is among the `conflictParties`. So is the group company in whose name the application is to be filed: an applicant who is neither requester nor beneficiary is a conflict party. Neither reference names the law firm as its source: one has no source actor, the other is re-stated by the orchestrator under its own name. Protection is sought in two jurisdictions, and this invitation covers the European application.
 
 ```json
 {
