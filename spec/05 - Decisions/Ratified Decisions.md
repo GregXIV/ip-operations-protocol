@@ -86,7 +86,7 @@ Decisions 31 to 36 follow the recommendations of the extension proposal. They we
 
 ## Version 0.3.0 (ratified 2026-10-02)
 
-Follow-up decisions to 0.2.0, agreed by the maintainer on 2026-10-02. Version 0.3.0 is a minor version under the pre-1.0 rule of [VERSIONING](../../VERSIONING.md) and not purely additive: decisions 37 and 40 relax rules a 0.2 receiver could rely on.
+Follow-up decisions to 0.2.0, agreed by the maintainer on 2026-10-02. Version 0.3.0 is a minor version under the pre-1.0 rule of [VERSIONING](../../VERSIONING.md) and not purely additive: decisions 37, 40 and 45 relax rules a 0.2 receiver could rely on.
 
 37. **A request and a workstream may describe rights still to be created.** [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) and [Workstream](../02%20-%20Foundational%20Structures/Workstream.md) carry `prospectiveRights` next to `assetReferences`, and at least one of the two is required. In 0.2 at least one asset was required, so a first filing or a drafting job could not be requested. Decision 16 stands: a prospective right is not an asset, and the asset a filing creates enters the protocol through [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md). The orchestrator then adds it to the workstream.
 38. **A request can be declined inside the protocol.** [Request Declined](../03%20-%20Messages/Workstream%20Lifecycle/Request%20Declined.md) is the orchestrator's answer to a request it will not serve, with a reason category and an optional narrative. A declined request creates no workstream.
@@ -96,6 +96,9 @@ Follow-up decisions to 0.2.0, agreed by the maintainer on 2026-10-02. Version 0.
 42. **Free-text messaging is outside the protocol.** Decided on 2026-10-01 with the 0.2.0 extension and written into [Non-Scope](../01%20-%20Front%20Matter/Non-Scope.md) in 0.3.
 43. **The requester identifies a beneficiary that is not an actor.** Its identifier is the `resolvedEntityUri` the requester gives in the beneficiary's [Entity Reference](../02%20-%20Foundational%20Structures/Entity%20Reference.md). The `ultimateBeneficiary` role declaration is optional in that case. See [Workstream](../02%20-%20Foundational%20Structures/Workstream.md).
 44. **A revenue share is exchanged between provider and contract holder only.** The `commercialTerms` that carry `sharePercent` do not travel to the subscriber, whose message for the same subscription states its own terms. See [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md).
+
+45. **A Document Reference need not name an asset.** `assetReferences` in [Document Reference](../02%20-%20Foundational%20Structures/Document%20Reference.md) is required only where the document relates to an existing asset. This follows from decision 37: the draft a drafting job delivers, or the invoice for a subscription without assets, relates to none. In 0.2 the field was always required.
+46. **`subscriptionFee` is a sixth standard line item type.** It names the recurring fee of a subscription on an invoice line that carries a `subscriptionReference` (decision 40). This extends decision 34, whose five types all describe work on a milestone. See [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md).
 
 ## See also
 
