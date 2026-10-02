@@ -61,7 +61,7 @@ Each entry:
 
 Each line carries exactly one of `milestoneReference` and `subscriptionReference`. In 0.2 every line needed a milestone, so a subscription, such as an application licence or a watch service, could not be invoiced line by line. One invoice may hold lines of both kinds.
 
-The five standard line item types describe work on a milestone. A subscription line uses a custom type in a namespaced URN.
+A subscription line normally uses the line item type `urn:ipproto:lineItem:subscriptionFee`, added in 0.3 for this purpose. The other five standard types describe work on a milestone.
 
 ### `totalAmount`
 Type: structured, required
@@ -170,7 +170,7 @@ Added in 0.3. The contract holder invoices the subscriber for the first paid mon
     "invoiceLines": [
       {
         "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
-        "lineItemType": "urn:meridian-ip-group:lineItem:subscriptionFee",
+        "lineItemType": "urn:ipproto:lineItem:subscriptionFee",
         "amount": 245.00,
         "description": "Litware Translate, plan professional, 5 seats, 16 December 2026 to 15 January 2027"
       }

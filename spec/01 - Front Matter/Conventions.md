@@ -51,7 +51,7 @@ Several controlled vocabularies live in URN namespaces:
 - `urn:ipproto:paymentPurpose:` — payment purpose categories
 - `urn:ipproto:evidence:` — evidence type classifications
 - `urn:ipproto:trigger:` — subscription trigger types
-- `urn:ipproto:lineItem:` — line item types of a price, a bid or an invoice: `professionalFee`, `translation`, `officialFee`, `handling`, `disbursement` (added in 0.2; see [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md))
+- `urn:ipproto:lineItem:` — line item types of a price, a bid or an invoice: `professionalFee`, `translation`, `officialFee`, `handling`, `disbursement` (added in 0.2) and `subscriptionFee` (added in 0.3; see [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md))
 - `urn:ipproto:serviceLevel:` — service level kinds, naming what a clock measures: `acknowledgement`, `delivery`, `bidResponse`, `introduction` (added in 0.2; see [Service Level](../02%20-%20Foundational%20Structures/Service%20Level.md))
 
 Custom values in any namespace are allowed but must use namespaced URNs that identify the defining authority. Receivers handling unknown values degrade gracefully to "unknown" rather than failing.

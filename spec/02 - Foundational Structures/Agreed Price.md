@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.2
+status: v0.3
 ---
 
 # Agreed Price
@@ -48,6 +48,7 @@ Standard line item types in `urn:ipproto:lineItem:` namespace:
 - `officialFee` — fees of an office or other authority
 - `handling` — a charge for passing work or payments on
 - `disbursement` — other costs passed through at cost: couriers, certified copies, legalization
+- `subscriptionFee` — the recurring fee of a subscription, such as an application licence or a watch service (added in 0.3). Used on invoice lines that carry a `subscriptionReference`
 
 Custom line item types allowed through namespaced URNs. The same vocabulary names the `lineItemTemplate` of a [Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md) and the lines of an [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md).
 

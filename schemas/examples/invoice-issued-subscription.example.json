@@ -28,7 +28,7 @@
     "invoiceLines": [
       {
         "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
-        "lineItemType": "urn:meridian-ip-group:lineItem:subscriptionFee",
+        "lineItemType": "urn:ipproto:lineItem:subscriptionFee",
         "amount": 245.0,
         "description": "Litware Translate, plan professional, 5 seats, 16 December 2026 to 15 January 2027"
       }
