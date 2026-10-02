@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.2
+status: v0.4
 ---
 
 # Actor Reference
@@ -70,7 +70,7 @@ Human-readable label. Not authoritative.
   "identifiers": [
     {
       "scheme": "urn:ipproto:scheme:lei",
-      "value": "529900PM64WH8AF1E917"
+      "value": "EXAMPLE0NORTHWIND000"
     }
   ],
   "legalName": "Northwind Industries SE",
@@ -78,15 +78,17 @@ Human-readable label. Not authoritative.
   "addresses": [
     {
       "addressType": "principalOffice",
-      "addressLines": ["Carl-Bosch-Strasse 38"],
-      "city": "Ludwigshafen am Rhein",
-      "postalCode": "67056",
+      "addressLines": ["Beispielallee 1"],
+      "city": "Musterstadt",
+      "postalCode": "00000",
       "countryCode": "DE"
     }
   ],
   "displayLabel": "Northwind Industries SE"
 }
 ```
+
+The company, its address and its identifier are invented. The identifier has the length of an LEI but is not one: its check digits do not verify.
 
 ## Behavior
 
