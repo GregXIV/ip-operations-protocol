@@ -27,7 +27,7 @@ The actor with `orchestrator` role.
 ### `requestReference`
 Type: URI, required
 
-Stable identifier `urn:ipproto:request:{uuid}`. Later messages refer to the request by it: the `triggeringEvent.eventReference` of the resulting [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) and the `requestReference` of a [Bid Invitation](../Procurement/Bid%20Invitation.md).
+Stable identifier `urn:ipproto:request:{uuid}`. Later messages refer to the request by it: the `triggeringEvent.eventReference` of the resulting [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) the `requestReference` of a [Bid Invitation](../Procurement/Bid%20Invitation.md), and that of a [Request Declined](Request%20Declined.md).
 
 ### `goalStatement`
 Type: structured, required
