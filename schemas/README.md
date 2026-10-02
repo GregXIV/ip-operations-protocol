@@ -89,7 +89,9 @@ request and a workstream for a first filing, a document reference without an ass
 an invoice for a subscription. Five of them are unchanged and keep `"0.3"`, for the same
 reason. The sixth, the subscription invoice, now states its month in `billingPeriod` and
 says `"0.4"`. The two added in 0.4 are bid invitations for a first filing: one with the
-requester withheld and no applicant, one with the requester named.
+requester withheld and no applicant, one with the requester named. Since 0.4.1 the withheld
+one also shows the three sender rules of that release: the applicant as a conflict party, no
+requester in any source, and only the jurisdiction the invitation covers.
 
 Between 0.3 and 0.4 validity holds in both directions. Every 0.3 message validates against
 the 0.4 schemas: all 37 examples of the tag `v0.3.0` do, unchanged. And a 0.4 message
