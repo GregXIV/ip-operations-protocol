@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:entityReference",
+  "$id": "urn:ipproto:schema:0.4:entityReference",
   "title": "Entity Reference",
   "type": "object",
   "properties": {
@@ -23,13 +23,13 @@
               ]
             },
             "sourceActorUri": {
-              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
             },
             "sourcePublicationDate": {
-              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDate"
+              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDate"
             },
             "sourceDocumentReference": {
-              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
             }
           },
           "required": [
@@ -46,10 +46,10 @@
       "type": "object",
       "properties": {
         "resolvedEntityUri": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "resolvedAt": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
         },
         "confidenceLevel": {
           "enum": [
@@ -83,10 +83,10 @@
         "type": "object",
         "properties": {
           "actorUri": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
           },
           "entityUriInActor": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
           }
         },
         "required": [

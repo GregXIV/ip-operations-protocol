@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:requesterDisclosed",
+  "$id": "urn:ipproto:schema:0.4:requesterDisclosed",
   "title": "Requester Disclosed",
   "description": "An orchestrator discloses the work requester to a bidder that has attested a clear conflict check. Sent only where the bid invitation withheld the requester's identity.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,10 +17,10 @@
       "type": "object",
       "properties": {
         "invitationReference": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "requester": {
-          "$ref": "urn:ipproto:schema:0.3:actorReference"
+          "$ref": "urn:ipproto:schema:0.4:actorReference"
         }
       },
       "required": [
