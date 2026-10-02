@@ -7,8 +7,8 @@ This project aims to follow semantic-ish versioning at the specification level.
 
 A minor version: additions only. Nothing existing is renamed or removed, so a 0.1
 receiver keeps working and treats the additions as unknown. Ratified by the maintainer
-on 2026-10-01 (Ratified Decisions 29 and 30). The protocol now has 39 message types in
-12 categories.
+on 2026-10-01 (Ratified Decisions 29 and 30) and 2026-10-02 (31 to 36). The protocol
+now has 39 message types in 12 categories.
 
 ### Added
 - **Messages (13).** `workRequested` (workstream lifecycle), with `requestMode`,
@@ -33,8 +33,10 @@ on 2026-10-01 (Ratified Decisions 29 and 30). The protocol now has 39 message ty
   (`acknowledgement`, `delivery`, `bidResponse`, `introduction`).
 - **Worked example.** Exclusive Delivery and Open Services Walkthrough: two linked
   workstreams, and a panel procurement from request to award.
-- **Decisions.** Ratified Decisions 29 (the 0.2.0 extension) and 30 (one-step catalogue
-  order), and six defaults taken from the extension proposal's recommendations (31 to 36).
+- **Decisions.** Ratified Decisions 29 (the 0.2.0 extension), 30 (one-step catalogue
+  order) and 31 to 36: `orchestrator` as a role, the open actor type list, one invoice
+  message, the core line item vocabulary, missed service levels derived rather than
+  announced, and the guiding principle's wording.
 - **Schemas.** Schemas for the 13 messages and the 2 structures; 18 further validated
   examples (31 in all).
 
@@ -52,7 +54,6 @@ on 2026-10-01 (Ratified Decisions 29 and 30). The protocol now has 39 message ty
 - **Generated TypeScript types** regenerated from the 0.2 schemas.
 
 ### Pending before tagging 0.2.0
-- The maintainer's confirmation of defaults 31 to 36 in Ratified Decisions.
 - An annotated tag for 0.1.0, which does not exist yet, so that the 0.1 schema set
   stays addressable once 0.2.0 is tagged.
 
