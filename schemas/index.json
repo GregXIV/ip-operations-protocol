@@ -280,6 +280,12 @@
       "messageType": "urn:ipproto:message:registerEvent"
     },
     {
+      "$id": "urn:ipproto:schema:0.3:requestDeclined",
+      "title": "Request Declined",
+      "path": "schemas/messages/request-declined.schema.json",
+      "messageType": "urn:ipproto:message:requestDeclined"
+    },
+    {
       "$id": "urn:ipproto:schema:0.3:serviceDeliverable",
       "title": "Service Deliverable",
       "path": "schemas/messages/service-deliverable.schema.json",
