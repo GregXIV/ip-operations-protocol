@@ -1,0 +1,35 @@
+{
+  "messageUri": "urn:ipproto:message:requesterDisclosed-example-0001",
+  "messageType": "urn:ipproto:message:requesterDisclosed",
+  "protocolVersion": "0.3",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-orchestrator-e",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:tailspin-legal",
+      "expectedRole": "urn:ipproto:role:bidder"
+    }
+  ],
+  "producedAt": "2026-11-26T09:05:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:e-fto-opinion-001",
+    "milestoneUri": "urn:ipproto:milestone:e1-fto-opinion",
+    "correlatedToMessageUri": "urn:ipproto:message:conflictCheckAttested-e1-tailspin"
+  },
+  "payload": {
+    "invitationReference": "urn:ipproto:message:bidInvitation-e1-tailspin",
+    "requester": {
+      "actorUri": "urn:ipproto:actor:contoso-legal",
+      "actorType": "externalCounsel",
+      "identifiers": [
+        {
+          "scheme": "urn:ipproto:scheme:internalReference",
+          "value": "meridian-customer-00418"
+        }
+      ],
+      "legalName": "Contoso Legal LLP",
+      "jurisdictionCode": "GB",
+      "displayLabel": "Contoso Legal"
+    }
+  }
+}
