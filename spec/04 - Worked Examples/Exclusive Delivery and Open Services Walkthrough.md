@@ -1,6 +1,6 @@
 ---
 type: worked-example
-status: v0.2
+status: v0.3
 ---
 
 # Exclusive Delivery and Open Services Walkthrough
@@ -229,7 +229,7 @@ Three clocks ran on the milestone as [Service Levels](../02%20-%20Foundational%2
 - **Direct quote.** The same sequence with `requestMode: directQuote`, `audience: single` and one invited firm.
 - **Open RFP.** The same sequence with `requestMode: openRfp`, `audience: open` and every eligible supplier invited.
 - **A bidder steps back.** [Bid Withdrawn](../03%20-%20Messages/Procurement/Bid%20Withdrawn.md) before an award is proposed, [Award Declined](../03%20-%20Messages/Procurement/Award%20Declined.md) after. The requester then proposes the award to its next choice, with `rank: 2`.
-- **A law firm requests for a client.** `instructingCapacity: onBehalf`. The client is the `beneficiary` among the `conflictParties`; the law firm's own identity may be withheld from bidders until they have attested `clear`.
+- **A law firm requests for a client.** `instructingCapacity: onBehalf`. The client is the `beneficiary` among the `conflictParties`; the law firm's own identity may be withheld from bidders until they have attested `clear`. Each such bidder then receives a [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md) (added in 0.3).
 
 ## What this walkthrough demonstrates
 
