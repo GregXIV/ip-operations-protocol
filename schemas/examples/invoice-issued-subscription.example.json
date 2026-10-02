@@ -1,0 +1,47 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceIssued-example-0002",
+  "messageType": "urn:ipproto:message:invoiceIssued",
+  "protocolVersion": "0.3",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-contract-holder-app",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:subscriber"
+    }
+  ],
+  "producedAt": "2027-01-16T09:00:00Z",
+  "correlation": {
+    "subscriptionUri": "urn:ipproto:subscription:litware-translate-nw-001"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:meridian-2027-00112",
+    "invoiceNumber": "MIG-2027-00112",
+    "payee": {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-contract-holder-app"
+    },
+    "payor": {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-subscriber-app"
+    },
+    "invoiceLines": [
+      {
+        "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
+        "lineItemType": "urn:meridian-ip-group:lineItem:subscriptionFee",
+        "amount": 245.0,
+        "description": "Litware Translate, plan professional, 5 seats, 16 December 2026 to 15 January 2027"
+      }
+    ],
+    "totalAmount": {
+      "amount": 245.0,
+      "currency": "EUR"
+    },
+    "taxHandling": {
+      "taxTreatment": "reverseCharge",
+      "taxAmount": 0.0
+    },
+    "dueDate": "2027-02-15",
+    "invoiceDocument": "urn:ipproto:document:meridian-inv-2027-00112"
+  }
+}
