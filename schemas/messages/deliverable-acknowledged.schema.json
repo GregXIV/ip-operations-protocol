@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:deliverableAcknowledged",
+  "$id": "urn:ipproto:schema:0.3:deliverableAcknowledged",
   "title": "Deliverable Acknowledged",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "deliverableReference": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
         },
         "acknowledgmentType": {
           "enum": [
@@ -27,10 +27,10 @@
           ]
         },
         "acknowledgedAt": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
         },
         "receiverUserContext": {
-          "$ref": "urn:ipproto:schema:0.2:userContext"
+          "$ref": "urn:ipproto:schema:0.3:userContext"
         },
         "reviewSummary": {
           "type": "string"
@@ -56,7 +56,7 @@
             "releasedMilestones": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               }
             },
             "blockedMilestones": {

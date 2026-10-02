@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.2:identityResolutionDispute",
+  "$id": "urn:ipproto:schema:0.3:identityResolutionDispute",
   "title": "Identity Resolution Dispute",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.2:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "disputeReference": {
-          "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
         },
         "disputedLiteral": {
           "type": "object",
@@ -40,10 +40,10 @@
             "type": "object",
             "properties": {
               "assertingActorUri": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               },
               "resolvedEntityUri": {
-                "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
               },
               "resolutionMethod": {
                 "type": "string"
@@ -85,10 +85,10 @@
           "type": "object",
           "properties": {
             "targetActorUri": {
-              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
             },
             "targetRoleDeclaration": {
-              "$ref": "urn:ipproto:schema:0.2:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
             },
             "routingBasis": {
               "type": "string"
