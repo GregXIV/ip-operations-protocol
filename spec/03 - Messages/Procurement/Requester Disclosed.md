@@ -34,6 +34,8 @@ Type: [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Referen
 
 The work requester, as the full structure and not only its URI: the bidder may never have dealt with this actor. Since 0.4 a [Bid Invitation](Bid%20Invitation.md) that withholds nothing carries the same structure under the same name.
 
+The disclosure carries the requester and nothing else. An applicant who is a third party needs no disclosure: it was among the invitation's `conflictParties` from the start (stated in 0.4.1).
+
 ## When it is sent
 
 1. **Only when the identity was withheld.** The invitation carried `requesterIdentityWithheld: true`, and therefore no `requester`. An invitation that withholds nothing needs no disclosure, and the message is not sent: since 0.4 such an invitation names the requester itself.

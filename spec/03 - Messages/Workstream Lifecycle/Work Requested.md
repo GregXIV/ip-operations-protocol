@@ -44,6 +44,8 @@ Type: array of structured entries, conditional (at least one entry)
 
 Added in 0.3. The rights the work is to create or prepare where no asset exists yet: a first filing, or an application to be drafted. Required unless `assetReferences` is present. Same shape as in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md): `assetType`, `workingTitle`, optional `intendedJurisdictions`, optional `applicant`. `resultingAssetReferences` is not used in a request.
 
+An `applicant` who is neither the requester nor the beneficiary is a further party a supplier would act for. Where the request leads to bids, the orchestrator lists it among the `conflictParties` of every [Bid Invitation](../Procurement/Bid%20Invitation.md) (stated in 0.4.1).
+
 A request may carry both fields, for instance a subsequent filing that claims priority from an existing application.
 
 ### `requestedWork`
