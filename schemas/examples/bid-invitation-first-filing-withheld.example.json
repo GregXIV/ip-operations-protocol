@@ -50,6 +50,18 @@
             }
           }
         }
+      },
+      {
+        "partyRole": "other",
+        "party": {
+          "literal": {
+            "value": "Northwind Industries Coatings Holding GmbH",
+            "source": {
+              "sourceType": "other",
+              "sourceActorUri": "urn:ipproto:actor:meridian-ip-group"
+            }
+          }
+        }
       }
     ],
     "requesterIdentityWithheld": true

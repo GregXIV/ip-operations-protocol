@@ -73,7 +73,7 @@ Type: structured, required
 
 Neither `assetReferences` nor `prospectiveRights` is required. A 0.3 invitation for a first filing carried the mark or the working title in `scopeText` alone, and such an invitation remains valid. A 0.4 sender that invites bids on a right still to be created describes it in `prospectiveRights`, with the entries of the request.
 
-**No applicant while the requester is withheld.** While `requesterIdentityWithheld` is `true`, `applicant` is left out of every entry, so that the invitation cannot reveal who is asking before the conflict check. The schema enforces this. The parties a bidder needs for its check are in `conflictParties`, as before.
+**No applicant while the requester is withheld.** While `requesterIdentityWithheld` is `true`, `applicant` is left out of every entry, so that the invitation cannot reveal who is asking before the conflict check. The schema enforces this. It does not hide a party from the bidder's conflict check: an applicant the bidder would act for is among the `conflictParties` (see there).
 
 **Two kinds of jurisdiction.** `scope.jurisdictionCode` is the invitation's own jurisdiction: where the work of this milestone is done. The `intendedJurisdictions` of an entry describe the right: every jurisdiction in which protection is sought, as the request states them. The entry is not cut down to the invitation. A first filing in two jurisdictions is two milestones and two invitations; each carries the same entry with both jurisdictions and its own `jurisdictionCode`, which is normally one of them. A bid prices the work in `jurisdictionCode` only. Where `jurisdictionCode` is absent, as for a drafting job that is not tied to an office, `scopeText` says what the work covers, and `intendedJurisdictions` do not widen it.
 
@@ -105,6 +105,8 @@ The parties a bidder checks for conflicts of interest. Each entry:
 
 `beneficiary` is the party the work is for: the `beneficiary` of the workstream, or the requester itself when it instructs in its own capacity. An empty array states that there is no party to check.
 
+**Every applicant is a conflict party.** Stated in 0.4.1. An applicant of a prospective right who is neither the requester nor the beneficiary is listed here, with `partyRole` `other` unless one of the other two roles describes it. A bidder therefore sees every party it would act for before it bids, also while the requester's identity is withheld and `applicant` is left out of the entries of `scope.prospectiveRights`. An applicant who is the beneficiary is listed as `beneficiary` already. An applicant who is the requester becomes known with the requester: from `requester`, or from [Requester Disclosed](Requester%20Disclosed.md).
+
 ### `requesterIdentityWithheld`
 Type: boolean, optional
 
@@ -128,6 +130,7 @@ Two messages can tell a bidder who the work requester is. Which one does depends
 | `requesterIdentityWithheld` | absent or `false` | `true` |
 | `requester` in the Bid Invitation | present from a 0.4 sender; absent from a 0.3 sender | absent; the schema rejects it |
 | `applicant` in `scope.prospectiveRights` | may be present | absent; the schema rejects it |
+| An applicant who is neither requester nor beneficiary | among the `conflictParties` | among the `conflictParties` |
 | [Requester Disclosed](Requester%20Disclosed.md) | not sent | sent to each bidder after its `clear` attestation, never after `conflict` |
 | The bidder knows the requester | from the invitation | from the disclosure, if it attested `clear`; otherwise never |
 | The bidder addresses the requester | directly, from the start | through the orchestrator until the disclosure, directly after it |
@@ -171,7 +174,7 @@ In both messages `requester` is the same full [Actor Reference](../../02%20-%20F
 
 ## Worked example — first filing, requester withheld
 
-Added in 0.4. A law firm asks its panel, for a client, to draft and file a first patent application. The firm's identity is withheld until the conflict check. The right to be created is described without an applicant; the client is among the `conflictParties`. Protection is sought in two jurisdictions, and this invitation covers the European application.
+Added in 0.4. A law firm asks its panel, for a client, to draft and file a first patent application. The firm's identity is withheld until the conflict check. The right to be created is described without an applicant; the client is among the `conflictParties`. So is the group company in whose name the application is to be filed: an applicant who is neither requester nor beneficiary is a conflict party. Protection is sought in two jurisdictions, and this invitation covers the European application.
 
 ```json
 {
@@ -201,7 +204,8 @@ Added in 0.4. A law firm asks its panel, for a client, to draft and file a first
     "bidDeadline": "2026-12-09T17:00:00Z",
     "audience": "panel",
     "conflictParties": [
-      {"partyRole": "beneficiary", "party": {"literal": {"value": "Northwind Industries SE", "source": {"sourceType": "selfDeclaration"}}}}
+      {"partyRole": "beneficiary", "party": {"literal": {"value": "Northwind Industries SE", "source": {"sourceType": "selfDeclaration"}}}},
+      {"partyRole": "other", "party": {"literal": {"value": "Northwind Industries Coatings Holding GmbH", "source": {"sourceType": "other", "sourceActorUri": "urn:ipproto:actor:meridian-ip-group"}}}}
     ],
     "requesterIdentityWithheld": true
   }
