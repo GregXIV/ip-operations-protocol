@@ -1,0 +1,24 @@
+{
+  "messageUri": "urn:ipproto:message:requestDeclined-example-0001",
+  "messageType": "urn:ipproto:message:requestDeclined",
+  "protocolVersion": "0.3",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-orchestrator",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:contoso-legal",
+      "expectedRole": "urn:ipproto:role:workRequester"
+    }
+  ],
+  "producedAt": "2026-11-24T13:30:00Z",
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:workRequested-req-2026-1203"
+  },
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1203",
+    "declineReason": {
+      "reasonCategory": "offerNotAvailable",
+      "reasonNarrative": "The offer meridian-catalogue-2025#ep-validation ended on 31 December 2025. The current offer is meridian-catalogue-2026#ep-validation."
+    }
+  }
+}
