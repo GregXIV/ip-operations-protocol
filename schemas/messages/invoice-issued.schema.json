@@ -97,11 +97,21 @@
           "type": "object",
           "properties": {
             "taxTreatment": {
-              "enum": [
-                "taxed",
-                "reverseCharge",
-                "exempt",
-                "outsideScope"
+              "description": "Provisional vocabulary: the standard values have not been reviewed by invoice issuers and may change before 1.0.",
+              "anyOf": [
+                {
+                  "enum": [
+                    "taxed",
+                    "reverseCharge",
+                    "exempt",
+                    "outsideScope"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "pattern": "^urn:[A-Za-z0-9][A-Za-z0-9-]{0,31}:.+$",
+                  "description": "Custom tax treatment: a namespaced URN identifying the defining authority"
+                }
               ]
             },
             "taxRatePercent": {
