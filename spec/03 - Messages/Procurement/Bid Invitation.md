@@ -1,7 +1,7 @@
 ---
 type: message
 category: procurement
-status: v0.3
+status: v0.4
 ---
 
 # Bid Invitation
@@ -69,6 +69,13 @@ Type: structured, required
 - `milestoneCategory` — optional URI
 - `jurisdictionCode` — optional ST.3 code
 - `assetReferences` — optional array of [Asset Reference](../../02%20-%20Foundational%20Structures/Asset%20Reference.md) URIs. Left out while the requester's identity is withheld and an asset would reveal it
+- `prospectiveRights` — optional array of structured entries (at least one entry when present). Added in 0.4. The rights the work is to create or prepare where no asset exists yet, with the entries of [Work Requested](../Workstream%20Lifecycle/Work%20Requested.md): `assetType`, `workingTitle`, optional `intendedJurisdictions`, optional `applicant`. `resultingAssetReferences` is not used in an invitation
+
+Neither `assetReferences` nor `prospectiveRights` is required. A 0.3 invitation for a first filing carried the mark or the working title in `scopeText` alone, and such an invitation remains valid. A 0.4 sender that invites bids on a right still to be created describes it in `prospectiveRights`, with the entries of the request.
+
+**No applicant while the requester is withheld.** While `requesterIdentityWithheld` is `true`, `applicant` is left out of every entry, so that the invitation cannot reveal who is asking before the conflict check. The schema enforces this. The parties a bidder needs for its check are in `conflictParties`, as before.
+
+**Two kinds of jurisdiction.** `scope.jurisdictionCode` is the invitation's own jurisdiction: where the work of this milestone is done. The `intendedJurisdictions` of an entry describe the right: every jurisdiction in which protection is sought, as the request states them. The entry is not cut down to the invitation. A first filing in two jurisdictions is two milestones and two invitations; each carries the same entry with both jurisdictions and its own `jurisdictionCode`, which is normally one of them. A bid prices the work in `jurisdictionCode` only. Where `jurisdictionCode` is absent, as for a drafting job that is not tied to an office, `scopeText` says what the work covers, and `intendedJurisdictions` do not widen it.
 
 ### `lineItemTemplate`
 Type: array of URIs, required (at least one)
@@ -138,6 +145,45 @@ Type: boolean, optional
 }
 ```
 
+## Worked example — first filing, requester withheld
+
+Added in 0.4. A law firm asks its panel, for a client, to draft and file a first patent application. The firm's identity is withheld until the conflict check. The right to be created is described without an applicant; the client is among the `conflictParties`. Protection is sought in two jurisdictions, and this invitation covers the European application.
+
+```json
+{
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "addressedTo": [
+    {"actorUri": "urn:ipproto:actor:tailspin-legal", "expectedRole": "urn:ipproto:role:bidder"}
+  ],
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:f-patent-first-filing-001",
+    "milestoneUri": "urn:ipproto:milestone:f1-ep-application"
+  },
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1231",
+    "milestoneReference": "urn:ipproto:milestone:f1-ep-application",
+    "scope": {
+      "scopeText": "Draft a European patent application from the invention disclosure and file it at the EPO.",
+      "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+      "jurisdictionCode": "EP",
+      "prospectiveRights": [
+        {"assetType": "patent", "workingTitle": "Rotor blade coating", "intendedJurisdictions": ["EP", "US"]}
+      ]
+    },
+    "lineItemTemplate": [
+      "urn:ipproto:lineItem:professionalFee",
+      "urn:ipproto:lineItem:officialFee"
+    ],
+    "bidDeadline": "2026-12-09T17:00:00Z",
+    "audience": "panel",
+    "conflictParties": [
+      {"partyRole": "beneficiary", "party": {"literal": {"value": "Northwind Industries SE", "source": {"sourceType": "selfDeclaration"}}}}
+    ],
+    "requesterIdentityWithheld": true
+  }
+}
+```
+
 ## Behavior on receipt
 
 The bidder checks conflicts against `conflictParties` and answers with [Conflict Check Attested](Conflict%20Check%20Attested.md). If the outcome is `clear` and it wants the work, it submits a bid before `bidDeadline`. A supplier that does not want to bid need not answer.
@@ -153,5 +199,6 @@ While `requesterIdentityWithheld` is `true`, the bidder addresses its messages f
 ## See also
 
 - [Milestone](../../02%20-%20Foundational%20Structures/Milestone.md) — execution mode `thirdPartyRfp`
+- [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md) — *Work on a right that does not exist yet*: what a prospective right is and how the workstream picks up the asset a filing creates
 - [Ratified Decisions](../../05%20-%20Decisions/Ratified%20Decisions.md) — decision 14 on execution modes, decision 29 on the procurement family
 - [Exclusive Delivery and Open Services Walkthrough](../../04%20-%20Worked%20Examples/Exclusive%20Delivery%20and%20Open%20Services%20Walkthrough.md)
