@@ -81,11 +81,12 @@ subscriptions, steady-state events (register events, service findings), the full
 machinery, and the generic record update. That is 59 schema files: common defs, the envelope,
 16 under `foundational/` and 41 under `messages/`.
 
-Thirty-six complete examples (messages + structures) validate against the set. The thirteen
+Thirty-seven complete examples (messages + structures) validate against the set. The thirteen
 carried over from 0.1 keep `"protocolVersion": "0.1"` and the eighteen added in 0.2 keep
 `"protocolVersion": "0.2"` on purpose: they show that a 0.1 or 0.2 message validates
-unchanged against the 0.3 schemas. The five added in 0.3 cover the two new messages, a
-request and a workstream for a first filing, and an invoice for a subscription.
+unchanged against the 0.3 schemas. The six added in 0.3 cover the two new messages, a
+request and a workstream for a first filing, a document reference without an asset, and
+an invoice for a subscription.
 
 The reverse does not hold. A 0.3 message that uses what 0.3 added or relaxed does not
 validate against the 0.2 schemas; see the *Compatibility* section of the changelog.

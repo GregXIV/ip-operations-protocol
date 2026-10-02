@@ -5,25 +5,25 @@ This project aims to follow semantic-ish versioning at the specification level.
 
 ## [0.3.0] — 2026-10 (working draft)
 
-Follow-up to 0.2.0, agreed by the maintainer on 2026-10-02 (Ratified Decisions 37 to 44).
+Follow-up to 0.2.0, agreed by the maintainer on 2026-10-02 (Ratified Decisions 37 to 46).
 It makes first filings and drafting jobs requestable, closes three gaps in the 0.2.0
 message set and corrects what the repository says about compatibility. The protocol now
 has 41 message types in 12 categories.
 
-A minor version under the pre-1.0 rule of VERSIONING.md, and **not purely additive**: two
+A minor version under the pre-1.0 rule of VERSIONING.md, and **not purely additive**: three
 rules a 0.2 receiver could rely on are relaxed.
 
 ### Compatibility
 - **A 0.2 message remains valid under 0.3.** The eighteen examples written for 0.2.0 and
   the thirteen written for 0.1.0 validate unchanged against the 0.3 schemas.
-- **A 0.2 receiver must be changed if it relies on one of two things.** `assetReferences`
-  is no longer always present on Workstream and Work Requested, and `milestoneReference`
-  is no longer present on every line of Invoice Issued.
+- **A 0.2 receiver must be changed if it relies on one of three things.** `assetReferences`
+  is no longer always present on Workstream and Work Requested, nor on Document Reference,
+  and `milestoneReference` is no longer present on every line of Invoice Issued.
 - **Strict validators.** As between 0.1 and 0.2, a receiver keeps working across a minor
   version only if it degrades on unknown message types, fields and values, as
   VERSIONING.md requires. A receiver that validates strictly against the 0.2 schemas
-  rejects the two new messages, a request or workstream without assets, an invoice line
-  without a milestone and a custom tax treatment.
+  rejects the two new messages, a request, workstream or document reference without
+  assets, an invoice line without a milestone and a custom tax treatment.
 
 ### Added
 - **Messages (2).** `requestDeclined` (workstream lifecycle): the orchestrator declines a
@@ -36,9 +36,11 @@ rules a 0.2 receiver could rely on are relaxed.
   introduced the asset. `subscriptionReference` on the lines of Invoice Issued.
 - **Open question.** Open Questions for Consortium, question 7: the tax treatment
   vocabulary of invoices. Open, not ratified.
-- **Decisions.** Ratified Decisions 37 to 44.
+- **Vocabulary value.** Line item type `subscriptionFee` in `urn:ipproto:lineItem:`, the
+  sixth standard type, for invoice lines that refer to a subscription.
+- **Decisions.** Ratified Decisions 37 to 46.
 - **Schemas.** Schemas for the two messages, `prospectiveRight` in the common defs, and
-  five further validated examples (36 in all). The type generator,
+  six further validated examples (37 in all). The type generator,
   `schemas/generate-types.mjs`, with `npm run generate-types`.
 
 ### Changed
@@ -46,6 +48,9 @@ rules a 0.2 receiver could rely on are relaxed.
   `prospectiveRights` is required; in 0.2 `assetReferences` was always required.
   Ratified Decision 16 stands: an asset still enters the protocol only through Asset
   Bootstrap.
+- **Document Reference.** `assetReferences` is required only where the document relates
+  to an existing asset; in 0.2 it was always required. A draft for a right still to be
+  created, or the invoice of a subscription without assets, carries none.
 - **Invoice Issued, lines.** A line carries exactly one of `milestoneReference` and
   `subscriptionReference`; in 0.2 every line needed a milestone.
 - **Invoice Issued, tax.** `taxTreatment` keeps `taxed`, `reverseCharge`, `exempt` and
@@ -71,13 +76,6 @@ rules a 0.2 receiver could rely on are relaxed.
 - **Links.** 54 broken relative links in the root `Glossary.md` and
   `Asset-Identification-and-Resolution.md`, and a stray line `EOF` at the end of the EP
   Post-Grant Flow Walkthrough.
-
-### Known limits
-- **Document Reference still requires at least one asset reference.** A document of a
-  workstream that has no asset yet, such as a draft application, has no valid Document
-  Reference until the asset exists.
-- **No standard line item type for a subscription fee.** A subscription line of an
-  invoice uses a custom namespaced type.
 
 ## [0.2.0] — 2026-10 (working draft)
 
