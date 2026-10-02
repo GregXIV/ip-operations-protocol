@@ -50,7 +50,7 @@ ip-operations-protocol/
 
 ## Status and roadmap
 
-This is **v0.2**, published for implementation feedback. It extends v0.1 by addition only; a v0.1 receiver keeps working (see [CHANGELOG.md](CHANGELOG.md) and [VERSIONING.md](VERSIONING.md)). The design decisions reserved for a future governance body are recorded in [Open Questions for Consortium](spec/05%20-%20Decisions/Open%20Questions%20for%20Consortium.md); each has been ratified with a recommended default for v0.1 and is reopenable when a consortium forms. Features deliberately scoped out of v0.1 are listed in [Deferred to v1.x](spec/05%20-%20Decisions/Deferred%20to%20v1-x.md). v1.0 will lock the open decisions.
+This is **v0.2**, published for implementation feedback. It extends v0.1 by addition only. A v0.1 receiver keeps working if it degrades on unknown message types and values; a receiver that validates strictly against the 0.1 schemas rejects some 0.2 messages (see [CHANGELOG.md](CHANGELOG.md) and [VERSIONING.md](VERSIONING.md)). The design decisions reserved for a future governance body are recorded in [Open Questions for Consortium](spec/05%20-%20Decisions/Open%20Questions%20for%20Consortium.md); each has been ratified with a recommended default for v0.1 and is reopenable when a consortium forms. Features deliberately scoped out of v0.1 are listed in [Deferred to v1.x](spec/05%20-%20Decisions/Deferred%20to%20v1-x.md). v1.0 will lock the open decisions.
 
 ## License
 

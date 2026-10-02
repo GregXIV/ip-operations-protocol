@@ -5,8 +5,13 @@ This project aims to follow semantic-ish versioning at the specification level.
 
 ## [0.2.0] — 2026-10 (working draft)
 
-A minor version: additions only. Nothing existing is renamed or removed, so a 0.1
-receiver keeps working and treats the additions as unknown. Ratified by the maintainer
+A minor version: additions only. Nothing existing is renamed or removed. A 0.1 receiver
+that degrades on unknown message types, fields and values, as VERSIONING.md requires,
+keeps working and treats the additions as unknown. A receiver that validates strictly
+against the 0.1 schemas does not keep working: it rejects the new message types and the
+0.2 values `softwareService` (actor type) and `revenueShare` (fee structure), which the
+0.1 schemas hold as closed enumerations. (This paragraph was corrected with 0.3.0; it
+used to say without qualification that a 0.1 receiver keeps working.) Ratified by the maintainer
 on 2026-10-01 (Ratified Decisions 29 and 30) and 2026-10-02 (31 to 36). The protocol
 now has 39 message types in 12 categories.
 

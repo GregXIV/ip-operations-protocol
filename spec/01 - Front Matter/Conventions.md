@@ -94,4 +94,4 @@ Throughout the spec, JSON examples use the following stylistic conventions:
 
 ## Versioning
 
-The protocol version is carried in every message's `protocolVersion` field. Version `0.1` is the initial draft. Version `0.2` adds messages, structures and vocabulary values and removes or renames nothing, so a `0.1` receiver keeps working and treats the additions as unknown (see [VERSIONING](../../VERSIONING.md)). Backward compatibility is a goal but not yet a commitment — until v1.0, breaking changes may occur with consortium ratification.
+The protocol version is carried in every message's `protocolVersion` field. Version `0.1` is the initial draft. Version `0.2` adds messages, structures and vocabulary values and removes or renames nothing. A `0.1` receiver that degrades on unknown message types, fields and values keeps working and treats the additions as unknown; one that validates strictly against the 0.1 schemas rejects the new values `softwareService` and `revenueShare` (see [VERSIONING](../../VERSIONING.md)). Backward compatibility is a goal but not yet a commitment — until v1.0, breaking changes may occur with consortium ratification.

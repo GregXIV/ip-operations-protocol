@@ -12,7 +12,7 @@ The protocol uses **semantic versioning adapted for a data/message standard**:
 | Bump | Meaning | Examples |
 |---|---|---|
 | **MAJOR** | A change a conforming receiver built for the previous version could **misinterpret**. Breaking. | Removing or renaming a field; changing a field's type or required-ness in a way that breaks parsing; changing the semantics of an existing message. |
-| **MINOR** | A **backward-compatible addition**. Old receivers keep working. | A new message type; a new optional field; a new enum/vocabulary value; a new namespaced extension. |
+| **MINOR** | A **backward-compatible addition**. Old receivers keep working, provided they degrade on what they do not know (rule 2 below). | A new message type; a new optional field; a new enum/vocabulary value; a new namespaced extension. |
 | **PATCH** | Editorial only. No behavioral change. | Typo fixes, clarified prose, non-normative examples, formatting. |
 
 `0.x` is pre-1.0: minor-looking changes may still break, because the surface is
@@ -34,6 +34,21 @@ version the message conforms to.
 3. A **MAJOR mismatch** is a hard boundary. A receiver should not attempt to
    process a message from a different MAJOR version; it surfaces the mismatch
    rather than guessing.
+
+**What rule 2 does and does not promise.** Rule 2 is a duty of the receiver.
+"Old receivers keep working" holds for a receiver that follows it, and only for
+such a receiver. A receiver that validates incoming messages strictly against the
+schema set of its own version, and rejects whatever fails, does not follow it:
+
+- Unknown **fields** pass such a validator, because the schemas leave
+  `additionalProperties` open.
+- Unknown **values** of a closed enumeration and unknown **message types** do not.
+  A strict 0.1 validator rejects a 0.2 message that uses the actor type
+  `softwareService` or the fee structure `revenueShare`, because the 0.1 schemas
+  hold both lists as closed enumerations.
+
+An implementation that validates therefore treats a failure caused by a value or
+message type from a newer MINOR version as "unknown", not as an error.
 
 ## Releases and history
 

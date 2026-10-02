@@ -235,7 +235,7 @@ Three clocks ran on the milestone as [Service Levels](../02%20-%20Foundational%2
 
 Work can be passed on without a relay message and without showing the customer who performs it: two workstreams, one link, and an addressing rule. A binding price sits beside the estimate on every milestone, and the invoice refers back to it. A customer can ask several suppliers for binding bids and award one of them, and the award commits the milestone as a commitment message would.
 
-None of this changed a 0.1 message. A receiver built for 0.1 follows the lifecycle messages of both parts as before and treats the rest as unknown.
+None of this changed a 0.1 message. A receiver built for 0.1 follows the lifecycle messages of both parts as before. It treats the rest as unknown, provided it degrades on unknown message types and values instead of rejecting them.
 
 ## See also
 
