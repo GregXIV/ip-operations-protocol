@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.3
+status: v0.4
 ---
 
 # Request Declined
@@ -42,7 +42,7 @@ Type: structured, required
   - `other`
 - `reasonNarrative` — optional string
 
-Closed enumeration. An orchestrator that declines for a conflict states the category and nothing that would breach the confidence it owes to another client.
+Closed enumeration. The seven categories were confirmed by the maintainer on 2026-10-02 as they stand in 0.3.0 (see [Ratified Decisions](../../05%20-%20Decisions/Ratified%20Decisions.md), decision 51); an implementation can store them as a fixed list. An orchestrator that declines for a conflict states the category and nothing that would breach the confidence it owes to another client.
 
 ## Worked example
 
