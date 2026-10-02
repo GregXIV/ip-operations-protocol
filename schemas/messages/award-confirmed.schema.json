@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:awardConfirmed",
+  "$id": "urn:ipproto:schema:0.4:awardConfirmed",
   "title": "Award Confirmed",
   "description": "One side confirms a proposed award. The award stands when both the bidder and the work requester have confirmed, which commits the milestone.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,13 +17,13 @@
       "type": "object",
       "properties": {
         "awardReference": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "confirmedBy": {
-          "$ref": "urn:ipproto:schema:0.3:userContext"
+          "$ref": "urn:ipproto:schema:0.4:userContext"
         },
         "confirmingRole": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         }
       },
       "required": [

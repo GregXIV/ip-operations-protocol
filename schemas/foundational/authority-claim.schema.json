@@ -1,20 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:authorityClaim",
+  "$id": "urn:ipproto:schema:0.4:authorityClaim",
   "title": "Authority Claim",
   "type": "object",
   "properties": {
     "claimUri": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "recordUri": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "sectionPath": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/jsonPointer"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/jsonPointer"
     },
     "claimant": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/claimantRef"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/claimantRef"
     },
     "claimType": {
       "enum": [
@@ -24,13 +24,13 @@
       ]
     },
     "claimBasis": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "effectiveFrom": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
     },
     "effectiveTo": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
     },
     "claimAgreementReference": {
       "type": [
@@ -41,7 +41,7 @@
     "supersedes": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
       }
     }
   },

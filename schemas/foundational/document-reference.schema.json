@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:documentReference",
+  "$id": "urn:ipproto:schema:0.4:documentReference",
   "title": "Document Reference",
   "type": "object",
   "properties": {
     "documentUri": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "documentType": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "documentKind": {
       "type": "object",
@@ -17,7 +17,7 @@
           "type": "string"
         },
         "kindAuthority": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         }
       }
     },
@@ -25,11 +25,11 @@
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
       }
     },
     "originator": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "originationDate": {
       "oneOf": [
@@ -44,7 +44,7 @@
       ]
     },
     "languageCode": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/iso639"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/iso639"
     },
     "storageLocations": {
       "type": "array",
@@ -53,7 +53,7 @@
         "type": "object",
         "properties": {
           "locationUri": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
           },
           "locationType": {
             "enum": [
@@ -73,10 +73,10 @@
                 "type": "string"
               },
               "credentialIssuerActorUri": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               },
               "accessExpiresAt": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
               }
             }
           },
@@ -115,7 +115,7 @@
       "type": "object",
       "properties": {
         "schemaIdentifier": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "schemaConformanceLevel": {
           "enum": [
@@ -125,26 +125,26 @@
           ]
         },
         "structuredContentLocation": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         }
       }
     },
     "supersedes": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "supersededBy": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "versionLabel": {
       "type": "string"
     },
     "derivedFrom": {
-      "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
     },
     "relatedDocuments": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
       }
     }
   },

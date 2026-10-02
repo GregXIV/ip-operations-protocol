@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:milestoneStarted",
+  "$id": "urn:ipproto:schema:0.4:milestoneStarted",
   "title": "Milestone Started",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,10 +16,10 @@
       "type": "object",
       "properties": {
         "milestoneReference": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "startedAt": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
         },
         "actualResources": {
           "type": "object",
@@ -27,14 +27,14 @@
             "assignedUsers": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.3:userContext"
+                "$ref": "urn:ipproto:schema:0.4:userContext"
               }
             },
             "expectedCompletionEstimate": {
               "type": "object",
               "properties": {
                 "estimatedCompletionDate": {
-                  "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+                  "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
                 },
                 "confidenceLevel": {
                   "type": "string"

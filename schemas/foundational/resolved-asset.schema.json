@@ -1,15 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:resolvedAsset",
+  "$id": "urn:ipproto:schema:0.4:resolvedAsset",
   "title": "Resolved Asset",
   "description": "A resolver's emission: the canonical Asset Reference plus the provenance of how it was resolved.",
   "type": "object",
   "properties": {
     "assetReference": {
-      "$ref": "urn:ipproto:schema:0.3:assetReference"
+      "$ref": "urn:ipproto:schema:0.4:assetReference"
     },
     "resolutionProvenance": {
-      "$ref": "urn:ipproto:schema:0.3:resolutionProvenance"
+      "$ref": "urn:ipproto:schema:0.4:resolutionProvenance"
     }
   },
   "required": [

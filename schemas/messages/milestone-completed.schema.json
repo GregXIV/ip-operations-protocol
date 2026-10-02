@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:milestoneCompleted",
+  "$id": "urn:ipproto:schema:0.4:milestoneCompleted",
   "title": "Milestone Completed",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,16 +16,16 @@
       "type": "object",
       "properties": {
         "milestoneReference": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "completedAt": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
         },
         "actuals": {
           "type": "object",
           "properties": {
             "actualCost": {
-              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/money"
+              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/money"
             },
             "actualDuration": {
               "type": "integer"
@@ -41,19 +41,19 @@
             "producedDocuments": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               }
             },
             "producedSubscriptions": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               }
             },
             "producedAssertions": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               }
             }
           }

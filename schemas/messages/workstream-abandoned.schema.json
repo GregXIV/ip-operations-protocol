@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:workstreamAbandoned",
+  "$id": "urn:ipproto:schema:0.4:workstreamAbandoned",
   "title": "Workstream Abandoned",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "workstreamReference": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "abandonmentReason": {
           "type": "object",
@@ -36,10 +36,10 @@
               "type": "string"
             },
             "abandonmentInitiator": {
-              "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
             },
             "abandonmentUserContext": {
-              "$ref": "urn:ipproto:schema:0.3:userContext"
+              "$ref": "urn:ipproto:schema:0.4:userContext"
             }
           },
           "required": [
@@ -54,7 +54,7 @@
             "type": "object",
             "properties": {
               "milestoneUri": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               },
               "statusAtAbandonment": {
                 "type": "string"
@@ -81,7 +81,7 @@
         "abandonmentAssertions": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.3:dataAssertion"
+            "$ref": "urn:ipproto:schema:0.4:dataAssertion"
           }
         },
         "unwindObligations": {

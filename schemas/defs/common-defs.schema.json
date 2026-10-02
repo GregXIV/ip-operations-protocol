@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:defs",
+  "$id": "urn:ipproto:schema:0.4:defs",
   "title": "Common Defs",
   "$defs": {
     "uri": {
@@ -41,7 +41,7 @@
           "type": "number"
         },
         "currency": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/iso4217"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/iso4217"
         }
       },
       "required": [
@@ -53,10 +53,10 @@
       "type": "object",
       "properties": {
         "actorUri": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "roleDeclarationUri": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         }
       },
       "required": [
@@ -85,16 +85,16 @@
         "intendedJurisdictions": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/st3Code"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/st3Code"
           }
         },
         "applicant": {
-          "$ref": "urn:ipproto:schema:0.3:entityReference"
+          "$ref": "urn:ipproto:schema:0.4:entityReference"
         },
         "resultingAssetReferences": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
           }
         }
       },

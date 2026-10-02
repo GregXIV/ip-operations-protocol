@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.3:workstreamCompleted",
+  "$id": "urn:ipproto:schema:0.4:workstreamCompleted",
   "title": "Workstream Completed",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.3:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "workstreamReference": {
-          "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
         },
         "completionSummary": {
           "type": "object",
@@ -34,19 +34,19 @@
             "outputArtifacts": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               }
             },
             "subscriptionsCreated": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               }
             },
             "derivedAssetsCreated": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
               }
             }
           },
@@ -57,7 +57,7 @@
         "completionAssertions": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.3:dataAssertion"
+            "$ref": "urn:ipproto:schema:0.4:dataAssertion"
           }
         },
         "postCompletionState": {
