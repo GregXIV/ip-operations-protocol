@@ -1,7 +1,7 @@
 ---
 type: message
 category: subscriptions
-status: v0.2
+status: v0.3
 ---
 
 # Service Subscription Started
@@ -76,6 +76,8 @@ Three parts were added in 0.2, all optional:
 With these an application can be a supplier without a further message. The application is an actor of type `softwareService` (see [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md)); a customer's licence for it is a subscription; a step it performs in a workstream is an ordinary milestone with the application as `primary` actor.
 
 A subscription an actor holds with a platform operator for the use of the platform itself is not exchanged between actors and is not protocol matter.
+
+**Who sees a revenue share.** Clarified in 0.3. A revenue share is a term between the application's provider and the contract holder. The `commercialTerms` that carry `sharePercent` are exchanged between those two actors only. The message addressed to the subscriber for the same `subscriptionReference` states the subscriber's own terms, that is, what the subscriber pays, and carries no `sharePercent`.
 
 ### `findingsConfiguration`
 Type: structured, required
@@ -162,7 +164,7 @@ The operator's [Actor Role Declaration](../../02%20-%20Foundational%20Structures
 
 ## Worked example — application licence with revenue share and trial
 
-Added in 0.2. A customer licenses a translation application through a contract holder. The application's provider is paid 70 percent of what the customer is billed; the first month is a trial that converts.
+Added in 0.2. A customer licenses a translation application through a contract holder. The application's provider is paid 70 percent of what the customer is billed; the first month is a trial that converts. This is the message between contract holder and provider. The subscriber's message for the same subscription states the subscriber's own fee instead.
 
 ```json
 {
