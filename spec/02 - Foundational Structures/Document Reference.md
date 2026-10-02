@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.2
+status: v0.3
 ---
 
 # Document Reference
@@ -55,9 +55,11 @@ Type: structured, optional
 More specific subtype. For an office form, the form identifier; for a publication, the kind code; for a deliverable, the deliverable category. Sub-fields: `kindCode`, `kindAuthority` (URN for who defines this kind).
 
 ### `assetReferences`
-Type: array of [Asset Reference](Asset%20Reference.md) URIs, required (at least one)
+Type: array of [Asset Reference](Asset%20Reference.md) URIs, conditional (at least one entry)
 
-Which assets the document relates to.
+Which assets the document relates to. Required where the document relates to an existing asset.
+
+Omitted, since 0.3, where it relates to none: the draft of an application that is not yet filed, an invention disclosure, the invoice for a subscription that covers no asset. Until 0.3 the field was required without exception, so such a document could not be described. A reference issued for the document after the asset has been bootstrapped names the asset. See *Work on a right that does not exist yet* in [Workstream](Workstream.md).
 
 ### `originator`
 Type: [Actor Reference](Actor%20Reference.md) URI, required
@@ -153,6 +155,28 @@ Optional, for version chains and document relationships. See worked examples bel
     "schemaIdentifier": "urn:meridian-ip-group:deliverables:validation-analysis:v3",
     "schemaConformanceLevel": "strict"
   }
+}
+```
+
+## Worked example — draft for a right that does not exist yet
+
+Added in 0.3. The draft of a trademark application, delivered before the filing. No asset exists, so the reference carries no `assetReferences`.
+
+```json
+{
+  "documentUri": "urn:ipproto:document:4e7a19c2-...",
+  "documentType": "urn:ipproto:doctype:applicantDraft",
+  "originator": "urn:ipproto:actor:woodgrove-ip",
+  "originationDate": "2026-11-27T15:10:00Z",
+  "languageCode": "en",
+  "storageLocations": [
+    {
+      "locationUri": "https://deliverables.woodgrove-ip.example/d-trademark-filing-001/northwind-aero-em-draft.pdf",
+      "locationType": "httpsRest",
+      "mediaType": "application/pdf"
+    }
+  ],
+  "versionLabel": "Draft 1"
 }
 ```
 

@@ -129,7 +129,7 @@ From then on the asset is an asset like any other, and later messages refer to i
 
 Where the work was passed on to an agent in a second workstream (see *Passing work on* in [Milestone](Milestone.md)), the agent's bootstrap is addressed to the orchestrator. The orchestrator introduces the asset to its customer under its own name, with the same `assetUri`.
 
-**Known limit.** A [Document Reference](Document%20Reference.md) still requires at least one asset reference. A document of a workstream that has no asset yet, such as a draft application or an invention disclosure, has no valid Document Reference until the asset exists.
+A document of a workstream that has no asset yet, such as a draft application or an invention disclosure, is described by a [Document Reference](Document%20Reference.md) without `assetReferences`. Since 0.3 that field is required only where the document relates to an existing asset.
 
 A workstream for a first filing, before the filing:
 

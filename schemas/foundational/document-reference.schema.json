@@ -151,7 +151,6 @@
   "required": [
     "documentUri",
     "documentType",
-    "assetReferences",
     "originator",
     "originationDate",
     "storageLocations"
