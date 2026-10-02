@@ -17,6 +17,13 @@
         "$ref": "urn:ipproto:schema:0.3:defs#/$defs/uri"
       }
     },
+    "prospectiveRights": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "urn:ipproto:schema:0.3:defs#/$defs/prospectiveRight"
+      }
+    },
     "triggeringEvent": {
       "type": "object",
       "properties": {
@@ -129,11 +136,22 @@
   "required": [
     "workstreamUri",
     "workstreamType",
-    "assetReferences",
     "triggeringEvent",
     "goalStatement",
     "milestoneChain",
     "workstreamStatus"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "assetReferences"
+      ]
+    },
+    {
+      "required": [
+        "prospectiveRights"
+      ]
+    }
   ],
   "if": {
     "properties": {
