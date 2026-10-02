@@ -1,0 +1,80 @@
+{
+  "messageUri": "urn:ipproto:message:bidInvitation-example-0003",
+  "messageType": "urn:ipproto:message:bidInvitation",
+  "protocolVersion": "0.4",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-orchestrator-d",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "expectedRole": "urn:ipproto:role:bidder"
+    }
+  ],
+  "producedAt": "2026-11-18T10:20:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:d-trademark-filing-001",
+    "milestoneUri": "urn:ipproto:milestone:d1-em-filing"
+  },
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1188",
+    "milestoneReference": "urn:ipproto:milestone:d1-em-filing",
+    "scope": {
+      "scopeText": "File an application for the word mark NORTHWIND AERO at the EUIPO and see it through to registration, excluding opposition proceedings.",
+      "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+      "jurisdictionCode": "EM",
+      "prospectiveRights": [
+        {
+          "assetType": "trademark",
+          "workingTitle": "NORTHWIND AERO",
+          "intendedJurisdictions": [
+            "EM",
+            "US"
+          ],
+          "applicant": {
+            "literal": {
+              "value": "Northwind Industries SE",
+              "source": {
+                "sourceType": "selfDeclaration",
+                "sourceActorUri": "urn:ipproto:actor:northwind-industries"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "lineItemTemplate": [
+      "urn:ipproto:lineItem:professionalFee",
+      "urn:ipproto:lineItem:officialFee"
+    ],
+    "bidDeadline": "2026-11-25T17:00:00Z",
+    "audience": "panel",
+    "conflictParties": [
+      {
+        "partyRole": "beneficiary",
+        "party": {
+          "literal": {
+            "value": "Northwind Industries SE",
+            "source": {
+              "sourceType": "selfDeclaration",
+              "sourceActorUri": "urn:ipproto:actor:northwind-industries"
+            }
+          }
+        }
+      }
+    ],
+    "requesterIdentityWithheld": false,
+    "requester": {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "actorType": "corporateIpDepartment",
+      "identifiers": [
+        {
+          "scheme": "urn:ipproto:scheme:internalReference",
+          "value": "meridian-customer-00127"
+        }
+      ],
+      "legalName": "Northwind Industries SE",
+      "jurisdictionCode": "DE",
+      "displayLabel": "Northwind Industries"
+    }
+  }
+}

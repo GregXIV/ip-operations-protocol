@@ -1,7 +1,7 @@
 ---
 type: message
 category: procurement
-status: v0.3
+status: v0.4
 ---
 
 # Requester Disclosed
@@ -11,6 +11,8 @@ status: v0.3
 ## Purpose
 
 Added in 0.3. A [Bid Invitation](Bid%20Invitation.md) may withhold the requester's identity, typically that of a law firm instructing for a client (`requesterIdentityWithheld`). 0.2 said that the identity follows once the bidder has attested `clear`, but had no message for it. This is that message.
+
+It is the message for the withheld case, and only for that case. Where nothing is withheld, the invitation itself names the requester in its `requester` field, added in 0.4.
 
 ## Producer
 
@@ -30,13 +32,23 @@ The [Bid Invitation](Bid%20Invitation.md) whose requester is disclosed.
 ### `requester`
 Type: [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md), required
 
-The work requester, as the full structure and not only its URI: the bidder may never have dealt with this actor.
+The work requester, as the full structure and not only its URI: the bidder may never have dealt with this actor. Since 0.4 a [Bid Invitation](Bid%20Invitation.md) that withholds nothing carries the same structure under the same name.
 
 ## When it is sent
 
-1. **Only when the identity was withheld.** The invitation carried `requesterIdentityWithheld: true`. An invitation that withholds nothing needs no disclosure, and the message is not sent.
+1. **Only when the identity was withheld.** The invitation carried `requesterIdentityWithheld: true`, and therefore no `requester`. An invitation that withholds nothing needs no disclosure, and the message is not sent: since 0.4 such an invitation names the requester itself.
 2. **Only after a `clear` attestation.** It follows that bidder's [Conflict Check Attested](Conflict%20Check%20Attested.md) with outcome `clear` for the invitation. The envelope's `correlation.correlatedToMessageUri` names the attestation.
 3. **Never after `conflict`.** A bidder that attested `conflict` leaves the sequence without learning who the requester is.
+
+## The requester in the invitation and in the disclosure
+
+| | Identity not withheld | Identity withheld |
+|---|---|---|
+| `requester` in the [Bid Invitation](Bid%20Invitation.md) | present from a 0.4 sender; absent from a 0.3 sender | absent; the schema rejects it |
+| Requester Disclosed | not sent | sent to each bidder after its `clear` attestation, never after `conflict` |
+| The bidder knows the requester | from the invitation | from this message |
+
+The full comparison, with the fields of the invitation, is on the [Bid Invitation](Bid%20Invitation.md) page under *Who carries the requester*.
 
 ## Worked example
 

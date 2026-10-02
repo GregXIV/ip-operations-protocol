@@ -34,7 +34,7 @@ The orchestrator carries the messages between requester and bidders and does not
 
 Five rules hold across the family:
 
-1. **Identity before attestation.** A bidder learns the beneficiary and the adverse party at the latest with the invitation's `conflictParties`. The requester's own identity may be withheld until [Conflict Check Attested](Conflict%20Check%20Attested.md) returns `clear`; the orchestrator then discloses it with [Requester Disclosed](Requester%20Disclosed.md) (added in 0.3). A bidder that attests `conflict` never learns it.
+1. **Identity before attestation.** A bidder learns the beneficiary and the adverse party at the latest with the invitation's `conflictParties`. The requester's own identity is either stated in the invitation's `requester` (added in 0.4) or withheld until [Conflict Check Attested](Conflict%20Check%20Attested.md) returns `clear`; the orchestrator then discloses it with [Requester Disclosed](Requester%20Disclosed.md) (added in 0.3). A bidder that attests `conflict` never learns it. See *Who carries the requester* below.
 2. **A bid is binding** until its `bindingUntil`. A [Bid Submitted](Bid%20Submitted.md) for the same invitation replaces the earlier bid of that bidder.
 3. **The award commits the milestone.** After both confirmations the milestone is `committed`, with the winner as `primary` actor and the bid's price as `agreedPrice`. No separate [Orchestration Committed](../Workstream%20Lifecycle/Orchestration%20Committed.md) is needed for it.
 4. **Clocks.** `bidDeadline`, `confirmationDeadline` and the introduction deadline are [Service Levels](../../02%20-%20Foundational%20Structures/Service%20Level.md) on the milestone.
@@ -110,6 +110,30 @@ Type: boolean, optional
 
 `true` when the requester acts on behalf of a beneficiary and its own identity is not disclosed to bidders yet. It follows in a [Requester Disclosed](Requester%20Disclosed.md) once the bidder has attested `clear`. Absent means not withheld.
 
+While it is `true`, the invitation carries no `requester` and no `applicant` in `scope.prospectiveRights`. The schema rejects an invitation that has either.
+
+### `requester`
+Type: [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md), optional; absent while `requesterIdentityWithheld` is `true`
+
+Added in 0.4. The work requester, as the full structure and not only its URI: the bidder may never have dealt with this actor. The same shape as `requester` in [Requester Disclosed](Requester%20Disclosed.md).
+
+A 0.4 sender includes it whenever the requester's identity is not withheld. The schema does not require it in that case, because a 0.3 invitation has no such field and must remain valid. A receiver therefore cannot conclude anything from its absence alone: an invitation with neither `requester` nor `requesterIdentityWithheld: true` comes from a 0.3 sender, and the bidder learns the requester as it did under 0.3, from the milestone it is invited to bid on.
+
+## Who carries the requester
+
+Two messages can tell a bidder who the work requester is. Which one does depends on whether the identity is withheld.
+
+| | Identity not withheld | Identity withheld |
+|---|---|---|
+| `requesterIdentityWithheld` | absent or `false` | `true` |
+| `requester` in the Bid Invitation | present from a 0.4 sender; absent from a 0.3 sender | absent; the schema rejects it |
+| `applicant` in `scope.prospectiveRights` | may be present | absent; the schema rejects it |
+| [Requester Disclosed](Requester%20Disclosed.md) | not sent | sent to each bidder after its `clear` attestation, never after `conflict` |
+| The bidder knows the requester | from the invitation | from the disclosure, if it attested `clear`; otherwise never |
+| The bidder addresses the requester | directly, from the start | through the orchestrator until the disclosure, directly after it |
+
+In both messages `requester` is the same full [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md). In 0.3 the first column had no field: Requester Disclosed covered the withheld case, and an invitation that withheld nothing did not name the requester at all.
+
 ## Worked example — panel invitation
 
 ```json
@@ -184,9 +208,64 @@ Added in 0.4. A law firm asks its panel, for a client, to draft and file a first
 }
 ```
 
+## Worked example — first filing, requester not withheld
+
+Added in 0.4. A company asks its panel for the registration of a new word mark and instructs for itself. Nothing is withheld: the invitation names the requester, and the right to be created carries its applicant. The request covers the European Union and the United States; this invitation is the one for the EUIPO.
+
+```json
+{
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "addressedTo": [
+    {"actorUri": "urn:ipproto:actor:woodgrove-ip", "expectedRole": "urn:ipproto:role:bidder"}
+  ],
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:d-trademark-filing-001",
+    "milestoneUri": "urn:ipproto:milestone:d1-em-filing"
+  },
+  "payload": {
+    "requestReference": "urn:ipproto:request:req-2026-1188",
+    "milestoneReference": "urn:ipproto:milestone:d1-em-filing",
+    "scope": {
+      "scopeText": "File an application for the word mark NORTHWIND AERO at the EUIPO and see it through to registration, excluding opposition proceedings.",
+      "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+      "jurisdictionCode": "EM",
+      "prospectiveRights": [
+        {
+          "assetType": "trademark",
+          "workingTitle": "NORTHWIND AERO",
+          "intendedJurisdictions": ["EM", "US"],
+          "applicant": {"literal": {"value": "Northwind Industries SE", "source": {"sourceType": "selfDeclaration", "sourceActorUri": "urn:ipproto:actor:northwind-industries"}}}
+        }
+      ]
+    },
+    "lineItemTemplate": [
+      "urn:ipproto:lineItem:professionalFee",
+      "urn:ipproto:lineItem:officialFee"
+    ],
+    "bidDeadline": "2026-11-25T17:00:00Z",
+    "audience": "panel",
+    "conflictParties": [
+      {"partyRole": "beneficiary", "party": {"literal": {"value": "Northwind Industries SE", "source": {"sourceType": "selfDeclaration", "sourceActorUri": "urn:ipproto:actor:northwind-industries"}}}}
+    ],
+    "requesterIdentityWithheld": false,
+    "requester": {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "actorType": "corporateIpDepartment",
+      "identifiers": [
+        {"scheme": "urn:ipproto:scheme:internalReference", "value": "meridian-customer-00127"}
+      ],
+      "legalName": "Northwind Industries SE",
+      "jurisdictionCode": "DE"
+    }
+  }
+}
+```
+
 ## Behavior on receipt
 
 The bidder checks conflicts against `conflictParties` and answers with [Conflict Check Attested](Conflict%20Check%20Attested.md). If the outcome is `clear` and it wants the work, it submits a bid before `bidDeadline`. A supplier that does not want to bid need not answer.
+
+Where the invitation names the `requester`, the bidder addresses its messages for the work requester to that `actorUri` from the start.
 
 While `requesterIdentityWithheld` is `true`, the bidder addresses its messages for the work requester to the orchestrator, with `expectedRole` `workRequester`. The orchestrator passes them on unchanged. After a `clear` attestation the orchestrator sends the bidder a [Requester Disclosed](Requester%20Disclosed.md) with the requester's [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Reference.md), and the bidder addresses the requester directly from then on. In 0.2 this step had no message.
 
@@ -194,7 +273,7 @@ While `requesterIdentityWithheld` is `true`, the bidder addresses its messages f
 
 - Follows [Work Requested](../Workstream%20Lifecycle/Work%20Requested.md) with `requestMode` `directQuote`, `panel` or `openRfp`
 - Answered by [Conflict Check Attested](Conflict%20Check%20Attested.md), then [Bid Submitted](Bid%20Submitted.md)
-- [Requester Disclosed](Requester%20Disclosed.md) follows a `clear` attestation where `requesterIdentityWithheld` is `true`
+- [Requester Disclosed](Requester%20Disclosed.md) follows a `clear` attestation where `requesterIdentityWithheld` is `true`; where it is not, the invitation's own `requester` names the requester
 
 ## See also
 

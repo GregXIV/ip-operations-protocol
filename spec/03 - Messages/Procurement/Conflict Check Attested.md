@@ -1,7 +1,7 @@
 ---
 type: message
 category: procurement
-status: v0.3
+status: v0.4
 ---
 
 # Conflict Check Attested
@@ -66,7 +66,7 @@ The person at the bidder who attests. Required here, unlike the envelope's optio
 
 ## Behavior on receipt
 
-On `clear`, the orchestrator admits the bidder to the bidding. If the requester's identity was withheld, the orchestrator now discloses it to this bidder with [Requester Disclosed](Requester%20Disclosed.md) (added in 0.3).
+On `clear`, the orchestrator admits the bidder to the bidding. If the requester's identity was withheld, the orchestrator now discloses it to this bidder with [Requester Disclosed](Requester%20Disclosed.md) (added in 0.3). If it was not, nothing follows here: since 0.4 the invitation already named the requester in its `requester` field.
 
 On `conflict`, the bidder is out of the sequence for this milestone and its `bidder` role declaration ends. No further message is owed, and a withheld requester identity stays withheld from this bidder.
 
