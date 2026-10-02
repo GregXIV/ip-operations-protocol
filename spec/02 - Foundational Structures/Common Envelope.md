@@ -24,7 +24,7 @@ Identifies which message type this is. Form: `urn:ipproto:message:assetBootstrap
 ### `protocolVersion`
 Type: string
 
-The protocol version this message conforms to. `0.2` for this version of the spec. A `0.1` message remains valid under 0.2, which only adds; a `0.1` receiver treats the 0.2 additions as unknown (see [VERSIONING](../../VERSIONING.md)).
+The protocol version this message conforms to. `0.2` for this version of the spec. A `0.1` message remains valid under 0.2, which only adds. A `0.1` receiver is expected to treat the 0.2 additions as unknown; a receiver that validates strictly against the 0.1 schemas does not do that and rejects some of them (see [VERSIONING](../../VERSIONING.md)).
 
 ### `originatingActor`
 Type: [Actor Reference](Actor%20Reference.md) URI
