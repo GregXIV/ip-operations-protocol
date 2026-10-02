@@ -117,7 +117,7 @@ Type: [Actor Reference](../../02%20-%20Foundational%20Structures/Actor%20Referen
 
 Added in 0.4. The work requester, as the full structure and not only its URI: the bidder may never have dealt with this actor. The same shape as `requester` in [Requester Disclosed](Requester%20Disclosed.md).
 
-A 0.4 sender includes it whenever the requester's identity is not withheld. The schema does not require it in that case, because a 0.3 invitation has no such field and must remain valid. A receiver therefore cannot conclude anything from its absence alone: an invitation with neither `requester` nor `requesterIdentityWithheld: true` comes from a 0.3 sender, and the bidder learns the requester as it did under 0.3, from the milestone it is invited to bid on.
+A 0.4 sender includes it whenever the requester's identity is not withheld. The schema does not require it in that case, because a 0.3 invitation has no such field and must remain valid. A receiver therefore does not treat a missing `requester` as an error. An invitation with neither `requester` nor `requesterIdentityWithheld: true` is the invitation of a 0.3 sender, and the bidder learns the requester as it did under 0.3, from the milestone it is invited to bid on.
 
 ## Who carries the requester
 
