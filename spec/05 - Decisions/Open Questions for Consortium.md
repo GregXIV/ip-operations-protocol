@@ -1,13 +1,15 @@
 ---
 type: decisions
-status: v0.1
+status: v0.3
 ---
 
 # Open Questions for Consortium
 
 > Decisions reserved for a future governance body (consortium).
 >
-> **v0.1 status:** all six questions below have been ratified by the maintainer with their recommended defaults, and are reopenable when a consortium forms. The original framing is preserved as the record for that future discussion.
+> **v0.1 status:** questions 1 to 6 below have been ratified by the maintainer with their recommended defaults, and are reopenable when a consortium forms. The original framing is preserved as the record for that future discussion.
+>
+> **Question 7**, added in 0.3, is open. Its default is provisional and has not been ratified.
 
 These are questions where consortium-member input materially affects how the protocol should be specified, and where unilateral disposition would be inappropriate. Each has a recommended default but is positioned for consortium discussion before v1.0 ratification.
 
@@ -70,6 +72,18 @@ These are questions where consortium-member input materially affects how the pro
 **Why this is for the consortium:** Standard cadence configurations would help clients compare offerings across service providers. But cadence is also a competitive differentiator; standardizing constrains.
 
 **Recommendation:** Defer to v1.x. Consortium can publish recommended cadence patterns as non-normative guidance.
+
+## 7. Tax treatment vocabulary on invoices
+
+Added in 0.3. **Open: not ratified.**
+
+**Default (provisional):** `taxHandling.taxTreatment` in [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) has four standard values, `taxed`, `reverseCharge`, `exempt` and `outsideScope`, and accepts custom values as namespaced URNs. `taxRatePercent` and `taxAmount` are optional. Invoice lines are net of tax.
+
+**The question:** Are these the right values, and is one treatment for the whole invoice enough? Open points include invoices whose lines are treated differently (an official fee passed on at cost beside a taxed professional fee), more than one rate on one invoice, withholding tax, and whether the vocabulary should align with an existing e-invoicing code list, such as the VAT category codes used in EN 16931.
+
+**Why this is open:** The four values were written during the 0.2.0 build and were not reviewed by anyone who issues invoices. Tax handling differs by jurisdiction, and getting it wrong in a standard is worse than leaving it open.
+
+**Recommendation:** Keep the field as it is, marked provisional, until practitioners who issue cross-border invoices have reviewed it. Until then implementers treat the invoice document as authoritative for tax, and the structured field as a convenience. A change to the standard values before 1.0 is to be expected.
 
 ## See also
 

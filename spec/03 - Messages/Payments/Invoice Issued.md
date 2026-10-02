@@ -72,11 +72,13 @@ Type: structured, required
 ### `taxHandling`
 Type: structured, required
 
-- `taxTreatment` — enumeration, required: `taxed`, `reverseCharge`, `exempt`, `outsideScope`
+- `taxTreatment` — required. Standard values: `taxed`, `reverseCharge`, `exempt`, `outsideScope`. Custom values use namespaced URNs that identify the defining authority (`urn:example-org:taxTreatment:withholdingApplied`)
 - `taxRatePercent` — optional decimal
 - `taxAmount` — optional decimal, in the currency of `totalAmount`
 
 The protocol carries how tax was handled. It does not decide how it must be.
+
+**Provisional vocabulary.** The four standard values were set when this message was drafted for 0.2. Nobody who issues invoices has reviewed them, and they may be renamed, split or extended before 1.0. Since 0.3 the list is open to custom values; the 0.2 schema held it as a closed enumeration. A receiver that does not recognize a value treats it as unknown and reads the tax position from the invoice document, which remains the invoice in the legal sense. The question is recorded in [Open Questions for Consortium](../../05%20-%20Decisions/Open%20Questions%20for%20Consortium.md), question 7.
 
 ### `dueDate`
 Type: ISO 8601 date, required
