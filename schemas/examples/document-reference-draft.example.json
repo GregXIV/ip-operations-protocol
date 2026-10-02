@@ -1,0 +1,24 @@
+{
+  "documentUri": "urn:ipproto:document:4e7a19c2-northwind-aero-draft-em",
+  "documentType": "urn:ipproto:doctype:applicantDraft",
+  "documentKind": {
+    "kindCode": "trademark-application-draft",
+    "kindAuthority": "urn:ipproto:scheme:woodgrove-deliverables"
+  },
+  "originator": "urn:ipproto:actor:woodgrove-ip",
+  "originationDate": "2026-11-27T15:10:00Z",
+  "languageCode": "en",
+  "storageLocations": [
+    {
+      "locationUri": "https://deliverables.woodgrove-ip.example/d-trademark-filing-001/northwind-aero-em-draft.pdf",
+      "locationType": "httpsRest",
+      "accessRequirements": {
+        "authMethodHint": "oauth2",
+        "credentialIssuerActorUri": "urn:ipproto:actor:woodgrove-ip"
+      },
+      "mediaType": "application/pdf",
+      "pageCount": 6
+    }
+  ],
+  "versionLabel": "Draft 1"
+}

@@ -1,5 +1,6 @@
 {
   "agreed-price.example.json": "urn:ipproto:schema:0.3:agreedPrice",
+  "document-reference-draft.example.json": "urn:ipproto:schema:0.3:documentReference",
   "milestone-delegated.example.json": "urn:ipproto:schema:0.3:milestone",
   "resolution-provenance.example.json": "urn:ipproto:schema:0.3:resolutionProvenance",
   "resolved-asset.example.json": "urn:ipproto:schema:0.3:resolvedAsset",
