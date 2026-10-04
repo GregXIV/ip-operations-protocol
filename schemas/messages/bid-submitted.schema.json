@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:bidSubmitted",
+  "$id": "urn:ipproto:schema:0.5:bidSubmitted",
   "title": "Bid Submitted",
   "description": "A bidder submits a binding bid in answer to a bid invitation.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,15 +17,15 @@
       "type": "object",
       "properties": {
         "bidReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "invitationReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "price": {
           "allOf": [
             {
-              "$ref": "urn:ipproto:schema:0.4:agreedPrice"
+              "$ref": "urn:ipproto:schema:0.5:agreedPrice"
             },
             {
               "required": [
@@ -50,7 +50,7 @@
                 "type": "string"
               },
               "userContext": {
-                "$ref": "urn:ipproto:schema:0.4:userContext"
+                "$ref": "urn:ipproto:schema:0.5:userContext"
               }
             }
           }

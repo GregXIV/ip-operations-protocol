@@ -1,9 +1,9 @@
 {
-  "agreed-price.example.json": "urn:ipproto:schema:0.4:agreedPrice",
-  "document-reference-draft.example.json": "urn:ipproto:schema:0.4:documentReference",
-  "milestone-delegated.example.json": "urn:ipproto:schema:0.4:milestone",
-  "resolution-provenance.example.json": "urn:ipproto:schema:0.4:resolutionProvenance",
-  "resolved-asset.example.json": "urn:ipproto:schema:0.4:resolvedAsset",
-  "service-level.example.json": "urn:ipproto:schema:0.4:serviceLevel",
-  "workstream-first-filing.example.json": "urn:ipproto:schema:0.4:workstream"
+  "agreed-price.example.json": "urn:ipproto:schema:0.5:agreedPrice",
+  "document-reference-draft.example.json": "urn:ipproto:schema:0.5:documentReference",
+  "milestone-delegated.example.json": "urn:ipproto:schema:0.5:milestone",
+  "resolution-provenance.example.json": "urn:ipproto:schema:0.5:resolutionProvenance",
+  "resolved-asset.example.json": "urn:ipproto:schema:0.5:resolvedAsset",
+  "service-level.example.json": "urn:ipproto:schema:0.5:serviceLevel",
+  "workstream-first-filing.example.json": "urn:ipproto:schema:0.5:workstream"
 }

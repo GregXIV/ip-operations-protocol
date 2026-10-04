@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:awardProposed",
+  "$id": "urn:ipproto:schema:0.5:awardProposed",
   "title": "Award Proposed",
   "description": "A work requester proposes to award the milestone to one bid.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,10 +17,10 @@
       "type": "object",
       "properties": {
         "bidReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "confirmationDeadline": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
         },
         "rank": {
           "type": "integer",

@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:registerEvent",
+  "$id": "urn:ipproto:schema:0.5:registerEvent",
   "title": "Register Event",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,16 +16,16 @@
       "type": "object",
       "properties": {
         "registerEventReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "publishingRegister": {
           "type": "object",
           "properties": {
             "registerActorUri": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             },
             "observerActorUri": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             }
           },
           "required": [
@@ -33,7 +33,7 @@
           ]
         },
         "registerEventCategory": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "st27Mapping": {
           "type": "object",
@@ -53,7 +53,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
           }
         },
         "registerPublicationDate": {
