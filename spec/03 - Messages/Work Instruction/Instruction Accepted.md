@@ -1,7 +1,7 @@
 ---
 type: message
 category: work-instruction
-status: v0.2
+status: v0.5
 ---
 
 # Instruction Accepted
@@ -59,6 +59,8 @@ The person at the provider who is responsible for the work.
 The milestone moves to `committed` with the provider as `primary` actor and the instruction's `agreedPrice` and `serviceLevels`. Once its dependencies are satisfied it is `ready`, and the provider begins with [Milestone Started](../Milestone%20Lifecycle/Milestone%20Started.md).
 
 Acceptance is of the instruction as sent. A provider that wants a different price or a later date declines and says why.
+
+**An acceptance given outside the protocol.** Added in 0.5. A provider that accepts by telephone or e-mail has not sent this message. The work requester's staff may enter it on the provider's behalf, with the provider's consent. The message is then the provider's: `originatingActor` is the provider, the envelope's `recordedBy` names the work requester and the staff member who entered it, and `userContext` names the provider's person who accepted, where known. The same holds for [Instruction Declined](Instruction%20Declined.md), [Service Deliverable](../Deliverable%20Handoff/Service%20Deliverable.md) and [Invoice Issued](../Payments/Invoice%20Issued.md) entered from a document the provider sent. See [Common Envelope](../../02%20-%20Foundational%20Structures/Common%20Envelope.md), `recordedBy`; the example `instruction-accepted-recorded.example.json` in `schemas/examples/` shows the envelope.
 
 ## Related messages
 

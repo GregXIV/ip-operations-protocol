@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.4
+status: v0.5
 ---
 
 # Common Envelope
@@ -57,6 +57,23 @@ Type: [User Context](User%20Context.md)
 
 The user at the originating actor who produced the message. Strongly recommended for messages that bind the actor to material decisions or costs (authorizations, commitments, payments).
 
+Where another actor entered the message (see `recordedBy`), `userContext` still names a user of the originating actor, the person who gave the instruction or the answer, or is left out. The user of the recording actor goes into `recordedBy.userContext`, never here.
+
+### `recordedBy`
+Type: structured, optional. Added in 0.5.
+
+The actor that entered this message on the originating actor's behalf. Sub-fields:
+- `actorUri` — [Actor Reference](Actor%20Reference.md) URI of the recording actor, required
+- `userContext` — [User Context](User%20Context.md) of the person at the recording actor who entered it, optional and strongly recommended
+
+**When it is used.** An actor records a message for another when the originator acts outside the protocol: a supplier phones or e-mails its acceptance of an instruction, sends its deliverable or its invoice by mail, and the orchestrator's staff enter it. The message is the originator's: `originatingActor` and `originatingRoleDeclaration` name the originator and the role under which it acts, and the message binds the originator as if it had sent it. `recordedBy` says who typed it in. Before 0.5 the protocol had no way to say this; an implementation either named the recording actor as originator, which misstates who decided, or put the recording actor's staff into `userContext`, which misstates whose user they are.
+
+**Consent.** The recording actor records only with the originator's consent: an agreement between the two, or the originator's instruction for the one message. The consent itself is outside the message. `recordedBy.actorUri` is never the `originatingActor` itself; a message an actor produces itself carries no `recordedBy`.
+
+**On receipt.** A receiver treats the message as the originator's. It may apply its own policy to recorded messages, for example ask the originator to confirm a recorded acceptance of material value. An originator that did not consent says so to the recording actor; the protocol has no separate message for that, as for any other disagreement between two actors over a message they exchanged.
+
+The field is optional. A receiver that does not know it ignores it, as for any unknown field, and reads the message as the originator's, which is right.
+
 ### `correlation`
 Type: structured
 
@@ -96,6 +113,7 @@ The message-type-specific content. Each message specification defines the shape 
   ],
   "producedAt": "2026-04-28T07:30:00Z",
   "userContext": { /* optional UserContext */ },
+  "recordedBy": { /* optional, added in 0.5: the actor that entered the message on the originator's behalf */ },
   "correlation": {
     "correlatedToMessageUri": "urn:ipproto:message:a8e2c91a-..."
   },
@@ -108,5 +126,5 @@ The message-type-specific content. Each message specification defines the shape 
 
 - [Actor Reference](Actor%20Reference.md) — the actor structure referenced by `originatingActor`
 - [Actor Role Declaration](Actor%20Role%20Declaration.md) — the role context referenced by `originatingRoleDeclaration`
-- [User Context](User%20Context.md) — optional user-level audit context
+- [User Context](User%20Context.md) — optional user-level audit context, in `userContext` and in `recordedBy`
 - [Data Assertion](Data%20Assertion.md) — assertions carried in the `assertions` array

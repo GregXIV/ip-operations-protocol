@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.5
 ---
 
 # User Context
@@ -43,6 +43,10 @@ For agentic operation — AI agents acting under delegated authority — this fi
   "automatedAgentIndicator": false
 }
 ```
+
+## A message entered by another actor
+
+Added in 0.5. Where an actor enters a message on another actor's behalf, the envelope's `recordedBy` names the recording actor and carries the User Context of the person there who entered it. The envelope's own `userContext` stays reserved for a user of the originating actor. See [Common Envelope](Common%20Envelope.md), `recordedBy`.
 
 ## When to include
 
