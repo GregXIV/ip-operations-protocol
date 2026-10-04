@@ -1,7 +1,7 @@
 ---
 type: message
 category: deliverable-handoff
-status: v0.1
+status: v0.5
 ---
 
 # Service Deliverable
@@ -70,9 +70,11 @@ Type: enumeration, required
 - `acknowledgmentNotRequired` — informational only
 
 ### `assertions`
-Type: array of [Data Assertion](../../02%20-%20Foundational%20Structures/Data%20Assertion.md) structures, required
+Type: array of [Data Assertion](../../02%20-%20Foundational%20Structures/Data%20Assertion.md) structures, conditional
 
 DataAssertions the deliverable substantiates against the asset record. The deliverable becomes the source of record for the substantiated sections.
+
+Present where the deliverable substantiates a section of a record: a validation analysis that establishes the jurisdictions of a patent's validation, a search whose results are recorded against the asset. Omitted where it substantiates none, as for a cost estimate, a schedule projection or a report that only informs. Corrected in 0.5: until then this page called the field required, while the schema has always allowed it to be left out; the schema was right.
 
 ## Worked example — validation analysis
 
@@ -122,7 +124,7 @@ DataAssertions the deliverable substantiates against the asset record. The deliv
 
 ## Distinctive contribution
 
-The `assertions` array is what makes a deliverable a protocol-level substantiation rather than just a document. The deliverable carries the claims it makes against the asset record, with full audit trail back to producing milestone, professional reviewer, and substantiating evidence.
+Where the deliverable substantiates a record, the `assertions` array is what makes it a protocol-level substantiation rather than just a document. The deliverable carries the claims it makes against the asset record, with full audit trail back to producing milestone, professional reviewer, and substantiating evidence.
 
 In current practice this lives in inboxes; in the protocol it's queryable structure.
 

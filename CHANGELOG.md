@@ -28,6 +28,14 @@ maintainer tags the release.
 
 ### Changed
 
+### Fixed
+- **Service Deliverable: `assertions` is conditional, not required.** The page called the
+  field required; the schema has always allowed it to be left out, and the schema was
+  right. It is present where the deliverable substantiates a section of a record and
+  omitted where it substantiates none, such as a cost estimate. No schema change.
+  Deliverable Acknowledged says that the schema does not check its two conditional fields.
+  Decision 58.
+
 ## [0.4.1] — 2026-10 (working draft)
 
 Three rules for the sender of a Bid Invitation, decided by the maintainer on 2026-10-02
