@@ -34,6 +34,12 @@ maintainer tags the release.
   Reference. VERSIONING's discoverability note points to it. Decision 59.
 
 ### Changed
+- **Decided without a change: Work Instruction.** An instruction needs at least one agreed
+  service level, a `responseDeadline` equal to the acknowledgement level's `dueAt`, and at
+  least one expected deliverable. Where an implementation lacks them, it fixes its data
+  (an acknowledgement level in its terms, a named deliverable per service), not the
+  message: no invented clock, no placeholder deliverable type. Nothing in the schema or
+  on the page changes. Decision 60.
 
 ### Fixed
 - **Service Deliverable: `assertions` is conditional, not required.** The page called the
