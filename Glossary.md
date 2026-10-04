@@ -1,6 +1,6 @@
 ---
 type: reference
-status: v0.4
+status: v0.5
 ---
 
 # Glossary
@@ -44,6 +44,10 @@ status: v0.4
 **Common envelope** — Shared structure wrapping every message. See [Common Envelope](spec/02%20-%20Foundational%20Structures/Common%20Envelope.md).
 
 **Conformance level** — How strictly a structured representation conforms to a referenced schema. `strict`, `extended`, `partial`.
+
+**Conformance profile** — A list of requirements an implementation claims to meet, each pointing at the page that states it: asset identification (representational or resolving) and, since 0.5, the orchestrator profile. See [Conformance](spec/01%20-%20Front%20Matter/Conformance.md).
+
+**Credit note** — A document that cancels or reduces an invoice; document type `creditNote`. Added in 0.5. See [Invoice Cancelled](spec/03%20-%20Messages/Payments/Invoice%20Cancelled.md).
 
 ## D
 
@@ -89,6 +93,8 @@ status: v0.4
 
 ## I
 
+**Invoice dispute** — A payor's statement that it does not accept an invoice as issued, with the reason. Accepting an invoice has no message. Added in 0.5. See [Invoice Disputed](spec/03%20-%20Messages/Payments/Invoice%20Disputed.md), [Invoice Cancelled](spec/03%20-%20Messages/Payments/Invoice%20Cancelled.md).
+
 **IPMS** — IP Management System. Corporate-side tool for managing the IP portfolio. Connects to the protocol through an adapter.
 
 **Instructing capacity** — Whether a work requester asks for work for itself (`own`) or for another party (`onBehalf`). Added in 0.2. See [Workstream](spec/02%20-%20Foundational%20Structures/Workstream.md).
@@ -96,6 +102,8 @@ status: v0.4
 **Identity resolution** — The protocol's per-actor process of resolving entity literals to entities in the actor's graph. Not standardized at cross-actor level.
 
 ## J
+
+**Journal** — The record of every protocol message an orchestrator produces or carries, including those that never leave its platform. A message is a record, not only a transmission. Added in 0.5. See [Conformance](spec/01%20-%20Front%20Matter/Conformance.md), OR-J1.
 
 **JSON Patch** — RFC 6902 mechanism for partial updates. The protocol uses a subset (add, remove, replace, test). See [Data Assertion](spec/02%20-%20Foundational%20Structures/Data%20Assertion.md).
 
@@ -123,6 +131,8 @@ status: v0.4
 
 **Orchestrator** — The actor that produces [Goal Decomposition](spec/03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md) proposals. Typically a service provider. Since 0.2 also a role, `orchestrator`: it decomposes a goal, routes the work to providers and holds the workstream together. See [Actor Role Declaration](spec/02%20-%20Foundational%20Structures/Actor%20Role%20Declaration.md).
 
+**Orchestrator profile** — The conformance profile of an orchestrator: general requirements, core requirements on requests, workstreams, instructions, lifecycle, deliverables, invoices and the journal, and conditional modules. Added in 0.5. See [Conformance](spec/01%20-%20Front%20Matter/Conformance.md).
+
 ## P
 
 **Parent milestone link** — The optional `parentMilestoneUri` of a milestone. Links it to the milestone in another workstream on whose behalf it is performed; the way work is passed on without showing the customer who performs it. Added in 0.2. See [Milestone](spec/02%20-%20Foundational%20Structures/Milestone.md).
@@ -142,6 +152,10 @@ status: v0.4
 ## R
 
 **Record** — Any protocol-managed entity with sections under authority claims. Assets, workstreams, milestones, subscriptions.
+
+**Record resolution** — How a receiver obtains a record that a message names only by URI, such as an actor reference or a document reference: from the actor that issued it. Added in 0.5. See [Conventions](spec/01%20-%20Front%20Matter/Conventions.md).
+
+**Recording actor** — An actor that enters a message on another actor's behalf, with its consent; named in the envelope's `recordedBy`, while the other actor stays the originator. Added in 0.5. See [Common Envelope](spec/02%20-%20Foundational%20Structures/Common%20Envelope.md).
 
 **Register** — An office's authoritative database of patent records. The protocol's `sourceOfTruth` for legal status.
 
