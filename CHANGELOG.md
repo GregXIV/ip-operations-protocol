@@ -8,7 +8,29 @@ This project aims to follow semantic-ish versioning at the specification level.
 Twelve points from the first conformance reading of an orchestrator implementation against
 0.4.1, accepted by the maintainer on 2026-10-04 as a proposal for 0.5.0 (Ratified Decisions
 56 to 67, numbered in the order of the points). Not released: `VERSION` stays 0.4.1 until the
-maintainer tags the release.
+maintainer tags the release. The protocol has 43 message types in 12 categories.
+
+A minor version, and **additive**: two message types, two optional fields, one value of an
+open vocabulary list held as an enumeration, two identifier schemes, a document type, a new
+page and clarifications. Nothing is renamed, removed or made required for an existing
+message, and no rule of 0.4 is relaxed. `protocolVersion` is `0.5`, and every schema
+identifier is re-issued as `urn:ipproto:schema:0.5:<name>`.
+
+### Compatibility
+- **A 0.4 message remains valid under 0.5.** All 39 examples of 0.4.1 validate unchanged
+  against the 0.5 schemas. The 0.5 schemas differ from the 0.4 schemas in the envelope,
+  Actor Reference and Invoice Issued, and by the two new message schemas.
+- **A 0.4 receiver keeps working if it degrades on unknown message types and values**, as
+  VERSIONING.md requires. It ignores `recordedBy` and reads such a message as the
+  originator's, which is right.
+- **Strict validators.** A receiver that validates strictly against the 0.4 schemas accepts
+  `recordedBy` and `registrationAuthority`, because unknown fields pass, and rejects Invoice
+  Disputed, Invoice Cancelled and the tax treatment `notStated`.
+- **One caution.** The names `recordedBy` on the envelope and `registrationAuthority` on an
+  identifier are now defined, and an identifier of scheme `urn:ipproto:scheme:companyRegister`
+  must carry `registrationAuthority`. 0.4 defined neither the fields nor the scheme.
+- **Implementations that claim conformance** now have a list to claim it against: the
+  orchestrator profile on the new Conformance page.
 
 ### Added
 - **Envelope: `recordedBy`, optional.** The actor that entered a message on the originating
@@ -54,6 +76,12 @@ maintainer tags the release.
   `registrationAuthority` (recommended: the GLEIF Registration Authorities List code),
   which the schema requires with `companyRegister`. Example
   `actor-reference-supplier`. Decision 65.
+- **Examples (6),** 45 validated examples in all: `instruction-accepted-recorded`,
+  `invoice-disputed`, `invoice-cancelled`, `invoice-issued-tax-not-stated`,
+  `milestone-abandoned-provider-not-performing`, `actor-reference-supplier`.
+- **Decisions.** Ratified Decisions 56 to 67.
+- **Glossary.** Conformance profile, credit note, invoice dispute, journal, orchestrator
+  profile, record resolution, recording actor.
 
 ### Changed
 - **Decided without a change: Work Instruction.** An instruction needs at least one agreed
@@ -81,6 +109,12 @@ maintainer tags the release.
   orchestrator's own platform, open services under the procurement family included; the
   organization that acted is the originator, not the platform; the parties to a message can
   obtain it. Decision 67.
+- **Schema identifiers.** Every schema `$id` is re-issued as
+  `urn:ipproto:schema:0.5:<name>`. The `0.4` identifiers keep naming the 0.4.x set.
+  `protocolVersion` in new messages is `0.5`.
+- **Generated TypeScript types** regenerated from the 0.5 schemas.
+
+### Fixed
 - **Service Deliverable: `assertions` is conditional, not required.** The page called the
   field required; the schema has always allowed it to be left out, and the schema was
   right. It is present where the deliverable substantiates a section of a record and
