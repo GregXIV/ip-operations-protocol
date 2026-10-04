@@ -2,7 +2,7 @@
 
 A standard for **operational data exchange between actors working on patent and other IP assets** — corporate IP departments, service providers, external counsel, and registers.
 
-**Version:** 0.5 (proposed, not yet released; the latest release is 0.4.1) · **Spec license:** CC-BY-4.0 · **Schema license:** Apache-2.0 · **Status:** open for implementation feedback
+**Version:** 0.5 (working draft) · **Spec license:** CC-BY-4.0 · **Schema license:** Apache-2.0 · **Status:** open for implementation feedback
 
 ---
 
@@ -50,7 +50,7 @@ ip-operations-protocol/
 
 ## Status and roadmap
 
-This is **v0.5**, proposed for release; the latest released version is 0.4.1. v0.2 extended v0.1 by addition only. v0.3 adds to v0.2 and relaxes three of its rules: a workstream no longer needs an existing asset, a document reference no longer needs one either, and an invoice line no longer needs a milestone. v0.4 extends v0.3 by addition only: three optional fields, no new message type, no changed rule. A 0.3 message is valid under 0.4, and a 0.3 receiver needs no change. v0.5 extends v0.4 by addition only: two message types, one envelope field, one identifier field, one tax treatment value, two identifier schemes, a conformance page, and clarifications; no rule of 0.4 is relaxed. A 0.4 message is valid under 0.5. A receiver built for an earlier version keeps working if it degrades on unknown message types and values; a receiver that validates strictly against the 0.1 or 0.2 schema set rejects some newer messages, one that validates strictly against the 0.3 set accepts 0.4 messages, because unknown fields pass, and one that validates strictly against the 0.4 set rejects the two new 0.5 messages and the tax treatment `notStated` (see [CHANGELOG.md](CHANGELOG.md) and [VERSIONING.md](VERSIONING.md)). The design decisions reserved for a future governance body are recorded in [Open Questions for Consortium](spec/05%20-%20Decisions/Open%20Questions%20for%20Consortium.md); each of the six v0.1 questions has been ratified with a recommended default and is reopenable when a consortium forms; a seventh, on the tax vocabulary of invoices, was added in 0.3 and is open. Features deliberately scoped out of v0.1 are listed in [Deferred to v1.x](spec/05%20-%20Decisions/Deferred%20to%20v1-x.md). v1.0 will lock the open decisions.
+This is **v0.5**, published for implementation feedback. v0.2 extended v0.1 by addition only. v0.3 adds to v0.2 and relaxes three of its rules: a workstream no longer needs an existing asset, a document reference no longer needs one either, and an invoice line no longer needs a milestone. v0.4 extends v0.3 by addition only: three optional fields, no new message type, no changed rule. A 0.3 message is valid under 0.4, and a 0.3 receiver needs no change. v0.5 extends v0.4 by addition only: two message types, one envelope field, one identifier field, one tax treatment value, two identifier schemes, a conformance page, and clarifications; no rule of 0.4 is relaxed. A 0.4 message is valid under 0.5. A receiver built for an earlier version keeps working if it degrades on unknown message types and values; a receiver that validates strictly against the 0.1 or 0.2 schema set rejects some newer messages, one that validates strictly against the 0.3 set accepts 0.4 messages, because unknown fields pass, and one that validates strictly against the 0.4 set rejects the two new 0.5 messages and the tax treatment `notStated` (see [CHANGELOG.md](CHANGELOG.md) and [VERSIONING.md](VERSIONING.md)). The design decisions reserved for a future governance body are recorded in [Open Questions for Consortium](spec/05%20-%20Decisions/Open%20Questions%20for%20Consortium.md); each of the six v0.1 questions has been ratified with a recommended default and is reopenable when a consortium forms; a seventh, on the tax vocabulary of invoices, was added in 0.3 and is open. Features deliberately scoped out of v0.1 are listed in [Deferred to v1.x](spec/05%20-%20Decisions/Deferred%20to%20v1-x.md). v1.0 will lock the open decisions.
 
 ## License
 
@@ -60,7 +60,7 @@ The **JSON Schemas and reference implementation** (everything under `schemas/`) 
 
 ## Citation
 
-> IP Operations Protocol, v0.4. Dr. Jonas Block, 2026. Licensed CC-BY-4.0. https://github.com/GregXIV/ip-operations-protocol
+> IP Operations Protocol, v0.5. Dr. Jonas Block, 2026. Licensed CC-BY-4.0. https://github.com/GregXIV/ip-operations-protocol
 
 ## Governance
 

@@ -1,7 +1,7 @@
 # Schemas
 
 JSON Schemas, validated examples, generated TypeScript types, and a reference validator
-for the IP Operations Protocol **v0.5** (proposed; the latest release is 0.4.1). Packaged as `@ipproto/schemas`.
+for the IP Operations Protocol **v0.5**. Packaged as `@ipproto/schemas`.
 
 **License:** Apache-2.0 (see [LICENSE](LICENSE)) — the explicit patent grant is deliberate
 for a standard in the patent domain.

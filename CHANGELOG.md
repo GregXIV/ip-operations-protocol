@@ -3,12 +3,11 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
-## [Unreleased] — proposed 0.5.0
+## [0.5.0] — 2026-10 (working draft)
 
 Twelve points from the first conformance reading of an orchestrator implementation against
-0.4.1, accepted by the maintainer on 2026-10-04 as a proposal for 0.5.0 (Ratified Decisions
-56 to 67, numbered in the order of the points). Not released: `VERSION` stays 0.4.1 until the
-maintainer tags the release. The protocol has 43 message types in 12 categories.
+0.4.1, decided by the maintainer on 2026-10-04 (Ratified Decisions 56 to 67, numbered in the
+order of the points). The protocol has 43 message types in 12 categories.
 
 A minor version, and **additive**: two message types, two optional fields, one value of an
 open vocabulary list held as an enumeration, two identifier schemes, a document type, a new
