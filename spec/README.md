@@ -29,6 +29,7 @@ Then either:
 - [Reference Standards](01%20-%20Front%20Matter/Reference%20Standards.md)
 - [Relationship to WIPO](01%20-%20Front%20Matter/Relationship%20to%20WIPO.md)
 - [Conventions](01%20-%20Front%20Matter/Conventions.md)
+- [Conformance](01%20-%20Front%20Matter/Conformance.md) — the profiles an implementation can claim, among them the orchestrator profile (added in 0.5)
 
 ### Foundational structures
 - [Common Envelope](02%20-%20Foundational%20Structures/Common%20Envelope.md) — shared by all messages

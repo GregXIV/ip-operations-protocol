@@ -1,6 +1,6 @@
 ---
 type: profile
-status: v0.1
+status: v0.5
 ---
 
 # Asset Identification and Resolution
@@ -129,6 +129,8 @@ An actor or resolver conforms to this profile when it:
 5. reconciles a divergent canonical identifier through the dispute path rather than overwriting.
 
 Two levels are recognised. A **representational** conformance covers points 1–3 (any actor referencing assets). A **resolving** conformance adds 4–5 (any actor that performs lookup-based resolution, e.g. an orchestrator or a conversion service).
+
+Since 0.5 the protocol's profiles are listed together in [Conformance](../01%20-%20Front%20Matter/Conformance.md), with this one and the orchestrator profile.
 
 ## Profile decisions (v0.1)
 

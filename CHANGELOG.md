@@ -37,6 +37,13 @@ maintainer tags the release.
   tax position was not captured. It claims nothing about the tax position; the invoice
   document says what applies. A payee that issues its own invoice states the treatment.
   Open Question 7 stays open. Decision 61.
+- **Conformance** (new page under Front Matter). How a claim is made and checked (met,
+  partly met, not met, not applicable), the three profiles side by side, nine general
+  requirements for every producer of messages, and the **orchestrator profile**: core
+  requirements on requests, workstreams and passing work on, instructions, the milestone
+  lifecycle, deliverables and invoices, each pointing at the page that states it, plus
+  conditional modules for procurement, payments, subscriptions and assets. It adds no rule
+  of its own except where a requirement says so. Decision 63.
 
 ### Changed
 - **Decided without a change: Work Instruction.** An instruction needs at least one agreed
