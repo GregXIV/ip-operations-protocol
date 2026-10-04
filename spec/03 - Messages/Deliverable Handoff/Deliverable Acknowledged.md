@@ -1,7 +1,7 @@
 ---
 type: message
 category: deliverable-handoff
-status: v0.1
+status: v0.5
 ---
 
 # Deliverable Acknowledged
@@ -68,6 +68,8 @@ Required when `acknowledgmentType = conditionalAcceptance`. Each: `conditionDesc
 Type: structured, conditional
 
 Required when `acknowledgmentType = objection`.
+
+Stated in 0.5: the schema does not check either condition, on `conditions` or on `objectionDetails`. A sender includes the field when the condition holds; a receiver that depends on it checks it itself.
 
 ### `downstreamMilestoneRelease`
 Type: structured, required
