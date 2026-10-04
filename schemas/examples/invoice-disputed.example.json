@@ -1,0 +1,31 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceDisputed-example-0001",
+  "messageType": "urn:ipproto:message:invoiceDisputed",
+  "protocolVersion": "0.5",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-work-requester-b",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2026-11-11T09:15:00Z",
+  "userContext": {
+    "userIdentifier": "accounts-payable@meridian-ip-group.example",
+    "roleAtActor": "Accounts Payable"
+  },
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:invoiceIssued-example-0001",
+    "workstreamUri": "urn:ipproto:workstream:b-agent-es-001",
+    "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:fabrikam-2026-3381",
+    "disputedAt": "2026-11-11T09:15:00Z",
+    "disputeReason": {
+      "reasonCategory": "formalDefect",
+      "reasonNarrative": "The invoice applies the reverse charge but the document does not state our VAT identification number. We cannot book it as it stands."
+    }
+  }
+}

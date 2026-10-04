@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.3
+status: v0.5
 ---
 
 # Document Reference
@@ -44,6 +44,7 @@ Typed classification. Standard types in `urn:ipproto:doctype:` namespace:
 
 **Commercial:**
 - `invoice` — an invoice as a document, referenced by [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) (added in 0.2). Before 0.2 `invoice` existed only as a deliverable type
+- `creditNote` — a document that cancels or reduces an invoice, referenced by [Invoice Cancelled](../03%20-%20Messages/Payments/Invoice%20Cancelled.md) (added in 0.5)
 
 `filingReceipt` and `officialFeeReceipt` are the standard labels for what a provider hands back after a filing or a fee payment; a [Work Instruction](../03%20-%20Messages/Work%20Instruction/Work%20Instruction.md) names them in `expectedDeliverables`. They classify the document. The evidence type `urn:ipproto:evidence:officeFeeReceipt` of an [Evidence Collection](Evidence%20Collection.md) classifies the evidence item that may point at such a document.
 

@@ -1,7 +1,7 @@
 ---
 type: message
 category: payments
-status: v0.4
+status: v0.5
 ---
 
 # Invoice Issued
@@ -193,13 +193,16 @@ Added in 0.3. The contract holder invoices the subscriber for the first paid mon
 
 The payor checks milestone lines against the `agreedPrice` of the milestones they name, and subscription lines against the `commercialTerms` of the subscription, for the `billingPeriod` where the line states one. Where the two agree, the payor authorizes payment through [Payment Authorized](Payment%20Authorized.md), with `payeeType: "actor"`.
 
-The protocol does not match invoices to prices and does not reject an invoice that exceeds one. A disagreement over an invoice is settled between the parties.
+The protocol does not match invoices to prices and does not reject an invoice that exceeds one. A disagreement over an invoice is settled between the parties. Since 0.5 the payor can state it in the protocol with [Invoice Disputed](Invoice%20Disputed.md), and the payee can withdraw an invoice with [Invoice Cancelled](Invoice%20Cancelled.md). An invoice is never changed: a correction is a cancellation and a new Invoice Issued with a new `invoiceReference`.
+
+The protocol has no message for accepting an invoice. An invoice the payor does not dispute stands; Payment Authorized, where the parties use it, is the payor's affirmative step.
 
 ## Related messages
 
 - Follows [Milestone Completed](../Milestone%20Lifecycle/Milestone%20Completed.md) for the invoiced milestones
 - For a subscription line, follows the billing cadence of the subscription begun with [Service Subscription Started](../Subscriptions/Service%20Subscription%20Started.md)
 - Paid through [Payment Authorized](Payment%20Authorized.md) and [Payment Executed](Payment%20Executed.md)
+- Disputed by the payor with [Invoice Disputed](Invoice%20Disputed.md) and cancelled by the payee with [Invoice Cancelled](Invoice%20Cancelled.md) (added in 0.5)
 
 ## See also
 

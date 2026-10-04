@@ -220,6 +220,18 @@
       "messageType": "urn:ipproto:message:instructionDeclined"
     },
     {
+      "$id": "urn:ipproto:schema:0.5:invoiceCancelled",
+      "title": "Invoice Cancelled",
+      "path": "schemas/messages/invoice-cancelled.schema.json",
+      "messageType": "urn:ipproto:message:invoiceCancelled"
+    },
+    {
+      "$id": "urn:ipproto:schema:0.5:invoiceDisputed",
+      "title": "Invoice Disputed",
+      "path": "schemas/messages/invoice-disputed.schema.json",
+      "messageType": "urn:ipproto:message:invoiceDisputed"
+    },
+    {
       "$id": "urn:ipproto:schema:0.5:invoiceIssued",
       "title": "Invoice Issued",
       "path": "schemas/messages/invoice-issued.schema.json",

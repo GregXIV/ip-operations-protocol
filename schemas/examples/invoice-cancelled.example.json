@@ -1,0 +1,29 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceCancelled-example-0001",
+  "messageType": "urn:ipproto:message:invoiceCancelled",
+  "protocolVersion": "0.5",
+  "originatingActor": "urn:ipproto:actor:fabrikam-patentes",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:fabrikam-work-provider-b",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:payor"
+    }
+  ],
+  "producedAt": "2026-11-12T16:05:00Z",
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:invoiceDisputed-example-0001",
+    "workstreamUri": "urn:ipproto:workstream:b-agent-es-001",
+    "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:fabrikam-2026-3381",
+    "cancelledAt": "2026-11-12T16:00:00Z",
+    "cancellationReason": {
+      "reasonCategory": "disputeAccepted",
+      "reasonNarrative": "Reissued with the payor's VAT identification number as FP-2026-3402."
+    },
+    "replacementInvoiceReference": "urn:ipproto:invoice:fabrikam-2026-3402",
+    "cancellationDocument": "urn:ipproto:document:fabrikam-cn-2026-0117"
+  }
+}
