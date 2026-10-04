@@ -1,0 +1,42 @@
+{
+  "messageUri": "urn:ipproto:message:milestoneAbandoned-example-0001",
+  "messageType": "urn:ipproto:message:milestoneAbandoned",
+  "protocolVersion": "0.5",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-work-requester-b",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2026-11-20T11:00:00Z",
+  "userContext": {
+    "userIdentifier": "operations-desk@meridian-ip-group.example",
+    "roleAtActor": "Case Manager"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:b-agent-es-001",
+    "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent"
+  },
+  "payload": {
+    "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
+    "abandonedAt": "2026-11-20T10:55:00Z",
+    "abandonmentReason": {
+      "reasonCategory": "other",
+      "reasonNarrative": "Provider did not perform: the delivery level fell due on 2026-11-16 without a deliverable or an answer to two reminders. The work requester ends the milestone and instructs another provider.",
+      "decisionAuthority": "urn:ipproto:actor:meridian-ip-group",
+      "decisionUserContext": {
+        "userIdentifier": "operations-desk@meridian-ip-group.example",
+        "roleAtActor": "Case Manager"
+      }
+    },
+    "abandonmentImpact": {
+      "cascadingAbandonments": [],
+      "releasedResources": "The validation is re-instructed to another agent in a new workstream.",
+      "unwindObligations": [
+        "Any fee for work done so far is settled between the parties under their terms."
+      ]
+    }
+  }
+}

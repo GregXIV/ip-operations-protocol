@@ -1,7 +1,7 @@
 ---
 type: message
 category: milestone-lifecycle
-status: v0.1
+status: v0.5
 ---
 
 # Milestone Failed
@@ -17,6 +17,8 @@ Common cases: translation services unable to meet deadline, search returning ins
 ## Producer
 
 The actor with `primary` assignment.
+
+Stated in 0.5: only that actor reports a failure, because only it attempted the work. A work requester that ends a milestone because its provider did not perform, for instance missed the delivery level, does not send Milestone Failed on the provider's behalf; it sends [Milestone Abandoned](Milestone%20Abandoned.md) with itself as `decisionAuthority` (see *When the provider does not perform* there). Where the provider has reported a failure with this message, the requester's decision that follows, to stop rather than to remedy, is likewise a Milestone Abandoned.
 
 ## Recipients
 
