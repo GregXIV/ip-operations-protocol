@@ -92,3 +92,9 @@ a predictable URL mapping `{version, messageType}` to its JSON Schema. This is
 designed alongside the schemas and is the resource that emerging agent-discovery
 conventions (e.g. a `/.well-known/` catalog) would later point to. See the project
 board for status.
+
+Since 0.5 the specification also says how a receiver resolves the records that
+messages name only by URI (actor references, role declarations, document
+references, authority claims): from the actor that issued them, over a transport
+of the actors' choice, with a recommended HTTPS shape. See *Record resolution* in
+[Conventions](spec/01%20-%20Front%20Matter/Conventions.md).

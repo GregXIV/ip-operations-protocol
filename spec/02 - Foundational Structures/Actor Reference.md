@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.4
+status: v0.5
 ---
 
 # Actor Reference
@@ -55,6 +55,8 @@ Where the actor is registered. `DE` for Northwind Industries, `LU` for Meridian 
 Type: array, optional
 
 Postal and electronic addresses. Each entry: `addressType` (enumeration: `principalOffice`, `correspondence`, `electronic`), `addressLines`, `city`, `postalCode`, `countryCode`, `electronicAddressType` (for electronic), `electronicAddressValue`.
+
+An electronic address with `electronicAddressType` `urn:ipproto:address:recordResolution` (added in 0.5) is the base address at which the actor resolves the records it issued. See *Record resolution* in [Conventions](../01%20-%20Front%20Matter/Conventions.md).
 
 ### `displayLabel`
 Type: string, optional

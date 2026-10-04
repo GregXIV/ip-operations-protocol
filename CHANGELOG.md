@@ -25,6 +25,13 @@ maintainer tags the release.
   step. An invoice is never changed; a correction is a cancellation and a new Invoice
   Issued. Decision 57.
 - **Document type `creditNote`**, referenced by Invoice Cancelled.
+- **Record resolution** (Conventions). How a receiver resolves an actor, role declaration,
+  document or authority claim URI that a message names: from the actor that issued the
+  record, asking the sender first; the record comes back in its schema's structure; the
+  issuer serves at least the parties to a message naming the URI and never discloses what
+  a message may not. Transport stays open, with a recommended, non-normative HTTPS shape
+  and the electronic address type `urn:ipproto:address:recordResolution` on Actor
+  Reference. VERSIONING's discoverability note points to it. Decision 59.
 
 ### Changed
 
