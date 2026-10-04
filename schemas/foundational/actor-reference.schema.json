@@ -44,12 +44,31 @@
           },
           "verifiedAt": {
             "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
+          },
+          "registrationAuthority": {
+            "description": "Added in 0.5. The register that issued the identifier; required with the scheme urn:ipproto:scheme:companyRegister. Recommended: the register's code in the GLEIF Registration Authorities List.",
+            "type": "string"
           }
         },
         "required": [
           "scheme",
           "value"
-        ]
+        ],
+        "if": {
+          "properties": {
+            "scheme": {
+              "const": "urn:ipproto:scheme:companyRegister"
+            }
+          },
+          "required": [
+            "scheme"
+          ]
+        },
+        "then": {
+          "required": [
+            "registrationAuthority"
+          ]
+        }
       }
     },
     "legalName": {

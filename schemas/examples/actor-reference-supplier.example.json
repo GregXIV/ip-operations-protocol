@@ -1,0 +1,37 @@
+{
+  "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+  "actorType": "serviceProvider",
+  "identifiers": [
+    {
+      "scheme": "urn:ipproto:scheme:vat",
+      "value": "ESB00000000",
+      "verifiedAt": "2026-09-14T08:00:00Z"
+    },
+    {
+      "scheme": "urn:ipproto:scheme:companyRegister",
+      "value": "M-000000",
+      "registrationAuthority": "RA999999"
+    },
+    {
+      "scheme": "urn:ipproto:scheme:epoRepNumber",
+      "value": "000000"
+    }
+  ],
+  "legalName": "Fabrikam Patentes S.L.",
+  "jurisdictionCode": "ES",
+  "addresses": [
+    {
+      "addressType": "principalOffice",
+      "addressLines": ["Calle Ejemplo 1"],
+      "city": "Ciudad Ejemplo",
+      "postalCode": "00000",
+      "countryCode": "ES"
+    },
+    {
+      "addressType": "electronic",
+      "electronicAddressType": "urn:ipproto:address:recordResolution",
+      "electronicAddressValue": "https://ipproto.fabrikam-patentes.example/records"
+    }
+  ],
+  "displayLabel": "Fabrikam Patentes"
+}
