@@ -77,13 +77,15 @@ Type: structured, required
 ### `taxHandling`
 Type: structured, required
 
-- `taxTreatment` — required. Standard values: `taxed`, `reverseCharge`, `exempt`, `outsideScope`. Custom values use namespaced URNs that identify the defining authority (`urn:example-org:taxTreatment:withholdingApplied`)
+- `taxTreatment` — required. Standard values: `taxed`, `reverseCharge`, `exempt`, `outsideScope`, and since 0.5 `notStated`. Custom values use namespaced URNs that identify the defining authority (`urn:example-org:taxTreatment:withholdingApplied`)
 - `taxRatePercent` — optional decimal
 - `taxAmount` — optional decimal, in the currency of `totalAmount`
 
 The protocol carries how tax was handled. It does not decide how it must be.
 
-**Provisional vocabulary.** The four standard values were set when this message was drafted for 0.2. Nobody who issues invoices has reviewed them, and they may be renamed, split or extended before 1.0. Since 0.3 the list is open to custom values; the 0.2 schema held it as a closed enumeration. A receiver that does not recognize a value treats it as unknown and reads the tax position from the invoice document, which remains the invoice in the legal sense. The question is recorded in [Open Questions for Consortium](../../05%20-%20Decisions/Open%20Questions%20for%20Consortium.md), question 7.
+**`notStated`.** Added in 0.5, provisional like the other four. The sender does not know the treatment: the data from which it produces the message does not state it, typically because the invoice was entered from a document whose tax position was not captured. `notStated` claims nothing about the tax position, neither that tax is due nor that none is; the invoice document says what applies. It is not a substitute for the treatment the payee knows: a payee that issues its own invoice states the treatment. `taxRatePercent` and `taxAmount` are normally absent beside it. Until 0.5 an implementation in this position had to invent a custom value or state a treatment it did not know.
+
+**Provisional vocabulary.** The four standard values were set when this message was drafted for 0.2, and `notStated` was added in 0.5. Nobody who issues invoices has reviewed them, and they may be renamed, split or extended before 1.0. Since 0.3 the list is open to custom values; the 0.2 schema held it as a closed enumeration. A receiver that does not recognize a value treats it as unknown and reads the tax position from the invoice document, which remains the invoice in the legal sense. The question is recorded in [Open Questions for Consortium](../../05%20-%20Decisions/Open%20Questions%20for%20Consortium.md), question 7.
 
 ### `dueDate`
 Type: ISO 8601 date, required

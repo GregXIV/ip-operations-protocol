@@ -1,6 +1,6 @@
 ---
 type: decisions
-status: v0.3
+status: v0.5
 ---
 
 # Open Questions for Consortium
@@ -9,7 +9,7 @@ status: v0.3
 >
 > **v0.1 status:** questions 1 to 6 below have been ratified by the maintainer with their recommended defaults, and are reopenable when a consortium forms. The original framing is preserved as the record for that future discussion.
 >
-> **Question 7**, added in 0.3, is open. Its default is provisional and has not been ratified.
+> **Question 7**, added in 0.3, is open. Its default is provisional and has not been ratified; 0.5 added one provisional value to it.
 
 These are questions where consortium-member input materially affects how the protocol should be specified, and where unilateral disposition would be inappropriate. Each has a recommended default but is positioned for consortium discussion before v1.0 ratification.
 
@@ -77,11 +77,11 @@ These are questions where consortium-member input materially affects how the pro
 
 Added in 0.3. **Open: not ratified.**
 
-**Default (provisional):** `taxHandling.taxTreatment` in [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) has four standard values, `taxed`, `reverseCharge`, `exempt` and `outsideScope`, and accepts custom values as namespaced URNs. `taxRatePercent` and `taxAmount` are optional. Invoice lines are net of tax.
+**Default (provisional):** `taxHandling.taxTreatment` in [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) has five standard values, `taxed`, `reverseCharge`, `exempt`, `outsideScope` and, since 0.5, `notStated` (the sender does not know the treatment; the invoice document says what applies), and accepts custom values as namespaced URNs. `taxRatePercent` and `taxAmount` are optional. Invoice lines are net of tax.
 
 **The question:** Are these the right values, and is one treatment for the whole invoice enough? Open points include invoices whose lines are treated differently (an official fee passed on at cost beside a taxed professional fee), more than one rate on one invoice, withholding tax, and whether the vocabulary should align with an existing e-invoicing code list, such as the VAT category codes used in EN 16931.
 
-**Why this is open:** The four values were written during the 0.2.0 build and were not reviewed by anyone who issues invoices. Tax handling differs by jurisdiction, and getting it wrong in a standard is worse than leaving it open.
+**Why this is open:** The four values were written during the 0.2.0 build and were not reviewed by anyone who issues invoices. `notStated` was added in 0.5 for an implementation that records invoices from documents without their tax position (decision 61); it is provisional on the same terms and does not settle this question. Tax handling differs by jurisdiction, and getting it wrong in a standard is worse than leaving it open.
 
 **Recommendation:** Keep the field as it is, marked provisional, until practitioners who issue cross-border invoices have reviewed it. Until then implementers treat the invoice document as authoritative for tax, and the structured field as a convenience. A change to the standard values before 1.0 is to be expected.
 
