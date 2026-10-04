@@ -44,6 +44,10 @@ maintainer tags the release.
   lifecycle, deliverables and invoices, each pointing at the page that states it, plus
   conditional modules for procurement, payments, subscriptions and assets. It adds no rule
   of its own except where a requirement says so. Decision 63.
+- **Payment note** in the orchestrator profile, and on Payment Authorized. Where payment is
+  made in an ERP or accounting system outside the exchange, Payment Authorized and
+  Payment Executed do not apply and their absence is not a gap; the invoice messages still
+  do. A connected ERP may later report payments with Payment Executed. Decision 64.
 
 ### Changed
 - **Decided without a change: Work Instruction.** An instruction needs at least one agreed

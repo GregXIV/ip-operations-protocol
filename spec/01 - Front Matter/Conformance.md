@@ -104,9 +104,13 @@ The orchestrator stands between a customer and the providers who do the work. In
 | Module | Applies when the orchestrator | Requirements |
 |---|---|---|
 | Procurement | puts work to bidders (direct quote, panel, open RFP) | OR-P1: the procurement messages as the pages describe them, with the five rules of the procurement family ([Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md), *The procurement sequence*). OR-P2: the sender rules of a Bid Invitation, including decisions 53 to 55. OR-P3: a withheld requester is disclosed only with [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md), only after a `clear` attestation. |
-| Payments | authorizes or executes payments through the protocol | OR-PA1: [Payment Authorized](../03%20-%20Messages/Payments/Payment%20Authorized.md) from the payor, [Payment Executed](../03%20-%20Messages/Payments/Payment%20Executed.md) from the payment agent. |
+| Payments | authorizes or executes payments through the protocol | OR-PA1: [Payment Authorized](../03%20-%20Messages/Payments/Payment%20Authorized.md) from the payor, [Payment Executed](../03%20-%20Messages/Payments/Payment%20Executed.md) from the payment agent. See the payment note below. |
 | Subscriptions | sells or operates subscriptions | OR-S1: [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md) and [Terminated](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Terminated.md), one start message per audience where a revenue share applies (decision 47); subscription invoice lines under OR-V2. |
 | Assets | names assets in its messages | OR-A1: the representational asset identification profile. Where it resolves assets by lookup, the resolving profile. |
+
+### Payment note
+
+Payment Authorized and Payment Executed carry a payment that the parties make through the protocol. Many orchestrators pay their providers and collect from their customers in an ERP or accounting system that is not part of the exchange. For such an orchestrator the payments module is not applicable: it writes neither message, and the absence is not a gap. Its invoices still fall under OR-V1 to OR-V3, so an invoice it will not pay as issued is disputed and an invoice it withdraws is cancelled; an undisputed invoice stands. Should the ERP later be connected, it may report a payment with Payment Executed as payment agent, and the module then applies to what it reports.
 
 ### Outside the profile
 

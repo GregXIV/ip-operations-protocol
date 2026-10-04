@@ -12,7 +12,7 @@ status: v0.5
 
 Added in 0.5. Tells the payee that the payor does not accept an invoice as issued, and why. Until 0.5 the message set carried the invoice and its payment, and nothing in between: a payor that would not pay an invoice had no way to say so in the protocol.
 
-**Acceptance has no message.** An invoice that the payor does not dispute stands. Where the parties pay through the protocol, [Payment Authorized](Payment%20Authorized.md) is the payor's affirmative step; where payment is made outside it, for instance by the payor's ERP system, the protocol records only the absence of a dispute.
+**Acceptance has no message.** An invoice that the payor does not dispute stands. Where the parties pay through the protocol, [Payment Authorized](Payment%20Authorized.md) is the payor's affirmative step; where payment is made outside it, for instance by the payor's ERP system, the protocol records only the absence of a dispute. See the payment note of the orchestrator profile in [Conformance](../../01%20-%20Front%20Matter/Conformance.md).
 
 ## Producer
 

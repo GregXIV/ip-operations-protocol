@@ -1,7 +1,7 @@
 ---
 type: message
 category: payments
-status: v0.2
+status: v0.5
 ---
 
 # Payment Authorized
@@ -11,6 +11,8 @@ status: v0.2
 ## Purpose
 
 The corporate (or any payor) authorizes the payment agent (typically the service provider) to execute a payment. Carries everything needed for the agent to execute and for finance systems on both sides to reconcile.
+
+**Where payment is made outside the protocol.** Stated in 0.5. Where the payor pays from an ERP or accounting system that takes no part in the exchange, no Payment Authorized is sent and none is missing. An invoice it does not dispute stands. See the payment note of the orchestrator profile in [Conformance](../../01%20-%20Front%20Matter/Conformance.md).
 
 ## Producer
 
