@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.4
+status: v0.5
 ---
 
 # Conventions
@@ -52,6 +52,7 @@ Several controlled vocabularies live in URN namespaces:
 - `urn:ipproto:evidence:` — evidence type classifications
 - `urn:ipproto:trigger:` — subscription trigger types
 - `urn:ipproto:lineItem:` — line item types of a price, a bid or an invoice: `professionalFee`, `translation`, `officialFee`, `handling`, `disbursement` (added in 0.2) and `subscriptionFee` (added in 0.3; see [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md))
+- `urn:ipproto:address:` — electronic address types of an [Actor Reference](../02%20-%20Foundational%20Structures/Actor%20Reference.md): `recordResolution` (added in 0.5; see *Record resolution* below)
 - `urn:ipproto:serviceLevel:` — service level kinds, naming what a clock measures: `acknowledgement`, `delivery`, `bidResponse`, `introduction` (added in 0.2; see [Service Level](../02%20-%20Foundational%20Structures/Service%20Level.md))
 
 Custom values in any namespace are allowed but must use namespaced URNs that identify the defining authority. Receivers handling unknown values degrade gracefully to "unknown" rather than failing.
@@ -69,6 +70,18 @@ Every change to a protocol record is governed by [Authority Claim](../02%20-%20F
 ### Identity resolution
 
 Entity references (assignees, applicants, inventors, representatives, opponents) carry [resolution context](../02%20-%20Foundational%20Structures/Entity%20Reference.md) showing the literal as observed plus the asserter's resolution to an entity in their graph. Receivers may accept, ignore, or dispute the resolution.
+
+### Record resolution
+
+Added in 0.5. Messages name most of the records they rely on by URI only: the originator by its actor URI, its role by a role declaration URI, documents by document URI, the right to change a record by an authority claim URI. Apart from [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md) and the `requester` of [Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md), which carry a full Actor Reference, no message carries these records. A receiver that needs one resolves its URI:
+
+1. **What is resolvable.** At least [Actor References](../02%20-%20Foundational%20Structures/Actor%20Reference.md), [Actor Role Declarations](../02%20-%20Foundational%20Structures/Actor%20Role%20Declaration.md), [Document References](../02%20-%20Foundational%20Structures/Document%20Reference.md) and [Authority Claims](../02%20-%20Foundational%20Structures/Authority%20Claim.md). Workstream and milestone records may be resolvable in the same way; their state is otherwise built from the messages of the workstream.
+2. **Who answers.** The actor that issued the record, that is, the actor that assigned its URI. An actor that sends a message answers for every record the message names: it holds the record, or it can name the issuer. A receiver therefore asks the sender first.
+3. **What comes back.** The record in the structure this specification defines, valid against its schema. For a document, that is the Document Reference; the content is fetched from its `storageLocations`, under the access requirements stated there.
+4. **Who may resolve.** The issuer decides. It answers at least every actor that produced or was addressed by a message naming the URI, and may refuse anyone else. Resolution never discloses what a message may not: an orchestrator does not serve a withheld requester's Actor Reference to a bidder before [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md).
+5. **Stability.** An Actor Reference does not change under its URI once it is published (see its *Behavior*). A record that changes over time through assertions, such as an authority claim that is superseded, is returned as the issuer currently holds it.
+
+The transport is open, as for messages (see [Non-Scope](Non-Scope.md)). Two actors may agree any means of resolution. **Recommended shape, not normative:** an HTTPS `GET` of `{base}/records/{uri}`, where `{uri}` is the URI percent-encoded and `{base}` is the address that the issuer's Actor Reference lists with `addressType` `electronic` and `electronicAddressType` `urn:ipproto:address:recordResolution`. The answer is the record as `application/json` with status 200, or status 404 for a URI the issuer does not know and 403 for a caller it does not serve. Schemas resolve by their `$id` from the schema set of the release, as listed in `schemas/index.json` (see the discoverability note in [VERSIONING](../../VERSIONING.md)).
 
 ### Event-sourced flow
 
