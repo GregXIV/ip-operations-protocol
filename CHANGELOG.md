@@ -38,7 +38,7 @@ maintainer tags the release.
   document says what applies. A payee that issues its own invoice states the treatment.
   Open Question 7 stays open. Decision 61.
 - **Conformance** (new page under Front Matter). How a claim is made and checked (met,
-  partly met, not met, not applicable), the three profiles side by side, nine general
+  partly met, not met, not applicable), the three profiles side by side, ten general
   requirements for every producer of messages, and the **orchestrator profile**: core
   requirements on requests, workstreams and passing work on, instructions, the milestone
   lifecycle, deliverables and invoices, each pointing at the page that states it, plus
@@ -68,6 +68,12 @@ maintainer tags the release.
   `decisionAuthority`, `reasonCategory` `other` and the reason in the narrative; re-routing
   the work is a new instruction in a new workstream. Guidance only, no schema change;
   example `milestone-abandoned-provider-not-performing`. Decision 62.
+- **Actor Reference: immutability begins with publication.** "Immutable once registered"
+  now reads "once published": when the `actorUri` first appears in a message to another
+  actor or the reference is first served through record resolution. Before that the
+  keeping actor may correct it; after that a change of legal name or jurisdiction takes a
+  new actor URI. Adding an identifier is not such a change. General requirement G10 of
+  the Conformance page. Decision 66.
 
 ### Fixed
 - **Service Deliverable: `assertions` is conditional, not required.** The page called the
