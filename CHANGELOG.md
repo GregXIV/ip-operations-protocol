@@ -48,6 +48,12 @@ maintainer tags the release.
   made in an ERP or accounting system outside the exchange, Payment Authorized and
   Payment Executed do not apply and their absence is not a gap; the invoice messages still
   do. A connected ERP may later report payments with Payment Executed. Decision 64.
+- **Identifier schemes `urn:ipproto:scheme:vat` and `urn:ipproto:scheme:companyRegister`**
+  on Actor Reference, for actors without an LEI. A VAT number carries its country prefix;
+  a register number names its register in the new optional identifier field
+  `registrationAuthority` (recommended: the GLEIF Registration Authorities List code),
+  which the schema requires with `companyRegister`. Example
+  `actor-reference-supplier`. Decision 65.
 
 ### Changed
 - **Decided without a change: Work Instruction.** An instruction needs at least one agreed

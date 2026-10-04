@@ -35,11 +35,19 @@ The actorType drives default authority semantics — register authorities typica
 Type: array of structured entries, required (at least one)
 
 Each identifier:
-- `scheme` — URI naming the identifier system: `urn:ipproto:scheme:lei` (ISO 17442), `urn:ipproto:scheme:duns`, `urn:ipproto:scheme:epoRepNumber`, `urn:ipproto:scheme:internalReference`, etc.
+- `scheme` — URI naming the identifier system: `urn:ipproto:scheme:lei` (ISO 17442), `urn:ipproto:scheme:duns`, `urn:ipproto:scheme:epoRepNumber`, `urn:ipproto:scheme:internalReference`, and since 0.5 `urn:ipproto:scheme:vat` and `urn:ipproto:scheme:companyRegister` (see below), etc.
 - `value` — the identifier value
 - `verifiedAt` — optional ISO 8601 datetime when verification occurred
+- `registrationAuthority` — string, conditional. Added in 0.5. The register that issued the identifier. Required with the scheme `urn:ipproto:scheme:companyRegister`, optional otherwise. Recommended value: the register's code in the GLEIF Registration Authorities List (the list LEI issuers use to name the business registers of the world); the register's name where it has no code
 
 LEI is the recommended cross-actor identifier for corporate actors. EPO representative number is recommended for European representatives. Office-specific representative numbers handle other jurisdictions.
+
+**VAT and company register numbers.** Added in 0.5. Many suppliers, small firms especially, have neither an LEI nor a DUNS number, but every one of them has a tax number and is entered in a register. Two schemes name them:
+
+- `urn:ipproto:scheme:vat` — a VAT identification number. `value` is the number as issued, with the country prefix the issuing tax authority uses (`DE`, `FR`, `EL` for Greece) and without spaces or punctuation: `DE123456789`. For a number used for VAT or GST outside the European Union, the ISO 3166-1 alpha-2 code of the issuing country followed by the number.
+- `urn:ipproto:scheme:companyRegister` — a number in a company or commercial register. `value` is the number as the register prints it (`HRB 12345`); `registrationAuthority` names the register, because the same number exists in many registers (every German local court keeps its own commercial register). The schema requires `registrationAuthority` with this scheme.
+
+Neither replaces an LEI where one exists. Before 0.5 implementations used private scheme names such as `vat`, which are not URNs and which no receiver could rely on.
 
 ### `legalName`
 Type: string, required
@@ -91,6 +99,24 @@ Human-readable label. Not authoritative.
 ```
 
 The company, its address and its identifier are invented. The identifier has the length of an LEI but is not one: its check digits do not verify.
+
+A supplier without an LEI, identified by its VAT and register numbers (added in 0.5). All values are invented, the register code too.
+
+```json
+{
+  "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+  "actorType": "serviceProvider",
+  "identifiers": [
+    {"scheme": "urn:ipproto:scheme:vat", "value": "ESB00000000", "verifiedAt": "2026-09-14T08:00:00Z"},
+    {"scheme": "urn:ipproto:scheme:companyRegister", "value": "M-000000", "registrationAuthority": "RA999999"},
+    {"scheme": "urn:ipproto:scheme:epoRepNumber", "value": "000000"}
+  ],
+  "legalName": "Fabrikam Patentes S.L.",
+  "jurisdictionCode": "ES"
+}
+```
+
+The full structure, with addresses, is `actor-reference-supplier.example.json` in `schemas/examples/`.
 
 ## Behavior
 
