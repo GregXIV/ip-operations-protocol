@@ -40,6 +40,7 @@ They hold for every actor that produces protocol messages, whatever profile it c
 | G7 | As receiver: an unknown field, vocabulary value or message type of the same MAJOR version is treated as unknown, not as an error; a different MAJOR version is surfaced as a mismatch. | [VERSIONING](../../VERSIONING.md), rules 1 to 3 |
 | G8 | The records it issued and names by URI (Actor References, Actor Role Declarations, Document References, Authority Claims) are resolvable, at least by the actors that produced or received a message naming them. | [Conventions](Conventions.md), *Record resolution* |
 | G9 | Every change to a protocol record is made under an Authority Claim and conveyed by a Data Assertion. | [Conventions](Conventions.md), *Authority and assertions*; [Authority Claim](../02%20-%20Foundational%20Structures/Authority%20Claim.md); [Data Assertion](../02%20-%20Foundational%20Structures/Data%20Assertion.md) |
+| G10 | An Actor Reference it issued does not change once published; a change of legal name or jurisdiction after that takes a new actor URI. | [Actor Reference](../02%20-%20Foundational%20Structures/Actor%20Reference.md), *Behavior* |
 
 ## Orchestrator profile
 

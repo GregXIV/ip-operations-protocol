@@ -120,7 +120,9 @@ The full structure, with addresses, is `actor-reference-supplier.example.json` i
 
 ## Behavior
 
-ActorReferences are immutable once registered. Legal name changes, jurisdiction changes, mergers, and acquisitions produce a new actor URI with a `succeeds` relationship to the previous URI through the [Authority Claim](Authority%20Claim.md) machinery rather than mutating the existing reference.
+ActorReferences are immutable once published. Legal name changes, jurisdiction changes, mergers, and acquisitions produce a new actor URI with a `succeeds` relationship to the previous URI through the [Authority Claim](Authority%20Claim.md) machinery rather than mutating the existing reference.
+
+**When immutability begins.** Stated in 0.5. An Actor Reference is published when another actor can first see it: when its `actorUri` first appears in a message sent to another actor, or when the reference is first served through record resolution (see *Record resolution* in [Conventions](../01%20-%20Front%20Matter/Conventions.md)). Before that, the actor that keeps the reference may correct it, for example a misspelt legal name found while the organization is being verified; nobody has relied on it yet. From then on a change of legal name or jurisdiction takes a new actor URI as described above. Adding an identifier, or the `verifiedAt` of an identifier, describes the same actor and is not such a change. Until 0.5 this page said "once registered", which left open whether entering an organization in one's own system already counted.
 
 ## Cross-references
 
