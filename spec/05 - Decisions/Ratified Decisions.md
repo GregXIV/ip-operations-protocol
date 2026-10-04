@@ -1,6 +1,6 @@
 ---
 type: decisions
-status: v0.4
+status: v0.5
 ---
 
 # Ratified Decisions
@@ -118,6 +118,12 @@ Three rules for the sender of a [Bid Invitation](../03%20-%20Messages/Procuremen
 53. **Every applicant is a conflict party.** An applicant of a prospective right who is neither the requester nor the beneficiary is listed in the invitation's `conflictParties`, with role `other` unless another role describes it. A bidder therefore sees every party it would act for before it bids, also while the requester's identity is withheld and `applicant` is left out of the entries (decision 49). No field is added to [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md).
 54. **A withheld invitation does not name the requester indirectly.** While `requesterIdentityWithheld` is true, no [Entity Reference](../02%20-%20Foundational%20Structures/Entity%20Reference.md) in the invitation carries the requester as its source (`source.sourceActorUri`) or names it in any other field. The orchestrator re-states such a reference under its own name or without a source actor. This is a rule the sender follows; the schema cannot check it. It completes decisions 49 and 52, which keep `applicant` and `requester` out of a withheld invitation.
 55. **The sender may limit the intended jurisdictions on an invitation.** The `intendedJurisdictions` of an entry in `scope.prospectiveRights` may be limited to the jurisdictions the invitation covers; the sender is not required to show the full filing plan to a bidder. [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) and [Workstream](../02%20-%20Foundational%20Structures/Workstream.md) keep the full list. This replaces a sentence of the 0.4.0 text, which said that the entry is not cut down to the invitation.
+
+## Version 0.5.0 (accepted 2026-10-04, proposed, not yet released)
+
+Twelve points raised by the first conformance reading of an orchestrator implementation against 0.4.1, accepted by the maintainer on 2026-10-04 as a proposal for 0.5.0. Decisions 56 to 67 follow the order of the points, so decision 55 + *n* answers point *n*. They take effect with the release of 0.5.0.
+
+56. **A message entered by another actor names it in `recordedBy`.** The envelope has an optional `recordedBy` with `actorUri` (required) and `userContext`. It is used where an actor enters a message on the originating actor's behalf with the originator's consent, for example the orchestrator's staff recording a supplier's acceptance given by telephone. `originatingActor` and `originatingRoleDeclaration` keep naming the originator, and the message binds it. `userContext` names only a user of the originating actor. The consent lies outside the message. See [Common Envelope](../02%20-%20Foundational%20Structures/Common%20Envelope.md).
 
 ## See also
 

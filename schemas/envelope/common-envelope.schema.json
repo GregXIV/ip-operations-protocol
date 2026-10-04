@@ -42,6 +42,21 @@
     "userContext": {
       "$ref": "urn:ipproto:schema:0.5:userContext"
     },
+    "recordedBy": {
+      "description": "Added in 0.5. The actor that entered this message on the originating actor's behalf, with the originator's consent. The originating actor stays the originator.",
+      "type": "object",
+      "properties": {
+        "actorUri": {
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+        },
+        "userContext": {
+          "$ref": "urn:ipproto:schema:0.5:userContext"
+        }
+      },
+      "required": [
+        "actorUri"
+      ]
+    },
     "correlation": {
       "type": "object",
       "properties": {

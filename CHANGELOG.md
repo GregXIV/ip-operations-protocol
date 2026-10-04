@@ -3,6 +3,22 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [Unreleased] — proposed 0.5.0
+
+Twelve points from the first conformance reading of an orchestrator implementation against
+0.4.1, accepted by the maintainer on 2026-10-04 as a proposal for 0.5.0 (Ratified Decisions
+56 to 67, numbered in the order of the points). Not released: `VERSION` stays 0.4.1 until the
+maintainer tags the release.
+
+### Added
+- **Envelope: `recordedBy`, optional.** The actor that entered a message on the originating
+  actor's behalf, with the originator's consent, and the person there who entered it. The
+  originating actor stays the originator and the message binds it; `userContext` stays
+  reserved for a user of the originating actor. Instruction Accepted describes the case of
+  an acceptance given by telephone or e-mail. Decision 56.
+
+### Changed
+
 ## [0.4.1] — 2026-10 (working draft)
 
 Three rules for the sender of a Bid Invitation, decided by the maintainer on 2026-10-02
