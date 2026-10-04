@@ -45,6 +45,12 @@ maintainer tags the release.
   (an acknowledgement level in its terms, a named deliverable per service), not the
   message: no invented clock, no placeholder deliverable type. Nothing in the schema or
   on the page changes. Decision 60.
+- **Milestone Failed and Milestone Abandoned: who ends a milestone the provider did not
+  perform.** Only the primary actor reports a failure. A work requester that ends a
+  milestone because its provider did not perform sends Milestone Abandoned, with itself as
+  `decisionAuthority`, `reasonCategory` `other` and the reason in the narrative; re-routing
+  the work is a new instruction in a new workstream. Guidance only, no schema change;
+  example `milestone-abandoned-provider-not-performing`. Decision 62.
 
 ### Fixed
 - **Service Deliverable: `assertions` is conditional, not required.** The page called the
