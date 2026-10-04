@@ -1,4 +1,4 @@
-/* IP Operations Protocol v0.4 — TypeScript types.
+/* IP Operations Protocol v0.5 — TypeScript types.
  * GENERATED from the JSON Schemas. Do not edit by hand; regenerate when the spec versions.
  */
 
@@ -127,6 +127,20 @@ export type InstructionAccepted = CommonEnvelope;
  * via the `definition` "InstructionDeclined".
  */
 export type InstructionDeclined = CommonEnvelope;
+/**
+ * Added in 0.5. The payee cancels an invoice it issued, with the reason, and names the replacement where there is one.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "InvoiceCancelled".
+ */
+export type InvoiceCancelled = CommonEnvelope;
+/**
+ * Added in 0.5. The payor disputes an invoice it received, with the reason. Acceptance of an invoice has no message.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "InvoiceDisputed".
+ */
+export type InvoiceDisputed = CommonEnvelope;
 /**
  * A payee issues an invoice to a payor, for milestones, subscriptions or both. One message for supplier invoices and for the customer invoice; payee and payor say which it is.
  *
@@ -322,6 +336,13 @@ export interface CommonEnvelope {
   }[];
   producedAt: string;
   userContext?: UserContext;
+  /**
+   * Added in 0.5. The actor that entered this message on the originating actor's behalf, with the originator's consent. The originating actor stays the originator.
+   */
+  recordedBy?: {
+    actorUri: string;
+    userContext?: UserContext;
+  };
   correlation?: {
     correlatedToMessageUri?: string;
     workstreamUri?: string;
@@ -403,11 +424,19 @@ export interface ActorReference {
       scheme: string;
       value: string;
       verifiedAt?: string;
+      /**
+       * Added in 0.5. The register that issued the identifier; required with the scheme urn:ipproto:scheme:companyRegister. Recommended: the register's code in the GLEIF Registration Authorities List.
+       */
+      registrationAuthority?: string;
     },
     ...{
       scheme: string;
       value: string;
       verifiedAt?: string;
+      /**
+       * Added in 0.5. The register that issued the identifier; required with the scheme urn:ipproto:scheme:companyRegister. Recommended: the register's code in the GLEIF Registration Authorities List.
+       */
+      registrationAuthority?: string;
     }[]
   ];
   legalName: string;
