@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:milestoneAbandoned",
+  "$id": "urn:ipproto:schema:0.5:milestoneAbandoned",
   "title": "Milestone Abandoned",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,10 +16,10 @@
       "type": "object",
       "properties": {
         "milestoneReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "abandonedAt": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
         },
         "abandonmentReason": {
           "type": "object",
@@ -38,10 +38,10 @@
               "type": "string"
             },
             "decisionAuthority": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             },
             "decisionUserContext": {
-              "$ref": "urn:ipproto:schema:0.4:userContext"
+              "$ref": "urn:ipproto:schema:0.5:userContext"
             }
           },
           "required": [
@@ -59,7 +59,7 @@
             "cascadingAbandonments": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
               }
             },
             "releasedResources": {

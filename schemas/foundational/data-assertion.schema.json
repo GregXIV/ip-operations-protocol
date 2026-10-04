@@ -1,20 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:dataAssertion",
+  "$id": "urn:ipproto:schema:0.5:dataAssertion",
   "title": "Data Assertion",
   "type": "object",
   "properties": {
     "assertionUri": {
-      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
     },
     "recordUri": {
-      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
     },
     "sectionPath": {
-      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/jsonPointer"
+      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/jsonPointer"
     },
     "asserter": {
-      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/claimantRef"
+      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/claimantRef"
     },
     "assertionContent": {
       "oneOf": [
@@ -51,7 +51,7 @@
                     ]
                   },
                   "path": {
-                    "$ref": "urn:ipproto:schema:0.4:defs#/$defs/jsonPointer"
+                    "$ref": "urn:ipproto:schema:0.5:defs#/$defs/jsonPointer"
                   },
                   "value": {}
                 },
@@ -70,21 +70,21 @@
       ]
     },
     "claimReference": {
-      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
     },
     "assertedAt": {
-      "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
     },
     "supersedes": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
       }
     },
     "evidenceReference": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
       }
     }
   },

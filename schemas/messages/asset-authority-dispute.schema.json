@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:assetAuthorityDispute",
+  "$id": "urn:ipproto:schema:0.5:assetAuthorityDispute",
   "title": "Asset Authority Dispute",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,20 +16,20 @@
       "type": "object",
       "properties": {
         "disputeReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "disputedRecord": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "disputedSectionPath": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/jsonPointer"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/jsonPointer"
         },
         "competingClaims": {
           "type": "array",
           "minItems": 2,
           "maxItems": 2,
           "items": {
-            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
           }
         },
         "conflictType": {
@@ -48,10 +48,10 @@
           "type": "object",
           "properties": {
             "targetActorUri": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             },
             "targetRoleDeclaration": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             },
             "routingBasis": {
               "type": "string"
@@ -70,13 +70,13 @@
             "blockedMilestones": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
               }
             },
             "blockedWorkstreams": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
               }
             }
           }

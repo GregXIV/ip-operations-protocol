@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:instructionAccepted",
+  "$id": "urn:ipproto:schema:0.5:instructionAccepted",
   "title": "Instruction Accepted",
   "description": "A work provider accepts a work instruction. Binds both sides to the instruction's price and service levels and commits the milestone.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,13 +17,13 @@
       "type": "object",
       "properties": {
         "instructionReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "acceptedAt": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
         },
         "responsibleUser": {
-          "$ref": "urn:ipproto:schema:0.4:userContext"
+          "$ref": "urn:ipproto:schema:0.5:userContext"
         }
       },
       "required": [

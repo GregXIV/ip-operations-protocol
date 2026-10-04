@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:invoiceIssued",
+  "$id": "urn:ipproto:schema:0.5:invoiceIssued",
   "title": "Invoice Issued",
   "description": "A payee issues an invoice to a payor, for milestones, subscriptions or both. One message for supplier invoices and for the customer invoice; payee and payor say which it is.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,7 +17,7 @@
       "type": "object",
       "properties": {
         "invoiceReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "invoiceNumber": {
           "type": "string"
@@ -26,10 +26,10 @@
           "type": "object",
           "properties": {
             "actorUri": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             },
             "roleDeclarationUri": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             }
           },
           "required": [
@@ -40,10 +40,10 @@
           "type": "object",
           "properties": {
             "actorUri": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             },
             "roleDeclarationUri": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             }
           },
           "required": [
@@ -57,20 +57,20 @@
             "type": "object",
             "properties": {
               "milestoneReference": {
-                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
               },
               "subscriptionReference": {
-                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
               },
               "billingPeriod": {
                 "type": "object",
                 "description": "The period a subscription line is charged for. Both dates are inclusive, and 'to' is not before 'from'; the order of the two dates is a rule of the spec that JSON Schema cannot express. Allowed only on a line that carries subscriptionReference. Added in 0.4.",
                 "properties": {
                   "from": {
-                    "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDate"
+                    "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDate"
                   },
                   "to": {
-                    "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDate"
+                    "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDate"
                   }
                 },
                 "required": [
@@ -79,7 +79,7 @@
                 ]
               },
               "lineItemType": {
-                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
               },
               "amount": {
                 "type": "number"
@@ -112,7 +112,7 @@
           }
         },
         "totalAmount": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/money"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/money"
         },
         "taxHandling": {
           "type": "object",
@@ -147,10 +147,10 @@
           ]
         },
         "dueDate": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDate"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDate"
         },
         "invoiceDocument": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         }
       },
       "required": [

@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:conflictCheckAttested",
+  "$id": "urn:ipproto:schema:0.5:conflictCheckAttested",
   "title": "Conflict Check Attested",
   "description": "A bidder attests the outcome of its conflict check against the parties named in a bid invitation. Only the attestation is exchanged, not the method.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,13 +17,13 @@
       "type": "object",
       "properties": {
         "invitationReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "checkedParties": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "urn:ipproto:schema:0.4:entityReference"
+            "$ref": "urn:ipproto:schema:0.5:entityReference"
           }
         },
         "outcome": {
@@ -33,7 +33,7 @@
           ]
         },
         "attestedBy": {
-          "$ref": "urn:ipproto:schema:0.4:userContext"
+          "$ref": "urn:ipproto:schema:0.5:userContext"
         }
       },
       "required": [

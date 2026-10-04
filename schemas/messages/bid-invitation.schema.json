@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.4:bidInvitation",
+  "$id": "urn:ipproto:schema:0.5:bidInvitation",
   "title": "Bid Invitation",
   "description": "An orchestrator invites suppliers to bid on one milestone. Opens the procurement sequence behind the execution mode thirdPartyRfp.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.4:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,10 +17,10 @@
       "type": "object",
       "properties": {
         "requestReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "milestoneReference": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
         },
         "scope": {
           "type": "object",
@@ -29,15 +29,15 @@
               "type": "string"
             },
             "milestoneCategory": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
             },
             "jurisdictionCode": {
-              "$ref": "urn:ipproto:schema:0.4:defs#/$defs/st3Code"
+              "$ref": "urn:ipproto:schema:0.5:defs#/$defs/st3Code"
             },
             "assetReferences": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
               }
             },
             "prospectiveRights": {
@@ -45,7 +45,7 @@
               "minItems": 1,
               "description": "The rights the work is to create or prepare where no asset exists yet, as on Work Requested. While requesterIdentityWithheld is true no entry carries an applicant. Added in 0.4.",
               "items": {
-                "$ref": "urn:ipproto:schema:0.4:defs#/$defs/prospectiveRight"
+                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/prospectiveRight"
               }
             }
           },
@@ -57,11 +57,11 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "urn:ipproto:schema:0.4:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
           }
         },
         "bidDeadline": {
-          "$ref": "urn:ipproto:schema:0.4:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
         },
         "audience": {
           "enum": [
@@ -83,7 +83,7 @@
                 ]
               },
               "party": {
-                "$ref": "urn:ipproto:schema:0.4:entityReference"
+                "$ref": "urn:ipproto:schema:0.5:entityReference"
               }
             },
             "required": [
@@ -96,7 +96,7 @@
           "type": "boolean"
         },
         "requester": {
-          "$ref": "urn:ipproto:schema:0.4:actorReference",
+          "$ref": "urn:ipproto:schema:0.5:actorReference",
           "description": "The work requester, as in Requester Disclosed. Included when the requester's identity is not withheld; must be absent while requesterIdentityWithheld is true. Not required, so that a 0.3 invitation stays valid. Added in 0.4."
         }
       },
