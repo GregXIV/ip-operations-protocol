@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.5:invoiceCancelled",
+  "title": "Invoice Cancelled",
+  "description": "Added in 0.5. The payee cancels an invoice it issued, with the reason, and names the replacement where there is one.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:invoiceCancelled"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "invoiceReference": {
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+        },
+        "cancelledAt": {
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
+        },
+        "cancellationReason": {
+          "type": "object",
+          "properties": {
+            "reasonCategory": {
+              "enum": [
+                "issuedInError",
+                "disputeAccepted",
+                "workAbandoned",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reasonCategory"
+          ]
+        },
+        "replacementInvoiceReference": {
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+        },
+        "cancellationDocument": {
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+        }
+      },
+      "required": [
+        "invoiceReference",
+        "cancelledAt",
+        "cancellationReason"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

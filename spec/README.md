@@ -41,7 +41,7 @@ Then either:
 
 ### Messages
 
-41 message types in 12 categories. The thirteen added in 0.2 and the two added in 0.3 are marked.
+43 message types in 12 categories. The thirteen added in 0.2, the two added in 0.3 and the two added in 0.5 are marked.
 
 **Bootstrap and discovery:** [Asset Bootstrap](03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md), [Asset Match Inquiry](03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Inquiry.md), [Asset Match Response](03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Match%20Response.md)
 
@@ -57,7 +57,7 @@ Then either:
 
 **Prepared-action handoff:** [Artifact Ready](03%20-%20Messages/Prepared-Action%20Handoff/Artifact%20Ready.md), [Client Action Completed](03%20-%20Messages/Prepared-Action%20Handoff/Client%20Action%20Completed.md)
 
-**Payments:** [Payment Authorized](03%20-%20Messages/Payments/Payment%20Authorized.md), [Payment Executed](03%20-%20Messages/Payments/Payment%20Executed.md), [Invoice Issued](03%20-%20Messages/Payments/Invoice%20Issued.md) (0.2)
+**Payments:** [Payment Authorized](03%20-%20Messages/Payments/Payment%20Authorized.md), [Payment Executed](03%20-%20Messages/Payments/Payment%20Executed.md), [Invoice Issued](03%20-%20Messages/Payments/Invoice%20Issued.md) (0.2), [Invoice Disputed](03%20-%20Messages/Payments/Invoice%20Disputed.md) (0.5), [Invoice Cancelled](03%20-%20Messages/Payments/Invoice%20Cancelled.md) (0.5)
 
 **Subscriptions:** [Service Subscription Started](03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md), [Service Subscription Terminated](03%20-%20Messages/Subscriptions/Service%20Subscription%20Terminated.md)
 

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.5:invoiceDisputed",
+  "title": "Invoice Disputed",
+  "description": "Added in 0.5. The payor disputes an invoice it received, with the reason. Acceptance of an invoice has no message.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:invoiceDisputed"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "invoiceReference": {
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+        },
+        "disputedAt": {
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
+        },
+        "disputeReason": {
+          "type": "object",
+          "properties": {
+            "reasonCategory": {
+              "enum": [
+                "amountNotAgreed",
+                "workNotCompleted",
+                "notOrderedByPayor",
+                "duplicateInvoice",
+                "taxTreatmentIncorrect",
+                "formalDefect",
+                "other"
+              ]
+            },
+            "reasonNarrative": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reasonCategory"
+          ]
+        },
+        "disputedLines": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "lineIndex": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "lineIndex"
+            ]
+          }
+        },
+        "disputedAmount": {
+          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/money"
+        }
+      },
+      "required": [
+        "invoiceReference",
+        "disputedAt",
+        "disputeReason"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

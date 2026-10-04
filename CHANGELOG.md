@@ -16,6 +16,15 @@ maintainer tags the release.
   originating actor stays the originator and the message binds it; `userContext` stays
   reserved for a user of the originating actor. Instruction Accepted describes the case of
   an acceptance given by telephone or e-mail. Decision 56.
+- **Messages (2), category Payments.** Invoice Disputed: the payor disputes an invoice,
+  with a closed list of seven reason categories, optionally naming the disputed lines by
+  position and the disputed amount. Invoice Cancelled: the payee cancels an invoice, with
+  a closed list of four reason categories, optionally naming the replacement invoice and
+  a cancellation document. Accepting an invoice still has no message: an invoice the payor
+  does not dispute stands, and Payment Authorized, where used, is the payor's affirmative
+  step. An invoice is never changed; a correction is a cancellation and a new Invoice
+  Issued. Decision 57.
+- **Document type `creditNote`**, referenced by Invoice Cancelled.
 
 ### Changed
 
