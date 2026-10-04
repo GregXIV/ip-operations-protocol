@@ -74,8 +74,13 @@ maintainer tags the release.
   keeping actor may correct it; after that a change of legal name or jurisdiction takes a
   new actor URI. Adding an identifier is not such a change. General requirement G10 of
   the Conformance page. Decision 66.
-
-### Fixed
+- **A message is a record, not only a transmission** (Conventions, *Event-sourced flow*).
+  A message exists once produced and recorded, whether or not a transport carried it.
+  The orchestrator profile gains a journal: every action between two organizations that
+  has a message is recorded as that message, also where all parties work on the
+  orchestrator's own platform, open services under the procurement family included; the
+  organization that acted is the originator, not the platform; the parties to a message can
+  obtain it. Decision 67.
 - **Service Deliverable: `assertions` is conditional, not required.** The page called the
   field required; the schema has always allowed it to be left out, and the schema was
   right. It is present where the deliverable substantiates a section of a record and

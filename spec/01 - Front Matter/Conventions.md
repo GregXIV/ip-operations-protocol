@@ -87,6 +87,8 @@ The transport is open, as for messages (see [Non-Scope](Non-Scope.md)). Two acto
 
 The protocol is **event-sourced**. Records are populated by sequences of events (messages), and the current state is the result of applying events in order. Authority claims and data assertions are the protocol's primitives; messages are envelopes carrying them.
 
+**A message is a record, not only a transmission.** Stated in 0.5. A message exists once its originator has produced it and it is recorded, whether or not a transport has carried it to another system. Where both parties work on the same platform, the platform records the message between them all the same: the action is one between two organizations, and the record is what makes it auditable and replayable. See requirement OR-J1 of the orchestrator profile in [Conformance](Conformance.md).
+
 ### Optional fields
 
 Fields marked **optional** may be omitted; receivers must handle absence cleanly. Fields marked **required** must be present; absence is a protocol violation. Fields marked **conditional** are required when a stated condition holds and absent otherwise.

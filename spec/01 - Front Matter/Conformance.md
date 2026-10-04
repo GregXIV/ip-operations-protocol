@@ -100,11 +100,19 @@ The orchestrator stands between a customer and the providers who do the work. In
 | OR-V2 | Each invoice line carries exactly one of `milestoneReference` and `subscriptionReference`; `totalAmount` is the sum of the lines plus tax; `taxTreatment` states the treatment, and `notStated` only where the sender does not know it. | Invoice Issued; decision 61 |
 | OR-V3 | An invoice it will not accept as issued is disputed with [Invoice Disputed](../03%20-%20Messages/Payments/Invoice%20Disputed.md); an invoice of its own that it withdraws is cancelled with [Invoice Cancelled](../03%20-%20Messages/Payments/Invoice%20Cancelled.md). An invoice is never changed. | Invoice Disputed; Invoice Cancelled; decision 57 |
 
+**Journal**
+
+| ID | Requirement | Stated in |
+|---|---|---|
+| OR-J1 | Every action between two organizations that the orchestrator performs or carries, and for which the protocol has a message, is recorded as that message, whether or not it is transmitted to another system. This holds where all parties work on the orchestrator's own platform, including open services under the procurement module: an invitation, a bid, an award and their answers are messages even when no message leaves the platform. | [Conventions](Conventions.md), *Event-sourced flow*; decision 67 |
+| OR-J2 | A recorded message names as originator the organization that acted, not the platform: a customer's award is the customer's message, a provider's bid the provider's. Where someone else entered it, G4 applies. | [Common Envelope](../02%20-%20Foundational%20Structures/Common%20Envelope.md); decision 67 |
+| OR-J3 | The parties to a recorded message, its originator and the actors it is addressed to, can obtain it. | decision 67 |
+
 ### Conditional modules
 
 | Module | Applies when the orchestrator | Requirements |
 |---|---|---|
-| Procurement | puts work to bidders (direct quote, panel, open RFP) | OR-P1: the procurement messages as the pages describe them, with the five rules of the procurement family ([Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md), *The procurement sequence*). OR-P2: the sender rules of a Bid Invitation, including decisions 53 to 55. OR-P3: a withheld requester is disclosed only with [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md), only after a `clear` attestation. |
+| Procurement | puts work to bidders (direct quote, panel, open RFP), also where requester and bidders all work on its own platform (OR-J1) | OR-P1: the procurement messages as the pages describe them, with the five rules of the procurement family ([Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md), *The procurement sequence*). OR-P2: the sender rules of a Bid Invitation, including decisions 53 to 55. OR-P3: a withheld requester is disclosed only with [Requester Disclosed](../03%20-%20Messages/Procurement/Requester%20Disclosed.md), only after a `clear` attestation. |
 | Payments | authorizes or executes payments through the protocol | OR-PA1: [Payment Authorized](../03%20-%20Messages/Payments/Payment%20Authorized.md) from the payor, [Payment Executed](../03%20-%20Messages/Payments/Payment%20Executed.md) from the payment agent. See the payment note below. |
 | Subscriptions | sells or operates subscriptions | OR-S1: [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md) and [Terminated](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Terminated.md), one start message per audience where a revenue share applies (decision 47); subscription invoice lines under OR-V2. |
 | Assets | names assets in its messages | OR-A1: the representational asset identification profile. Where it resolves assets by lookup, the resolving profile. |
