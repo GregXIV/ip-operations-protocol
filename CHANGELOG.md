@@ -32,6 +32,11 @@ maintainer tags the release.
   a message may not. Transport stays open, with a recommended, non-normative HTTPS shape
   and the electronic address type `urn:ipproto:address:recordResolution` on Actor
   Reference. VERSIONING's discoverability note points to it. Decision 59.
+- **Tax treatment `notStated`**, provisional, under Open Question 7: the sender does not
+  know the treatment, for instance because the invoice was entered from a document whose
+  tax position was not captured. It claims nothing about the tax position; the invoice
+  document says what applies. A payee that issues its own invoice states the treatment.
+  Open Question 7 stays open. Decision 61.
 
 ### Changed
 - **Decided without a change: Work Instruction.** An instruction needs at least one agreed

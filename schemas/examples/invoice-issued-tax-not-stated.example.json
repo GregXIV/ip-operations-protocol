@@ -1,0 +1,66 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceIssued-example-0003",
+  "messageType": "urn:ipproto:message:invoiceIssued",
+  "protocolVersion": "0.5",
+  "originatingActor": "urn:ipproto:actor:fabrikam-patentes",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:fabrikam-work-provider-b",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:payor"
+    }
+  ],
+  "producedAt": "2026-11-12T16:20:00Z",
+  "recordedBy": {
+    "actorUri": "urn:ipproto:actor:meridian-ip-group",
+    "userContext": {
+      "userIdentifier": "operations-desk@meridian-ip-group.example",
+      "roleAtActor": "Case Manager"
+    }
+  },
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:invoiceCancelled-example-0001",
+    "workstreamUri": "urn:ipproto:workstream:b-agent-es-001",
+    "milestoneUri": "urn:ipproto:milestone:b1-es-validation-agent"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:fabrikam-2026-3402",
+    "invoiceNumber": "FP-2026-3402",
+    "payee": {
+      "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:fabrikam-work-provider-b"
+    },
+    "payor": {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:meridian-work-requester-b"
+    },
+    "invoiceLines": [
+      {
+        "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
+        "lineItemType": "urn:ipproto:lineItem:professionalFee",
+        "amount": 380.0
+      },
+      {
+        "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
+        "lineItemType": "urn:ipproto:lineItem:translation",
+        "amount": 850.0,
+        "description": "Specification into Spanish, 21 pages"
+      },
+      {
+        "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
+        "lineItemType": "urn:ipproto:lineItem:officialFee",
+        "amount": 260.0,
+        "description": "OEPM publication fee"
+      }
+    ],
+    "totalAmount": {
+      "amount": 1490.0,
+      "currency": "EUR"
+    },
+    "taxHandling": {
+      "taxTreatment": "notStated"
+    },
+    "dueDate": "2026-12-12",
+    "invoiceDocument": "urn:ipproto:document:fabrikam-inv-2026-3402"
+  }
+}
