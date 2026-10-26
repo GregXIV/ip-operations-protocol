@@ -1,0 +1,74 @@
+# Blocks third-party names that must never appear in this repo.
+# The names are not written here: each is stored only as the SHA-256 of its
+# lowercase form, and every word in the tree and in the new commit messages is
+# hashed and compared. Output names file:line only, never the matching text.
+# Source of truth: GregXIV/claude-mac-mini ci/banned-terms.yml.
+name: banned-terms
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  banned-terms:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: Scan tree and new commit messages
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if [ "$EVENT" = "pull_request" ]; then RANGE="$BASE..HEAD"
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then RANGE="HEAD~1..HEAD"
+          else RANGE="$BEFORE..HEAD"; fi
+          export RANGE
+          python3 - <<'PY'
+          import hashlib, os, re, subprocess, sys
+
+          BANNED = {
+              "7b84d4de39bae1a61253a6b21046c10c9e45d86f16b7a0c3c0af6f8f2a716616",
+          }
+          WORD = re.compile(r"[a-z0-9]+")
+
+          def banned(text):
+              return any(hashlib.sha256(t.encode()).hexdigest() in BANNED
+                         for t in set(WORD.findall(text.lower())))
+
+          hits = []
+          files = subprocess.run(["git", "ls-files", "-z"], capture_output=True, check=True).stdout
+          for raw in filter(None, files.split(b"\0")):
+              path = raw.decode()
+              if banned(path):
+                  hits.append(f"{path} (file name)")
+              try:
+                  data = open(raw, "rb").read()
+              except OSError:
+                  continue
+              if b"\0" in data[:8000]:
+                  continue
+              for n, line in enumerate(data.decode("utf-8", "replace").splitlines(), 1):
+                  if banned(line):
+                      hits.append(f"{path}:{n}")
+
+          rng = os.environ["RANGE"]
+          log = subprocess.run(["git", "log", "--format=%H%x00%B%x01", rng], capture_output=True)
+          for entry in filter(None, log.stdout.decode("utf-8", "replace").split("\x01")):
+              sha, _, msg = entry.strip().partition("\x00")
+              if banned(msg):
+                  hits.append(f"commit {sha[:7]} (message)")
+
+          if hits:
+              print("::error::banned term found — remove it before this can be published:")
+              print("\n".join(hits))
+              sys.exit(1)
+          print("banned-terms: clean")
+          PY
