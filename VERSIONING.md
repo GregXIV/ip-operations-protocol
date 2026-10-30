@@ -57,6 +57,8 @@ message type from a newer MINOR version as "unknown", not as an error.
   history.
 - **Released tags are never moved or rewritten.** Implementers build against them.
   A correction to a released version is a new PATCH release, not an edit to the old tag.
+- One recorded exception: on 2026-10-30 the tags v0.1.0–v0.5.0 were re-created once as a
+  metadata correction (commit and tag author fields only); the released contents are unchanged.
 - **`CHANGELOG.md`** follows the *Keep a Changelog* convention (Added / Changed /
   Deprecated / Removed / Fixed per version) so the history reads cleanly.
 - **Decision records** live under `spec/05 - Decisions/` (Ratified / Open /

@@ -25,12 +25,6 @@ jobs:
 
       - name: Scan tree, new commit messages, and all identity fields
         env:
-          # TODO(D1): remove D1_LEGACY_TIP once the D1 identity rewrite of this
-          # repo's history has been force-pushed. Until then, commits reachable
-          # from this SHA (and tags pointing into them) are exempt from the
-          # identity-field check. The exemption expires on its own: after the
-          # rewrite this SHA is no longer fetched, so nothing is skipped.
-          D1_LEGACY_TIP: "88d1d807edf98e56275187c46a882a4397e02000"
           BANNED_SHA256_EXTRA: 
           EVENT: ${{ github.event_name }}
           BEFORE: ${{ github.event.before }}
@@ -78,22 +72,15 @@ jobs:
           def git(*args):
               return subprocess.run(["git", *args], capture_output=True).stdout.decode("utf-8", "replace")
 
-          legacy = set()
-          tip = os.environ.get("D1_LEGACY_TIP", "").strip()
-          if tip and subprocess.run(["git", "cat-file", "-e", tip + "^{commit}"], capture_output=True).returncode == 0:
-              legacy = set(git("rev-list", tip).split())
-              print(f"banned-terms: D1 legacy exemption active for {len(legacy)} commits (TODO D1)")
 
           for line in git("log", "--all", "--format=%H%x00%an%x00%ae%x00%cn%x00%ce").splitlines():
               sha, *ident = line.split("\x00")
-              if sha not in legacy and banned(" ".join(ident)):
+              if banned(" ".join(ident)):
                   hits.append(f"commit {sha[:7]} (author/committer identity)")
 
           for line in git("for-each-ref", "refs/tags", "--format=%(objecttype) %(objectname) %(refname:short)").splitlines():
               kind, obj, name = line.split(" ", 2)
               if kind != "tag":
-                  continue
-              if git("rev-parse", obj + "^{commit}").strip() in legacy:
                   continue
               body = git("cat-file", "-p", obj)
               head, _, msg = body.partition("\n\n")
