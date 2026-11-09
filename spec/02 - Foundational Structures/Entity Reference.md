@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.6
+status: v0.7
 ---
 
 # Entity Reference
@@ -46,6 +46,11 @@ Unlike `resolution`, which is the asserter's own view, an identifier is a public
 Type: array of strings, optional
 
 Added in 0.6. Other names under which the entity is known: former names, trading names, transliterations. Each is recorded as found. `literal.value` stays the name as observed in the source.
+
+### `entityKind`
+Type: enumeration, optional
+
+Added in 0.7 (decision 92). Whether the entity is a `legalPerson` (a company, a firm, a public body, a court) or a `naturalPerson` (an individual: an inventor, a sole trader, a private client). Absent means not stated. Closed enumeration.
 
 ### `crossActorReferences`
 Type: array, optional
@@ -105,6 +110,17 @@ This is the **only** field in the protocol where cross-actor identity informatio
   }
 }
 ```
+
+## Natural persons
+
+Added in 0.7 (decision 92). A client, a party to a proceeding or an applicant may be an individual. An Entity Reference for a natural person carries no more personal data than the work needs:
+
+- the name as the work requires it, in `literal`; `entityKind` `naturalPerson` where the sender knows it
+- an identifier only where an office, a court or a register needs it for the work, and never a national identity number, tax number or date of birth for the sake of matching
+- no `aliases` beyond names the person is publicly known under for the work, such as a former name on a register
+- no `resolutionBasis` that copies personal data the receiver does not already hold
+
+A sender that needs more about an individual, an address for service, asks for it or receives it outside the protocol. The rule binds every actor that names a natural person, in any message: as general requirement G12 of [Conformance](../01%20-%20Front%20Matter/Conformance.md). The same holds for a timekeeper named in a rate table, who is identified by the provider's own identifier (see [Agreed Price](Agreed%20Price.md), `rateTable`). The protocol does not decide what the work needs; it requires that the sender has decided it.
 
 ## Behavior
 

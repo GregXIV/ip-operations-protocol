@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.6
+status: v0.7
 ---
 
 # Conformance
@@ -13,7 +13,7 @@ A profile is a list of requirements, each pointing at the page that states it. I
 
 ## Claiming conformance
 
-A claim names the protocol version and the profile: "conforms to the orchestrator profile of IPOP 0.6", "conforms to the provider profile of IPOP 0.6". An actor that plays both roles, such as a firm that does part of its work and passes the rest on, may claim both. It covers the general requirements below and the requirements of the profile. A conditional module of a profile is part of the claim when the implementation performs what the module covers, and not applicable otherwise.
+A claim names the protocol version and the profile: "conforms to the orchestrator profile of IPOP 0.7", "conforms to the provider profile of IPOP 0.7 with the litigation module". An actor that plays both roles, such as a firm that does part of its work and passes the rest on, may claim both. It covers the general requirements below and the requirements of the profile. A conditional module of a profile is part of the claim when the implementation performs what the module covers, and not applicable otherwise.
 
 A conformance check reads each requirement against the implementation and records it as **met**, **partly met**, **not met** or **not applicable**, with the evidence. Not applicable is open to the conditional modules, and to a requirement on a flow the implementation does not perform at all; it is not open to a flow the implementation performs without the message the requirement names.
 
@@ -43,6 +43,7 @@ They hold for every actor that produces protocol messages, whatever profile it c
 | G9 | Every change to a protocol record is made under an Authority Claim and conveyed by a Data Assertion. | [Conventions](Conventions.md), *Authority and assertions*; [Authority Claim](../02%20-%20Foundational%20Structures/Authority%20Claim.md); [Data Assertion](../02%20-%20Foundational%20Structures/Data%20Assertion.md) |
 | G10 | An Actor Reference it issued does not change once published; a change of legal name or jurisdiction after that takes a new actor URI. | [Actor Reference](../02%20-%20Foundational%20Structures/Actor%20Reference.md), *Behavior* |
 | G11 | A message marked `privileged`, as sender or receiver: not broadcast, no bootstrap subscription invitations, records it names resolved only for its originator and addressees, not forwarded, its workstream's assets not resolved against third-party lookup services. Added in 0.6. | [Common Envelope](../02%20-%20Foundational%20Structures/Common%20Envelope.md), `confidentiality`; [Asset Identification and Resolution](../02%20-%20Foundational%20Structures/Asset%20Identification%20and%20Resolution.md), §4; decisions 76 and 77 |
+| G12 | An Entity Reference that names a natural person carries no more personal data than the work needs: no national identity number, tax number or date of birth for matching, no identifier an office, court or register does not need for the work. A timekeeper in a rate table is named by the provider's own identifier. Added in 0.7. | [Entity Reference](../02%20-%20Foundational%20Structures/Entity%20Reference.md), *Natural persons*; decision 92 |
 
 ## Orchestrator profile
 
@@ -134,7 +135,7 @@ Added in 0.6 (decision 68). The provider does the work: counsel, a patent attorn
 - **Under an orchestrator.** The orchestrator passes it a milestone in a workstream the two share (see [Milestone](../02%20-%20Foundational%20Structures/Milestone.md), *Passing work on*). The provider never deals with the orchestrator's customer.
 - **In a direct engagement.** The client instructs it directly, without an orchestrator or a tender. Client and provider share one workstream, and the provider holds the status claim there (see [Workstream](../02%20-%20Foundational%20Structures/Workstream.md), *Direct engagement*).
 
-A provider that bids on invitations, passes part of its work on, pays or is paid through the protocol, or names assets, adds the conditional modules below.
+A provider that bids on invitations, passes part of its work on, pays or is paid through the protocol, names assets, or conducts proceedings before a court, adds the conditional modules below. Litigation is a module and not a core requirement: a provider that never goes to court claims the profile without it (decision 94).
 
 ### Core requirements
 
@@ -195,7 +196,8 @@ A provider that bids on invitations, passes part of its work on, pays or is paid
 | Sub-delegation | passes part of its work on to another provider | PR-S1: it does so as an orchestrator does, and requirements OR-W1 to OR-W4 and OR-I1 to OR-I5 of the orchestrator profile apply to it in the orchestrator's place: a second workstream, `parentMilestoneUri` and the delegation chain, the addressing rule, a Work Instruction or a Mandate Instruction with agreed clocks only. PR-S2: the parties the provider further down must check are carried in the instruction's `conflictParties`. |
 | Payments | authorizes or executes payments through the protocol | PR-PA1: as OR-PA1 of the orchestrator profile. The payment note there applies: a provider that is paid and collects in an accounting system outside the exchange writes no payment message, and the module is not applicable to it. |
 | Assets | names assets in its messages | PR-A1: the representational asset identification profile. A provider is never required to resolve assets; where it does resolve by lookup, the resolving profile applies, and assets of a privileged workstream are not resolved against third-party lookup services (G11). |
+| Litigation | conducts proceedings before a court or a tribunal for its client. Added in 0.7 (decision 94). A provider may record an opposition before an office in `proceedings` as well; the module then applies to what it records | PR-LT1: each proceeding of the workstream is an entry in `proceedings` of the [Workstream](../02%20-%20Foundational%20Structures/Workstream.md), with its type, its forum as an Entity Reference, the forum's docket number once assigned, and the parties with their `partyRole`; the parties are also conflict parties. PR-LT2: where an asset plays a role in the dispute, `assetRoles` states it, each `assetUri` an entry of `assetReferences`. PR-LT3: court documents are [Document References](../02%20-%20Foundational%20Structures/Document%20Reference.md) of the court document types; a court or another party that is not an actor is the `originator` as an Entity Reference; a document from whose service a period runs carries `servedAt`. PR-LT4: a time limit set by the court or running from service is a [Deadline](../02%20-%20Foundational%20Structures/Deadline.md) whose trigger names the served document; a hearing is a Deadline of kind `hearing`. PR-LT5: a message that carries `proceedings` or `assetRoles` is marked at least `confidential` and goes only to actors of the workstream; work passed on carries only what the provider further down needs, re-stated under its own name. |
 
 ### Outside the profile
 
-How the provider runs its conflict check (only its outcome is exchanged); how it computes a deadline from its basis and trigger; its internal time recording and billing method; and, as for the orchestrator, transport, free-text messaging and the consequences of a missed service level or deadline.
+How the provider runs its conflict check (only its outcome is exchanged); how it computes a deadline from its basis and trigger; its internal time recording and billing method, beyond the rates, budget and fee floor it agrees in an [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md); the conduct of a proceeding and the content of pleadings; and, as for the orchestrator, transport, free-text messaging and the consequences of a missed service level or deadline.

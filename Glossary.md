@@ -33,6 +33,8 @@ status: v0.5
 
 **Bootstrap** — An asset's first appearance in the protocol. See [Asset Bootstrap](spec/03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md).
 
+**Budget** — An amount the parties expect the work to cost, with an agreed rule for exceeding it (notify, or ask first). Not a cap: it limits nothing that is invoiced. Added in 0.7. See [Agreed Price](spec/02%20-%20Foundational%20Structures/Agreed%20Price.md).
+
 ## C
 
 **Catalogue order** — A request for work at a catalogue price. With `preAuthorized` it is the commitment in one step. Added in 0.2. See [Work Requested](spec/03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md).
@@ -153,9 +155,13 @@ status: v0.5
 
 **Procurement** — The sequence of invitation, conflict attestation, bids and award behind the execution mode `thirdPartyRfp`. Added in 0.2. See [Bid Invitation](spec/03%20-%20Messages/Procurement/Bid%20Invitation.md).
 
+**Proceeding** — A case before a court, a tribunal or an office in which the work of a workstream is done, with its forum, docket number, instance and parties. Added in 0.7. See [Workstream](spec/02%20-%20Foundational%20Structures/Workstream.md), `proceedings`.
+
 **Primary** — A milestone actor assignment indicating the actor performing the work.
 
 ## R
+
+**Rate table** — The rates of a time-based price per role or per timekeeper. Added in 0.7. See [Agreed Price](spec/02%20-%20Foundational%20Structures/Agreed%20Price.md).
 
 **Record** — Any protocol-managed entity with sections under authority claims. Assets, workstreams, milestones, subscriptions.
 

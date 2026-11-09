@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.6
+status: v0.7
 ---
 
 # Deadline
@@ -50,6 +50,8 @@ The event from which the deadline is counted:
 - `eventType` — URI, required. Standard values in `urn:ipproto:deadlineTrigger:`: `service` (a document was served on the party), `notification` (an office or a court notified it), `publication`, `filing`, `decision`, `other`. Custom values through namespaced URNs
 - `triggerDate` — ISO 8601 date, optional: the date of the event as the actor counts it
 - `triggerDocument` — [Document Reference](Document%20Reference.md) URI, optional: the document whose service, notification or publication starts the period
+
+Since 0.7 a Document Reference can record when a document was served (`servedAt`) and received (`receivedAt`). Where the trigger is `service` or `notification` and names a `triggerDocument`, `triggerDate` is the date of that document's `servedAt` or `receivedAt`, unless the law deems the event to have happened on another day; the deadline's `triggerDate` then governs the counting. See *Link to a deadline* in [Document Reference](Document%20Reference.md) (decision 91).
 
 ### `dueDate`
 Type: ISO 8601 date, required

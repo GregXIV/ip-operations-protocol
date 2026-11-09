@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.5
+status: v0.7
 ---
 
 # Document Reference
@@ -39,8 +39,17 @@ Typed classification. Standard types in `urn:ipproto:doctype:` namespace:
 **Evidence:**
 - `executionEvidence` — confirmation receipts, screenshots
 - `paymentEvidence` — payment confirmations
-- `filingReceipt` — proof that a filing was received by an office (added in 0.2)
+- `filingReceipt` — proof that a filing was received by an office (added in 0.2) or by a court (since 0.7)
 - `officialFeeReceipt` — proof that an official fee was paid (added in 0.2)
+
+**Court and proceedings** (added in 0.7):
+- `pleading` — a written submission of a party to a court or tribunal: a statement of claim, a defence, a reply, an appeal brief
+- `exhibit` — a document a party submits in support of a pleading, prior art among them. Carries `courtDesignation`
+- `courtOrder` — an order or a direction of the court that does not decide the matter: a procedural order, a summons, an order setting a time limit
+- `courtDecision` — a decision of the court on the matter or part of it: a judgment, a decision on revocation
+- `proofOfService` — proof that a document was served on a party
+
+An office decision in an opposition stays `officeDecision`; the court types are for courts and tribunals.
 
 **Commercial:**
 - `invoice` — an invoice as a document, referenced by [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) (added in 0.2). Before 0.2 `invoice` existed only as a deliverable type
@@ -63,12 +72,38 @@ Which assets the document relates to. Required where the document relates to an 
 Omitted, since 0.3, where it relates to none: the draft of an application that is not yet filed, an invention disclosure, the invoice for a subscription that covers no asset. Until 0.3 the field was required without exception, so such a document could not be described. A reference issued for the document after the asset has been bootstrapped names the asset. See *Work on a right that does not exist yet* in [Workstream](Workstream.md).
 
 ### `originator`
-Type: [Actor Reference](Actor%20Reference.md) URI, required
+Type: [Actor Reference](Actor%20Reference.md) URI or [Entity Reference](Entity%20Reference.md), required
 
 Who originated the document. The originator is typically the authoritative source for the document's content.
 
+Since 0.7 the originator may be an Entity Reference instead of an actor URI (decision 90). A court issues orders and decisions, and the opposing party writes pleadings, but neither takes part in the exchange, and neither should have to become an actor for its document to be described. The actor that issues the Document Reference then names the originator as found, with `literal.source` saying where. An originator that is an actor is still named by its actor URI. Until 0.7 only an actor URI was allowed: a receiver that read `originator` as a URI in every case must expect an object.
+
 ### `originationDate`
 Type: ISO 8601 datetime, required
+
+### `servedAt`
+Type: ISO 8601 datetime or date, optional
+
+Added in 0.7 (decision 91). When the document was served on the party for which the issuer of this reference acts: formally delivered by the court, by an office or by the other side in a way that starts a period. A date where only the date is known.
+
+### `receivedAt`
+Type: ISO 8601 datetime or date, optional
+
+Added in 0.7. When the issuer of this reference, or its client, actually received the document, where that differs from `servedAt` or where there is no formal service: a copy sent ahead by e-mail, a document served on the client and passed to counsel.
+
+Both are facts about one party's copy. The same court order served on both parties is served on each at its own time; each party's reference states its own. Neither changes `originationDate`, which is when the originator made the document.
+
+**Link to a deadline.** A [Deadline](Deadline.md) whose `trigger.eventType` is `service` names the served document as `trigger.triggerDocument`. Its `trigger.triggerDate` is then the date of that document's `servedAt`, unless the law deems service on another day; where the two differ, the deadline's `triggerDate` governs the counting and the document's `servedAt` stays the record of what happened. A deadline counted from receipt rather than service uses `eventType` `notification` and `receivedAt` in the same way.
+
+### `courtDesignation`
+Type: structured, optional
+
+Added in 0.7. How a document submitted in proceedings is designated there, typically an exhibit:
+
+- `proceedingReference` — URI, optional: the `proceedingUri` of the proceeding in [Workstream](Workstream.md), `proceedings`
+- `side` — URI, optional: the procedural position of the party that submits it, in `urn:ipproto:proceduralPosition:` (see [Workstream](Workstream.md))
+- `designation` — string, required: the designation as the forum writes it, "Exhibit C-12", "Annex 3"
+- `sequenceNumber` — integer, optional: the number within the side's series, for sorting
 
 ### `languageCode`
 Type: ISO 639-1, optional
@@ -178,6 +213,48 @@ Added in 0.3. The draft of a trademark application, delivered before the filing.
     }
   ],
   "versionLabel": "Draft 1"
+}
+```
+
+## Worked example — a court order served on the client's counsel
+
+Added in 0.7. The court is not a protocol actor, so the originator is an Entity Reference. The order was served on 3 March and sets a time limit counted from service.
+
+```json
+{
+  "documentUri": "urn:ipproto:document:inf-0001-order-07",
+  "documentType": "urn:ipproto:doctype:courtOrder",
+  "assetReferences": ["urn:ipproto:asset:9e0d2b17-..."],
+  "originator": {"literal": {"value": "Court, Patent Chamber", "source": {"sourceType": "derivedDocument"}}},
+  "originationDate": "2027-02-26",
+  "servedAt": "2027-03-03T10:12:00+01:00",
+  "receivedAt": "2027-03-03T10:12:00+01:00",
+  "languageCode": "en",
+  "storageLocations": [
+    {"locationUri": "https://dms.woodgrove-ip.example/inf-0001/order-07.pdf", "locationType": "httpsRest", "mediaType": "application/pdf"}
+  ]
+}
+```
+
+A Deadline counted from it carries `"trigger": {"eventType": "urn:ipproto:deadlineTrigger:service", "triggerDate": "2027-03-03", "triggerDocument": "urn:ipproto:document:inf-0001-order-07"}`. The example `document-reference-court-order.example.json` in `schemas/examples/` validates it.
+
+## Worked example — an exhibit
+
+```json
+{
+  "documentUri": "urn:ipproto:document:inf-0001-exhibit-c12",
+  "documentType": "urn:ipproto:doctype:exhibit",
+  "courtDesignation": {
+    "proceedingReference": "urn:ipproto:proceeding:inf-0001-main",
+    "side": "urn:ipproto:proceduralPosition:claimant",
+    "designation": "Exhibit C-12",
+    "sequenceNumber": 12
+  },
+  "originator": "urn:ipproto:actor:woodgrove-ip",
+  "originationDate": "2027-01-15",
+  "storageLocations": [
+    {"locationUri": "https://dms.woodgrove-ip.example/inf-0001/c-12.pdf", "locationType": "httpsRest", "mediaType": "application/pdf"}
+  ]
 }
 ```
 

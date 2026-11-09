@@ -76,6 +76,8 @@ The actor that entered this message on the originating actor's behalf. Sub-field
 
 **On receipt.** A receiver treats the message as the originator's. It may apply its own policy to recorded messages, for example ask the originator to confirm a recorded acceptance of material value. An originator that did not consent says so to the recording actor; the protocol has no separate message for that, as for any other disagreement between two actors over a message they exchanged.
 
+**No confirmation status.** Stated in 0.7 (decision 93). A recorded message carries no status saying whether its originator has confirmed it. A message does not change once produced, and a confirmation comes later; a status fixed at recording would say nothing a receiver can rely on. The originator confirms by acting on the message, its next message in the workstream refers to it, or by producing the message itself. Where the parties want a written confirmation, the recording actor keeps it as the `sourceDocument` of `recordedFrom` or as a further document of the workstream.
+
 The field is optional. A receiver that does not know it ignores it, as for any unknown field, and reads the message as the originator's, which is right.
 
 ### `recordedFrom`
