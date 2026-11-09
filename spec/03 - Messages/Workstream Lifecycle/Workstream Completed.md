@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.1
+status: v0.6
 ---
 
 # Workstream Completed
@@ -14,7 +14,7 @@ Sent when all milestones in the workstream have reached terminal status (`comple
 
 ## Producer
 
-Typically the orchestrator that originally proposed the workstream, but any actor with appropriate authority.
+Typically the orchestrator that originally proposed the workstream, but any actor with appropriate authority. In a direct engagement, the provider that holds the claim over status updates (see [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Direct engagement*; stated in 0.6).
 
 ## Recipients
 

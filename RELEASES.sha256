@@ -1,0 +1,13 @@
+# Release checksums of the IP Operations Protocol.
+# One line per release: tag, commit, and the SHA-256 of the release's SHA256SUMS
+# manifest, as printed by scripts/release-checksums.sh <tag> (see VERSIONING.md).
+# A release's line is added in the first commit after it is tagged, so the
+# tagged tree never has to contain its own checksum.
+# The lines for v0.1.0 to v0.5.0 were computed on 2026-11-09 from the tags as
+# re-created on 2026-10-30 (see VERSIONING.md); their contents are unchanged.
+v0.1.0 4170881dd7017dac1ae83d2acd69767f383adc8e 1952896f88346f68339a8dceabad50ca982dad44b45a5b1007adc1639044127d
+v0.2.0 40c4eaa9689e466383a52f620d50b69fda70e39f 541eeb7d8589572b86186c51aea9fcd57836d2c71a8487811e05b2622907e28b
+v0.3.0 d294e4ca9586f5a95abb102cb60b6dc68d42be91 0f1ab2e79da61c11f373c614aef2e12b1b2b4ec076923b3e40ffd3d164f05411
+v0.4.0 68a40d8997a66ea043850dc5546c25121f1e8366 c7af0dfd9c6f9cee2dc71bcf946fe82dc31b2d2c83098a015e5eec217fe29f58
+v0.4.1 baa4313062d706e2af02b488aa6f2962377d4ed9 f2d2d47f5e013154fa6276e70cf07d3d020b009ef13b2f4db1fff3e7214dd296
+v0.5.0 9ac18fee018e09a3fffdbd02e529644cab653255 66c860d36c246c041fd80ea518474a21adf4f2cbcdeb2052eb61cbd7a0f5474f

@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.4
+status: v0.6
 ---
 
 # Work Requested
@@ -12,7 +12,7 @@ status: v0.4
 
 Added in 0.2. States what the requester wants done, on which assets or for which rights still to be created, in which countries, for whom, and by which route it is to be sourced. Before 0.2 the protocol began with the orchestrator's [Goal Decomposition](Goal%20Decomposition.md); the customer's own request had no message.
 
-The request does not create a workstream. The orchestrator creates it in answer.
+The request does not create a workstream. The orchestrator creates it in answer or, where the request goes to a provider directly, the instruction that follows does (see *Behavior on receipt*).
 
 ## Producer
 
@@ -20,7 +20,7 @@ The actor with `workRequester` role: a corporate IP department, or a law firm ac
 
 ## Recipients
 
-The actor with `orchestrator` role.
+The actor with `orchestrator` role, or, in a direct engagement, the provider the requester asks to take the work (see [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Direct engagement*). Until 0.6 this page named the orchestrator only.
 
 ## Payload
 
@@ -198,6 +198,8 @@ For `directQuote`, `panel` and `openRfp`, the orchestrator creates the workstrea
 `instructingCapacity`, `beneficiary` and `prospectiveRights` are copied into the workstream unchanged. How the workstream later picks up the asset that a filing creates is described in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Work on a right that does not exist yet*.
 
 A request the orchestrator will not serve is answered with [Request Declined](Request%20Declined.md), added in 0.3. In 0.2 there was no message for it.
+
+**Addressed to a provider directly.** Added in 0.6. A provider asked directly runs its conflict check against the beneficiary and the parties the request names, and may record the outcome with [Conflict Check Attested](../Procurement/Conflict%20Check%20Attested.md), whose subject is then the request. It declines with Request Declined. Where it takes the work, the requester instructs it with a [Mandate Instruction](../Work%20Instruction/Mandate%20Instruction.md) or a [Work Instruction](../Work%20Instruction/Work%20Instruction.md), correlated to the request, or the provider records that instruction on the requester's behalf; the instruction creates the workstream and the provider accepts it. `requestMode` is then `catalogueOrder`: the requester orders at the provider's own terms. The other three modes describe sourcing through invitations and bids and keep their meaning.
 
 ## Related messages
 

@@ -1,0 +1,50 @@
+{
+  "messageUri": "urn:ipproto:message:milestoneFailed-example-0001",
+  "messageType": "urn:ipproto:message:milestoneFailed",
+  "protocolVersion": "0.6",
+  "originatingActor": "urn:ipproto:actor:woodgrove-ip",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:woodgrove-work-provider-opp-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:workRequester"
+    }
+  ],
+  "producedAt": "2027-01-20T16:00:00Z",
+  "confidentiality": {
+    "level": "privileged"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:opp-ep9900001-001",
+    "milestoneUri": "urn:ipproto:milestone:opp-m1-prior-art-search"
+  },
+  "payload": {
+    "milestoneReference": "urn:ipproto:milestone:opp-m1-prior-art-search",
+    "failedAt": "2027-01-20T15:30:00Z",
+    "failureReason": {
+      "reasonCategory": "externalDependencyUnavailable",
+      "reasonNarrative": "The search database the search relies on is unavailable until further notice.",
+      "recoverable": true,
+      "suggestedRemediation": "Run the search on a second database; two days' delay."
+    },
+    "failureImpact": {
+      "affectedDownstreamMilestones": [
+        "urn:ipproto:milestone:opp-m2-notice-of-opposition"
+      ],
+      "affectedDeadlines": [
+        "urn:ipproto:deadline:opp-ep9900001-period",
+        {
+          "deadlineUri": "urn:ipproto:deadline:opp-ep9900001-internal-draft",
+          "deadlineKind": "agreed",
+          "title": "Draft notice of opposition to the client",
+          "dueDate": "2027-02-17",
+          "milestoneReferences": [
+            "urn:ipproto:milestone:opp-m2-notice-of-opposition"
+          ],
+          "status": "open"
+        }
+      ],
+      "requiredAction": "escalateToCorporate"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ---
 type: message
 category: procurement
-status: v0.4
+status: v0.6
 ---
 
 # Requester Disclosed
@@ -39,7 +39,7 @@ The disclosure carries the requester and nothing else. An applicant who is a thi
 ## When it is sent
 
 1. **Only when the identity was withheld.** The invitation carried `requesterIdentityWithheld: true`, and therefore no `requester`. An invitation that withholds nothing needs no disclosure, and the message is not sent: since 0.4 such an invitation names the requester itself.
-2. **Only after a `clear` attestation.** It follows that bidder's [Conflict Check Attested](Conflict%20Check%20Attested.md) with outcome `clear` for the invitation. The envelope's `correlation.correlatedToMessageUri` names the attestation.
+2. **Only after a `clear` attestation.** It follows that bidder's [Conflict Check Attested](Conflict%20Check%20Attested.md) with outcome `clear` for the invitation, or, since 0.6, `clearedAfterReview`, which counts as `clear`. The envelope's `correlation.correlatedToMessageUri` names the attestation.
 3. **Never after `conflict`.** A bidder that attested `conflict` leaves the sequence without learning who the requester is.
 
 ## The requester in the invitation and in the disclosure

@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.5
+status: v0.6
 ---
 
 # Common Envelope
@@ -24,7 +24,7 @@ Identifies which message type this is. Form: `urn:ipproto:message:assetBootstrap
 ### `protocolVersion`
 Type: string
 
-The protocol version this message conforms to. `0.5` for this version of the spec. A `0.4` message remains valid under 0.5, which adds two message types, optional fields and vocabulary values; a 0.4 receiver treats them as unknown. A `0.3` message remains valid under 0.4, which adds optional fields only; a 0.3 receiver may ignore them. A `0.2` message remains valid under 0.3. A `0.1` message remains valid under 0.2, which only adds. A `0.1` receiver is expected to treat the 0.2 additions as unknown; a receiver that validates strictly against the 0.1 schemas does not do that and rejects some of them (see [VERSIONING](../../VERSIONING.md)).
+The protocol version this message conforms to: MAJOR and MINOR, without the patch number, matching `^\d+\.\d+$`. `0.6` for this version of the spec. The pattern is enforced by the schema since 0.6; every message of earlier versions already follows it (decision 79). A `0.5` message remains valid under 0.6, which adds a message type, a structure, optional fields and vocabulary values, and relaxes three rules and tightens three (see [CHANGELOG](../../CHANGELOG.md)); a 0.5 receiver treats the additions as unknown. A `0.4` message remains valid under 0.5, which adds two message types, optional fields and vocabulary values; a 0.4 receiver treats them as unknown. A `0.3` message remains valid under 0.4, which adds optional fields only; a 0.3 receiver may ignore them. A `0.2` message remains valid under 0.3. A `0.1` message remains valid under 0.2, which only adds. A `0.1` receiver is expected to treat the 0.2 additions as unknown; a receiver that validates strictly against the 0.1 schemas does not do that and rejects some of them (see [VERSIONING](../../VERSIONING.md)).
 
 ### `originatingActor`
 Type: [Actor Reference](Actor%20Reference.md) URI
@@ -43,7 +43,9 @@ Each entry contains:
 - `actorUri` — [Actor Reference](Actor%20Reference.md) URI of the recipient
 - `expectedRole` — optional URI describing the role the recipient is expected to play
 
-For broadcast messages (e.g., [Register Event](../03%20-%20Messages/Steady-State%20Events/Register%20Event.md) to all subscribers), the array can contain subscription URIs rather than specific actor URIs.
+For broadcast messages (e.g., [Register Event](../03%20-%20Messages/Steady-State%20Events/Register%20Event.md) to all subscribers), the array can contain subscription URIs rather than specific actor URIs. A message marked `privileged` is never broadcast (see `confidentiality`).
+
+The array may be empty for a message that an actor records for its own journal and sends to nobody, such as a [Conflict Check Attested](../03%20-%20Messages/Procurement/Conflict%20Check%20Attested.md) kept as an internal record (stated in 0.6).
 
 ### `producedAt`
 Type: ISO 8601 datetime
@@ -68,11 +70,40 @@ The actor that entered this message on the originating actor's behalf. Sub-field
 
 **When it is used.** An actor records a message for another when the originator acts outside the protocol: a supplier phones or e-mails its acceptance of an instruction, sends its deliverable or its invoice by mail, and the orchestrator's staff enter it. The message is the originator's: `originatingActor` and `originatingRoleDeclaration` name the originator and the role under which it acts, and the message binds the originator as if it had sent it. `recordedBy` says who typed it in. Before 0.5 the protocol had no way to say this; an implementation either named the recording actor as originator, which misstates who decided, or put the recording actor's staff into `userContext`, which misstates whose user they are.
 
+**The addressee may record.** Stated in 0.6 (decision 75). The recording actor is often the actor the message is addressed to: a provider records its client's instruction received by letter or e-mail, as the orchestrator records a supplier's acceptance. Nothing changes for that case. The client stays the originator, the provider is named in `recordedBy`, and the provider's own answer, such as its [Instruction Accepted](../03%20-%20Messages/Work%20Instruction/Instruction%20Accepted.md), is its own message without `recordedBy`. `recordedFrom` says how the recorded message came in. Until 0.6 every example showed only a requester recording a provider's answer, and the page did not say so.
+
 **Consent.** The recording actor records only with the originator's consent: an agreement between the two, or the originator's instruction for the one message. The consent itself is outside the message. `recordedBy.actorUri` is never the `originatingActor` itself; a message an actor produces itself carries no `recordedBy`.
 
 **On receipt.** A receiver treats the message as the originator's. It may apply its own policy to recorded messages, for example ask the originator to confirm a recorded acceptance of material value. An originator that did not consent says so to the recording actor; the protocol has no separate message for that, as for any other disagreement between two actors over a message they exchanged.
 
 The field is optional. A receiver that does not know it ignores it, as for any unknown field, and reads the message as the originator's, which is right.
+
+### `recordedFrom`
+Type: structured, optional. Added in 0.6.
+
+How the message that another actor recorded reached it. Used only together with `recordedBy`. Sub-fields, all optional:
+- `channel` — how the originator gave it: `email`, `letter`, `telephone`, `inPerson`, `fax`, `portal`, `other`, or a namespaced URN
+- `sourceDocument` — [Document Reference](Document%20Reference.md) URI of the letter, e-mail or note the recording actor worked from
+- `receivedAt` — ISO 8601 datetime: when the recording actor received it. `producedAt` stays the moment the message was produced, which for a recorded message is when it was entered
+
+A receiver that needs to check the recorded message against its source asks for `sourceDocument` like any other document (see *Record resolution* in [Conventions](../01%20-%20Front%20Matter/Conventions.md)), within the limits of `confidentiality`.
+
+### `confidentiality`
+Type: structured, optional. Added in 0.6.
+
+How the content of the message may be handled. Sub-fields:
+- `level` — enumeration, required: `privileged`, `confidential`, `normal`
+- `basis` — URI, optional: why the level applies, as a namespaced URN naming a rule, an agreement or a professional duty
+
+`normal` is what a message without the field is. `confidential` asks receivers to keep the content to themselves and those who work for them; the protocol attaches no further rule to it. `privileged` marks content covered by professional privilege or secrecy, typically everything exchanged between a client and its counsel in a matter, and binds every actor that produces or receives such a message to these rules:
+
+1. **No broadcast.** A privileged message is addressed to actors, never to subscription URIs.
+2. **No bootstrap invitations.** An [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) marked privileged, or made for a privileged workstream, carries no `subscriptionInvitations`.
+3. **Resolution for addressees only.** A record named in a privileged message is resolved only for the originator and the addressees of that message (see *Record resolution* in [Conventions](../01%20-%20Front%20Matter/Conventions.md)), not for the wider circle that point 4 there otherwise allows.
+4. **No forwarding.** A receiver does not pass the message, or the records it names, on to an actor that was not addressed, also not in another workstream. Where work is passed on, the parties the provider further down needs are re-stated in its own instruction, not forwarded.
+5. **Assets are not looked up.** Assets of a privileged workstream are not resolved against third-party lookup services (see [Asset Identification and Resolution](Asset%20Identification%20and%20Resolution.md), §4).
+
+A workstream is privileged once a message of it is marked privileged; the actors then mark every further message of it so. A receiver that does not know the field reads the message as `normal`, which is why rule 4 binds the sender too: a sender does not address a privileged message to an actor it does not trust to observe these rules. The marking does not replace the duties the parties owe each other outside the protocol, and the protocol does not decide whether content is in fact privileged.
 
 ### `correlation`
 Type: structured
@@ -102,7 +133,7 @@ The message-type-specific content. Each message specification defines the shape 
 {
   "messageUri": "urn:ipproto:message:c2e8f1a3-...",
   "messageType": "urn:ipproto:message:assetMatchInquiry",
-  "protocolVersion": "0.5",
+  "protocolVersion": "0.6",
   "originatingActor": "urn:ipproto:actor:meridian-ip-group",
   "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:orchestrator-001",
   "addressedTo": [
@@ -114,6 +145,8 @@ The message-type-specific content. Each message specification defines the shape 
   "producedAt": "2026-04-28T07:30:00Z",
   "userContext": { /* optional UserContext */ },
   "recordedBy": { /* optional, added in 0.5: the actor that entered the message on the originator's behalf */ },
+  "recordedFrom": { /* optional, added in 0.6: channel, source document and time of receipt of a recorded message */ },
+  "confidentiality": { /* optional, added in 0.6: privileged | confidential | normal */ },
   "correlation": {
     "correlatedToMessageUri": "urn:ipproto:message:a8e2c91a-..."
   },

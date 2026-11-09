@@ -1,7 +1,7 @@
 ---
 type: message
 category: procurement
-status: v0.4
+status: v0.6
 ---
 
 # Bid Invitation
@@ -102,12 +102,14 @@ Tells a bidder what kind of competition it is in, not who the competitors are. C
 Type: array of structured entries, required
 
 The parties a bidder checks for conflicts of interest. Each entry:
-- `partyRole` — enumeration: `beneficiary`, `adverseParty`, `other`
+- `partyRole` — `beneficiary`, `applicant`, `adverseParty`, `other`, or a namespaced URN
 - `party` — [Entity Reference](../../02%20-%20Foundational%20Structures/Entity%20Reference.md)
+
+Until 0.6 `partyRole` was a closed enumeration of `beneficiary`, `adverseParty` and `other`. Since 0.6 it adds `applicant` and accepts namespaced URNs, so that a vocabulary of a kind of proceeding can name further roles, such as an intervener, without a change to the standard (decision 74). The same entries are used by `conflictParties` of [Work Instruction](../Work%20Instruction/Work%20Instruction.md) and [Mandate Instruction](../Work%20Instruction/Mandate%20Instruction.md), and by `checkedParties` of [Conflict Check Attested](Conflict%20Check%20Attested.md).
 
 `beneficiary` is the party the work is for: the `beneficiary` of the workstream, or the requester itself when it instructs in its own capacity. An empty array states that there is no party to check.
 
-**Every applicant is a conflict party.** Stated in 0.4.1. An applicant of a prospective right who is neither the requester nor the beneficiary is listed here, with `partyRole` `other` unless one of the other two roles describes it. A bidder therefore sees every party it would act for before it bids, also while the requester's identity is withheld and `applicant` is left out of the entries of `scope.prospectiveRights`. An applicant who is the beneficiary is listed as `beneficiary` already. An applicant who is the requester becomes known with the requester: from `requester`, or from [Requester Disclosed](Requester%20Disclosed.md).
+**Every applicant is a conflict party.** Stated in 0.4.1. An applicant of a prospective right who is neither the requester nor the beneficiary is listed here, with `partyRole` `other` unless one of the other two roles describes it; since 0.6 a sender uses `applicant` for it. A bidder therefore sees every party it would act for before it bids, also while the requester's identity is withheld and `applicant` is left out of the entries of `scope.prospectiveRights`. An applicant who is the beneficiary is listed as `beneficiary` already. An applicant who is the requester becomes known with the requester: from `requester`, or from [Requester Disclosed](Requester%20Disclosed.md).
 
 **A withheld requester is not named indirectly.** Stated in 0.4.1. While `requesterIdentityWithheld` is `true`, no [Entity Reference](../../02%20-%20Foundational%20Structures/Entity%20Reference.md) in the invitation carries the requester as its source (`literal.source.sourceActorUri`) or names it in any other field. A request often states the beneficiary on the requester's own declaration, with the requester as the source actor; copied unchanged into the invitation, that reference would give the requester away. The orchestrator re-states such a reference under its own name or without a source actor. This is a rule the sender follows. The schema cannot check it, because it does not know which actor the requester is.
 

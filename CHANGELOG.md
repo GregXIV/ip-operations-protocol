@@ -3,6 +3,96 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [0.6.0] — 2026-11 (working draft)
+
+What a provider instructed directly by its client needs in order to conform, decided by the
+maintainer on 2026-11-09 (Ratified Decisions 68 to 81). Until 0.6 a firm that does the work,
+instructed by its client with no orchestrator and no tender, could claim the general
+requirements and nothing for its role. The protocol has 44 message types in 12 categories
+and 15 foundational structures.
+
+A minor version, and **not purely additive**: one message type, one structure, optional
+fields and vocabulary values, a second role profile, and three relaxed and three tightened
+rules, each recorded as a ratified decision. A pre-1.0 MINOR may do this where its scope
+needs it, as 0.3 did. `protocolVersion` is `0.6`, and every schema identifier is re-issued
+as `urn:ipproto:schema:0.6:<name>`.
+
+### Compatibility
+- **A 0.5 message remains valid under 0.6.** All 45 examples of v0.5.0 validate unchanged
+  against the 0.6 schemas.
+- **Relaxed (decisions 73 and 74).** Conflict Check Attested no longer requires
+  `invitationReference` when it carries `subjectReference`; its checked parties may be given
+  with their roles; `partyRole` of a conflict party accepts `applicant` and namespaced URNs.
+  A receiver that relied on `invitationReference` being present, or on the closed role list,
+  must expect the new forms.
+- **Tightened (decisions 72 and 79).** `protocolVersion` must match `^\d+\.\d+$`. Entries of
+  `failureImpact.affectedDeadlines` in Milestone Failed must be a Deadline or a URI, and
+  `goalConstraints.deadlineConstraints` an array of Deadlines; both were untyped. No published
+  example is affected. A sender that put another shape there must change it.
+- **A 0.5 receiver keeps working if it degrades on unknown message types and values**, as
+  VERSIONING.md requires. It ignores `recordedFrom` and `confidentiality`; a sender therefore
+  does not address a privileged message to an actor it does not trust to observe the rules.
+- **Strict validators.** A receiver that validates strictly against the 0.5 schemas accepts
+  the new optional fields, because unknown fields pass, and rejects the Mandate Instruction,
+  the outcome `clearedAfterReview`, a Conflict Check Attested without `invitationReference`,
+  checked parties given with their roles, and the new conflict party roles.
+- **Implementations that claim conformance** can claim the new provider profile; an actor
+  that both does work and passes work on may claim both role profiles.
+
+### Added
+- **Provider profile** (Conformance). Core requirements for instructions, workstreams in a
+  direct engagement, the milestone lifecycle, deadlines, deliverables, invoices, the journal,
+  addressing and confidence; conditional modules for bidder-side procurement, sub-delegation
+  (which applies OR-W1 to OR-W4 and OR-I1 to OR-I5 in the orchestrator's place), payments and
+  assets. General requirement G11 for privileged messages. Decision 68.
+- **Direct engagement** (Workstream). Client and provider share one workstream without an
+  orchestrator; either party creates it, the provider by recording the client's instruction;
+  the provider holds the status claim, the client the corporate claim. Decision 69.
+- **Message: Mandate Instruction**, category Work Instruction. An instruction that covers a
+  workstream within a stated `mandateScope`, with optional conflict parties, price, service
+  levels, deadlines, documents and deliverables; answered by Instruction Accepted or Declined.
+  Decision 70.
+- **Milestones under a mandate.** A provider may add milestones within the mandate's scope
+  under a mandate claim; the goal stays the client's. Amends decision 48. Decision 71.
+- **Structure: Deadline.** Court-ordered, statutory, agreed deadlines and hearings, with
+  basis, trigger, due date, reminder dates, an extension chain (`supersedes`), status and
+  `metBy`; a hearing carries an `appointment`. Milestone and Mandate Instruction gain optional
+  `deadlines`. Decision 72.
+- **Conflict Check Attested:** `subjectReference` (bid invitation, work instruction, mandate
+  instruction or request), `workProvider` as producer, checked parties with `partyRole`,
+  `checkedAt`, the outcome `clearedAfterReview`, and the internal record with no addressee.
+  Decision 73.
+- **Work Instruction: `conflictParties`**, optional; the conflict party role `applicant`;
+  **Entity Reference: `identifiers` and `aliases`**, optional. Decision 74.
+- **Envelope: `recordedFrom`**, optional, with `channel`, `sourceDocument` and `receivedAt`;
+  the statement that the addressee may record the other party's message. Decision 75.
+- **Envelope: `confidentiality`**, optional, `privileged` | `confidential` | `normal` with a
+  `basis`, and the five rules for privileged content. Decision 76.
+- **Asset Identification and Resolution, §4:** a lookup discloses interest; representational
+  actors are never required to resolve; privileged assets are not resolved against
+  third-party lookup services. Decision 77.
+- **Release checksums:** `scripts/release-checksums.sh`, `RELEASES.sha256` with the digests of
+  v0.1.0 to v0.5.0, and the release step in VERSIONING.md. Decision 81.
+- **Examples (4):** a mandate instruction recorded by the provider, the provider's conflict
+  check on it kept as an internal record, a milestone failure with typed deadlines at risk,
+  and a hearing that supersedes an earlier one.
+
+### Changed
+- **Wording that assumed an orchestrator:** who generates workstream and milestone URIs, the
+  purpose and producer of Work Instruction, the recipients of Work Requested, the producers of
+  Request Declined and Workstream Completed. Decision 69.
+- **`protocolVersion`** has the schema pattern `^\d+\.\d+$`. Decision 79.
+- **`affectedDeadlines`** and **`deadlineConstraints`** are typed with Deadline. Decision 72.
+- **VERSIONING.md:** a rule that changes what a sender or receiver does is never a PATCH;
+  0.4.1 is recorded as the exception. Decision 80.
+- **Generated TypeScript types** regenerated from the 0.6 schemas.
+
+### Fixed
+- **Scheme spelling.** `urn:ipproto:scheme:internal-reference` in Asset Identification and
+  Resolution is `urn:ipproto:scheme:internalReference`, as everywhere else. Decision 78.
+- **Duplicate profile.** The root-level `Asset-Identification-and-Resolution.md` had stayed at
+  the state of v0.1; it now points to the profile under `spec/`, the only copy. Decision 78.
+
 ## [0.5.0] — 2026-10 (working draft)
 
 Twelve points from the first conformance reading of an orchestrator implementation against

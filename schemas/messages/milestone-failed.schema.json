@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.5:milestoneFailed",
+  "$id": "urn:ipproto:schema:0.6:milestoneFailed",
   "title": "Milestone Failed",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.6:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,10 +16,10 @@
       "type": "object",
       "properties": {
         "milestoneReference": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "failedAt": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
         },
         "failureReason": {
           "type": "object",
@@ -61,11 +61,22 @@
             "affectedDownstreamMilestones": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
               }
             },
             "affectedDeadlines": {
-              "type": "array"
+              "description": "Since 0.6 each entry is a Deadline structure or the deadlineUri of a deadline the recipients already hold.",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+                  },
+                  {
+                    "$ref": "urn:ipproto:schema:0.6:deadline"
+                  }
+                ]
+              }
             },
             "requiredAction": {
               "enum": [

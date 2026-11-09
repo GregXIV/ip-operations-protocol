@@ -1,7 +1,54 @@
-/* IP Operations Protocol v0.5 — TypeScript types.
+/* IP Operations Protocol v0.6 — TypeScript types.
  * GENERATED from the JSON Schemas. Do not edit by hand; regenerate when the spec versions.
  */
 
+/**
+ * A time limit the work must observe that the parties did not set for each other: court-ordered, statutory, agreed with a third party, or a hearing. Not a Service Level. Added in 0.6.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "Deadline".
+ */
+export type Deadline = {
+  [k: string]: unknown;
+} & {
+  deadlineUri: string;
+  deadlineKind: ("courtOrdered" | "statutory" | "agreed" | "hearing") | string;
+  title?: string;
+  basis?: {
+    basisText?: string;
+    legalProvision?: string;
+    basisDocument?: string;
+  };
+  trigger?: {
+    eventType: string;
+    triggerDate?: string;
+    triggerDocument?: string;
+  };
+  dueDate: string;
+  dueAt?: string;
+  /**
+   * WIPO ST.3 office/country code
+   */
+  jurisdictionCode?: string;
+  appointment?: {
+    startsAt: string;
+    endsAt?: string;
+    location?: string;
+    attendanceMode?: "inPerson" | "remote" | "hybrid";
+  };
+  reminderDates?: string[];
+  supersedes?: {
+    deadlineUri: string;
+    grantingDocument?: string;
+  };
+  status: "open" | "met" | "missed" | "superseded" | "withdrawn";
+  metBy?: {
+    metAt: string;
+    messageUri?: string;
+    document?: string;
+  };
+  milestoneReferences?: string[];
+};
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "ActionConfirmationDispute".
@@ -87,7 +134,7 @@ export type BidWithdrawn = CommonEnvelope;
  */
 export type ClientActionCompleted = CommonEnvelope;
 /**
- * A bidder attests the outcome of its conflict check against the parties named in a bid invitation. Only the attestation is exchanged, not the method.
+ * A provider attests the outcome of its conflict check against the parties of the work it is asked to take: a bid invitation, a work instruction, a mandate instruction or a request. Only the attestation is exchanged, not the method. Generalised in 0.6.
  *
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "ConflictCheckAttested".
@@ -148,6 +195,13 @@ export type InvoiceDisputed = CommonEnvelope;
  * via the `definition` "InvoiceIssued".
  */
 export type InvoiceIssued = CommonEnvelope;
+/**
+ * A work requester instructs a work provider to handle a whole matter: one workstream, within a stated scope, rather than one milestone. Added in 0.6.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "MandateInstruction".
+ */
+export type MandateInstruction = CommonEnvelope;
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "MilestoneAbandoned".
@@ -315,10 +369,43 @@ export interface EntityReference {
     resolutionMethod?: "deterministicIdentifier" | "attributeMatching" | "humanReview" | "priorAssertion" | "automated";
     resolutionBasis?: {};
   };
+  /**
+   * Added in 0.6. Identifiers of the entity known to the asserter, as on Actor Reference.
+   */
+  identifiers?: Identifier[];
+  /**
+   * Added in 0.6. Other names under which the entity is known.
+   */
+  aliases?: string[];
   crossActorReferences?: {
     actorUri: string;
     entityUriInActor: string;
   }[];
+}
+/**
+ * An identifier of an organization or a person, as on Actor Reference. Added to defs in 0.6 for Entity Reference.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "Identifier".
+ */
+export interface Identifier {
+  scheme: string;
+  value: string;
+  verifiedAt?: string;
+  /**
+   * The register that issued the identifier; required with the scheme urn:ipproto:scheme:companyRegister.
+   */
+  registrationAuthority?: string;
+}
+/**
+ * A party to be checked for conflicts of interest, with its role in the work. Shared by Bid Invitation, Work Instruction, Mandate Instruction and Conflict Check Attested. partyRole adds applicant and namespaced URNs in 0.6.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "ConflictParty".
+ */
+export interface ConflictParty {
+  partyRole: ("beneficiary" | "applicant" | "adverseParty" | "other") | string;
+  party: EntityReference;
 }
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
@@ -327,6 +414,9 @@ export interface EntityReference {
 export interface CommonEnvelope {
   messageUri: string;
   messageType: string;
+  /**
+   * MAJOR.MINOR without the patch number. Pattern added in 0.6.
+   */
   protocolVersion: string;
   originatingActor: string;
   originatingRoleDeclaration: string;
@@ -342,6 +432,21 @@ export interface CommonEnvelope {
   recordedBy?: {
     actorUri: string;
     userContext?: UserContext;
+  };
+  /**
+   * Added in 0.6. How a message recorded by another actor reached it. Used only together with recordedBy.
+   */
+  recordedFrom?: {
+    channel?: ("email" | "letter" | "telephone" | "inPerson" | "fax" | "portal" | "other") | string;
+    sourceDocument?: string;
+    receivedAt?: string;
+  };
+  /**
+   * Added in 0.6. How the content of the message may be handled. Under privileged: no broadcast, no bootstrap subscription invitations, resolution only for originator and addressees, no forwarding, no third-party asset lookup.
+   */
+  confidentiality?: {
+    level: "privileged" | "confidential" | "normal";
+    basis?: string;
   };
   correlation?: {
     correlatedToMessageUri?: string;
@@ -710,6 +815,10 @@ export interface Milestone {
   actuals?: {};
   agreedPrice?: AgreedPrice;
   serviceLevels?: ServiceLevel[];
+  /**
+   * Added in 0.6. The deadlines the milestone's work serves. Not service levels.
+   */
+  deadlines?: Deadline[];
   deliverables?: string[];
   milestoneAuthorityClaims: string[];
   parentMilestoneUri?: string;
@@ -786,7 +895,12 @@ export interface Workstream {
   goalStatement: {
     goalText: string;
     goalCategory?: string;
-    goalConstraints?: {};
+    goalConstraints?: {
+      /**
+       * Since 0.6 an array of Deadline structures: the deadlines the goal must observe.
+       */
+      deadlineConstraints?: Deadline[];
+    };
   };
   instructingCapacity?: "own" | "onBehalf";
   beneficiary?: EntityReference;

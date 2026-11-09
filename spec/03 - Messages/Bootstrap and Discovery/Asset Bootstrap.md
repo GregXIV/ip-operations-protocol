@@ -1,7 +1,7 @@
 ---
 type: message
 category: bootstrap
-status: v0.4
+status: v0.6
 ---
 
 # Asset Bootstrap
@@ -53,6 +53,8 @@ Claims establishing the initial authority registry.
 Type: array, optional
 
 Invitations to specific actors to subscribe. Each entry: `invitedActor`, `invitationScope` (array of section paths), `invitationBasis` (free-form structured).
+
+Not used where the bootstrap is marked `privileged` or made for a privileged workstream (stated in 0.6; see `confidentiality` in [Common Envelope](../../02%20-%20Foundational%20Structures/Common%20Envelope.md)).
 
 ## Worked example — Phase 0 register-initiated bootstrap
 
