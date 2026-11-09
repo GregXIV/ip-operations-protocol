@@ -1,0 +1,94 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceIssued-example-0013",
+  "messageType": "urn:ipproto:message:invoiceIssued",
+  "protocolVersion": "0.8",
+  "originatingActor": "urn:ipproto:actor:woodgrove-ip",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:woodgrove-provider-opp-joint-0001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:contoso-legal",
+      "expectedRole": "urn:ipproto:role:payor"
+    }
+  ],
+  "producedAt": "2027-05-03T10:00:00Z",
+  "confidentiality": {
+    "level": "confidential"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:opp-joint-0001",
+    "milestoneUri": "urn:ipproto:milestone:opp-joint-0001-m1-notice"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:woodgrove-2027-0061",
+    "invoiceNumber": "WG-2027-0061",
+    "payee": {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-opp-joint-0001",
+      "taxIdentifier": {
+        "scheme": "urn:ipproto:scheme:vat",
+        "value": "DE000000000"
+      }
+    },
+    "payor": {
+      "actorUri": "urn:ipproto:actor:contoso-legal",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:contoso-requester-opp-joint-0001",
+      "taxIdentifier": {
+        "scheme": "urn:ipproto:scheme:vat",
+        "value": "NL000000000B00"
+      }
+    },
+    "issueDate": "2027-05-03",
+    "invoiceLines": [
+      {
+        "lineId": "F-0001",
+        "milestoneReference": "urn:ipproto:milestone:opp-joint-0001-m1-notice",
+        "servicePeriod": {
+          "from": "2027-03-01",
+          "to": "2027-04-30"
+        },
+        "lineItemType": "urn:ipproto:lineItem:professionalFee",
+        "amount": 3200.0,
+        "taxCategory": {
+          "categoryCode": "AE",
+          "ratePercent": 0.0,
+          "exemptionReason": "Reverse charge"
+        },
+        "description": "Notice of opposition, fixed fee of EUR 8,000.00; 40 % share"
+      },
+      {
+        "lineId": "P-0001",
+        "milestoneReference": "urn:ipproto:milestone:opp-joint-0001-m1-notice",
+        "serviceDate": "2027-04-28",
+        "lineItemType": "urn:ipproto:lineItem:officialFee",
+        "amount": 352.0,
+        "passThrough": true,
+        "description": "Opposition fee of EUR 880.00 paid in the opponents' name; 40 % share"
+      }
+    ],
+    "totalAmount": {
+      "amount": 3552.0,
+      "currency": "EUR"
+    },
+    "taxHandling": {
+      "taxTreatment": "reverseCharge",
+      "taxAmount": 0.0
+    },
+    "taxBreakdown": [
+      {
+        "categoryCode": "AE",
+        "ratePercent": 0.0,
+        "taxableAmount": 3200.0,
+        "taxAmount": 0.0
+      }
+    ],
+    "dueDate": "2027-06-02",
+    "invoiceDocument": "urn:ipproto:document:woodgrove-inv-2027-0061",
+    "allocation": {
+      "sharePercent": 40.0,
+      "siblingInvoiceReferences": [
+        "urn:ipproto:invoice:woodgrove-2027-0060"
+      ],
+      "note": "Opposition filed jointly; costs shared as agreed in the engagement terms"
+    }
+  }
+}

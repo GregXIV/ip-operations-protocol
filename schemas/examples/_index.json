@@ -1,14 +1,15 @@
 {
-  "actor-reference-supplier.example.json": "urn:ipproto:schema:0.7:actorReference",
-  "agreed-price-periodic-flat.example.json": "urn:ipproto:schema:0.7:agreedPrice",
-  "agreed-price.example.json": "urn:ipproto:schema:0.7:agreedPrice",
-  "deadline-hearing.example.json": "urn:ipproto:schema:0.7:deadline",
-  "document-reference-court-order.example.json": "urn:ipproto:schema:0.7:documentReference",
-  "document-reference-draft.example.json": "urn:ipproto:schema:0.7:documentReference",
-  "milestone-delegated.example.json": "urn:ipproto:schema:0.7:milestone",
-  "resolution-provenance.example.json": "urn:ipproto:schema:0.7:resolutionProvenance",
-  "resolved-asset.example.json": "urn:ipproto:schema:0.7:resolvedAsset",
-  "service-level.example.json": "urn:ipproto:schema:0.7:serviceLevel",
-  "workstream-first-filing.example.json": "urn:ipproto:schema:0.7:workstream",
-  "workstream-litigation.example.json": "urn:ipproto:schema:0.7:workstream"
+  "actor-reference-supplier.example.json": "urn:ipproto:schema:0.8:actorReference",
+  "agreed-price-periodic-flat.example.json": "urn:ipproto:schema:0.8:agreedPrice",
+  "agreed-price.example.json": "urn:ipproto:schema:0.8:agreedPrice",
+  "deadline-hearing.example.json": "urn:ipproto:schema:0.8:deadline",
+  "document-reference-court-order.example.json": "urn:ipproto:schema:0.8:documentReference",
+  "document-reference-draft.example.json": "urn:ipproto:schema:0.8:documentReference",
+  "milestone-delegated.example.json": "urn:ipproto:schema:0.8:milestone",
+  "milestone-split-payors.example.json": "urn:ipproto:schema:0.8:milestone",
+  "resolution-provenance.example.json": "urn:ipproto:schema:0.8:resolutionProvenance",
+  "resolved-asset.example.json": "urn:ipproto:schema:0.8:resolvedAsset",
+  "service-level.example.json": "urn:ipproto:schema:0.8:serviceLevel",
+  "workstream-first-filing.example.json": "urn:ipproto:schema:0.8:workstream",
+  "workstream-litigation.example.json": "urn:ipproto:schema:0.8:workstream"
 }

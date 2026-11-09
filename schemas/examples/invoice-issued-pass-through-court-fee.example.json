@@ -1,0 +1,87 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceIssued-example-0011",
+  "messageType": "urn:ipproto:message:invoiceIssued",
+  "protocolVersion": "0.8",
+  "originatingActor": "urn:ipproto:actor:woodgrove-ip",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:woodgrove-provider-inf-0001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:payor"
+    }
+  ],
+  "producedAt": "2027-02-12T15:30:00Z",
+  "confidentiality": {
+    "level": "confidential"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:inf-0001",
+    "milestoneUri": "urn:ipproto:milestone:inf-0001-m2-filing"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:woodgrove-2027-0051",
+    "invoiceNumber": "WG-2027-0051",
+    "payee": {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-inf-0001",
+      "taxIdentifier": {
+        "scheme": "urn:ipproto:scheme:vat",
+        "value": "DE000000000"
+      }
+    },
+    "payor": {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001"
+    },
+    "issueDate": "2027-02-12",
+    "buyerReference": "NW-LEGAL-2026-091",
+    "invoiceLines": [
+      {
+        "lineId": "F-0001",
+        "milestoneReference": "urn:ipproto:milestone:inf-0001-m2-filing",
+        "servicePeriod": {
+          "from": "2027-02-01",
+          "to": "2027-02-10"
+        },
+        "lineItemType": "urn:ipproto:lineItem:professionalFee",
+        "amount": 1200.0,
+        "taxCategory": {
+          "categoryCode": "S",
+          "ratePercent": 19.0
+        },
+        "description": "Finalising and filing the statement of claim"
+      },
+      {
+        "lineId": "P-0001",
+        "milestoneReference": "urn:ipproto:milestone:inf-0001-m2-filing",
+        "serviceDate": "2027-02-10",
+        "lineItemType": "urn:ipproto:lineItem:officialFee",
+        "amount": 9000.0,
+        "passThrough": true,
+        "description": "Court fee for the infringement action, advanced in the Client's name on filing"
+      }
+    ],
+    "totalAmount": {
+      "amount": 10428.0,
+      "currency": "EUR"
+    },
+    "taxHandling": {
+      "taxTreatment": "taxed",
+      "taxRatePercent": 19.0,
+      "taxAmount": 228.0
+    },
+    "taxBreakdown": [
+      {
+        "categoryCode": "S",
+        "ratePercent": 19.0,
+        "taxableAmount": 1200.0,
+        "taxAmount": 228.0
+      }
+    ],
+    "dueDate": "2027-02-26",
+    "invoiceDocument": "urn:ipproto:document:woodgrove-inv-2027-0051",
+    "supportingDocuments": [
+      "urn:ipproto:document:court-fee-receipt-inf-0001"
+    ]
+  }
+}

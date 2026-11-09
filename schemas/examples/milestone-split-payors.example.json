@@ -1,0 +1,51 @@
+{
+  "milestoneUri": "urn:ipproto:milestone:opp-joint-0001-m1-notice",
+  "milestoneSequence": 1,
+  "milestoneTitle": "Joint notice of opposition against EP 9 900 003 B1",
+  "milestoneCategory": "urn:ipproto:milestoneCategory:officeFiling",
+  "actorAssignments": [
+    {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-opp-joint-0001",
+      "assignmentType": "primary"
+    },
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-opp-joint-0001",
+      "assignmentType": "accountableTo"
+    },
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-opp-joint-0001",
+      "assignmentType": "payor",
+      "payorShare": 60.0
+    },
+    {
+      "actorUri": "urn:ipproto:actor:contoso-legal",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:contoso-requester-opp-joint-0001",
+      "assignmentType": "payor",
+      "payorShare": 40.0
+    }
+  ],
+  "executionMode": "serviceProviderManaged",
+  "serviceProviderActorUri": "urn:ipproto:actor:woodgrove-ip",
+  "dependencies": [],
+  "milestoneStatus": "committed",
+  "estimates": {
+    "estimatedDuration": {
+      "minimumDays": 30,
+      "expectedDays": 45,
+      "maximumDays": 60
+    }
+  },
+  "agreedPrice": {
+    "amount": 8000.0,
+    "currency": "EUR",
+    "priceBasis": "fixed",
+    "officialFeesIncluded": false,
+    "agreementReference": "woodgrove-engagement-terms-2027#joint-opposition"
+  },
+  "milestoneAuthorityClaims": [
+    "urn:ipproto:authorityClaim:claim-opp-joint-001"
+  ]
+}
