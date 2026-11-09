@@ -1,7 +1,7 @@
 ---
 type: message
 category: milestone-lifecycle
-status: v0.5
+status: v0.6
 ---
 
 # Milestone Failed
@@ -50,7 +50,7 @@ Type: structured, optional
 Type: structured, required
 
 - `affectedDownstreamMilestones` — array of milestoneUris now blocked
-- `affectedDeadlines` — array of deadline references at risk
+- `affectedDeadlines` — array of deadline references at risk. Since 0.6 each entry is a [Deadline](../../02%20-%20Foundational%20Structures/Deadline.md) structure or the `deadlineUri` of a deadline the recipients already hold. Until 0.6 the entries had no defined shape
 - `requiredAction` — enumeration: `escalateToCorporate`, `retryAutomatic`, `redesignWorkstream`, `abandonWorkstream`, `noActionRequired`
 
 ## Worked example

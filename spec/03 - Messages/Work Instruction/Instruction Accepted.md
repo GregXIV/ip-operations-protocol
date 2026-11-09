@@ -1,12 +1,12 @@
 ---
 type: message
 category: work-instruction
-status: v0.5
+status: v0.6
 ---
 
 # Instruction Accepted
 
-> A work provider accepts a [Work Instruction](Work%20Instruction.md).
+> A work provider accepts a [Work Instruction](Work%20Instruction.md) or a [Mandate Instruction](Mandate%20Instruction.md).
 
 ## Purpose
 
@@ -25,7 +25,7 @@ The work requester that sent the instruction.
 ### `instructionReference`
 Type: messageUri, required
 
-The [Work Instruction](Work%20Instruction.md) being accepted.
+The [Work Instruction](Work%20Instruction.md) or, since 0.6, the [Mandate Instruction](Mandate%20Instruction.md) being accepted.
 
 ### `acceptedAt`
 Type: ISO 8601 datetime, required
@@ -56,11 +56,11 @@ The person at the provider who is responsible for the work.
 
 ## Behavior on receipt
 
-The milestone moves to `committed` with the provider as `primary` actor and the instruction's `agreedPrice` and `serviceLevels`. Once its dependencies are satisfied it is `ready`, and the provider begins with [Milestone Started](../Milestone%20Lifecycle/Milestone%20Started.md).
+The milestone moves to `committed` with the provider as `primary` actor and the instruction's `agreedPrice` and `serviceLevels`. Once its dependencies are satisfied it is `ready`, and the provider begins with [Milestone Started](../Milestone%20Lifecycle/Milestone%20Started.md). An accepted [Mandate Instruction](Mandate%20Instruction.md) commits the workstream, and the provider holds the claims that [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Direct engagement*, gives it (added in 0.6).
 
 Acceptance is of the instruction as sent. A provider that wants a different price or a later date declines and says why.
 
-**An acceptance given outside the protocol.** Added in 0.5. A provider that accepts by telephone or e-mail has not sent this message. The work requester's staff may enter it on the provider's behalf, with the provider's consent. The message is then the provider's: `originatingActor` is the provider, the envelope's `recordedBy` names the work requester and the staff member who entered it, and `userContext` names the provider's person who accepted, where known. The same holds for [Instruction Declined](Instruction%20Declined.md), [Service Deliverable](../Deliverable%20Handoff/Service%20Deliverable.md) and [Invoice Issued](../Payments/Invoice%20Issued.md) entered from a document the provider sent. See [Common Envelope](../../02%20-%20Foundational%20Structures/Common%20Envelope.md), `recordedBy`; the example `instruction-accepted-recorded.example.json` in `schemas/examples/` shows the envelope.
+**An acceptance given outside the protocol.** Added in 0.5. A provider that accepts by telephone or e-mail has not sent this message. The work requester's staff may enter it on the provider's behalf, with the provider's consent. The message is then the provider's: `originatingActor` is the provider, the envelope's `recordedBy` names the work requester and the staff member who entered it, and `userContext` names the provider's person who accepted, where known. The same holds for [Instruction Declined](Instruction%20Declined.md), [Service Deliverable](../Deliverable%20Handoff/Service%20Deliverable.md) and [Invoice Issued](../Payments/Invoice%20Issued.md) entered from a document the provider sent. The converse holds as well (stated in 0.6): a provider that records its client's instruction given outside the protocol records its own acceptance as itself, with no `recordedBy`. See [Common Envelope](../../02%20-%20Foundational%20Structures/Common%20Envelope.md), `recordedBy`; the example `instruction-accepted-recorded.example.json` in `schemas/examples/` shows the envelope.
 
 ## Related messages
 

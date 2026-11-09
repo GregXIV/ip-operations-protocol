@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.4
+status: v0.6
 ---
 
 # Request Declined
@@ -16,7 +16,7 @@ A declined request creates no workstream.
 
 ## Producer
 
-The actor with `orchestrator` role to whom the request was addressed.
+The actor with `orchestrator` role to whom the request was addressed, or, in a direct engagement, the provider to whom it was addressed (stated in 0.6).
 
 ## Recipients
 

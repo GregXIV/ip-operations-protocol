@@ -1,12 +1,12 @@
 ---
 type: message
 category: work-instruction
-status: v0.2
+status: v0.6
 ---
 
 # Instruction Declined
 
-> A work provider declines a [Work Instruction](Work%20Instruction.md), with the reason.
+> A work provider declines a [Work Instruction](Work%20Instruction.md) or a [Mandate Instruction](Mandate%20Instruction.md), with the reason.
 
 ## Purpose
 
@@ -25,7 +25,7 @@ The work requester that sent the instruction.
 ### `instructionReference`
 Type: messageUri, required
 
-The [Work Instruction](Work%20Instruction.md) being declined.
+The [Work Instruction](Work%20Instruction.md) or, since 0.6, the [Mandate Instruction](Mandate%20Instruction.md) being declined.
 
 ### `declineReason`
 Type: structured, required

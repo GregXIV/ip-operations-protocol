@@ -45,11 +45,13 @@ status: v0.5
 
 **Conformance level** — How strictly a structured representation conforms to a referenced schema. `strict`, `extended`, `partial`.
 
-**Conformance profile** — A list of requirements an implementation claims to meet, each pointing at the page that states it: asset identification (representational or resolving) and, since 0.5, the orchestrator profile. See [Conformance](spec/01%20-%20Front%20Matter/Conformance.md).
+**Conformance profile** — A list of requirements an implementation claims to meet, each pointing at the page that states it: asset identification (representational or resolving) and the role profiles for the orchestrator (since 0.5) and the provider (since 0.6). See [Conformance](spec/01%20-%20Front%20Matter/Conformance.md).
 
 **Credit note** — A document that cancels or reduces an invoice; document type `creditNote`. Added in 0.5. See [Invoice Cancelled](spec/03%20-%20Messages/Payments/Invoice%20Cancelled.md).
 
 ## D
+
+**Deadline** — A time limit the work must observe that the parties did not set for each other: court-ordered, statutory, agreed with a third party, or a hearing. Not a service level. Added in 0.6. See [Deadline](spec/02%20-%20Foundational%20Structures/Deadline.md).
 
 **Decision authority** — The role authorizing workstream commitment. Typically the corporate's IP counsel.
 
@@ -60,6 +62,8 @@ status: v0.5
 **Deliverable** — Output from a service provider. See [Service Deliverable](spec/03%20-%20Messages/Deliverable%20Handoff/Service%20Deliverable.md).
 
 **Derived asset** — An asset that comes into being through a workstream operation (e.g., a national validation derived from an EP grant).
+
+**Direct engagement** — A client instructs a provider directly, without an orchestrator or a tender; the two share one workstream. Added in 0.6. See [Workstream](spec/02%20-%20Foundational%20Structures/Workstream.md).
 
 **Dispute** — Surfaces conflicts that cannot be auto-resolved. Three types: [Asset Authority Dispute](spec/03%20-%20Messages/Disputes/Asset%20Authority%20Dispute.md), [Action Confirmation Dispute](spec/03%20-%20Messages/Disputes/Action%20Confirmation%20Dispute.md), [Identity Resolution Dispute](spec/03%20-%20Messages/Disputes/Identity%20Resolution%20Dispute.md).
 
@@ -118,6 +122,8 @@ status: v0.5
 **Literal** — An entity reference exactly as observed, before resolution. See [Entity Reference](spec/02%20-%20Foundational%20Structures/Entity%20Reference.md).
 
 ## M
+
+**Mandate** — An instruction that covers a whole matter, one workstream, within a stated scope; the provider may add milestones inside it. Added in 0.6. See [Mandate Instruction](spec/03%20-%20Messages/Work%20Instruction/Mandate%20Instruction.md).
 
 **Milestone** — A unit of work within a workstream. See [Milestone](spec/02%20-%20Foundational%20Structures/Milestone.md).
 

@@ -1,6 +1,6 @@
 ---
 type: profile
-status: v0.5
+status: v0.6
 ---
 
 # Asset Identification and Resolution
@@ -51,7 +51,7 @@ Seeded recommended schemes:
 - `urn:ipproto:scheme:office-application` — an application number
 - `urn:ipproto:scheme:office-publication` — a publication or grant number
 - `urn:ipproto:scheme:docdb-family` — a DOCDB family identifier (see §3)
-- `urn:ipproto:scheme:internal-reference` — an actor-internal matter or docket reference
+- `urn:ipproto:scheme:internalReference` — an actor-internal matter or docket reference. Spelt `internal-reference` here until 0.6, and `internalReference` on every other page and in the examples; the camel-case spelling is the scheme (decision 78)
 
 Custom schemes use `urn:ipproto:scheme:{namespace}:{name}`. The protocol does not validate scheme values beyond requiring the field; unknown schemes degrade gracefully to "unknown" rather than being rejected.
 
@@ -109,6 +109,13 @@ The **derivation rubric** — which evidence yields which `confidenceLevel` and 
 Not every identifier type resolves directly. Family lookup commonly keys on a **publication** number; resolving from a bare application number may require a pre-step (e.g. application → publication via a register search). A resolver documents which inputs it supports; an unsupported input is a documented limitation, not a conformance failure.
 
 As with identity, resolution is **per-actor**: the protocol does not force a single global resolution. Each actor maintains its own resolved view; the provenance record is what lets divergence be detected.
+
+### A lookup discloses interest
+
+Added in 0.6 (decision 77). A lookup is a question to someone else. Asking a third-party lookup service about an asset tells that service, and anyone who can read its logs, that the asker is interested in the asset. For an asset in dispute, or one a client is about to attack or acquire, that alone can reveal the matter.
+
+- **Resolving is never required of a representational actor.** An actor that references assets claims the representational profile (points 1 to 3 of §6) and may carry the identifiers it observed without resolving them. No requirement of this specification obliges it to perform a lookup.
+- **Assets of a privileged workstream are not resolved against third-party lookup services.** Where a workstream is privileged (see `confidentiality` in [Common Envelope](Common%20Envelope.md)), its actors do not send its assets' identifiers to a lookup service operated by anyone other than themselves. They resolve from their own store, from data they already hold, or not at all. A resolving actor that serves others offers its callers a way to keep their queries out of shared logs, or says that it keeps none.
 
 ## 5. Reconciliation — no silent merge
 

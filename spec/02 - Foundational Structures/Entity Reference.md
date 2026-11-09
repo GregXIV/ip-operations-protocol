@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.6
 ---
 
 # Entity Reference
@@ -35,6 +35,18 @@ The asserter's resolution of the literal to an entity in their graph. Omitted wh
 - `resolutionMethod` — optional, enumeration: `deterministicIdentifier`, `attributeMatching`, `humanReview`, `priorAssertion`, `automated`
 - `resolutionBasis` — optional, free-form structured. Audit material; protocol does not constrain shape.
 
+### `identifiers`
+Type: array, optional
+
+Added in 0.6. Identifiers of the entity that the asserter knows, so that a receiver, for instance a provider running a conflict check, can match the entity without relying on the name alone. Each entry has the shape of an identifier in [Actor Reference](Actor%20Reference.md): `scheme`, `value`, optional `verifiedAt`, and `registrationAuthority`, required with `urn:ipproto:scheme:companyRegister`. Typical schemes are `urn:ipproto:scheme:lei`, `urn:ipproto:scheme:vat` and `urn:ipproto:scheme:companyRegister`.
+
+Unlike `resolution`, which is the asserter's own view, an identifier is a public fact about the entity. Unlike `crossActorReferences`, it names no other actor's graph.
+
+### `aliases`
+Type: array of strings, optional
+
+Added in 0.6. Other names under which the entity is known: former names, trading names, transliterations. Each is recorded as found. `literal.value` stays the name as observed in the source.
+
 ### `crossActorReferences`
 Type: array, optional
 
@@ -64,6 +76,18 @@ This is the **only** field in the protocol where cross-actor identity informatio
       "lookupTable": "meridian-corporate-entity-graph-v3"
     }
   }
+}
+```
+
+## Worked example — with identifiers and aliases
+
+```json
+{
+  "literal": {"value": "Wingtip Components GmbH", "source": {"sourceType": "register", "sourceActorUri": "urn:ipproto:actor:epo"}},
+  "identifiers": [
+    {"scheme": "urn:ipproto:scheme:companyRegister", "value": "HRB 000000", "registrationAuthority": "RA000000"}
+  ],
+  "aliases": ["Wingtip Components", "Wingtip Komponenten GmbH"]
 }
 ```
 

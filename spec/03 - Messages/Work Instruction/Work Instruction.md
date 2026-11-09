@@ -1,7 +1,7 @@
 ---
 type: message
 category: work-instruction
-status: v0.2
+status: v0.6
 ---
 
 # Work Instruction
@@ -12,11 +12,11 @@ status: v0.2
 
 Added in 0.2. Carries everything a provider needs to take on a piece of work: what is to be done, at what price, by when, with which documents, and what is expected back.
 
-This is how an orchestrator passes work on to an agent. The instruction lives in a second workstream that the orchestrator and the agent share; its milestone points at the customer-facing milestone through `parentMilestoneUri` (see [Milestone](../../02%20-%20Foundational%20Structures/Milestone.md), *Passing work on*). The customer is not addressed and does not see the agent.
+It serves two patterns. **Passing work on:** an orchestrator, or a provider that passes part of its matter on, gives an agent one milestone. The instruction lives in a second workstream that the two share; its milestone points at the customer-facing milestone through `parentMilestoneUri` (see [Milestone](../../02%20-%20Foundational%20Structures/Milestone.md), *Passing work on*). The customer is not addressed and does not see the agent. **Direct engagement:** a client instructs a provider directly with one piece of work, without an orchestrator; the two share one workstream and there is no parent milestone (see [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), *Direct engagement*). Until 0.6 this page described the first pattern only. Where the client instructs a whole matter rather than one milestone, it uses a [Mandate Instruction](Mandate%20Instruction.md).
 
 ## Producer
 
-The actor with `workRequester` role in the workstream the instruction belongs to. In the delegation pattern this is the orchestrator of the customer's workstream, acting as work requester towards the agent.
+The actor with `workRequester` role in the workstream the instruction belongs to. In the delegation pattern this is the orchestrator of the customer's workstream, acting as work requester towards the agent; in a direct engagement it is the client. A provider may record a client's instruction given outside the protocol on the client's behalf, with `recordedBy` (see [Common Envelope](../../02%20-%20Foundational%20Structures/Common%20Envelope.md)).
 
 ## Recipients
 
@@ -61,6 +61,11 @@ What the requester expects back. Each entry names a deliverable type, a document
 Type: ISO 8601 datetime, required
 
 By when the provider must accept or decline. Repeats the `dueAt` of the `acknowledgement` service level.
+
+### `conflictParties`
+Type: array of structured entries, optional
+
+Added in 0.6. The parties the provider checks for conflicts of interest before it accepts, each with `partyRole` and `party` as in [Bid Invitation](../Procurement/Bid%20Invitation.md). The requester lists the beneficiary, the opposing party where there is one, and every applicant of a prospective right who is neither the requester nor the beneficiary. Where the work is passed on, the requester carries the parties of the parent workstream down, so that a provider further down can check them too; it re-states them under its own name where the original source would reveal the customer to a provider that is not to see it.
 
 ## Worked example — validation in Spain passed to an agent
 
@@ -112,7 +117,7 @@ By when the provider must accept or decline. Repeats the `dueAt` of the `acknowl
 
 ## Behavior on receipt
 
-The provider runs its own checks — capacity, competence, conflicts against the beneficiary where one is named — and answers with [Instruction Accepted](Instruction%20Accepted.md) or [Instruction Declined](Instruction%20Declined.md) before `responseDeadline`.
+The provider runs its own checks — capacity, competence, conflicts against the beneficiary where one is named and against the `conflictParties` where given — and answers with [Instruction Accepted](Instruction%20Accepted.md) or [Instruction Declined](Instruction%20Declined.md) before `responseDeadline`.
 
 An accepted instruction commits the milestone. No [Goal Decomposition](../Workstream%20Lifecycle/Goal%20Decomposition.md) and no [Orchestration Committed](../Workstream%20Lifecycle/Orchestration%20Committed.md) is exchanged for it: the instruction is the proposal and the acceptance is the commitment.
 
@@ -121,6 +126,8 @@ An instruction that is neither accepted nor declined by the deadline binds nobod
 ## Related messages
 
 - Answered by [Instruction Accepted](Instruction%20Accepted.md) or [Instruction Declined](Instruction%20Declined.md)
+- The conflict check may be recorded with [Conflict Check Attested](../Procurement/Conflict%20Check%20Attested.md), whose subject is then the instruction (since 0.6)
+- [Mandate Instruction](Mandate%20Instruction.md) — the instruction for a whole matter
 - Work then runs through [Milestone Started](../Milestone%20Lifecycle/Milestone%20Started.md), [Service Deliverable](../Deliverable%20Handoff/Service%20Deliverable.md), [Milestone Completed](../Milestone%20Lifecycle/Milestone%20Completed.md) and [Deliverable Acknowledged](../Deliverable%20Handoff/Deliverable%20Acknowledged.md), unchanged
 - Invoiced through [Invoice Issued](../Payments/Invoice%20Issued.md)
 
