@@ -1,7 +1,7 @@
 # Schemas
 
 JSON Schemas, validated examples, generated TypeScript types, and a reference validator
-for the IP Operations Protocol **v0.8**. Packaged as `@ipproto/schemas`.
+for the IP Operations Protocol **v0.9**. Packaged as `@ipproto/schemas`.
 
 **License:** Apache-2.0 (see [LICENSE](LICENSE)) — the explicit patent grant is deliberate
 for a standard in the patent domain.
@@ -37,15 +37,19 @@ schemas/
 ## Conventions
 
 - **Dialect:** JSON Schema draft 2020-12.
-- **`$id`:** `urn:ipproto:schema:0.8:<name>`. The version is part of the identity and is
+- **`$id`:** `urn:ipproto:schema:0.9:<name>`. The version is part of the identity and is
   never reused across versions (see ../VERSIONING.md), so the whole set is re-issued under
-  `0.8`; the `0.1`, `0.2`, `0.3`, `0.4`, `0.5`, `0.6` and `0.7` identifiers keep naming the 0.1.0,
-  0.2.0, 0.3.0, 0.4.x, 0.5.0, 0.6.0 and 0.7.0 sets and nothing else. Cross-schema
+  `0.9`; the `0.1`, `0.2`, `0.3`, `0.4`, `0.5`, `0.6`, `0.7` and `0.8` identifiers keep naming the
+  0.1.0, 0.2.0, 0.3.0, 0.4.x, 0.5.0, 0.6.0, 0.7.0 and 0.8.0 sets and nothing else. Cross-schema
   `$ref`s use these URNs; a validator registers all schemas so the URN refs resolve.
 - **Open extension:** `additionalProperties` is intentionally left open. The protocol's
   stated behavior is that receivers degrade gracefully on unknown fields rather than
   rejecting, so the schemas enforce shape, required fields, enums, and formats without
   forbidding extension. Generated TypeScript types are strict for developer ergonomics.
+- **No alternative decided by `format` alone** (since 0.9, decision 109). JSON Schema
+  2020-12 treats `format` as an annotation unless a validator opts in, so a `oneOf` whose
+  branches differ only by `format` fails wherever formats are not asserted. Such
+  alternatives are written as `anyOf`.
 
 ## Validate
 
@@ -53,6 +57,15 @@ schemas/
 npm install ajv@8 ajv-formats@3
 node validate.mjs                       # validates examples/*
 node validate.mjs path/to/message.json  # validates one message by its messageType
+```
+
+Since 0.9 CI also validates every example with Python `jsonschema` 4.26 without format
+checking (no `rfc3339-validator`), with the same mapping (`messageType`, then
+`examples/_index.json`):
+
+```bash
+pip install -r ../scripts/requirements-validate.txt
+python3 ../scripts/validate_examples.py
 ```
 
 ## TypeScript
@@ -82,10 +95,10 @@ subscriptions, steady-state events (register events, service findings), the full
 machinery, and the generic record update. That is 63 schema files: common defs, the envelope,
 17 under `foundational/` and 44 under `messages/`.
 
-Sixty-one complete examples (messages + structures) validate against the set. The thirteen
+Sixty-two complete examples (messages + structures) validate against the set. The thirteen
 carried over from 0.1 keep `"protocolVersion": "0.1"` and the eighteen added in 0.2 keep
 `"protocolVersion": "0.2"` on purpose: they show that a 0.1 or 0.2 message validates
-unchanged against the 0.8 schemas. The six added in 0.3 cover the two messages of 0.3, a
+unchanged against the 0.9 schemas. The six added in 0.3 cover the two messages of 0.3, a
 request and a workstream for a first filing, a document reference without an asset, and
 an invoice for a subscription. Five of them are unchanged and keep `"0.3"`, for the same
 reason. The sixth, the subscription invoice, now states its month in `billingPeriod` and
@@ -112,7 +125,22 @@ lines are time entries with timekeeper, rate role, billing codes and a VAT categ
 breakdown and an EN 16931 invoice document; an invoice that passes on a court fee outside
 the VAT base; a pair of invoices that share one charge between two payors, one taxed and
 one reverse-charged, and the milestone that states the payors' shares; a dispute that names
-a line by `lineId`; and a payment executed that names the invoice it settles.
+a line by `lineId`; and a payment executed that names the invoice it settles. The one added
+in 0.9 is a workstream for a freedom-to-operate opinion that names no asset.
+
+**Fictional patent numbers** (since 0.9, decision 111). Every patent number in an example is
+fictional and must not be real. It uses the ST.3 code `XX`, which names no office, in the
+digit layout of the number it stands for (`XX 0 000 001 B1`). Where an example shows the
+behaviour of one office, it keeps that office's code with a number that cannot exist, and
+the page says so: the EP post-grant running example is application `21000000.0`, published
+as `EP 0 000 000`. In 0.9 the numbers of earlier examples were replaced this way; nothing
+else in them changed.
+
+Between 0.8 and 0.9 every 0.8 message validates against the 0.9 schemas: all 61 examples of
+the tag `v0.8.0` do, unchanged, under `validate.mjs` and under Python `jsonschema` without
+format checking. A strict 0.8 validator rejects a workstream or a request that names neither
+an asset nor a prospective right and, where it does not assert formats, every value of the
+four date fields that 0.9 moves from `oneOf` to `anyOf`.
 
 Between 0.7 and 0.8 every 0.7 message validates against the 0.8 schemas: all 54 examples of
 the tag `v0.7.0` do, unchanged. A strict 0.7 validator accepts the new optional fields,

@@ -1,0 +1,42 @@
+# Validates every schema example with Python jsonschema, without format checking.
+# A second validator beside schemas/validate.mjs (ajv + ajv-formats): it catches
+# schemas that only work when `format` is asserted, e.g. a oneOf whose branches
+# differ only by format. Kept to one short job; Actions minutes are budgeted.
+name: validate-examples-python
+
+on:
+  pull_request:
+    paths:
+      - "schemas/**"
+      - "scripts/validate_examples.py"
+      - "scripts/requirements-validate.txt"
+      - ".github/workflows/validate-examples-python.yml"
+  push:
+    branches: [main]
+    paths:
+      - "schemas/**"
+      - "scripts/validate_examples.py"
+      - "scripts/requirements-validate.txt"
+      - ".github/workflows/validate-examples-python.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-examples-python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-validate.txt
+      - name: Install jsonschema without format extras
+        run: |
+          pip install -r scripts/requirements-validate.txt
+          python -c "import importlib.util, sys; sys.exit(1 if importlib.util.find_spec('rfc3339_validator') else 0)" \
+            || { echo "::error::rfc3339-validator is installed; this run must not assert formats"; exit 1; }
+      - name: Validate examples (no format checking)
+        run: python scripts/validate_examples.py

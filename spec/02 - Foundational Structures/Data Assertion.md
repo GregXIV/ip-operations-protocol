@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.9
 ---
 
 # Data Assertion
@@ -58,6 +58,8 @@ What the assertion says. Two forms:
   ]
 }
 ```
+
+The `path` of every operation is a JSON Pointer (RFC 6901) relative to `sectionPath`: the operation applies to the section as if the section were the whole document, and `""` names the section itself. `/-` under the `sectionPath` `/legalStatus/events` appends to that array; it never names a member of the record root (stated in 0.9, decision 110).
 
 The supported operations are `add`, `remove`, `replace`, `test`. The `move` and `copy` operations are NOT supported — they introduce ambiguity in assertion ordering and audit. If a value needs to move, the assertion uses `add`+`remove` explicitly.
 

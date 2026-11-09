@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.8:deadline",
+  "$id": "urn:ipproto:schema:0.9:deadline",
   "title": "Deadline",
   "description": "A time limit the work must observe that the parties did not set for each other: court-ordered, statutory, agreed with a third party, or a hearing. Not a Service Level. Added in 0.6.",
   "type": "object",
   "properties": {
     "deadlineUri": {
-      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
     },
     "deadlineKind": {
       "anyOf": [
@@ -38,7 +38,7 @@
           "type": "string"
         },
         "basisDocument": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         }
       },
       "anyOf": [
@@ -63,13 +63,13 @@
       "type": "object",
       "properties": {
         "eventType": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         },
         "triggerDate": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
         },
         "triggerDocument": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         }
       },
       "required": [
@@ -77,22 +77,22 @@
       ]
     },
     "dueDate": {
-      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+      "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
     },
     "dueAt": {
-      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDateTime"
     },
     "jurisdictionCode": {
-      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/st3Code"
+      "$ref": "urn:ipproto:schema:0.9:defs#/$defs/st3Code"
     },
     "appointment": {
       "type": "object",
       "properties": {
         "startsAt": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDateTime"
         },
         "endsAt": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDateTime"
         },
         "location": {
           "type": "string"
@@ -112,17 +112,17 @@
     "reminderDates": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+        "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
       }
     },
     "supersedes": {
       "type": "object",
       "properties": {
         "deadlineUri": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         },
         "grantingDocument": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         }
       },
       "required": [
@@ -142,13 +142,13 @@
       "type": "object",
       "properties": {
         "metAt": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDateTime"
         },
         "messageUri": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         },
         "document": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         }
       },
       "required": [
@@ -158,7 +158,7 @@
     "milestoneReferences": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
       }
     }
   },

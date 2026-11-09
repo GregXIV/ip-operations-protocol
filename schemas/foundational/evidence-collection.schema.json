@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.8:evidenceCollection",
+  "$id": "urn:ipproto:schema:0.9:evidenceCollection",
   "title": "Evidence Collection",
   "type": "object",
   "properties": {
@@ -11,7 +11,7 @@
         "type": "object",
         "properties": {
           "evidenceType": {
-            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
           },
           "evidenceContent": {
             "type": "object"
@@ -28,7 +28,7 @@
                 ]
               },
               "captureUserContext": {
-                "$ref": "urn:ipproto:schema:0.8:userContext"
+                "$ref": "urn:ipproto:schema:0.9:userContext"
               },
               "integrityHash": {
                 "type": "string"

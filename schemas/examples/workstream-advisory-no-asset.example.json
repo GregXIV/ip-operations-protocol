@@ -1,0 +1,106 @@
+{
+  "workstreamUri": "urn:ipproto:workstream:fto-0001",
+  "workstreamType": "urn:ipproto:workstream:freedomToOperate",
+  "triggeringEvent": {
+    "eventType": "clientRequest",
+    "eventReference": "urn:ipproto:message:workInstruction-example-fto-0001",
+    "triggeredAt": "2027-01-11T09:20:00Z"
+  },
+  "goalStatement": {
+    "goalText": "Freedom-to-operate opinion on the Northwind cabin air filter, model CF-200, for sale in DE, FR and IT.",
+    "goalCategory": "urn:ipproto:goal:freedomToOperate"
+  },
+  "instructingCapacity": "own",
+  "milestoneChain": {
+    "chainExecutionPolicy": "strict",
+    "milestones": [
+      {
+        "milestoneUri": "urn:ipproto:milestone:fto-0001-m1-search",
+        "milestoneSequence": 1,
+        "milestoneTitle": "Search for patents in force in DE, FR and IT that the product may use",
+        "milestoneCategory": "urn:ipproto:milestoneCategory:freedomToOperate",
+        "actorAssignments": [
+          {
+            "actorUri": "urn:ipproto:actor:woodgrove-ip",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-fto-0001",
+            "assignmentType": "primary"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-fto-0001",
+            "assignmentType": "accountableTo"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-fto-0001",
+            "assignmentType": "payor"
+          }
+        ],
+        "executionMode": "serviceProviderManaged",
+        "serviceProviderActorUri": "urn:ipproto:actor:woodgrove-ip",
+        "dependencies": [],
+        "milestoneStatus": "completed",
+        "estimates": {
+          "estimatedDuration": {
+            "minimumDays": 10,
+            "expectedDays": 15,
+            "maximumDays": 25
+          }
+        },
+        "milestoneAuthorityClaims": [
+          "urn:ipproto:authorityClaim:fto-0001-instruction"
+        ]
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:fto-0001-m2-opinion",
+        "milestoneSequence": 2,
+        "milestoneTitle": "Written freedom-to-operate opinion",
+        "milestoneCategory": "urn:ipproto:milestoneCategory:freedomToOperate",
+        "actorAssignments": [
+          {
+            "actorUri": "urn:ipproto:actor:woodgrove-ip",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-fto-0001",
+            "assignmentType": "primary"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-fto-0001",
+            "assignmentType": "accountableTo"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-fto-0001",
+            "assignmentType": "payor"
+          }
+        ],
+        "executionMode": "serviceProviderManaged",
+        "serviceProviderActorUri": "urn:ipproto:actor:woodgrove-ip",
+        "dependencies": [
+          {
+            "dependsOnMilestoneUri": "urn:ipproto:milestone:fto-0001-m1-search",
+            "requiredState": "completed"
+          }
+        ],
+        "milestoneStatus": "inProgress",
+        "estimates": {
+          "estimatedDuration": {
+            "minimumDays": 5,
+            "expectedDays": 10,
+            "maximumDays": 20
+          }
+        },
+        "milestoneAuthorityClaims": [
+          "urn:ipproto:authorityClaim:fto-0001-instruction"
+        ]
+      }
+    ]
+  },
+  "workstreamStatus": "inProgress",
+  "statusHistory": [],
+  "authorityRegistry": [
+    "urn:ipproto:authorityClaim:fto-0001-corporate",
+    "urn:ipproto:authorityClaim:fto-0001-status"
+  ],
+  "createdAt": "2027-01-11T09:25:00Z",
+  "committedAt": "2027-01-11T14:00:00Z"
+}

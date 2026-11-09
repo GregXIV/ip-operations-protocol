@@ -103,7 +103,7 @@ For payments where an external system (typically the office's register) confirms
     "paymentReference": "urn:ipproto:payment:p-001-grant-fee-...",
     "paymentPurpose": {
       "purposeCategory": "urn:ipproto:paymentPurpose:officeFee",
-      "purposeNarrative": "EP grant fee for application 21712345.6",
+      "purposeNarrative": "EP grant fee for application 21000000.0",
       "relatedMilestoneUri": "urn:ipproto:milestone:m4-grant-fee"
     },
     "paymentAmount": {

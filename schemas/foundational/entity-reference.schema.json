@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.8:entityReference",
+  "$id": "urn:ipproto:schema:0.9:entityReference",
   "title": "Entity Reference",
   "type": "object",
   "properties": {
@@ -23,13 +23,13 @@
               ]
             },
             "sourceActorUri": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
             },
             "sourcePublicationDate": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
             },
             "sourceDocumentReference": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
             }
           },
           "required": [
@@ -46,10 +46,10 @@
       "type": "object",
       "properties": {
         "resolvedEntityUri": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         },
         "resolvedAt": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDateTime"
         },
         "confidenceLevel": {
           "enum": [
@@ -81,7 +81,7 @@
       "description": "Added in 0.6. Identifiers of the entity known to the asserter, as on Actor Reference.",
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.8:defs#/$defs/identifier"
+        "$ref": "urn:ipproto:schema:0.9:defs#/$defs/identifier"
       }
     },
     "aliases": {
@@ -104,10 +104,10 @@
         "type": "object",
         "properties": {
           "actorUri": {
-            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
           },
           "entityUriInActor": {
-            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
           }
         },
         "required": [

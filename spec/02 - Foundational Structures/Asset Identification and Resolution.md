@@ -1,6 +1,6 @@
 ---
 type: profile
-status: v0.6
+status: v0.9
 ---
 
 # Asset Identification and Resolution
@@ -57,20 +57,20 @@ Custom schemes use `urn:ipproto:scheme:{namespace}:{name}`. The protocol does no
 
 ### Worked example
 
-An EP asset, partway through its life, carrying application, publication, and grant identifiers plus a national validation:
+An EP asset, partway through its life, carrying application, publication, and grant identifiers plus a national validation. The example shows EP behaviour, the check digit of the application number and a validation in DE, so it keeps the office codes; every number is fictional and cannot exist (see [Conventions](../01%20-%20Front%20Matter/Conventions.md), *Worked examples*):
 
 ```json
 {
   "assetUri": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
   "assetType": "patent",
   "identifiers": [
-    { "scheme": "urn:ipproto:scheme:office-application", "officeCode": "EP", "value": "21712345.6", "referenceType": "application", "issueDate": "2021-04-15" },
-    { "scheme": "urn:ipproto:scheme:office-publication", "officeCode": "EP", "value": "EP3987654", "kindCode": "A1", "referenceType": "publication", "issueDate": "2022-10-20" },
-    { "scheme": "urn:ipproto:scheme:office-publication", "officeCode": "EP", "value": "EP3987654", "kindCode": "B1", "referenceType": "grant", "issueDate": "2026-07-08" },
-    { "scheme": "urn:ipproto:scheme:office-publication", "officeCode": "DE", "value": "DE602022001234", "kindCode": "T3", "referenceType": "grant" },
-    { "scheme": "urn:ipproto:scheme:docdb-family", "value": "78451203" }
+    { "scheme": "urn:ipproto:scheme:office-application", "officeCode": "EP", "value": "21000000.0", "referenceType": "application", "issueDate": "2021-04-15" },
+    { "scheme": "urn:ipproto:scheme:office-publication", "officeCode": "EP", "value": "EP0000000", "kindCode": "A1", "referenceType": "publication", "issueDate": "2022-10-20" },
+    { "scheme": "urn:ipproto:scheme:office-publication", "officeCode": "EP", "value": "EP0000000", "kindCode": "B1", "referenceType": "grant", "issueDate": "2026-07-08" },
+    { "scheme": "urn:ipproto:scheme:office-publication", "officeCode": "DE", "value": "DE602022000000", "kindCode": "T3", "referenceType": "grant" },
+    { "scheme": "urn:ipproto:scheme:docdb-family", "value": "00000000" }
   ],
-  "displayLabel": "EP 3 987 654 B1"
+  "displayLabel": "EP 0 000 000 B1"
 }
 ```
 

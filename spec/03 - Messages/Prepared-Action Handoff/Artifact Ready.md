@@ -69,7 +69,7 @@ The protocol-level expectation about register confirmation:
       "actionCategory": "urn:ipproto:action:officeFiling",
       "actionTarget": {
         "targetSystem": "urn:ipproto:system:epoTerminal",
-        "targetUri": "https://my.epo.org/applications/EP21712345"
+        "targetUri": "https://my.epo.org/applications/EP21000000"
       },
       "actionInstructions": {
         "steps": [

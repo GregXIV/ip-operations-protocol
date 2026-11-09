@@ -132,8 +132,8 @@ A change to a deadline that an actor has shared, such as a status moving to `met
     "deadlineUri": "urn:ipproto:deadline:d-71-3-001",
     "deadlineKind": "statutory",
     "title": "Reply to the communication under Rule 71(3) EPC",
-    "basis": {"legalProvision": "Rule 71(3) EPC", "basisDocument": "urn:ipproto:document:ep3987654-r71-3"},
-    "trigger": {"eventType": "urn:ipproto:deadlineTrigger:notification", "triggerDate": "2026-04-28", "triggerDocument": "urn:ipproto:document:ep3987654-r71-3"},
+    "basis": {"legalProvision": "Rule 71(3) EPC", "basisDocument": "urn:ipproto:document:ep0000000-r71-3"},
+    "trigger": {"eventType": "urn:ipproto:deadlineTrigger:notification", "triggerDate": "2026-04-28", "triggerDocument": "urn:ipproto:document:ep0000000-r71-3"},
     "dueDate": "2026-08-28",
     "jurisdictionCode": "EP",
     "reminderDates": ["2026-08-14", "2026-08-21"],
@@ -143,11 +143,11 @@ A change to a deadline that an actor has shared, such as a status moving to `met
     "deadlineUri": "urn:ipproto:deadline:d-71-3-002",
     "deadlineKind": "statutory",
     "title": "Reply to the communication under Rule 71(3) EPC, extended",
-    "supersedes": {"deadlineUri": "urn:ipproto:deadline:d-71-3-001", "grantingDocument": "urn:ipproto:document:ep3987654-extension"},
+    "supersedes": {"deadlineUri": "urn:ipproto:deadline:d-71-3-001", "grantingDocument": "urn:ipproto:document:ep0000000-extension"},
     "dueDate": "2026-10-28",
     "jurisdictionCode": "EP",
     "status": "met",
-    "metBy": {"metAt": "2026-10-20T10:15:00Z", "document": "urn:ipproto:document:ep3987654-reply-receipt"}
+    "metBy": {"metAt": "2026-10-20T10:15:00Z", "document": "urn:ipproto:document:ep0000000-reply-receipt"}
   }
 ]
 ```

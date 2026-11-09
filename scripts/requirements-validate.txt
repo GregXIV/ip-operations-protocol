@@ -1,0 +1,4 @@
+# Python validation of the schema examples (scripts/validate_examples.py).
+# Pinned, and deliberately WITHOUT jsonschema's format extras
+# (no rfc3339-validator): format is not asserted.
+jsonschema==4.26.0

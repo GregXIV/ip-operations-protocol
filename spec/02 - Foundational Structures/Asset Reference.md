@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.1
+status: v0.9
 ---
 
 # Asset Reference
@@ -46,9 +46,11 @@ For the EP-and-national family pattern, the EP grant is the parent of national v
 ### `displayLabel`
 Type: string, optional
 
-Human-readable label for UI rendering. `EP 21712345.6`, `Northwind Industries-2021-0473-EP`. Not authoritative — receivers compute display labels from identifiers when needed.
+Human-readable label for UI rendering. `EP 21000000.0`, `Northwind Industries-2021-0473-EP`. Not authoritative — receivers compute display labels from identifiers when needed.
 
 ## Worked example
+
+The numbers are fictional and cannot exist (see [Conventions](../01%20-%20Front%20Matter/Conventions.md), *Worked examples*).
 
 ```json
 {
@@ -58,20 +60,20 @@ Human-readable label for UI rendering. `EP 21712345.6`, `Northwind Industries-20
     {
       "scheme": "urn:ipproto:scheme:office-application",
       "officeCode": "EP",
-      "value": "21712345.6",
+      "value": "21000000.0",
       "referenceType": "application",
       "issueDate": "2021-04-15"
     },
     {
       "scheme": "urn:ipproto:scheme:office-publication",
       "officeCode": "EP",
-      "value": "EP3987654",
+      "value": "EP0000000",
       "kindCode": "A1",
       "referenceType": "publication",
       "issueDate": "2022-10-20"
     }
   ],
-  "displayLabel": "EP 21712345.6"
+  "displayLabel": "EP 21000000.0"
 }
 ```
 

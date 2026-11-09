@@ -8,17 +8,17 @@
     "matchedIdentifiers": [
       {
         "officeCode": "EP",
-        "value": "EP3987654",
+        "value": "EP0000000",
         "kindCode": "A1"
       }
     ],
-    "docdbFamilyId": "DOCDB-78451203"
+    "docdbFamilyId": "DOCDB-00000000"
   },
   "inputIdentifiers": [
     {
       "scheme": "urn:ipproto:scheme:office-publication",
       "officeCode": "EP",
-      "value": "EP3987654",
+      "value": "EP0000000",
       "kindCode": "A1"
     }
   ]

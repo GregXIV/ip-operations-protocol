@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.8:recordUpdate",
+  "$id": "urn:ipproto:schema:0.9:recordUpdate",
   "title": "Record Update",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.8:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.9:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,7 +16,7 @@
       "type": "object",
       "properties": {
         "updatedRecord": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         },
         "updateNarrative": {
           "type": "string"

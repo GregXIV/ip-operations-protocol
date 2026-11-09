@@ -18,7 +18,7 @@
   "payload": {
     "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
     "instruction": {
-      "instructionText": "Validate EP 3 987 654 in Spain: translate the specification into Spanish, file the translation at the OEPM and pay the publication fee.",
+      "instructionText": "Validate EP 0 000 000 in Spain: translate the specification into Spanish, file the translation at the OEPM and pay the publication fee.",
       "instructionConstraints": {
         "requesterReference": "MIG-2026-1042-ES"
       }
@@ -59,7 +59,7 @@
       }
     ],
     "providedDocuments": [
-      "urn:ipproto:document:ep3987654-b1-granted-text"
+      "urn:ipproto:document:ep0000000-b1-granted-text"
     ],
     "expectedDeliverables": [
       {

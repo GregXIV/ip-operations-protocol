@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.8:invoiceIssued",
+  "$id": "urn:ipproto:schema:0.9:invoiceIssued",
   "title": "Invoice Issued",
   "description": "A payee issues an invoice to a payor, for milestones, subscriptions or both. One message for supplier invoices and for the customer invoice; payee and payor say which it is.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.8:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.9:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,7 +17,7 @@
       "type": "object",
       "properties": {
         "invoiceReference": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         },
         "invoiceNumber": {
           "type": "string"
@@ -26,13 +26,13 @@
           "type": "object",
           "properties": {
             "actorUri": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
             },
             "roleDeclarationUri": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
             },
             "taxIdentifier": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/identifier",
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/identifier",
               "description": "Added in 0.8. The VAT identification number (scheme urn:ipproto:scheme:vat) or other tax number under which the party is invoiced; where the party's Actor Reference lists VAT numbers, one of them."
             }
           },
@@ -44,13 +44,13 @@
           "type": "object",
           "properties": {
             "actorUri": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
             },
             "roleDeclarationUri": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
             },
             "taxIdentifier": {
-              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/identifier",
+              "$ref": "urn:ipproto:schema:0.9:defs#/$defs/identifier",
               "description": "Added in 0.8. The VAT identification number (scheme urn:ipproto:scheme:vat) or other tax number under which the party is invoiced; where the party's Actor Reference lists VAT numbers, one of them."
             }
           },
@@ -59,7 +59,7 @@
           ]
         },
         "issueDate": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate",
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate",
           "description": "Added in 0.8. The date of issue printed on the invoice document. Required when taxBreakdown is present."
         },
         "buyerReference": {
@@ -77,20 +77,20 @@
                 "description": "Added in 0.8. The payee's identifier of the line, unique within the invoice."
               },
               "milestoneReference": {
-                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
               },
               "subscriptionReference": {
-                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
               },
               "billingPeriod": {
                 "type": "object",
                 "description": "The period a subscription line is charged for. Both dates are inclusive, and 'to' is not before 'from'; the order of the two dates is a rule of the spec that JSON Schema cannot express. Allowed only on a line that carries subscriptionReference. Added in 0.4.",
                 "properties": {
                   "from": {
-                    "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+                    "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
                   },
                   "to": {
-                    "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+                    "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
                   }
                 },
                 "required": [
@@ -103,10 +103,10 @@
                 "description": "Added in 0.8. The period in which the work charged on a milestone line was done. Both dates inclusive; 'to' is not before 'from' (a spec rule). Allowed only on a line that carries milestoneReference.",
                 "properties": {
                   "from": {
-                    "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+                    "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
                   },
                   "to": {
-                    "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+                    "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
                   }
                 },
                 "required": [
@@ -115,7 +115,7 @@
                 ]
               },
               "lineItemType": {
-                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
               },
               "amount": {
                 "type": "number"
@@ -151,7 +151,7 @@
                 "description": "Added in 0.8. Price of one unit, net of tax; amount is quantity times unitPrice rounded to the minor unit (a spec rule)."
               },
               "serviceDate": {
-                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate",
+                "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate",
                 "description": "Added in 0.8. The day the work or expense of the line took place."
               },
               "timekeeper": {
@@ -159,7 +159,7 @@
                 "description": "Added in 0.8. The provider's own identifier of the person whose time the line charges, as in the rateTable of Agreed Price."
               },
               "rateRole": {
-                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri",
+                "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri",
                 "description": "Added in 0.8. The role in which the time is charged, as in the rateTable of Agreed Price."
               },
               "billingCodes": {
@@ -170,7 +170,7 @@
                   "type": "object",
                   "properties": {
                     "codeSet": {
-                      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+                      "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
                     },
                     "codeType": {
                       "enum": [
@@ -305,7 +305,7 @@
           }
         },
         "totalAmount": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/money"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/money"
         },
         "taxHandling": {
           "type": "object",
@@ -403,10 +403,10 @@
           }
         },
         "dueDate": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/isoDate"
         },
         "invoiceDocument": {
-          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
         },
         "invoiceDocumentSyntax": {
           "description": "Added in 0.8. The syntax of the invoice document where it is a structured electronic invoice. With en16931Cii or en16931Ubl the document wins: the message does not contradict it.",
@@ -429,7 +429,7 @@
           "minItems": 1,
           "description": "Added in 0.8. Document References that support the invoice, such as a billingDetail file (e.g. LEDES 1998B) or a fee receipt.",
           "items": {
-            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
           }
         },
         "allocation": {
@@ -445,7 +445,7 @@
               "type": "array",
               "minItems": 1,
               "items": {
-                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.9:defs#/$defs/uri"
               }
             },
             "note": {

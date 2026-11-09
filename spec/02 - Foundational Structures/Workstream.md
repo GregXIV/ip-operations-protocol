@@ -1,11 +1,11 @@
 ---
 type: foundational
-status: v0.7
+status: v0.9
 ---
 
 # Workstream
 
-> First-class entity representing operational work being performed on one or more assets, or on rights that are still to be created.
+> First-class entity representing operational work being performed on one or more assets, on rights that are still to be created, or as advice that concerns no right of its own.
 
 A workstream is distinct from the asset (workstreams come and go; assets persist) and distinct from individual milestones (milestones are units of work within a workstream). Multiple concurrent workstreams can exist on the same asset — a renewal workstream, an opposition workstream, a recordal workstream — all running independently.
 
@@ -35,14 +35,14 @@ Typed classification. Standard types:
 A workstream type names the kind of work, not the place where it is done: an opposition is `opposition` whichever office hears it. The court or tribunal before which a dispute runs is the `forum` of its entry in `proceedings`, never a workstream type (decision 88). A further instance of the same dispute is `appeal`, with the instance stated in `proceedings`.
 
 ### `assetReferences`
-Type: array of [Asset Reference](Asset%20Reference.md) URIs, conditional (at least one entry)
+Type: array of [Asset Reference](Asset%20Reference.md) URIs, optional (at least one entry when present)
 
-The assets the work is on. Required unless `prospectiveRights` is present. Until 0.3 the field was required without exception.
+The assets the work is on. Until 0.3 the field was required without exception; from 0.3 to 0.8 it was required unless `prospectiveRights` was present. Since 0.9 a workstream may carry neither (decision 106). A workstream about a specific right lists that right as soon as it is known. See *Work without an asset* below.
 
 ### `prospectiveRights`
 Type: array of structured entries, conditional (at least one entry)
 
-Added in 0.3. The rights the work is to create or prepare where no asset exists yet: a first filing, or an application to be drafted. Required unless `assetReferences` is present. A workstream may carry both. Each entry:
+Added in 0.3. The rights the work is to create or prepare where no asset exists yet: a first filing, or an application to be drafted. Optional since 0.9; from 0.3 to 0.8 it was required unless `assetReferences` was present (decision 106). A workstream may carry both, or neither. Each entry:
 
 - `assetType` — enumeration, required. The kind of right, with the values of `assetType` in [Asset Reference](Asset%20Reference.md)
 - `workingTitle` — string, required. What the right is called until it has a number: the working title of the invention or design, or the mark itself
@@ -65,12 +65,12 @@ Added in 0.7 (decision 89). The role each asset plays in a dispute, beside the b
   - `other`
 - `proceedingReference` — URI, optional: the `proceedingUri` of the entry in `proceedings` in which the asset has this role. Absent means every proceeding of the workstream
 
-An asset may have several entries, one per proceeding: a patent in suit in the action is the challenged patent in a counterclaim for revocation. An asset not listed in `assetRoles` has no stated role. `assetRoles` adds to `assetReferences` and replaces nothing; every `assetUri` in it appears there. Prior art cited against a right is not an asset of the workstream: it is a [Document Reference](Document%20Reference.md), typically an `exhibit`.
+An asset may have several entries, one per proceeding: a patent in suit in the action is the challenged patent in a counterclaim for revocation. An asset not listed in `assetRoles` has no stated role. `assetRoles` adds to `assetReferences` and replaces nothing; every `assetUri` in it appears there, so a workstream that carries `assetRoles` carries `assetReferences` as well. Since 0.9 `assetRoles` is recorded under the status claim (see `authorityRegistry`). Prior art cited against a right is not an asset of the workstream: it is a [Document Reference](Document%20Reference.md), typically an `exhibit`.
 
 ### `proceedings`
 Type: array of structured entries, optional
 
-Added in 0.7 (decision 87). The proceedings before a court, a tribunal or an office in which the work is done, with the parties to each. Used by the litigation module of the provider profile (see [Conformance](../01%20-%20Front%20Matter/Conformance.md)); a workstream without a dispute does not carry it. Each entry:
+Added in 0.7 (decision 87). The proceedings before a court, a tribunal or an office in which the work is done, with the parties to each. Since 0.9 `proceedings` is recorded under the status claim (see `authorityRegistry`). Used by the litigation module of the provider profile (see [Conformance](../01%20-%20Front%20Matter/Conformance.md)); a workstream without a dispute does not carry it. Each entry:
 
 - `proceedingUri` — URI, required: `urn:ipproto:proceeding:{uuid}`, assigned by the actor that first records the proceeding
 - `proceedingType` — URI, required. Standard values in `urn:ipproto:proceedingType:`: `infringement`, `revocation`, `counterclaimForRevocation`, `declarationOfNonInfringement`, `provisionalMeasures`, `opposition`, `appeal`, `other`. Custom values through namespaced URNs
@@ -157,6 +157,14 @@ References to [Authority Claim](Authority%20Claim.md) URIs governing the workstr
 
 The second half of each line was stated in 0.4. Until then the page did not say under whose claim a resulting asset is recorded. See *Work on a right that does not exist yet* below.
 
+Since 0.9 the claim over status updates, the **status claim**, held by the orchestrator or, in a direct engagement, by the provider, also covers recording the facts of the matter as they become known (decisions 106 and 108). Like a resulting asset, each is a fact and not a change of the goal:
+
+- **the right the work is about**, added to `assetReferences` once it is identified, where the workstream was created without it: the patent named in a warning letter, once its number is known. Adding a right the work was not about widens the goal and stays under the corporate claim
+- **`proceedings`**: adding a proceeding, and adding to or updating its entry, such as the docket number once the forum assigns it, a party that joins, or the instance of an appeal
+- **`assetRoles`**: adding and updating the role an asset plays in a proceeding, such as the challenged patent of a counterclaim for revocation once the counterclaim is raised
+
+Removing an asset role that changes what the client asked for, such as dropping a patent from the patents in suit, stays under the corporate claim, as does removing an asset reference.
+
 In a direct engagement the provider holds the second claim in the orchestrator's place. Under an accepted [Mandate Instruction](../03%20-%20Messages/Work%20Instruction/Mandate%20Instruction.md) the provider also holds **a mandate claim over adding milestones within the mandate's scope** (stated in 0.6, decision 71). It covers adding a milestone to `milestoneChain` that lies inside the mandate's `mandateScope`, and nothing else: the goal, the assets and rights to be created, and the milestones the client set stay under the corporate claim. As with the line drawn in 0.4, an [Authority Claim](Authority%20Claim.md) names a section and not an operation, so the line between adding a milestone in scope and every other change to the chain is a rule of this page, observed by the two claimants and by receivers.
 
 ### `createdAt`, `committedAt`, `completedAt`
@@ -166,6 +174,12 @@ ISO 8601 datetimes. First required; others populate as workstream progresses.
 Type: array, optional
 
 Other workstreams related to this one. Each entry: `workstreamUri`, `relationshipType` (`predecessorOf`, `successorOf`, `concurrent`, `triggers`, free-form URN).
+
+## Work without an asset
+
+Added in 0.9 (decision 106). Until 0.9 a workstream needed at least one asset or one prospective right. Advisory work has neither: a freedom-to-operate opinion on a product, the review of a licence agreement, a question of licensing or of ownership. Such work may stay without an asset to its end, and its workstream carries neither `assetReferences` nor `prospectiveRights`.
+
+The relaxation is not tied to `workstreamType`, since a custom type could not be checked against such a rule. The rule is one of practice instead: a workstream about a specific right lists it in `assetReferences` as soon as it is known. Where the right is known when the workstream is created, it is listed then; where it becomes known later, the holder of the status claim adds it as a fact (see `authorityRegistry`). Rights the advice merely mentions, such as third-party patents cleared in a freedom-to-operate search, are not assets of the workstream; they are named in the deliverable, as prior art is named in a [Document Reference](Document%20Reference.md).
 
 ## Work on a right that does not exist yet
 

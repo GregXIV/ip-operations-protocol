@@ -3,6 +3,61 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [0.9.0] — 2026-11 (working draft)
+
+Fixes found in a provider-side implementation of 0.8, decided by the maintainer on
+2026-11-09 (Ratified Decisions 106 to 111). A provider-side implementation, pinned to v0.8.0
+and validating with Python `jsonschema`, could not record advisory work that concerns no right,
+rejected a published example, and had to guess under whose claim the facts of a dispute
+are recorded and against what a patch path is read. The protocol still has 44 message
+types in 12 categories and 15 foundational structures.
+
+A minor version that **relaxes three rules and tightens two, neither in a schema**.
+`protocolVersion` is `0.9`, and every schema identifier is re-issued as
+`urn:ipproto:schema:0.9:<name>`.
+
+### Compatibility
+- **A 0.8 message remains valid under 0.9.** All 61 examples of v0.8.0 validate unchanged
+  against the 0.9 schemas, under `validate.mjs` (ajv with formats) and under Python
+  `jsonschema` 4.26 without format checking.
+- **Relaxed (decision 106).** A Workstream may carry neither `assetReferences` nor
+  `prospectiveRights`: advisory work, such as a freedom-to-operate opinion on a product.
+  A workstream about a specific right lists it as soon as it is known. A receiver that
+  relied on every workstream naming an asset or a prospective right must expect neither.
+- **Relaxed (decision 107).** Work Requested may carry neither as well.
+- **Relaxed (decision 109).** `originationDate`, `servedAt` and `receivedAt` of Document
+  Reference and `auditCompletionDate` of Workstream Completed are `anyOf` date / date-time
+  instead of `oneOf`. A validator that asserts `format` accepts exactly what it did; one
+  that does not, such as Python `jsonschema` without format extras, no longer rejects every
+  value (the 0.8 court-order example failed there).
+- **Tightened (decision 108), no schema change.** `proceedings` and `assetRoles` are added
+  and updated under the status claim (the orchestrator's, or the provider's in a direct
+  engagement); removing an asset role that changes what the client asked for stays under
+  the corporate claim. An assertion on them under another claim is not covered.
+- **Tightened (decision 110), no schema change.** Patch paths in a Data Assertion are JSON
+  Pointers relative to `sectionPath`. Every example already read them so.
+- **Strict validators.** A receiver that validates strictly against the 0.8 schemas rejects
+  a workstream or a request with neither assets nor prospective rights, and, if it does not
+  assert formats, any value of the four date fields above.
+
+### Added
+- **CI: Python validation of every example** with `jsonschema` 4.26 and no format extras
+  (`scripts/validate_examples.py`, `.github/workflows/validate-examples-python.yml`),
+  mapping examples as `validate.mjs` does. Decision 109.
+- **Example:** `workstream-advisory-no-asset.example.json`, a freedom-to-operate workstream
+  with no asset. Decision 106.
+- **Workstream:** a section *Work without an asset*, and the status claim's coverage of
+  the right the work is about, `proceedings` and `assetRoles`. Decisions 106 and 108.
+- **Conformance:** PR-LT2 names the claim under which `proceedings` and `assetRoles` are
+  recorded. Decision 108.
+- **Conventions:** example patent numbers are fictional; `XX` names no office.
+  Decision 111.
+
+### Changed
+- **Examples and spec:** litigation and opposition examples use `XX 0 000 001 B1` to
+  `XX 0 000 003 B1`; the EP post-grant running example uses numbers that cannot exist
+  (`EP 0 000 000`, application `21000000.0`, DOCDB family `00000000`). Decision 111.
+
 ## [0.8.0] — 2026-11 (working draft)
 
 Invoicing for firms, decided by the maintainer on 2026-11-09 (Ratified Decisions 95 to
