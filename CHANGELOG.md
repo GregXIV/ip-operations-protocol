@@ -3,6 +3,88 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [0.8.0] — 2026-11 (working draft)
+
+Invoicing for firms, decided by the maintainer on 2026-11-09 (Ratified Decisions 95 to
+105), the last of three releases. A provider could conform and price a matter, but its
+invoice could not show time entries, the VAT category of each line, a court fee passed on at
+cost, the parties' VAT numbers, or a charge shared between two payors. Open Question 7, on
+the tax vocabulary of invoices, is ratified. The protocol still has 44 message types in 12
+categories and 15 foundational structures.
+
+A minor version that **relaxes one rule and tightens none**: optional fields, vocabulary
+values, one document type and invoicing requirements in both role profiles, each recorded as
+a ratified decision. Every sender rule it adds applies only to a field added in 0.8. Line
+detail and tax detail are optional for every actor. `protocolVersion` is `0.8`, and every
+schema identifier is re-issued as `urn:ipproto:schema:0.8:<name>`.
+
+### Compatibility
+- **A 0.7 message remains valid under 0.8.** All 54 examples of v0.7.0 validate unchanged
+  against the 0.8 schemas.
+- **Relaxed (decision 96).** An entry of `disputedLines` in Invoice Disputed names its line
+  by `lineIndex`, by the new `lineId` or by both; `lineIndex` is no longer required. A
+  receiver that relied on `lineIndex` must expect an entry with `lineId` only.
+- **Tightened: nothing.** `issueDate` was considered as a required field and made
+  conditional instead (required only with a `taxBreakdown`), so that no invoice valid since
+  0.2 becomes invalid (decision 97). The new consistency rules (categories on every line,
+  breakdown sums, shares adding up to 100) bind only senders that use the new fields.
+- **Vocabularies.** `taxTreatment` gains `perLine` (open vocabulary). New closed enumerations
+  are on new fields only: `taxCategory.categoryCode` (the EN 16931 VAT category codes) and
+  `billingCodes[].codeType`.
+- **Recipients.** Payment Executed may also be addressed to the payee (decision 104).
+- **A 0.7 receiver keeps working if it degrades on unknown values**, as VERSIONING.md
+  requires: it ignores the new optional fields.
+- **Strict validators.** A receiver that validates strictly against the 0.7 schemas accepts
+  every new optional field, because unknown fields pass, and rejects the treatment `perLine`
+  (neither a 0.7 standard value nor a namespaced URN) and a disputed line named by `lineId`
+  alone.
+
+### Added
+- **Invoice Issued, line detail:** `lineId`, `quantity`, `unit`, `unitPrice`,
+  `serviceDate`, `timekeeper`, `rateRole` (tied to the 0.7 `rateTable`), and `billingCodes`
+  with a code-set URN (e.g. UTBMS as an example vocabulary). Document type `billingDetail`
+  for an electronic billing file such as LEDES 1998B, named in the new `supportingDocuments`.
+  Decision 95.
+- **Invoice Issued: `issueDate`** (conditional) and **`servicePeriod`** on milestone lines.
+  Decision 97.
+- **Invoice Issued, tax:** `taxCategory` per line with the EN 16931 VAT category codes and
+  rate, `taxBreakdown` per category and rate, and the treatment `perLine`. Decision 98.
+- **Invoice Issued: `passThrough`** lines outside the VAT base, e.g. court fees advanced.
+  Decision 99.
+- **Invoice Issued: `taxIdentifier`** on payee and payor (the VAT scheme of decision 65) and
+  **`buyerReference`**. Decision 100.
+- **Invoice Issued: `invoiceDocumentSyntax`** (`en16931Cii`, `en16931Ubl`); an EN 16931
+  document wins and the message must not contradict it. Decision 101.
+- **Split payers:** `payorShare` on payor assignments of Milestone and Service Subscription
+  Started; `allocation` (`sharePercent`, `siblingInvoiceReferences`) on Invoice Issued.
+  Decision 103.
+- **Payment Authorized and Payment Executed: `invoiceReferences`** with an optional
+  `appliedAmount`. Decision 104.
+- **Conformance:** PR-V3 to PR-V6 and OR-V4 to OR-V7 (invoice tax, EN 16931 precedence,
+  split payers, line detail where given) and OR-PA2 (invoice references in payments).
+  Decision 105.
+- **Non-Scope:** tax law and e-invoicing obligations; the payment status of an invoice.
+- **Glossary:** pass-through line, payor share, tax category, time entry.
+- **Examples (7):** an hourly invoice with time entries, codes, per-line tax categories and
+  an EN 16931 document; an invoice that passes on a court fee; a split-payer pair (taxed and
+  reverse-charged) and the milestone with the payors' shares; a dispute that names a line by
+  `lineId`; a payment executed that names the invoice it settles.
+
+### Changed
+- **Invoice Disputed:** `disputedLines[].lineIndex` is one of `lineIndex` and `lineId`.
+  Decision 96.
+- **Open Questions for Consortium, question 7:** ratified, with its answer; the tax
+  treatment vocabulary is no longer provisional. Decision 102.
+- **Generated TypeScript types** regenerated from the 0.8 schemas.
+
+### Left out
+- **A payee-side Payment Received** message (decision 104): payment status stays out of
+  scope; a payment names the invoices it settles instead.
+- **Withholding tax** in the breakdown (decision 102): stated with a custom treatment or in
+  the document, as before.
+- **Required `issueDate`** for every invoice (decision 97): it would invalidate every invoice
+  valid since 0.2.
+
 ## [0.7.0] — 2026-11 (working draft)
 
 The litigation module and mandate pricing, decided by the maintainer on 2026-11-09
