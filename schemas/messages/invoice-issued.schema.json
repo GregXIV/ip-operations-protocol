@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.7:invoiceIssued",
+  "$id": "urn:ipproto:schema:0.8:invoiceIssued",
   "title": "Invoice Issued",
   "description": "A payee issues an invoice to a payor, for milestones, subscriptions or both. One message for supplier invoices and for the customer invoice; payee and payor say which it is.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.7:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.8:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,7 +17,7 @@
       "type": "object",
       "properties": {
         "invoiceReference": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
         },
         "invoiceNumber": {
           "type": "string"
@@ -26,10 +26,14 @@
           "type": "object",
           "properties": {
             "actorUri": {
-              "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
             },
             "roleDeclarationUri": {
-              "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+            },
+            "taxIdentifier": {
+              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/identifier",
+              "description": "Added in 0.8. The VAT identification number (scheme urn:ipproto:scheme:vat) or other tax number under which the party is invoiced; where the party's Actor Reference lists VAT numbers, one of them."
             }
           },
           "required": [
@@ -40,15 +44,27 @@
           "type": "object",
           "properties": {
             "actorUri": {
-              "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
             },
             "roleDeclarationUri": {
-              "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+            },
+            "taxIdentifier": {
+              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/identifier",
+              "description": "Added in 0.8. The VAT identification number (scheme urn:ipproto:scheme:vat) or other tax number under which the party is invoiced; where the party's Actor Reference lists VAT numbers, one of them."
             }
           },
           "required": [
             "actorUri"
           ]
+        },
+        "issueDate": {
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate",
+          "description": "Added in 0.8. The date of issue printed on the invoice document. Required when taxBreakdown is present."
+        },
+        "buyerReference": {
+          "type": "string",
+          "description": "Added in 0.8. The reference the payor asked to be quoted on its invoices."
         },
         "invoiceLines": {
           "type": "array",
@@ -56,21 +72,41 @@
           "items": {
             "type": "object",
             "properties": {
+              "lineId": {
+                "type": "string",
+                "description": "Added in 0.8. The payee's identifier of the line, unique within the invoice."
+              },
               "milestoneReference": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
               },
               "subscriptionReference": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
               },
               "billingPeriod": {
                 "type": "object",
                 "description": "The period a subscription line is charged for. Both dates are inclusive, and 'to' is not before 'from'; the order of the two dates is a rule of the spec that JSON Schema cannot express. Allowed only on a line that carries subscriptionReference. Added in 0.4.",
                 "properties": {
                   "from": {
-                    "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDate"
+                    "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
                   },
                   "to": {
-                    "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDate"
+                    "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to"
+                ]
+              },
+              "servicePeriod": {
+                "type": "object",
+                "description": "Added in 0.8. The period in which the work charged on a milestone line was done. Both dates inclusive; 'to' is not before 'from' (a spec rule). Allowed only on a line that carries milestoneReference.",
+                "properties": {
+                  "from": {
+                    "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
+                  },
+                  "to": {
+                    "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
                   }
                 },
                 "required": [
@@ -79,13 +115,135 @@
                 ]
               },
               "lineItemType": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
               },
               "amount": {
                 "type": "number"
               },
               "description": {
                 "type": "string"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "Added in 0.8. How many units the line charges; hours to one decimal (a spec rule)."
+              },
+              "unit": {
+                "description": "Added in 0.8. The unit of quantity.",
+                "anyOf": [
+                  {
+                    "enum": [
+                      "hour",
+                      "day",
+                      "item",
+                      "page",
+                      "word"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^urn:[A-Za-z0-9][A-Za-z0-9-]{0,31}:.+$",
+                    "description": "Custom unit: a namespaced URN identifying the defining authority"
+                  }
+                ]
+              },
+              "unitPrice": {
+                "type": "number",
+                "description": "Added in 0.8. Price of one unit, net of tax; amount is quantity times unitPrice rounded to the minor unit (a spec rule)."
+              },
+              "serviceDate": {
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate",
+                "description": "Added in 0.8. The day the work or expense of the line took place."
+              },
+              "timekeeper": {
+                "type": "string",
+                "description": "Added in 0.8. The provider's own identifier of the person whose time the line charges, as in the rateTable of Agreed Price."
+              },
+              "rateRole": {
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri",
+                "description": "Added in 0.8. The role in which the time is charged, as in the rateTable of Agreed Price."
+              },
+              "billingCodes": {
+                "type": "array",
+                "minItems": 1,
+                "description": "Added in 0.8. Task, activity or expense codes from a code set the parties use (for example the UTBMS code sets); the protocol defines none.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "codeSet": {
+                      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+                    },
+                    "codeType": {
+                      "enum": [
+                        "task",
+                        "activity",
+                        "expense",
+                        "other"
+                      ]
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "codeSet",
+                    "codeType",
+                    "code"
+                  ]
+                }
+              },
+              "taxCategory": {
+                "type": "object",
+                "properties": {
+                  "categoryCode": {
+                    "enum": [
+                      "S",
+                      "Z",
+                      "E",
+                      "AE",
+                      "K",
+                      "G",
+                      "O",
+                      "L",
+                      "M"
+                    ],
+                    "description": "EN 16931 VAT category code (UNTDID 5305 as restricted by EN 16931). Closed."
+                  },
+                  "ratePercent": {
+                    "type": "number"
+                  },
+                  "exemptionReason": {
+                    "type": "string"
+                  },
+                  "exemptionReasonCode": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "categoryCode"
+                ],
+                "if": {
+                  "properties": {
+                    "categoryCode": {
+                      "not": {
+                        "const": "O"
+                      }
+                    }
+                  },
+                  "required": [
+                    "categoryCode"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "ratePercent"
+                  ]
+                },
+                "description": "Added in 0.8. The VAT category of the line in EN 16931 terms; ratePercent is required unless categoryCode is O."
+              },
+              "passThrough": {
+                "type": "boolean",
+                "default": false,
+                "description": "Added in 0.8. The line passes on, at cost, an amount the payee paid in the payor's name and on its account, outside the payee's VAT base (e.g. a court fee advanced). Such a line carries no taxCategory."
               }
             },
             "required": [
@@ -107,18 +265,53 @@
             "dependentRequired": {
               "billingPeriod": [
                 "subscriptionReference"
+              ],
+              "servicePeriod": [
+                "milestoneReference"
+              ],
+              "quantity": [
+                "unit"
               ]
-            }
+            },
+            "allOf": [
+              {
+                "not": {
+                  "required": [
+                    "servicePeriod",
+                    "serviceDate"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "passThrough": {
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "passThrough"
+                  ]
+                },
+                "then": {
+                  "not": {
+                    "required": [
+                      "taxCategory"
+                    ]
+                  }
+                }
+              }
+            ]
           }
         },
         "totalAmount": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/money"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/money"
         },
         "taxHandling": {
           "type": "object",
           "properties": {
             "taxTreatment": {
-              "description": "Provisional vocabulary: the standard values have not been reviewed by invoice issuers and may change before 1.0.",
+              "description": "Ratified in 0.8 (decision 102), with perLine added; open to custom values.",
               "anyOf": [
                 {
                   "enum": [
@@ -126,7 +319,8 @@
                     "reverseCharge",
                     "exempt",
                     "outsideScope",
-                    "notStated"
+                    "notStated",
+                    "perLine"
                   ]
                 },
                 {
@@ -147,11 +341,120 @@
             "taxTreatment"
           ]
         },
+        "taxBreakdown": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Added in 0.8. One entry per VAT category and rate, in EN 16931 terms. Required with taxTreatment perLine and where any line carries taxCategory. The entries add up to the lines and the total (spec rules).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "categoryCode": {
+                "enum": [
+                  "S",
+                  "Z",
+                  "E",
+                  "AE",
+                  "K",
+                  "G",
+                  "O",
+                  "L",
+                  "M"
+                ],
+                "description": "EN 16931 VAT category code (UNTDID 5305 as restricted by EN 16931). Closed."
+              },
+              "ratePercent": {
+                "type": "number"
+              },
+              "taxableAmount": {
+                "type": "number"
+              },
+              "taxAmount": {
+                "type": "number"
+              },
+              "exemptionReason": {
+                "type": "string"
+              },
+              "exemptionReasonCode": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "categoryCode",
+              "taxableAmount",
+              "taxAmount"
+            ],
+            "if": {
+              "properties": {
+                "categoryCode": {
+                  "not": {
+                    "const": "O"
+                  }
+                }
+              },
+              "required": [
+                "categoryCode"
+              ]
+            },
+            "then": {
+              "required": [
+                "ratePercent"
+              ]
+            }
+          }
+        },
         "dueDate": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDate"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
         },
         "invoiceDocument": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+        },
+        "invoiceDocumentSyntax": {
+          "description": "Added in 0.8. The syntax of the invoice document where it is a structured electronic invoice. With en16931Cii or en16931Ubl the document wins: the message does not contradict it.",
+          "anyOf": [
+            {
+              "enum": [
+                "en16931Cii",
+                "en16931Ubl"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "^urn:[A-Za-z0-9][A-Za-z0-9-]{0,31}:.+$",
+              "description": "Another syntax: a namespaced URN identifying the defining authority"
+            }
+          ]
+        },
+        "supportingDocuments": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Added in 0.8. Document References that support the invoice, such as a billingDetail file (e.g. LEDES 1998B) or a fee receipt.",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+          }
+        },
+        "allocation": {
+          "type": "object",
+          "description": "Added in 0.8. This invoice is the payor's share of a charge invoiced to several payors; lines and total are this payor's share.",
+          "properties": {
+            "sharePercent": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 100
+            },
+            "siblingInvoiceReferences": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "sharePercent"
+          ]
         }
       },
       "required": [
@@ -164,6 +467,65 @@
         "taxHandling",
         "dueDate",
         "invoiceDocument"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "taxHandling": {
+                "properties": {
+                  "taxTreatment": {
+                    "const": "perLine"
+                  }
+                },
+                "required": [
+                  "taxTreatment"
+                ]
+              }
+            },
+            "required": [
+              "taxHandling"
+            ]
+          },
+          "then": {
+            "required": [
+              "taxBreakdown"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "invoiceLines": {
+                "contains": {
+                  "required": [
+                    "taxCategory"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "invoiceLines"
+            ]
+          },
+          "then": {
+            "required": [
+              "taxBreakdown"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "taxBreakdown"
+            ]
+          },
+          "then": {
+            "required": [
+              "issueDate"
+            ]
+          }
+        }
       ]
     }
   },

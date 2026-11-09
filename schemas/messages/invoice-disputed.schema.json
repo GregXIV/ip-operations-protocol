@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.7:invoiceDisputed",
+  "$id": "urn:ipproto:schema:0.8:invoiceDisputed",
   "title": "Invoice Disputed",
   "description": "Added in 0.5. The payor disputes an invoice it received, with the reason. Acceptance of an invoice has no message.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.7:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.8:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,10 +17,10 @@
       "type": "object",
       "properties": {
         "invoiceReference": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
         },
         "disputedAt": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
         },
         "disputeReason": {
           "type": "object",
@@ -54,17 +54,30 @@
                 "type": "integer",
                 "minimum": 0
               },
+              "lineId": {
+                "type": "string",
+                "description": "Added in 0.8. The lineId of the line in the invoice. Since 0.8 a line is named by lineIndex, lineId or both."
+              },
               "note": {
                 "type": "string"
               }
             },
-            "required": [
-              "lineIndex"
+            "anyOf": [
+              {
+                "required": [
+                  "lineIndex"
+                ]
+              },
+              {
+                "required": [
+                  "lineId"
+                ]
+              }
             ]
           }
         },
         "disputedAmount": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/money"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/money"
         }
       },
       "required": [

@@ -1,27 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.7:workstream",
+  "$id": "urn:ipproto:schema:0.8:workstream",
   "title": "Workstream",
   "type": "object",
   "properties": {
     "workstreamUri": {
-      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
     },
     "workstreamType": {
-      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
     },
     "assetReferences": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
       }
     },
     "prospectiveRights": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "urn:ipproto:schema:0.7:defs#/$defs/prospectiveRight"
+        "$ref": "urn:ipproto:schema:0.8:defs#/$defs/prospectiveRight"
       }
     },
     "assetRoles": {
@@ -31,7 +31,7 @@
         "type": "object",
         "properties": {
           "assetUri": {
-            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
           },
           "role": {
             "anyOf": [
@@ -51,7 +51,7 @@
             ]
           },
           "proceedingReference": {
-            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
           }
         },
         "required": [
@@ -67,13 +67,13 @@
         "type": "object",
         "properties": {
           "proceedingUri": {
-            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
           },
           "proceedingType": {
-            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
           },
           "forum": {
-            "$ref": "urn:ipproto:schema:0.7:entityReference"
+            "$ref": "urn:ipproto:schema:0.8:entityReference"
           },
           "forumDocketNumber": {
             "type": "string"
@@ -98,7 +98,7 @@
             "type": "array",
             "minItems": 1,
             "items": {
-              "$ref": "urn:ipproto:schema:0.7:defs#/$defs/proceedingParty"
+              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/proceedingParty"
             }
           },
           "relatedProceedings": {
@@ -107,7 +107,7 @@
               "type": "object",
               "properties": {
                 "proceedingUri": {
-                  "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+                  "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
                 },
                 "relationshipType": {
                   "anyOf": [
@@ -155,10 +155,10 @@
           ]
         },
         "eventReference": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
         },
         "triggeredAt": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
         }
       },
       "required": [
@@ -173,7 +173,7 @@
           "type": "string"
         },
         "goalCategory": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
         },
         "goalConstraints": {
           "type": "object",
@@ -182,7 +182,7 @@
               "description": "Since 0.6 an array of Deadline structures: the deadlines the goal must observe.",
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.7:deadline"
+                "$ref": "urn:ipproto:schema:0.8:deadline"
               }
             }
           }
@@ -199,7 +199,7 @@
       ]
     },
     "beneficiary": {
-      "$ref": "urn:ipproto:schema:0.7:entityReference"
+      "$ref": "urn:ipproto:schema:0.8:entityReference"
     },
     "milestoneChain": {
       "type": "object",
@@ -207,7 +207,7 @@
         "milestones": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.7:milestone"
+            "$ref": "urn:ipproto:schema:0.8:milestone"
           }
         },
         "chainExecutionPolicy": {
@@ -241,17 +241,17 @@
     "authorityRegistry": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+        "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
       }
     },
     "createdAt": {
-      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
     },
     "committedAt": {
-      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
     },
     "completedAt": {
-      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
     },
     "relatedWorkstreams": {
       "type": "array",
