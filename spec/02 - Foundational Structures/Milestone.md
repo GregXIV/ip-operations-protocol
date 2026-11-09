@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.7
+status: v0.8
 ---
 
 # Milestone
@@ -60,7 +60,11 @@ Each entry assigns an actor to a role:
 - `roleDeclarationUri` — [Actor Role Declaration](Actor%20Role%20Declaration.md)
 - `assignmentType` — enumeration: `primary`, `delegatedFrom`, `accountableTo`, `payor`, `observer`
 
+- `payorShare` — decimal, optional, only on an entry of type `payor`. Added in 0.8. The share, in percent, of the charges for the milestone that this payor bears; greater than 0 and not above 100
+
 A milestone typically has multiple entries — the worker (`primary`), the corporate (`accountableTo`), the corporate again (`payor` if paying directly), optional delegation entries.
+
+**Several payors.** Added in 0.8 (decision 103). Where co-owners or joint parties share the cost of one milestone, the milestone has one `payor` entry for each, and each may carry its `payorShare`. Where any payor entry carries a share, every payor entry of the milestone does, and the shares add up to 100. The provider then invoices each payor its share with an invoice of its own, whose `allocation` names the share and the sibling invoices (see [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md), `allocation`). The schema rejects a `payorShare` on an entry of another type; that the shares add up is a sender rule. A milestone with several payors and no shares was valid before 0.8 and stays valid: how its charges are split is then agreed outside the protocol, and the invoices still carry `allocation`.
 
 ### `executionMode`
 Type: enumeration, required

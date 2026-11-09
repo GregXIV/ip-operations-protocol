@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.7
+status: v0.8
 ---
 
 # Document Reference
@@ -54,6 +54,7 @@ An office decision in an opposition stays `officeDecision`; the court types are 
 **Commercial:**
 - `invoice` — an invoice as a document, referenced by [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) (added in 0.2). Before 0.2 `invoice` existed only as a deliverable type
 - `creditNote` — a document that cancels or reduces an invoice, referenced by [Invoice Cancelled](../03%20-%20Messages/Payments/Invoice%20Cancelled.md) (added in 0.5)
+- `billingDetail` — an electronic billing file that details the charges of an invoice line by line, such as a LEDES 1998B file, named in `supportingDocuments` of [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) (added in 0.8). The file format is stated by `documentKind` (for instance `kindCode` `LEDES1998B` with the authority that maintains the format as `kindAuthority`). It supports the invoice and never replaces the `invoice` document
 
 `filingReceipt` and `officialFeeReceipt` are the standard labels for what a provider hands back after a filing or a fee payment; a [Work Instruction](../03%20-%20Messages/Work%20Instruction/Work%20Instruction.md) names them in `expectedDeliverables`. They classify the document. The evidence type `urn:ipproto:evidence:officeFeeReceipt` of an [Evidence Collection](Evidence%20Collection.md) classifies the evidence item that may point at such a document.
 

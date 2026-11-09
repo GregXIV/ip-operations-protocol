@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.7
+status: v0.8
 ---
 
 # Agreed Price
@@ -90,6 +90,8 @@ How the table relates to `amount`:
 - `capped`: `amount` stays the ceiling. The table says how time is valued below it.
 
 A timekeeper is named by the provider's own identifier, not by a full name, unless the requester needs the name for its own purposes; see *Natural persons* in [Entity Reference](Entity%20Reference.md).
+
+Since 0.8 an invoice line that charges time names the same `timekeeper` and `rateRole`, so that the payor can check its `unitPrice` against this table (see *Line detail* in [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md); decision 95).
 
 ### `budget`
 Type: structured, optional
