@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.6:workInstruction",
+  "$id": "urn:ipproto:schema:0.7:workInstruction",
   "title": "Work Instruction",
   "description": "A work requester instructs a work provider to perform one milestone at an agreed price and under agreed service levels.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.6:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.7:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,7 +17,7 @@
       "type": "object",
       "properties": {
         "milestoneReference": {
-          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
         },
         "instruction": {
           "type": "object",
@@ -34,19 +34,20 @@
           ]
         },
         "agreedPrice": {
-          "$ref": "urn:ipproto:schema:0.6:agreedPrice"
+          "$ref": "urn:ipproto:schema:0.7:agreedPrice"
         },
         "serviceLevels": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "urn:ipproto:schema:0.6:serviceLevel"
-          }
+            "$ref": "urn:ipproto:schema:0.7:serviceLevel"
+          },
+          "description": "Required unless the envelope carries recordedBy (an instruction recorded by its provider); relaxed in 0.7."
         },
         "providedDocuments": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
           }
         },
         "expectedDeliverables": {
@@ -56,10 +57,10 @@
             "type": "object",
             "properties": {
               "deliverableType": {
-                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
               },
               "documentType": {
-                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
               }
             },
             "anyOf": [
@@ -77,13 +78,14 @@
           }
         },
         "responseDeadline": {
-          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime",
+          "description": "Required unless the envelope carries recordedBy (an instruction recorded by its provider); relaxed in 0.7."
         },
         "conflictParties": {
           "description": "Added in 0.6. The parties the provider checks for conflicts of interest before it accepts.",
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/conflictParty"
+            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/conflictParty"
           }
         }
       },
@@ -91,14 +93,28 @@
         "milestoneReference",
         "instruction",
         "agreedPrice",
-        "serviceLevels",
         "providedDocuments",
-        "expectedDeliverables",
-        "responseDeadline"
+        "expectedDeliverables"
       ]
     }
   },
   "required": [
     "payload"
-  ]
+  ],
+  "if": {
+    "required": [
+      "recordedBy"
+    ]
+  },
+  "then": {},
+  "else": {
+    "properties": {
+      "payload": {
+        "required": [
+          "serviceLevels",
+          "responseDeadline"
+        ]
+      }
+    }
+  }
 }
