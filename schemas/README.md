@@ -1,7 +1,7 @@
 # Schemas
 
 JSON Schemas, validated examples, generated TypeScript types, and a reference validator
-for the IP Operations Protocol **v0.6**. Packaged as `@ipproto/schemas`.
+for the IP Operations Protocol **v0.7**. Packaged as `@ipproto/schemas`.
 
 **License:** Apache-2.0 (see [LICENSE](LICENSE)) — the explicit patent grant is deliberate
 for a standard in the patent domain.
@@ -37,10 +37,10 @@ schemas/
 ## Conventions
 
 - **Dialect:** JSON Schema draft 2020-12.
-- **`$id`:** `urn:ipproto:schema:0.6:<name>`. The version is part of the identity and is
+- **`$id`:** `urn:ipproto:schema:0.7:<name>`. The version is part of the identity and is
   never reused across versions (see ../VERSIONING.md), so the whole set is re-issued under
-  `0.6`; the `0.1`, `0.2`, `0.3`, `0.4` and `0.5` identifiers keep naming the 0.1.0, 0.2.0, 0.3.0,
-  0.4.x and 0.5.0 sets and nothing else. Cross-schema
+  `0.7`; the `0.1`, `0.2`, `0.3`, `0.4`, `0.5` and `0.6` identifiers keep naming the 0.1.0, 0.2.0,
+  0.3.0, 0.4.x, 0.5.0 and 0.6.0 sets and nothing else. Cross-schema
   `$ref`s use these URNs; a validator registers all schemas so the URN refs resolve.
 - **Open extension:** `additionalProperties` is intentionally left open. The protocol's
   stated behavior is that receivers degrade gracefully on unknown fields rather than
@@ -82,10 +82,10 @@ subscriptions, steady-state events (register events, service findings), the full
 machinery, and the generic record update. That is 63 schema files: common defs, the envelope,
 17 under `foundational/` and 44 under `messages/`.
 
-Forty-nine complete examples (messages + structures) validate against the set. The thirteen
+Fifty-four complete examples (messages + structures) validate against the set. The thirteen
 carried over from 0.1 keep `"protocolVersion": "0.1"` and the eighteen added in 0.2 keep
 `"protocolVersion": "0.2"` on purpose: they show that a 0.1 or 0.2 message validates
-unchanged against the 0.6 schemas. The six added in 0.3 cover the two messages of 0.3, a
+unchanged against the 0.7 schemas. The six added in 0.3 cover the two messages of 0.3, a
 request and a workstream for a first filing, a document reference without an asset, and
 an invoice for a subscription. Five of them are unchanged and keep `"0.3"`, for the same
 reason. The sixth, the subscription invoice, now states its month in `billingPeriod` and
@@ -101,7 +101,19 @@ company register numbers. The four added in 0.6 say `"0.6"`: a mandate instructi
 provider recorded from its client's e-mail (`recordedBy`, `recordedFrom`, `confidentiality`),
 the provider's conflict check on that mandate kept as an internal record
 (`clearedAfterReview`, no addressee), a milestone failure with typed deadlines at risk, and
-a hearing as a Deadline structure that supersedes an earlier one.
+a hearing as a Deadline structure that supersedes an earlier one. The five added in 0.7
+say `"0.7"` where they are messages: a workstream in an infringement action with a
+counterclaim (`proceedings`, `assetRoles`, court deadlines), a mandate for that action priced
+by the hour with a rate table, a budget and a statutory fee floor, a court order whose
+originator is an Entity Reference and which records `servedAt`, a flat fee per month with a
+budget, and a work instruction that its provider recorded from an e-mail without service
+levels or a response deadline.
+
+Between 0.6 and 0.7 every 0.6 message validates against the 0.7 schemas: all 49 examples of
+the tag `v0.6.0` do, unchanged. A strict 0.6 validator accepts the new optional fields,
+because unknown fields pass, but rejects the price basis `periodicFlat`, a Document
+Reference whose `originator` is an Entity Reference, and a Work Instruction without
+`serviceLevels` or `responseDeadline`.
 
 Between 0.5 and 0.6 every 0.5 message validates against the 0.6 schemas: all 45 examples of
 the tag `v0.5.0` do, unchanged. A strict 0.5 validator accepts the new fields, because unknown

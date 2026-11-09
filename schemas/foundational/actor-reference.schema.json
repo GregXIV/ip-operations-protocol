@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.6:actorReference",
+  "$id": "urn:ipproto:schema:0.7:actorReference",
   "title": "Actor Reference",
   "type": "object",
   "properties": {
     "actorUri": {
-      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
     },
     "actorType": {
       "anyOf": [
@@ -37,13 +37,13 @@
         "type": "object",
         "properties": {
           "scheme": {
-            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
           },
           "value": {
             "type": "string"
           },
           "verifiedAt": {
-            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
+            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
           },
           "registrationAuthority": {
             "description": "Added in 0.5. The register that issued the identifier; required with the scheme urn:ipproto:scheme:companyRegister. Recommended: the register's code in the GLEIF Registration Authorities List.",
@@ -75,7 +75,7 @@
       "type": "string"
     },
     "jurisdictionCode": {
-      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/st3Code"
+      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/st3Code"
     },
     "addresses": {
       "type": "array",

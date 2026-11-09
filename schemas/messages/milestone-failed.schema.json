@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.6:milestoneFailed",
+  "$id": "urn:ipproto:schema:0.7:milestoneFailed",
   "title": "Milestone Failed",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.6:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.7:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,10 +16,10 @@
       "type": "object",
       "properties": {
         "milestoneReference": {
-          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
         },
         "failedAt": {
-          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
         },
         "failureReason": {
           "type": "object",
@@ -61,7 +61,7 @@
             "affectedDownstreamMilestones": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
               }
             },
             "affectedDeadlines": {
@@ -70,10 +70,10 @@
               "items": {
                 "anyOf": [
                   {
-                    "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+                    "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
                   },
                   {
-                    "$ref": "urn:ipproto:schema:0.6:deadline"
+                    "$ref": "urn:ipproto:schema:0.7:deadline"
                   }
                 ]
               }

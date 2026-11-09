@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.6
+status: v0.7
 ---
 
 # Milestone
@@ -41,6 +41,8 @@ Typed classification. Standard categories grouped:
 **Document preparation:** `officeFormPreparation`, `translationPreparation`, `responseDrafting`
 
 **Execution and filing:** `officeFiling`, `clientExecutedFiling`, `thirdPartyExecutedFiling`
+
+**Proceedings** (added in 0.7): `pleadingDrafting` (drafting a pleading or a reply to one), `courtFiling` (filing a pleading or an exhibit with a court or tribunal), `hearingAttendance` (preparing and attending a hearing; the hearing itself is a [Deadline](Deadline.md) of kind `hearing`), `appealFiling` (lodging an appeal, with its grounds where they are filed together). Work before an office in an opposition keeps `responseDrafting` and `officeFiling`
 
 **Payments:** `officeFeePayment`, `translationFeePayment`, `representationFeePayment`
 

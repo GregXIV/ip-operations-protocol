@@ -1,7 +1,7 @@
 ---
 type: message
 category: work-instruction
-status: v0.6
+status: v0.7
 ---
 
 # Work Instruction
@@ -38,12 +38,12 @@ Type: structured, required
 ### `agreedPrice`
 Type: [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md), required
 
-The price the requester offers for the work. Binding on both sides once the instruction is accepted.
+The price the requester offers for the work. Binding on both sides once the instruction is accepted. Since 0.7 the price may carry a rate table, a budget, a flat fee per period and a statutory fee floor (see [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md)).
 
 ### `serviceLevels`
-Type: array of [Service Level](../../02%20-%20Foundational%20Structures/Service%20Level.md) structures, required (at least one)
+Type: array of [Service Level](../../02%20-%20Foundational%20Structures/Service%20Level.md) structures, conditional (at least one entry)
 
-The clocks on the work. Typically `acknowledgement` and `delivery`.
+The clocks on the work. Typically `acknowledgement` and `delivery`. Required, as since 0.2, unless the instruction is recorded by its provider (see *Recorded by the provider* below); then present only where clocks were agreed. Relaxed in 0.7 (decision 86).
 
 ### `providedDocuments`
 Type: array of [Document Reference](../../02%20-%20Foundational%20Structures/Document%20Reference.md) URIs, required
@@ -58,9 +58,20 @@ What the requester expects back. Each entry names a deliverable type, a document
 - `documentType` — URI in the `urn:ipproto:doctype:` namespace of [Document Reference](../../02%20-%20Foundational%20Structures/Document%20Reference.md): `filingReceipt`, `officialFeeReceipt`, `translation`, `invoice`
 
 ### `responseDeadline`
-Type: ISO 8601 datetime, required
+Type: ISO 8601 datetime, conditional
 
-By when the provider must accept or decline. Repeats the `dueAt` of the `acknowledgement` service level.
+By when the provider must accept or decline. Repeats the `dueAt` of the `acknowledgement` service level. Required, as since 0.2, unless the instruction is recorded by its provider (see *Recorded by the provider* below). Relaxed in 0.7 (decision 86).
+
+### Recorded by the provider
+
+Added in 0.7 (decision 86). A client that instructs its counsel directly with one piece of work, by letter or e-mail, has usually agreed no clock for the answer and none for the delivery. The provider records the instruction on the client's behalf (`recordedBy` names the provider, the addressee) and answers it, often in the same act. Decision 60 forbids inventing a service level, and a response deadline for an instruction already answered describes nothing. In that case, and only in it:
+
+- `serviceLevels` is present only where clocks were agreed, and then with at least one entry
+- `responseDeadline` is present only where the client set one, and then repeats the `dueAt` of an `acknowledgement` level where one is given
+
+Everything else stays required. `expectedDeliverables` keeps its rule: a single piece of work always has an output the provider can name, a filing receipt, a draft, an opinion, and decision 60 forbids only placeholders. `agreedPrice` stays required; a price agreed by reference to the provider's terms is stated with `agreementReference`.
+
+The schema checks the presence of `recordedBy`; that it names the addressee is a rule of this page. An instruction sent by its requester itself, and every instruction passing work on to a provider further down, keeps the required clocks (requirement OR-I2 of [Conformance](../../01%20-%20Front%20Matter/Conformance.md)). Where the client instructs a whole matter, a [Mandate Instruction](Mandate%20Instruction.md) fits better, and there all clocks have been optional since 0.6.
 
 ### `conflictParties`
 Type: array of structured entries, optional

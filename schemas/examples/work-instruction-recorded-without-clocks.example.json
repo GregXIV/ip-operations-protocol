@@ -1,0 +1,50 @@
+{
+  "messageUri": "urn:ipproto:message:workInstruction-example-0002",
+  "messageType": "urn:ipproto:message:workInstruction",
+  "protocolVersion": "0.7",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-requester-tm-002",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2026-12-03T14:05:00Z",
+  "recordedBy": {
+    "actorUri": "urn:ipproto:actor:woodgrove-ip",
+    "userContext": {
+      "userIdentifier": "docketing@woodgrove-ip.example",
+      "roleAtActor": "Paralegal"
+    }
+  },
+  "recordedFrom": {
+    "channel": "email",
+    "sourceDocument": "urn:ipproto:document:woodgrove-instruction-email-2026-12-03",
+    "receivedAt": "2026-12-03T13:48:00Z"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:tm-renewal-0002",
+    "milestoneUri": "urn:ipproto:milestone:tm-renewal-0002-m1"
+  },
+  "payload": {
+    "milestoneReference": "urn:ipproto:milestone:tm-renewal-0002-m1",
+    "instruction": {
+      "instructionText": "Record the change of address of the proprietor for the trademark at the office."
+    },
+    "agreedPrice": {
+      "amount": 250.0,
+      "currency": "EUR",
+      "priceBasis": "fixed",
+      "officialFeesIncluded": false,
+      "agreementReference": "woodgrove-engagement-terms-2026#recordals"
+    },
+    "providedDocuments": [],
+    "expectedDeliverables": [
+      {
+        "documentType": "urn:ipproto:doctype:filingReceipt"
+      }
+    ]
+  },
+  "assertions": []
+}

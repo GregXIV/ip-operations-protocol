@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.6
+status: v0.7
 ---
 
 # Conventions
@@ -54,6 +54,12 @@ Several controlled vocabularies live in URN namespaces:
 - `urn:ipproto:lineItem:` — line item types of a price, a bid or an invoice: `professionalFee`, `translation`, `officialFee`, `handling`, `disbursement` (added in 0.2) and `subscriptionFee` (added in 0.3; see [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md))
 - `urn:ipproto:address:` — electronic address types of an [Actor Reference](../02%20-%20Foundational%20Structures/Actor%20Reference.md): `recordResolution` (added in 0.5; see *Record resolution* below)
 - `urn:ipproto:serviceLevel:` — service level kinds, naming what a clock measures: `acknowledgement`, `delivery`, `bidResponse`, `introduction` (added in 0.2; see [Service Level](../02%20-%20Foundational%20Structures/Service%20Level.md))
+- `urn:ipproto:deadlineTrigger:` — events from which a deadline is counted: `service`, `notification`, `publication`, `filing`, `decision`, `other` (added in 0.6; see [Deadline](../02%20-%20Foundational%20Structures/Deadline.md))
+- `urn:ipproto:rateRole:` — roles whose time a rate table prices: `partner`, `counsel`, `seniorAssociate`, `associate`, `patentAttorney`, `trainee`, `paralegal`, `technicalExpert` (added in 0.7; see [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md))
+- `urn:ipproto:proceedingType:` — kinds of proceeding: `infringement`, `revocation`, `counterclaimForRevocation`, `declarationOfNonInfringement`, `provisionalMeasures`, `opposition`, `appeal`, `other` (added in 0.7; see [Workstream](../02%20-%20Foundational%20Structures/Workstream.md), `proceedings`)
+- `urn:ipproto:proceduralPosition:` — a party's position in a proceeding: `claimant`, `defendant`, `applicant`, `respondent`, `appellant`, `opponent`, `proprietor`, `intervener` (added in 0.7; see the same)
+
+The URIs of proceedings have the form `urn:ipproto:proceeding:{uuid}` and of deadlines `urn:ipproto:deadline:{uuid}`, like any URI the protocol assigns. Forums and statutory fee schedules have no standard values: a court or tribunal is named by an [Entity Reference](../02%20-%20Foundational%20Structures/Entity%20Reference.md), a fee schedule by a namespaced URN of the authority that defines it.
 
 Custom values in any namespace are allowed but must use namespaced URNs that identify the defining authority. Receivers handling unknown values degrade gracefully to "unknown" rather than failing.
 

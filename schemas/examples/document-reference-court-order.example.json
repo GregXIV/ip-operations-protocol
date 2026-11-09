@@ -1,0 +1,32 @@
+{
+  "documentUri": "urn:ipproto:document:inf-0001-order-07",
+  "documentType": "urn:ipproto:doctype:courtOrder",
+  "assetReferences": [
+    "urn:ipproto:asset:9e0d2b17-4c3a-4f1e-8b62-5d7a0c19e4f3"
+  ],
+  "originator": {
+    "literal": {
+      "value": "Court, Patent Chamber",
+      "source": {
+        "sourceType": "derivedDocument"
+      }
+    },
+    "entityKind": "legalPerson"
+  },
+  "originationDate": "2027-02-26",
+  "servedAt": "2027-03-03T10:12:00+01:00",
+  "receivedAt": "2027-03-03T10:12:00+01:00",
+  "languageCode": "en",
+  "storageLocations": [
+    {
+      "locationUri": "https://dms.woodgrove-ip.example/inf-0001/order-07.pdf",
+      "locationType": "httpsRest",
+      "accessRequirements": {
+        "authMethodHint": "oauth2",
+        "credentialIssuerActorUri": "urn:ipproto:actor:woodgrove-ip"
+      },
+      "mediaType": "application/pdf",
+      "pageCount": 4
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "messageUri": "urn:ipproto:message:mandateInstruction-example-0002",
+  "messageType": "urn:ipproto:message:mandateInstruction",
+  "protocolVersion": "0.7",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2026-12-01T10:00:00Z",
+  "userContext": {
+    "userIdentifier": "legal@northwind-industries.example",
+    "roleAtActor": "Head of IP"
+  },
+  "confidentiality": {
+    "level": "privileged"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:inf-0001"
+  },
+  "payload": {
+    "workstreamReference": "urn:ipproto:workstream:inf-0001",
+    "instruction": {
+      "instructionText": "Bring an infringement action on EP 9 900 002 B1 against the Opposing Party before the Court, first instance.",
+      "instructionConstraints": {
+        "requesterReference": "NW-LEGAL-2026-091"
+      }
+    },
+    "mandateScope": {
+      "scopeText": "Infringement action at first instance, including a counterclaim for revocation if one is raised, up to the decision.",
+      "milestoneCategories": [
+        "urn:ipproto:milestoneCategory:pleadingDrafting",
+        "urn:ipproto:milestoneCategory:courtFiling",
+        "urn:ipproto:milestoneCategory:hearingAttendance",
+        "urn:ipproto:milestoneCategory:correspondenceHandling"
+      ],
+      "assetReferences": [
+        "urn:ipproto:asset:9e0d2b17-4c3a-4f1e-8b62-5d7a0c19e4f3"
+      ],
+      "excludedWork": "Appeal; enforcement of the decision."
+    },
+    "conflictParties": [
+      {
+        "partyRole": "adverseParty",
+        "party": {
+          "literal": {
+            "value": "Opposing Party GmbH",
+            "source": {
+              "sourceType": "register",
+              "sourceActorUri": "urn:ipproto:actor:epo"
+            }
+          },
+          "entityKind": "legalPerson"
+        }
+      }
+    ],
+    "agreedPrice": {
+      "amount": 520.0,
+      "currency": "EUR",
+      "priceBasis": "hourly",
+      "rateTable": [
+        {
+          "rateRole": "urn:ipproto:rateRole:partner",
+          "rate": 520.0
+        },
+        {
+          "rateRole": "urn:ipproto:rateRole:associate",
+          "rate": 340.0
+        },
+        {
+          "rateRole": "urn:ipproto:rateRole:patentAttorney",
+          "rate": 410.0
+        },
+        {
+          "rateRole": "urn:ipproto:rateRole:paralegal",
+          "rate": 140.0
+        },
+        {
+          "timekeeper": "WG-017",
+          "rateRole": "urn:ipproto:rateRole:associate",
+          "rate": 380.0,
+          "note": "Senior associate, agreed individually"
+        }
+      ],
+      "budget": {
+        "amount": 85000.0,
+        "onExceeding": "approvalRequired",
+        "note": "First instance up to and including the oral hearing"
+      },
+      "statutoryFeeFloor": {
+        "feeSchedule": "urn:example-bar:feeSchedule:2026",
+        "valueOfMatter": {
+          "amount": 1500000.0,
+          "currency": "EUR"
+        }
+      },
+      "officialFeesIncluded": false,
+      "agreementReference": "woodgrove-engagement-terms-2026#litigation"
+    },
+    "providedDocuments": [
+      "urn:ipproto:document:ep9900002-b1-granted-text"
+    ],
+    "expectedDeliverables": [
+      {
+        "deliverableType": "urn:ipproto:deliverable:briefDraft"
+      },
+      {
+        "deliverableType": "urn:ipproto:deliverable:hearingReport"
+      },
+      {
+        "documentType": "urn:ipproto:doctype:filingReceipt"
+      }
+    ]
+  },
+  "assertions": []
+}

@@ -1,7 +1,7 @@
 ---
 type: message
 category: deliverable-handoff
-status: v0.5
+status: v0.7
 ---
 
 # Service Deliverable
@@ -38,6 +38,7 @@ Type: URI, required
 Standard types in `urn:ipproto:deliverable:` namespace:
 - Analysis: `validationAnalysis`, `freedomToOperateReport`, `priorArtSearchResults`, `patentabilityAssessment`, `portfolioReview`
 - Document prep: `preparedOfficeForm`, `preparedTranslation`, `preparedResponse`
+- Proceedings (added in 0.7): `briefDraft` (the draft of a pleading for the client's review), `hearingReport` (the report on a hearing to the client)
 - Monitoring: `monitoringSummary`, `oppositionWatchReport`
 - Administrative: `costEstimate`, `scheduleProjection`, `invoice`
 

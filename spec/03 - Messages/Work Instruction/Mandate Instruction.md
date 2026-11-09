@@ -1,7 +1,7 @@
 ---
 type: message
 category: work-instruction
-status: v0.6
+status: v0.7
 ---
 
 # Mandate Instruction
@@ -57,7 +57,9 @@ The parties the provider checks for conflicts of interest before it accepts. Eac
 ### `agreedPrice`
 Type: [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md), optional
 
-The price agreed for the mandate, where one is agreed. Pricing models that only a mandate needs are not defined in 0.6. A milestone added under the mandate carries its own `agreedPrice` where one applies.
+The price agreed for the mandate, where one is agreed. Since 0.7 it can carry what a mandate usually needs: rates per role or per timekeeper (`rateTable`), a `budget` beside the price, a flat fee per period (`priceBasis` `periodicFlat`), and a statutory fee schedule as the floor (`statutoryFeeFloor`); see [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md) and decisions 82 to 85. 0.6 left these to a later version.
+
+A milestone added under the mandate is charged under the mandate's price where that price is `hourly`, `capped` or `periodicFlat`, and needs no `agreedPrice` of its own. A milestone to be charged otherwise, such as a fixed fee for one filing, carries its own.
 
 ### `serviceLevels`
 Type: array of [Service Level](../../02%20-%20Foundational%20Structures/Service%20Level.md) structures, optional
@@ -140,6 +142,30 @@ The client instructs its counsel by e-mail to oppose a competitor's European pat
         "status": "open"
       }
     ]
+  }
+}
+```
+
+## Worked example — a mandate for an infringement action, priced by the hour
+
+Added in 0.7. The client instructs its counsel to bring an infringement action before a court. The envelope's assertions open the workstream with the proceeding and the role of each patent (see [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), `proceedings` and `assetRoles`, and the litigation module of the provider profile). The full message is `mandate-instruction-litigation-rate-table.example.json` in `schemas/examples/`; the price is the first worked example of [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md).
+
+```json
+{
+  "payload": {
+    "workstreamReference": "urn:ipproto:workstream:inf-0001",
+    "instruction": {"instructionText": "Bring an infringement action on EP 9 900 002 B1 against the Opposing Party before the Court, first instance."},
+    "mandateScope": {
+      "scopeText": "Infringement action at first instance, including a counterclaim for revocation if one is raised, up to the decision.",
+      "milestoneCategories": [
+        "urn:ipproto:milestoneCategory:pleadingDrafting",
+        "urn:ipproto:milestoneCategory:courtFiling",
+        "urn:ipproto:milestoneCategory:hearingAttendance",
+        "urn:ipproto:milestoneCategory:correspondenceHandling"
+      ],
+      "excludedWork": "Appeal; enforcement of the decision."
+    },
+    "agreedPrice": {"amount": 520.00, "currency": "EUR", "priceBasis": "hourly", "rateTable": ["…"], "budget": {"amount": 85000.00, "onExceeding": "approvalRequired"}, "officialFeesIncluded": false}
   }
 }
 ```

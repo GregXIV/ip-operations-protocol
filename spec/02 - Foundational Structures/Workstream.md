@@ -1,6 +1,6 @@
 ---
 type: foundational
-status: v0.6
+status: v0.7
 ---
 
 # Workstream
@@ -28,7 +28,11 @@ Typed classification. Standard types:
 - `urn:ipproto:workstream:recordal`
 - `urn:ipproto:workstream:freedomToOperate`
 - `urn:ipproto:workstream:portfolioReview`
+- `urn:ipproto:workstream:infringementAction` — an action for infringement of a right before a court, with any counterclaim raised in it (added in 0.7)
+- `urn:ipproto:workstream:nullityAction` — an action before a court to revoke a granted right or declare it void, brought on its own (added in 0.7). An opposition before an office stays `opposition`
 - `urn:ipproto:workstream:custom`
+
+A workstream type names the kind of work, not the place where it is done: an opposition is `opposition` whichever office hears it. The court or tribunal before which a dispute runs is the `forum` of its entry in `proceedings`, never a workstream type (decision 88). A further instance of the same dispute is `appeal`, with the instance stated in `proceedings`.
 
 ### `assetReferences`
 Type: array of [Asset Reference](Asset%20Reference.md) URIs, conditional (at least one entry)
@@ -47,6 +51,47 @@ Added in 0.3. The rights the work is to create or prepare where no asset exists 
 - `resultingAssetReferences` — array of [Asset Reference](Asset%20Reference.md) URIs, optional. The assets that have come out of this entry. Absent until a filing has been made
 
 See *Work on a right that does not exist yet* below.
+
+### `assetRoles`
+Type: array of structured entries, optional
+
+Added in 0.7 (decision 89). The role each asset plays in a dispute, beside the bare list of `assetReferences`. Each entry:
+
+- `assetUri` — [Asset Reference](Asset%20Reference.md) URI, required. An entry of `assetReferences`
+- `role` — enumeration or namespaced URN, required:
+  - `patentInSuit` — the right asserted against the other side
+  - `challengedPatent` — the right whose validity is attacked
+  - `counterAsserted` — a right the other side asserts in return
+  - `other`
+- `proceedingReference` — URI, optional: the `proceedingUri` of the entry in `proceedings` in which the asset has this role. Absent means every proceeding of the workstream
+
+An asset may have several entries, one per proceeding: a patent in suit in the action is the challenged patent in a counterclaim for revocation. An asset not listed in `assetRoles` has no stated role. `assetRoles` adds to `assetReferences` and replaces nothing; every `assetUri` in it appears there. Prior art cited against a right is not an asset of the workstream: it is a [Document Reference](Document%20Reference.md), typically an `exhibit`.
+
+### `proceedings`
+Type: array of structured entries, optional
+
+Added in 0.7 (decision 87). The proceedings before a court, a tribunal or an office in which the work is done, with the parties to each. Used by the litigation module of the provider profile (see [Conformance](../01%20-%20Front%20Matter/Conformance.md)); a workstream without a dispute does not carry it. Each entry:
+
+- `proceedingUri` — URI, required: `urn:ipproto:proceeding:{uuid}`, assigned by the actor that first records the proceeding
+- `proceedingType` — URI, required. Standard values in `urn:ipproto:proceedingType:`: `infringement`, `revocation`, `counterclaimForRevocation`, `declarationOfNonInfringement`, `provisionalMeasures`, `opposition`, `appeal`, `other`. Custom values through namespaced URNs
+- `forum` — [Entity Reference](Entity%20Reference.md), required: the court, tribunal, office or division before which the proceeding runs. A forum need not be a protocol actor. Where it is one, the Entity Reference names its actor URI as `literal.source.sourceActorUri`
+- `forumDocketNumber` — string, optional: the forum's own number of the proceeding, as the forum writes it. Absent until the forum has assigned one
+- `instance` — enumeration or namespaced URN, optional: `firstInstance`, `appeal`, `furtherAppeal`
+- `parties` — array, required (at least one entry): the parties to the proceeding, each with
+  - `partyRole` — enumeration or namespaced URN, required: `client` (the party the provider acts for), `adverseParty`, `intervener`, `other`
+  - `party` — [Entity Reference](Entity%20Reference.md), required
+  - `proceduralPosition` — URI, optional: the party's position as the forum names it. Standard values in `urn:ipproto:proceduralPosition:`: `claimant`, `defendant`, `applicant`, `respondent`, `appellant`, `opponent`, `proprietor`, `intervener`
+- `relatedProceedings` — array, optional. Each entry: `proceedingUri`, `relationshipType` (`appealFrom`, `counterclaimIn`, `consolidatedWith`, `stayedPending`, or a namespaced URN)
+
+`partyRole` says where a party stands towards the client, `proceduralPosition` where it stands in the proceeding. A defendant who counterclaims for revocation is `adverseParty` in both proceedings and `defendant` in one, `claimant` in the other.
+
+**Who sees the proceedings.** The proceedings are carried only in messages of this workstream, and only to its own actors. Since the parties and the docket number reveal the client's dispute, they follow the confidentiality rules of [Common Envelope](Common%20Envelope.md), `confidentiality` (decision 76):
+
+- a message that carries `proceedings` or `assetRoles` is marked at least `confidential`, and `privileged` where the content is
+- where part of the matter is passed on to a provider further down, the requester re-states in its own instruction only what that provider needs, the parties for its conflict check in `conflictParties` and the proceeding it acts in, under the requester's own name; it does not forward the client's record
+- a [Bid Invitation](../03%20-%20Messages/Procurement/Bid%20Invitation.md) whose requester is withheld carries no `forumDocketNumber`, since the number identifies the dispute and with it the requester
+
+A party named in a proceeding is a party to the conflict check. The parties of `proceedings` and the `conflictParties` of the instruction that opened the workstream are kept consistent by the sender; neither replaces the other.
 
 ### `triggeringEvent`
 Type: structured, required
@@ -198,6 +243,49 @@ Added in 0.6. Most of this specification describes work that passes through an o
 
 The provider profile of [Conformance](../01%20-%20Front%20Matter/Conformance.md) lists what a provider implements, in a direct engagement and under an orchestrator alike.
 
+## A workstream in dispute
+
+Added in 0.7. An infringement action, with a counterclaim for revocation raised by the defendant. The client is the claimant; its counsel holds the status claim in a direct engagement. All names and numbers are fictional.
+
+```json
+{
+  "workstreamUri": "urn:ipproto:workstream:inf-0001",
+  "workstreamType": "urn:ipproto:workstream:infringementAction",
+  "assetReferences": ["urn:ipproto:asset:9e0d2b17-..."],
+  "assetRoles": [
+    {"assetUri": "urn:ipproto:asset:9e0d2b17-...", "role": "patentInSuit", "proceedingReference": "urn:ipproto:proceeding:inf-0001-main"},
+    {"assetUri": "urn:ipproto:asset:9e0d2b17-...", "role": "challengedPatent", "proceedingReference": "urn:ipproto:proceeding:inf-0001-cc"}
+  ],
+  "proceedings": [
+    {
+      "proceedingUri": "urn:ipproto:proceeding:inf-0001-main",
+      "proceedingType": "urn:ipproto:proceedingType:infringement",
+      "forum": {"literal": {"value": "Court, Patent Chamber", "source": {"sourceType": "selfDeclaration"}}},
+      "forumDocketNumber": "FICT-0000/26",
+      "instance": "firstInstance",
+      "parties": [
+        {"partyRole": "client", "proceduralPosition": "urn:ipproto:proceduralPosition:claimant", "party": {"literal": {"value": "Northwind Industries SE", "source": {"sourceType": "selfDeclaration"}}}},
+        {"partyRole": "adverseParty", "proceduralPosition": "urn:ipproto:proceduralPosition:defendant", "party": {"literal": {"value": "Opposing Party GmbH", "source": {"sourceType": "selfDeclaration"}}}}
+      ]
+    },
+    {
+      "proceedingUri": "urn:ipproto:proceeding:inf-0001-cc",
+      "proceedingType": "urn:ipproto:proceedingType:counterclaimForRevocation",
+      "forum": {"literal": {"value": "Court, Patent Chamber", "source": {"sourceType": "selfDeclaration"}}},
+      "instance": "firstInstance",
+      "parties": [
+        {"partyRole": "adverseParty", "proceduralPosition": "urn:ipproto:proceduralPosition:claimant", "party": {"literal": {"value": "Opposing Party GmbH", "source": {"sourceType": "selfDeclaration"}}}},
+        {"partyRole": "client", "proceduralPosition": "urn:ipproto:proceduralPosition:defendant", "party": {"literal": {"value": "Northwind Industries SE", "source": {"sourceType": "selfDeclaration"}}}}
+      ],
+      "relatedProceedings": [{"proceedingUri": "urn:ipproto:proceeding:inf-0001-main", "relationshipType": "counterclaimIn"}]
+    }
+  ],
+  "workstreamStatus": "inProgress"
+}
+```
+
+The full workstream is `workstream-litigation.example.json` in `schemas/examples/`.
+
 ## Worked example skeleton
 
 ```json
@@ -245,6 +333,8 @@ The actor that holds the claim over status updates computes status changes and p
 - [Work Requested](../03%20-%20Messages/Workstream%20Lifecycle/Work%20Requested.md) — the request that states capacity, beneficiary and prospective rights first
 - [Mandate Instruction](../03%20-%20Messages/Work%20Instruction/Mandate%20Instruction.md) — the instruction that opens a workstream in a direct engagement
 - [Deadline](Deadline.md) — the structure of `deadlineConstraints`
+- [Document Reference](Document%20Reference.md) — court documents, `servedAt` and the designation of exhibits
+- [Conformance](../01%20-%20Front%20Matter/Conformance.md) — the litigation module of the provider profile
 - [Asset Bootstrap](../03%20-%20Messages/Bootstrap%20and%20Discovery/Asset%20Bootstrap.md) — how an asset created by the work enters the protocol
 - [Goal Decomposition](../03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md) — proposes the workstream
 - [Orchestration Committed](../03%20-%20Messages/Workstream%20Lifecycle/Orchestration%20Committed.md) — authorizes the workstream

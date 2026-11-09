@@ -1,21 +1,22 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.6:agreedPrice",
+  "$id": "urn:ipproto:schema:0.7:agreedPrice",
   "title": "Agreed Price",
-  "description": "A binding price for a unit of work, as opposed to an estimate. Carried on a milestone, in a work instruction and as the price of a bid.",
+  "description": "A binding price for a unit of work, as opposed to an estimate. Carried on a milestone, in a work instruction and a mandate instruction, and as the price of a bid.",
   "type": "object",
   "properties": {
     "amount": {
       "type": "number"
     },
     "currency": {
-      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/iso4217"
+      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/iso4217"
     },
     "priceBasis": {
       "enum": [
         "fixed",
         "capped",
-        "hourly"
+        "hourly",
+        "periodicFlat"
       ]
     },
     "lineItems": {
@@ -24,7 +25,7 @@
         "type": "object",
         "properties": {
           "lineItemType": {
-            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
           },
           "amount": {
             "type": "number"
@@ -42,11 +43,102 @@
         ]
       }
     },
+    "periodicity": {
+      "description": "Added in 0.7. Required when priceBasis is periodicFlat, not used otherwise.",
+      "enum": [
+        "monthly",
+        "quarterly",
+        "semiAnnual",
+        "annual"
+      ]
+    },
+    "rateTable": {
+      "description": "Added in 0.7. Rates for time-based work per role or per timekeeper; used with hourly and capped.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rateRole": {
+            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+          },
+          "timekeeper": {
+            "type": "string"
+          },
+          "rate": {
+            "type": "number"
+          },
+          "rateUnit": {
+            "enum": [
+              "hour",
+              "day"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "rate"
+        ],
+        "anyOf": [
+          {
+            "required": [
+              "rateRole"
+            ]
+          },
+          {
+            "required": [
+              "timekeeper"
+            ]
+          }
+        ]
+      }
+    },
+    "budget": {
+      "description": "Added in 0.7. An agreed expectation of cost with a rule for exceeding it; not a cap.",
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "onExceeding": {
+          "enum": [
+            "notify",
+            "approvalRequired"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "onExceeding"
+      ]
+    },
+    "statutoryFeeFloor": {
+      "description": "Added in 0.7. A statutory fee schedule the fee is not below.",
+      "type": "object",
+      "properties": {
+        "feeSchedule": {
+          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+        },
+        "valueOfMatter": {
+          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/money"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "feeSchedule"
+      ]
+    },
     "officialFeesIncluded": {
       "type": "boolean"
     },
     "bindingUntil": {
-      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
     },
     "agreementReference": {
       "type": "string"
@@ -57,5 +149,27 @@
     "currency",
     "priceBasis",
     "officialFeesIncluded"
-  ]
+  ],
+  "if": {
+    "properties": {
+      "priceBasis": {
+        "const": "periodicFlat"
+      }
+    },
+    "required": [
+      "priceBasis"
+    ]
+  },
+  "then": {
+    "required": [
+      "periodicity"
+    ]
+  },
+  "else": {
+    "not": {
+      "required": [
+        "periodicity"
+      ]
+    }
+  }
 }

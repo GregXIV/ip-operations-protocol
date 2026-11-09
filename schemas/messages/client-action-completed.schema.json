@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.6:clientActionCompleted",
+  "$id": "urn:ipproto:schema:0.7:clientActionCompleted",
   "title": "Client Action Completed",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.6:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.7:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,16 +16,16 @@
       "type": "object",
       "properties": {
         "artifactReadyReference": {
-          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
         },
         "actionPerformedAt": {
-          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
         },
         "performingUserContext": {
-          "$ref": "urn:ipproto:schema:0.6:userContext"
+          "$ref": "urn:ipproto:schema:0.7:userContext"
         },
         "evidence": {
-          "$ref": "urn:ipproto:schema:0.6:evidenceCollection"
+          "$ref": "urn:ipproto:schema:0.7:evidenceCollection"
         },
         "actionOutcome": {
           "enum": [
@@ -36,7 +36,7 @@
           ]
         },
         "outcomeDetails": {
-          "$ref": "urn:ipproto:schema:0.6:outcomeDetails"
+          "$ref": "urn:ipproto:schema:0.7:outcomeDetails"
         }
       },
       "required": [

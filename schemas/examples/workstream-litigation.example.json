@@ -1,0 +1,351 @@
+{
+  "workstreamUri": "urn:ipproto:workstream:inf-0001",
+  "workstreamType": "urn:ipproto:workstream:infringementAction",
+  "assetReferences": [
+    "urn:ipproto:asset:9e0d2b17-4c3a-4f1e-8b62-5d7a0c19e4f3"
+  ],
+  "assetRoles": [
+    {
+      "assetUri": "urn:ipproto:asset:9e0d2b17-4c3a-4f1e-8b62-5d7a0c19e4f3",
+      "role": "patentInSuit",
+      "proceedingReference": "urn:ipproto:proceeding:inf-0001-main"
+    },
+    {
+      "assetUri": "urn:ipproto:asset:9e0d2b17-4c3a-4f1e-8b62-5d7a0c19e4f3",
+      "role": "challengedPatent",
+      "proceedingReference": "urn:ipproto:proceeding:inf-0001-cc"
+    }
+  ],
+  "proceedings": [
+    {
+      "proceedingUri": "urn:ipproto:proceeding:inf-0001-main",
+      "proceedingType": "urn:ipproto:proceedingType:infringement",
+      "forum": {
+        "literal": {
+          "value": "Court, Patent Chamber",
+          "source": {
+            "sourceType": "derivedDocument"
+          }
+        },
+        "entityKind": "legalPerson"
+      },
+      "forumDocketNumber": "FICT-0000/26",
+      "instance": "firstInstance",
+      "parties": [
+        {
+          "partyRole": "client",
+          "proceduralPosition": "urn:ipproto:proceduralPosition:claimant",
+          "party": {
+            "literal": {
+              "value": "Northwind Industries SE",
+              "source": {
+                "sourceType": "selfDeclaration",
+                "sourceActorUri": "urn:ipproto:actor:northwind-industries"
+              }
+            },
+            "entityKind": "legalPerson"
+          }
+        },
+        {
+          "partyRole": "adverseParty",
+          "proceduralPosition": "urn:ipproto:proceduralPosition:defendant",
+          "party": {
+            "literal": {
+              "value": "Opposing Party GmbH",
+              "source": {
+                "sourceType": "register",
+                "sourceActorUri": "urn:ipproto:actor:epo"
+              }
+            },
+            "entityKind": "legalPerson"
+          }
+        }
+      ]
+    },
+    {
+      "proceedingUri": "urn:ipproto:proceeding:inf-0001-cc",
+      "proceedingType": "urn:ipproto:proceedingType:counterclaimForRevocation",
+      "forum": {
+        "literal": {
+          "value": "Court, Patent Chamber",
+          "source": {
+            "sourceType": "derivedDocument"
+          }
+        },
+        "entityKind": "legalPerson"
+      },
+      "instance": "firstInstance",
+      "parties": [
+        {
+          "partyRole": "adverseParty",
+          "proceduralPosition": "urn:ipproto:proceduralPosition:claimant",
+          "party": {
+            "literal": {
+              "value": "Opposing Party GmbH",
+              "source": {
+                "sourceType": "register",
+                "sourceActorUri": "urn:ipproto:actor:epo"
+              }
+            },
+            "entityKind": "legalPerson"
+          }
+        },
+        {
+          "partyRole": "client",
+          "proceduralPosition": "urn:ipproto:proceduralPosition:defendant",
+          "party": {
+            "literal": {
+              "value": "Northwind Industries SE",
+              "source": {
+                "sourceType": "selfDeclaration",
+                "sourceActorUri": "urn:ipproto:actor:northwind-industries"
+              }
+            },
+            "entityKind": "legalPerson"
+          }
+        }
+      ],
+      "relatedProceedings": [
+        {
+          "proceedingUri": "urn:ipproto:proceeding:inf-0001-main",
+          "relationshipType": "counterclaimIn"
+        }
+      ]
+    }
+  ],
+  "triggeringEvent": {
+    "eventType": "clientRequest",
+    "eventReference": "urn:ipproto:message:mandateInstruction-example-0002",
+    "triggeredAt": "2026-12-01T10:00:00Z"
+  },
+  "goalStatement": {
+    "goalText": "Enforce EP 9 900 002 B1 against the Opposing Party at first instance and defend it against any counterclaim for revocation.",
+    "goalCategory": "urn:ipproto:goal:enforcement",
+    "goalConstraints": {
+      "deadlineConstraints": [
+        {
+          "deadlineUri": "urn:ipproto:deadline:inf-0001-reply-cc",
+          "deadlineKind": "courtOrdered",
+          "title": "Defence to the counterclaim for revocation",
+          "basis": {
+            "basisText": "Order setting the time limit for the defence to the counterclaim",
+            "basisDocument": "urn:ipproto:document:inf-0001-order-07"
+          },
+          "trigger": {
+            "eventType": "urn:ipproto:deadlineTrigger:service",
+            "triggerDate": "2027-03-03",
+            "triggerDocument": "urn:ipproto:document:inf-0001-order-07"
+          },
+          "dueDate": "2027-05-03",
+          "status": "open",
+          "milestoneReferences": [
+            "urn:ipproto:milestone:inf-0001-m3-defence-cc"
+          ]
+        }
+      ]
+    }
+  },
+  "instructingCapacity": "own",
+  "milestoneChain": {
+    "chainExecutionPolicy": "manual",
+    "milestones": [
+      {
+        "milestoneUri": "urn:ipproto:milestone:inf-0001-m1-claim",
+        "milestoneSequence": 1,
+        "milestoneTitle": "Statement of claim",
+        "milestoneCategory": "urn:ipproto:milestoneCategory:pleadingDrafting",
+        "actorAssignments": [
+          {
+            "actorUri": "urn:ipproto:actor:woodgrove-ip",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-inf-0001",
+            "assignmentType": "primary"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+            "assignmentType": "accountableTo"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+            "assignmentType": "payor"
+          }
+        ],
+        "executionMode": "serviceProviderManaged",
+        "serviceProviderActorUri": "urn:ipproto:actor:woodgrove-ip",
+        "dependencies": [],
+        "milestoneStatus": "completed",
+        "estimates": {
+          "estimatedDuration": {
+            "minimumDays": 10,
+            "expectedDays": 20,
+            "maximumDays": 40
+          }
+        },
+        "milestoneAuthorityClaims": [
+          "urn:ipproto:authorityClaim:inf-0001-mandate"
+        ]
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:inf-0001-m2-filing",
+        "milestoneSequence": 2,
+        "milestoneTitle": "Filing of the statement of claim with exhibits",
+        "milestoneCategory": "urn:ipproto:milestoneCategory:courtFiling",
+        "actorAssignments": [
+          {
+            "actorUri": "urn:ipproto:actor:woodgrove-ip",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-inf-0001",
+            "assignmentType": "primary"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+            "assignmentType": "accountableTo"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+            "assignmentType": "payor"
+          }
+        ],
+        "executionMode": "serviceProviderManaged",
+        "serviceProviderActorUri": "urn:ipproto:actor:woodgrove-ip",
+        "dependencies": [],
+        "milestoneStatus": "completed",
+        "estimates": {
+          "estimatedDuration": {
+            "minimumDays": 10,
+            "expectedDays": 20,
+            "maximumDays": 40
+          }
+        },
+        "milestoneAuthorityClaims": [
+          "urn:ipproto:authorityClaim:inf-0001-mandate"
+        ]
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:inf-0001-m3-defence-cc",
+        "milestoneSequence": 3,
+        "milestoneTitle": "Defence to the counterclaim for revocation",
+        "milestoneCategory": "urn:ipproto:milestoneCategory:pleadingDrafting",
+        "actorAssignments": [
+          {
+            "actorUri": "urn:ipproto:actor:woodgrove-ip",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-inf-0001",
+            "assignmentType": "primary"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+            "assignmentType": "accountableTo"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+            "assignmentType": "payor"
+          }
+        ],
+        "executionMode": "serviceProviderManaged",
+        "serviceProviderActorUri": "urn:ipproto:actor:woodgrove-ip",
+        "dependencies": [],
+        "milestoneStatus": "inProgress",
+        "estimates": {
+          "estimatedDuration": {
+            "minimumDays": 10,
+            "expectedDays": 20,
+            "maximumDays": 40
+          }
+        },
+        "milestoneAuthorityClaims": [
+          "urn:ipproto:authorityClaim:inf-0001-mandate"
+        ],
+        "deadlines": [
+          {
+            "deadlineUri": "urn:ipproto:deadline:inf-0001-reply-cc",
+            "deadlineKind": "courtOrdered",
+            "title": "Defence to the counterclaim for revocation",
+            "basis": {
+              "basisText": "Order setting the time limit for the defence to the counterclaim",
+              "basisDocument": "urn:ipproto:document:inf-0001-order-07"
+            },
+            "trigger": {
+              "eventType": "urn:ipproto:deadlineTrigger:service",
+              "triggerDate": "2027-03-03",
+              "triggerDocument": "urn:ipproto:document:inf-0001-order-07"
+            },
+            "dueDate": "2027-05-03",
+            "status": "open",
+            "milestoneReferences": [
+              "urn:ipproto:milestone:inf-0001-m3-defence-cc"
+            ]
+          }
+        ]
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:inf-0001-m4-hearing",
+        "milestoneSequence": 4,
+        "milestoneTitle": "Oral hearing",
+        "milestoneCategory": "urn:ipproto:milestoneCategory:hearingAttendance",
+        "actorAssignments": [
+          {
+            "actorUri": "urn:ipproto:actor:woodgrove-ip",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-inf-0001",
+            "assignmentType": "primary"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+            "assignmentType": "accountableTo"
+          },
+          {
+            "actorUri": "urn:ipproto:actor:northwind-industries",
+            "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+            "assignmentType": "payor"
+          }
+        ],
+        "executionMode": "serviceProviderManaged",
+        "serviceProviderActorUri": "urn:ipproto:actor:woodgrove-ip",
+        "dependencies": [],
+        "milestoneStatus": "committed",
+        "estimates": {
+          "estimatedDuration": {
+            "minimumDays": 10,
+            "expectedDays": 20,
+            "maximumDays": 40
+          }
+        },
+        "milestoneAuthorityClaims": [
+          "urn:ipproto:authorityClaim:inf-0001-mandate"
+        ],
+        "deadlines": [
+          {
+            "deadlineUri": "urn:ipproto:deadline:inf-0001-hearing",
+            "deadlineKind": "hearing",
+            "title": "Oral hearing",
+            "basis": {
+              "basisDocument": "urn:ipproto:document:inf-0001-order-07"
+            },
+            "dueDate": "2027-09-14",
+            "dueAt": "2027-09-14T09:30:00+02:00",
+            "appointment": {
+              "startsAt": "2027-09-14T09:30:00+02:00",
+              "endsAt": "2027-09-14T17:00:00+02:00",
+              "location": "Court, Room 1",
+              "attendanceMode": "inPerson"
+            },
+            "status": "open"
+          }
+        ]
+      }
+    ]
+  },
+  "workstreamStatus": "inProgress",
+  "statusHistory": [],
+  "authorityRegistry": [
+    "urn:ipproto:authorityClaim:inf-0001-corporate",
+    "urn:ipproto:authorityClaim:inf-0001-status",
+    "urn:ipproto:authorityClaim:inf-0001-mandate"
+  ],
+  "createdAt": "2026-12-01T10:05:00Z",
+  "committedAt": "2026-12-01T16:30:00Z"
+}

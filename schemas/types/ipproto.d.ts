@@ -1,4 +1,4 @@
-/* IP Operations Protocol v0.6 — TypeScript types.
+/* IP Operations Protocol v0.7 — TypeScript types.
  * GENERATED from the JSON Schemas. Do not edit by hand; regenerate when the spec versions.
  */
 
@@ -377,6 +377,10 @@ export interface EntityReference {
    * Added in 0.6. Other names under which the entity is known.
    */
   aliases?: string[];
+  /**
+   * Added in 0.7. Whether the entity is a legal or a natural person.
+   */
+  entityKind?: "legalPerson" | "naturalPerson";
   crossActorReferences?: {
     actorUri: string;
     entityUriInActor: string;
@@ -406,6 +410,17 @@ export interface Identifier {
 export interface ConflictParty {
   partyRole: ("beneficiary" | "applicant" | "adverseParty" | "other") | string;
   party: EntityReference;
+}
+/**
+ * A party to a proceeding: its role towards the client and its position in the proceeding. Added in 0.7.
+ *
+ * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
+ * via the `definition` "ProceedingParty".
+ */
+export interface ProceedingParty {
+  partyRole: ("client" | "adverseParty" | "intervener" | "other") | string;
+  party: EntityReference;
+  proceduralPosition?: string;
 }
 /**
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
@@ -574,7 +589,7 @@ export interface ActorRoleDeclaration {
   }[];
 }
 /**
- * A binding price for a unit of work, as opposed to an estimate. Carried on a milestone, in a work instruction and as the price of a bid.
+ * A binding price for a unit of work, as opposed to an estimate. Carried on a milestone, in a work instruction and a mandate instruction, and as the price of a bid.
  *
  * This interface was referenced by `IPOperationsProtocol`'s JSON-Schema
  * via the `definition` "AgreedPrice".
@@ -585,13 +600,43 @@ export interface AgreedPrice {
    * ISO 4217 currency code
    */
   currency: string;
-  priceBasis: "fixed" | "capped" | "hourly";
+  priceBasis: "fixed" | "capped" | "hourly" | "periodicFlat";
   lineItems?: {
     lineItemType: string;
     amount: number;
     quantity?: number;
     note?: string;
   }[];
+  /**
+   * Added in 0.7. Required when priceBasis is periodicFlat, not used otherwise.
+   */
+  periodicity?: "monthly" | "quarterly" | "semiAnnual" | "annual";
+  /**
+   * Added in 0.7. Rates for time-based work per role or per timekeeper; used with hourly and capped.
+   */
+  rateTable?: {
+    rateRole?: string;
+    timekeeper?: string;
+    rate: number;
+    rateUnit?: "hour" | "day";
+    note?: string;
+  }[];
+  /**
+   * Added in 0.7. An agreed expectation of cost with a rule for exceeding it; not a cap.
+   */
+  budget?: {
+    amount: number;
+    onExceeding: "notify" | "approvalRequired";
+    note?: string;
+  };
+  /**
+   * Added in 0.7. A statutory fee schedule the fee is not below.
+   */
+  statutoryFeeFloor?: {
+    feeSchedule: string;
+    valueOfMatter?: Money;
+    note?: string;
+  };
   officialFeesIncluded: boolean;
   bindingUntil?: string;
   agreementReference?: string;
@@ -678,8 +723,28 @@ export interface DocumentReference {
    * @minItems 1
    */
   assetReferences?: [string, ...string[]];
-  originator: string;
+  /**
+   * An Actor Reference URI, or since 0.7 an Entity Reference for an originator that is not a protocol actor, such as a court.
+   */
+  originator: string | EntityReference;
   originationDate: string;
+  /**
+   * Added in 0.7. When the document was served on the party for which the issuer of this reference acts.
+   */
+  servedAt?: string;
+  /**
+   * Added in 0.7. When the issuer of this reference, or its client, received the document.
+   */
+  receivedAt?: string;
+  /**
+   * Added in 0.7. The designation of a document submitted in proceedings, typically an exhibit.
+   */
+  courtDesignation?: {
+    proceedingReference?: string;
+    side?: string;
+    designation: string;
+    sequenceNumber?: number;
+  };
   /**
    * ISO 639-1 language code
    */
@@ -887,6 +952,32 @@ export interface Workstream {
    * @minItems 1
    */
   prospectiveRights?: [ProspectiveRight, ...ProspectiveRight[]];
+  /**
+   * Added in 0.7. The role each asset plays in a dispute; every assetUri is an entry of assetReferences.
+   */
+  assetRoles?: {
+    assetUri: string;
+    role: ("patentInSuit" | "challengedPatent" | "counterAsserted" | "other") | string;
+    proceedingReference?: string;
+  }[];
+  /**
+   * Added in 0.7. The proceedings in which the work is done, with their parties. Carried only to the workstream's own actors.
+   */
+  proceedings?: {
+    proceedingUri: string;
+    proceedingType: string;
+    forum: EntityReference;
+    forumDocketNumber?: string;
+    instance?: ("firstInstance" | "appeal" | "furtherAppeal") | string;
+    /**
+     * @minItems 1
+     */
+    parties: [ProceedingParty, ...ProceedingParty[]];
+    relatedProceedings?: {
+      proceedingUri: string;
+      relationshipType: ("appealFrom" | "counterclaimIn" | "consolidatedWith" | "stayedPending") | string;
+    }[];
+  }[];
   triggeringEvent: {
     eventType: "registerEvent" | "clientRequest" | "subscriptionFinding" | "internalDecision" | "manualEntry";
     eventReference?: string;
