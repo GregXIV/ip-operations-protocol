@@ -3,6 +3,89 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [0.7.0] — 2026-11 (working draft)
+
+The litigation module and mandate pricing, decided by the maintainer on 2026-11-09
+(Ratified Decisions 82 to 94), the second of three releases. A provider instructed with a
+whole matter could not state the price such a matter usually has, and a provider conducting
+a case before a court could not describe the case, its parties, the role of each patent or
+the court's documents. The protocol still has 44 message types in 12 categories and 15
+foundational structures.
+
+A minor version, and **not purely additive**: optional fields, vocabulary values, one value
+of a closed enumeration, a conditional module of the provider profile, two relaxed rules and
+one new sender rule, each recorded as a ratified decision. Litigation specifics are a
+conditional module and vocabulary values; none binds an actor that does not go to court.
+`protocolVersion` is `0.7`, and every schema identifier is re-issued as
+`urn:ipproto:schema:0.7:<name>`.
+
+### Compatibility
+- **A 0.6 message remains valid under 0.7.** All 49 examples of v0.6.0 validate unchanged
+  against the 0.7 schemas.
+- **Relaxed (decisions 86 and 90).** A Work Instruction whose envelope carries `recordedBy`
+  (an instruction its provider recorded) no longer requires `serviceLevels` and
+  `responseDeadline`. A Document Reference's `originator` may be an Entity Reference as well as
+  an actor URI. A receiver that relied on either being present, or on `originator` being a
+  string, must expect the new forms.
+- **Tightened (decision 92).** General requirement G12: an Entity Reference for a natural
+  person carries no more personal data than the work needs. A sender rule; no schema checks
+  it and no published example is affected.
+- **Closed enumeration extended (decision 82).** `priceBasis` gains `periodicFlat`.
+- **A 0.6 receiver keeps working if it degrades on unknown values**, as VERSIONING.md
+  requires. It ignores the new optional fields, including `proceedings`, `assetRoles`,
+  `rateTable`, `budget`, `statutoryFeeFloor`, `servedAt` and `receivedAt`.
+- **Strict validators.** A receiver that validates strictly against the 0.6 schemas accepts
+  the new optional fields, because unknown fields pass, and rejects `periodicFlat`, an
+  Entity Reference as `originator`, and a recorded Work Instruction without clocks.
+
+### Added
+- **Agreed Price: `periodicFlat` with `periodicity`** (a flat fee per period). Decision 82.
+- **Agreed Price: `rateTable`**, rates per role (`urn:ipproto:rateRole:`) or per timekeeper,
+  for `hourly` and `capped` prices. Decision 83.
+- **Agreed Price: `budget`**, distinct from a cap, with `onExceeding` `notify` or
+  `approvalRequired`. Decision 84.
+- **Agreed Price: `statutoryFeeFloor`**, a statutory fee schedule named as the floor, with an
+  optional value of the matter. Mandate Instruction accepts all of the new pricing; a
+  milestone added under a time-based or periodic mandate price needs no price of its own.
+  Decision 85.
+- **Workstream: `proceedings`** with forum (an Entity Reference), docket number, instance,
+  proceeding type (`urn:ipproto:proceedingType:`), parties with `partyRole` and
+  `proceduralPosition` (`urn:ipproto:proceduralPosition:`), and related proceedings; carried
+  only to the workstream's actors, marked at least `confidential`. Decision 87.
+- **Workstream types `infringementAction` and `nullityAction`.** No type for one particular
+  court: the court is the forum of the proceeding. Decision 88.
+- **Workstream: `assetRoles`** (`patentInSuit`, `challengedPatent`, `counterAsserted`,
+  `other`), beside `assetReferences`. Decision 89.
+- **Document Reference: `servedAt`, `receivedAt` and `courtDesignation`**; document types
+  `pleading`, `exhibit`, `courtOrder`, `courtDecision`, `proofOfService`; `filingReceipt`
+  covers courts; the link from a served document to a Deadline's trigger. Decision 91.
+- **Entity Reference: `entityKind`** and the data-minimisation rule for natural persons
+  (general requirement G12). Decision 92.
+- **Litigation module of the provider profile** (PR-LT1 to PR-LT5); milestone categories
+  `pleadingDrafting`, `courtFiling`, `hearingAttendance`, `appealFiling`; deliverable types
+  `briefDraft`, `hearingReport`. Decision 94.
+- **Conventions:** the namespaces `rateRole`, `proceedingType`, `proceduralPosition`, and
+  `deadlineTrigger` (added in 0.6, now listed).
+- **Examples (5):** a workstream in an infringement action with a counterclaim, a mandate
+  for it priced by the hour with a rate table, budget and fee floor, a court order served on
+  counsel, a flat fee per month with a budget, and a work instruction recorded by its
+  provider without clocks.
+
+### Changed
+- **Work Instruction:** `serviceLevels` and `responseDeadline` are required only when the
+  instruction is not recorded by its provider; `expectedDeliverables` and `agreedPrice` stay
+  required. Decision 60 is confirmed for every instruction that is sent. Decision 86.
+- **Document Reference: `originator`** may be an Entity Reference. Decision 90.
+- **Common Envelope:** no originator-confirmation status, and why. Decision 93.
+- **Generated TypeScript types** regenerated from the 0.7 schemas.
+
+### Left out
+- **An originator-confirmation status** on recorded messages (decision 93): a message is
+  immutable and the confirmation comes later.
+- **Invoicing for firms** (time entries on invoice lines, EN 16931 tax and Open Question 7,
+  split payers, payments linked to invoices) is the scope of the next release. No invoice
+  schema changes in 0.7.
+
 ## [0.6.0] — 2026-11 (working draft)
 
 What a provider instructed directly by its client needs in order to conform, decided by the
