@@ -93,7 +93,7 @@ Added in 0.6. The parties the provider checks for conflicts of interest before i
   "payload": {
     "milestoneReference": "urn:ipproto:milestone:b1-es-validation-agent",
     "instruction": {
-      "instructionText": "Validate EP 3 987 654 in Spain: translate the specification into Spanish, file the translation at the OEPM and pay the publication fee.",
+      "instructionText": "Validate EP 0 000 000 in Spain: translate the specification into Spanish, file the translation at the OEPM and pay the publication fee.",
       "instructionConstraints": {"requesterReference": "MIG-2026-1042-ES"}
     },
     "agreedPrice": {
@@ -112,7 +112,7 @@ Added in 0.6. The parties the provider checks for conflicts of interest before i
       {"serviceLevelKind": "urn:ipproto:serviceLevel:acknowledgement", "dueAt": "2026-10-28T17:00:00Z", "agreedDurationHours": 24},
       {"serviceLevelKind": "urn:ipproto:serviceLevel:delivery", "dueAt": "2026-11-06T17:00:00Z", "agreedDurationHours": 240}
     ],
-    "providedDocuments": ["urn:ipproto:document:ep3987654-b1-granted-text"],
+    "providedDocuments": ["urn:ipproto:document:ep0000000-b1-granted-text"],
     "expectedDeliverables": [
       {"deliverableType": "urn:ipproto:deliverable:preparedTranslation", "documentType": "urn:ipproto:doctype:translation"},
       {"documentType": "urn:ipproto:doctype:filingReceipt"},

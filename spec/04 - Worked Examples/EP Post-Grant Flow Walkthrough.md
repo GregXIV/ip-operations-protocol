@@ -1,6 +1,6 @@
 ---
 type: worked-example
-status: v0.1
+status: v0.9
 ---
 
 # EP Post-Grant Flow Walkthrough
@@ -13,7 +13,7 @@ The walkthrough is not the *only* sequence the protocol supports — many other 
 
 ## Scenario setup
 
-**Asset:** EP application 21712345.6, owned by Northwind Industries SE, prosecuted by Meridian IP Group & Co. S.à r.l. as service provider. Filing date 2021-04-15.
+**Asset:** EP application 21000000.0, owned by Northwind Industries SE, prosecuted by Meridian IP Group & Co. S.à r.l. as service provider. Filing date 2021-04-15. The number is fictional and cannot exist; the walkthrough keeps EP because it follows the EPO's procedure.
 
 **Trigger:** EPO publishes Rule 71(3) intention to grant on 2026-04-28 with response deadline 2026-08-28. Druckexemplar (proposed text) attached.
 

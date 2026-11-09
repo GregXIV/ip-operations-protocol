@@ -37,7 +37,7 @@ schemas/
 ## Conventions
 
 - **Dialect:** JSON Schema draft 2020-12.
-- **`$id`:** `urn:ipproto:schema:0.8:<name>`. The version is part of the identity and is
+- **`$id`:** `urn:ipproto:schema:0.9:<name>`. The version is part of the identity and is
   never reused across versions (see ../VERSIONING.md), so the whole set is re-issued under
   `0.8`; the `0.1`, `0.2`, `0.3`, `0.4`, `0.5`, `0.6` and `0.7` identifiers keep naming the 0.1.0,
   0.2.0, 0.3.0, 0.4.x, 0.5.0, 0.6.0 and 0.7.0 sets and nothing else. Cross-schema

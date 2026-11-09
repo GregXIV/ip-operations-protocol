@@ -1,6 +1,6 @@
 ---
 type: worked-example
-status: v0.3
+status: v0.9
 ---
 
 # Exclusive Delivery and Open Services Walkthrough
@@ -18,7 +18,7 @@ Both use the 0.1 lifecycle messages unchanged. What 0.2 adds is the request in f
 
 ### Scenario setup
 
-**Asset:** European patent EP 3 987 654, granted to Northwind Industries SE.
+**Asset:** European patent EP 0 000 000, granted to Northwind Industries SE. The number is fictional and cannot exist.
 
 **Goal:** Validate the patent in Spain and Italy.
 

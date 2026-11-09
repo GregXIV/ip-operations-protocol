@@ -10,6 +10,7 @@
   "resolution-provenance.example.json": "urn:ipproto:schema:0.9:resolutionProvenance",
   "resolved-asset.example.json": "urn:ipproto:schema:0.9:resolvedAsset",
   "service-level.example.json": "urn:ipproto:schema:0.9:serviceLevel",
+  "workstream-advisory-no-asset.example.json": "urn:ipproto:schema:0.9:workstream",
   "workstream-first-filing.example.json": "urn:ipproto:schema:0.9:workstream",
   "workstream-litigation.example.json": "urn:ipproto:schema:0.9:workstream"
 }

@@ -150,7 +150,7 @@ Optional, for version chains and document relationships. See worked examples bel
   "languageCode": "en",
   "storageLocations": [
     {
-      "locationUri": "https://register.epo.org/application?number=EP21712345&tab=doclist",
+      "locationUri": "https://register.epo.org/application?number=EP21000000&tab=doclist",
       "locationType": "officeRegister",
       "accessRequirements": {"authMethodHint": "publicAccess"},
       "mediaType": "application/pdf",

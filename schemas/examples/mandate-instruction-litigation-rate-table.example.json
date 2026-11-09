@@ -24,7 +24,7 @@
   "payload": {
     "workstreamReference": "urn:ipproto:workstream:inf-0001",
     "instruction": {
-      "instructionText": "Bring an infringement action on EP 9 900 002 B1 against the Opposing Party before the Court, first instance.",
+      "instructionText": "Bring an infringement action on XX 0 000 002 B1 against the Opposing Party before the Court, first instance.",
       "instructionConstraints": {
         "requesterReference": "NW-LEGAL-2026-091"
       }

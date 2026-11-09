@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.8
+status: v0.9
 ---
 
 # Conventions
@@ -114,6 +114,7 @@ Throughout the spec, JSON examples use the following stylistic conventions:
 - Currency amounts use decimal notation with two decimal places (`1080.00`).
 - ISO 4217 codes are upper-case (`EUR`, `USD`).
 - ISO 3166-1 / ST.3 codes are upper-case (`EP`, `DE`, `FR`, `WO`).
+- Patent numbers are fictional and must not be real, also in a future example (stated in 0.9, decision 111). An example number uses the ST.3 code `XX`, which names no office, in the digit layout of the number it stands for: `XX 0 000 001 B1`. Where a passage shows the behaviour of one office, such as the check digit of an EP application number, the validation of a European patent or a rule of the EPC, it keeps that office's code with a number that cannot exist and says so. The running example of the EP post-grant flow is EP application `21000000.0`, published and granted as `EP 0 000 000`: EP publication numbers start at `0 000 001`, and no application serial is `000000`.
 
 ## Versioning
 

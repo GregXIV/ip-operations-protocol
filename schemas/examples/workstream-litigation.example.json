@@ -119,7 +119,7 @@
     "triggeredAt": "2026-12-01T10:00:00Z"
   },
   "goalStatement": {
-    "goalText": "Enforce EP 9 900 002 B1 against the Opposing Party at first instance and defend it against any counterclaim for revocation.",
+    "goalText": "Enforce XX 0 000 002 B1 against the Opposing Party at first instance and defend it against any counterclaim for revocation.",
     "goalCategory": "urn:ipproto:goal:enforcement",
     "goalConstraints": {
       "deadlineConstraints": [

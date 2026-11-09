@@ -111,11 +111,11 @@ The client instructs its counsel by e-mail to oppose a competitor's European pat
   "payload": {
     "workstreamReference": "urn:ipproto:workstream:opp-ep9900001-001",
     "instruction": {
-      "instructionText": "File and conduct an opposition against EP 9 900 001 B1 up to the decision of the Opposition Division.",
+      "instructionText": "File and conduct an opposition against XX 0 000 001 B1 up to the decision of the Opposition Division.",
       "instructionConstraints": {"requesterReference": "NW-LEGAL-2026-077"}
     },
     "mandateScope": {
-      "scopeText": "Opposition against EP 9 900 001 B1 at first instance, including oral proceedings.",
+      "scopeText": "Opposition against XX 0 000 001 B1 at first instance, including oral proceedings.",
       "milestoneCategories": [
         "urn:ipproto:milestoneCategory:priorArtSearch",
         "urn:ipproto:milestoneCategory:responseDrafting",
@@ -154,7 +154,7 @@ Added in 0.7. The client instructs its counsel to bring an infringement action b
 {
   "payload": {
     "workstreamReference": "urn:ipproto:workstream:inf-0001",
-    "instruction": {"instructionText": "Bring an infringement action on EP 9 900 002 B1 against the Opposing Party before the Court, first instance."},
+    "instruction": {"instructionText": "Bring an infringement action on XX 0 000 002 B1 against the Opposing Party before the Court, first instance."},
     "mandateScope": {
       "scopeText": "Infringement action at first instance, including a counterclaim for revocation if one is raised, up to the decision.",
       "milestoneCategories": [
