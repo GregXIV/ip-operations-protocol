@@ -13,7 +13,7 @@ A profile is a list of requirements, each pointing at the page that states it. I
 
 ## Claiming conformance
 
-A claim names the protocol version and the profile: "conforms to the orchestrator profile of IPOP 0.8", "conforms to the provider profile of IPOP 0.8 with the litigation module". An actor that plays both roles, such as a firm that does part of its work and passes the rest on, may claim both. It covers the general requirements below and the requirements of the profile. A conditional module of a profile is part of the claim when the implementation performs what the module covers, and not applicable otherwise.
+A claim names the protocol version and the profile: "conforms to the orchestrator profile of IPOP 0.9", "conforms to the provider profile of IPOP 0.9 with the litigation module". An actor that plays both roles, such as a firm that does part of its work and passes the rest on, may claim both. It covers the general requirements below and the requirements of the profile. A conditional module of a profile is part of the claim when the implementation performs what the module covers, and not applicable otherwise.
 
 A conformance check reads each requirement against the implementation and records it as **met**, **partly met**, **not met** or **not applicable**, with the evidence. Not applicable is open to the conditional modules, and to a requirement on a flow the implementation does not perform at all; it is not open to a flow the implementation performs without the message the requirement names.
 
