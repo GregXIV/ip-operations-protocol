@@ -1,4 +1,4 @@
-/* IP Operations Protocol v0.8 — TypeScript types.
+/* IP Operations Protocol v0.9 — TypeScript types.
  * GENERATED from the JSON Schemas. Do not edit by hand; regenerate when the spec versions.
  */
 
@@ -953,15 +953,19 @@ export interface Workstream {
   workstreamUri: string;
   workstreamType: string;
   /**
+   * Optional since 0.9 (decision 106): advisory work may carry neither assetReferences nor prospectiveRights. A workstream about a specific right lists it as soon as it is known.
+   *
    * @minItems 1
    */
   assetReferences?: [string, ...string[]];
   /**
+   * Added in 0.3. Optional since 0.9 (decision 106); from 0.3 to 0.8 one of assetReferences and prospectiveRights was required.
+   *
    * @minItems 1
    */
   prospectiveRights?: [ProspectiveRight, ...ProspectiveRight[]];
   /**
-   * Added in 0.7. The role each asset plays in a dispute; every assetUri is an entry of assetReferences.
+   * Added in 0.7. The role each asset plays in a dispute; every assetUri is an entry of assetReferences. Recorded under the status claim since 0.9 (decision 108).
    */
   assetRoles?: {
     assetUri: string;
@@ -969,7 +973,7 @@ export interface Workstream {
     proceedingReference?: string;
   }[];
   /**
-   * Added in 0.7. The proceedings in which the work is done, with their parties. Carried only to the workstream's own actors.
+   * Added in 0.7. The proceedings in which the work is done, with their parties. Carried only to the workstream's own actors. Recorded under the status claim since 0.9 (decision 108).
    */
   proceedings?: {
     proceedingUri: string;

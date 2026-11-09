@@ -1,363 +1,363 @@
 {
-  "protocolVersion": "0.8",
+  "protocolVersion": "0.9",
   "dialect": "https://json-schema.org/draft/2020-12/schema",
-  "schemaIdBase": "urn:ipproto:schema:0.8:",
+  "schemaIdBase": "urn:ipproto:schema:0.9:",
   "schemas": [
     {
-      "$id": "urn:ipproto:schema:0.8:defs",
+      "$id": "urn:ipproto:schema:0.9:defs",
       "title": "Common Defs",
       "path": "schemas/defs/common-defs.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:commonEnvelope",
+      "$id": "urn:ipproto:schema:0.9:commonEnvelope",
       "title": "Common Envelope",
       "path": "schemas/envelope/common-envelope.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:actorReference",
+      "$id": "urn:ipproto:schema:0.9:actorReference",
       "title": "Actor Reference",
       "path": "schemas/foundational/actor-reference.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:actorRoleDeclaration",
+      "$id": "urn:ipproto:schema:0.9:actorRoleDeclaration",
       "title": "Actor Role Declaration",
       "path": "schemas/foundational/actor-role-declaration.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:agreedPrice",
+      "$id": "urn:ipproto:schema:0.9:agreedPrice",
       "title": "Agreed Price",
       "path": "schemas/foundational/agreed-price.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:assetReference",
+      "$id": "urn:ipproto:schema:0.9:assetReference",
       "title": "Asset Reference",
       "path": "schemas/foundational/asset-reference.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:authorityClaim",
+      "$id": "urn:ipproto:schema:0.9:authorityClaim",
       "title": "Authority Claim",
       "path": "schemas/foundational/authority-claim.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:dataAssertion",
+      "$id": "urn:ipproto:schema:0.9:dataAssertion",
       "title": "Data Assertion",
       "path": "schemas/foundational/data-assertion.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:deadline",
+      "$id": "urn:ipproto:schema:0.9:deadline",
       "title": "Deadline",
       "path": "schemas/foundational/deadline.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:documentReference",
+      "$id": "urn:ipproto:schema:0.9:documentReference",
       "title": "Document Reference",
       "path": "schemas/foundational/document-reference.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:entityReference",
+      "$id": "urn:ipproto:schema:0.9:entityReference",
       "title": "Entity Reference",
       "path": "schemas/foundational/entity-reference.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:evidenceCollection",
+      "$id": "urn:ipproto:schema:0.9:evidenceCollection",
       "title": "Evidence Collection",
       "path": "schemas/foundational/evidence-collection.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:milestone",
+      "$id": "urn:ipproto:schema:0.9:milestone",
       "title": "Milestone",
       "path": "schemas/foundational/milestone.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:outcomeDetails",
+      "$id": "urn:ipproto:schema:0.9:outcomeDetails",
       "title": "Outcome Details",
       "path": "schemas/foundational/outcome-details.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:resolutionProvenance",
+      "$id": "urn:ipproto:schema:0.9:resolutionProvenance",
       "title": "Resolution Provenance",
       "path": "schemas/foundational/resolution-provenance.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:resolvedAsset",
+      "$id": "urn:ipproto:schema:0.9:resolvedAsset",
       "title": "Resolved Asset",
       "path": "schemas/foundational/resolved-asset.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:serviceLevel",
+      "$id": "urn:ipproto:schema:0.9:serviceLevel",
       "title": "Service Level",
       "path": "schemas/foundational/service-level.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:userContext",
+      "$id": "urn:ipproto:schema:0.9:userContext",
       "title": "User Context",
       "path": "schemas/foundational/user-context.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:workstream",
+      "$id": "urn:ipproto:schema:0.9:workstream",
       "title": "Workstream",
       "path": "schemas/foundational/workstream.schema.json"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:actionConfirmationDispute",
+      "$id": "urn:ipproto:schema:0.9:actionConfirmationDispute",
       "title": "Action Confirmation Dispute",
       "path": "schemas/messages/action-confirmation-dispute.schema.json",
       "messageType": "urn:ipproto:message:actionConfirmationDispute"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:artifactReady",
+      "$id": "urn:ipproto:schema:0.9:artifactReady",
       "title": "Artifact Ready",
       "path": "schemas/messages/artifact-ready.schema.json",
       "messageType": "urn:ipproto:message:artifactReady"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:assetAuthorityDispute",
+      "$id": "urn:ipproto:schema:0.9:assetAuthorityDispute",
       "title": "Asset Authority Dispute",
       "path": "schemas/messages/asset-authority-dispute.schema.json",
       "messageType": "urn:ipproto:message:assetAuthorityDispute"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:assetBootstrap",
+      "$id": "urn:ipproto:schema:0.9:assetBootstrap",
       "title": "Asset Bootstrap",
       "path": "schemas/messages/asset-bootstrap.schema.json",
       "messageType": "urn:ipproto:message:assetBootstrap"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:assetMatchInquiry",
+      "$id": "urn:ipproto:schema:0.9:assetMatchInquiry",
       "title": "Asset Match Inquiry",
       "path": "schemas/messages/asset-match-inquiry.schema.json",
       "messageType": "urn:ipproto:message:assetMatchInquiry"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:assetMatchResponse",
+      "$id": "urn:ipproto:schema:0.9:assetMatchResponse",
       "title": "Asset Match Response",
       "path": "schemas/messages/asset-match-response.schema.json",
       "messageType": "urn:ipproto:message:assetMatchResponse"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:awardConfirmed",
+      "$id": "urn:ipproto:schema:0.9:awardConfirmed",
       "title": "Award Confirmed",
       "path": "schemas/messages/award-confirmed.schema.json",
       "messageType": "urn:ipproto:message:awardConfirmed"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:awardDeclined",
+      "$id": "urn:ipproto:schema:0.9:awardDeclined",
       "title": "Award Declined",
       "path": "schemas/messages/award-declined.schema.json",
       "messageType": "urn:ipproto:message:awardDeclined"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:awardProposed",
+      "$id": "urn:ipproto:schema:0.9:awardProposed",
       "title": "Award Proposed",
       "path": "schemas/messages/award-proposed.schema.json",
       "messageType": "urn:ipproto:message:awardProposed"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:bidDeclined",
+      "$id": "urn:ipproto:schema:0.9:bidDeclined",
       "title": "Bid Declined",
       "path": "schemas/messages/bid-declined.schema.json",
       "messageType": "urn:ipproto:message:bidDeclined"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:bidInvitation",
+      "$id": "urn:ipproto:schema:0.9:bidInvitation",
       "title": "Bid Invitation",
       "path": "schemas/messages/bid-invitation.schema.json",
       "messageType": "urn:ipproto:message:bidInvitation"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:bidSubmitted",
+      "$id": "urn:ipproto:schema:0.9:bidSubmitted",
       "title": "Bid Submitted",
       "path": "schemas/messages/bid-submitted.schema.json",
       "messageType": "urn:ipproto:message:bidSubmitted"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:bidWithdrawn",
+      "$id": "urn:ipproto:schema:0.9:bidWithdrawn",
       "title": "Bid Withdrawn",
       "path": "schemas/messages/bid-withdrawn.schema.json",
       "messageType": "urn:ipproto:message:bidWithdrawn"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:clientActionCompleted",
+      "$id": "urn:ipproto:schema:0.9:clientActionCompleted",
       "title": "Client Action Completed",
       "path": "schemas/messages/client-action-completed.schema.json",
       "messageType": "urn:ipproto:message:clientActionCompleted"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:conflictCheckAttested",
+      "$id": "urn:ipproto:schema:0.9:conflictCheckAttested",
       "title": "Conflict Check Attested",
       "path": "schemas/messages/conflict-check-attested.schema.json",
       "messageType": "urn:ipproto:message:conflictCheckAttested"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:deliverableAcknowledged",
+      "$id": "urn:ipproto:schema:0.9:deliverableAcknowledged",
       "title": "Deliverable Acknowledged",
       "path": "schemas/messages/deliverable-acknowledged.schema.json",
       "messageType": "urn:ipproto:message:deliverableAcknowledged"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:disputeResolutionDecision",
+      "$id": "urn:ipproto:schema:0.9:disputeResolutionDecision",
       "title": "Dispute Resolution Decision",
       "path": "schemas/messages/dispute-resolution-decision.schema.json",
       "messageType": "urn:ipproto:message:disputeResolutionDecision"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:goalDecomposition",
+      "$id": "urn:ipproto:schema:0.9:goalDecomposition",
       "title": "Goal Decomposition",
       "path": "schemas/messages/goal-decomposition.schema.json",
       "messageType": "urn:ipproto:message:goalDecomposition"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:identityResolutionDispute",
+      "$id": "urn:ipproto:schema:0.9:identityResolutionDispute",
       "title": "Identity Resolution Dispute",
       "path": "schemas/messages/identity-resolution-dispute.schema.json",
       "messageType": "urn:ipproto:message:identityResolutionDispute"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:instructionAccepted",
+      "$id": "urn:ipproto:schema:0.9:instructionAccepted",
       "title": "Instruction Accepted",
       "path": "schemas/messages/instruction-accepted.schema.json",
       "messageType": "urn:ipproto:message:instructionAccepted"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:instructionDeclined",
+      "$id": "urn:ipproto:schema:0.9:instructionDeclined",
       "title": "Instruction Declined",
       "path": "schemas/messages/instruction-declined.schema.json",
       "messageType": "urn:ipproto:message:instructionDeclined"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:invoiceCancelled",
+      "$id": "urn:ipproto:schema:0.9:invoiceCancelled",
       "title": "Invoice Cancelled",
       "path": "schemas/messages/invoice-cancelled.schema.json",
       "messageType": "urn:ipproto:message:invoiceCancelled"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:invoiceDisputed",
+      "$id": "urn:ipproto:schema:0.9:invoiceDisputed",
       "title": "Invoice Disputed",
       "path": "schemas/messages/invoice-disputed.schema.json",
       "messageType": "urn:ipproto:message:invoiceDisputed"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:invoiceIssued",
+      "$id": "urn:ipproto:schema:0.9:invoiceIssued",
       "title": "Invoice Issued",
       "path": "schemas/messages/invoice-issued.schema.json",
       "messageType": "urn:ipproto:message:invoiceIssued"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:mandateInstruction",
+      "$id": "urn:ipproto:schema:0.9:mandateInstruction",
       "title": "Mandate Instruction",
       "path": "schemas/messages/mandate-instruction.schema.json",
       "messageType": "urn:ipproto:message:mandateInstruction"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:milestoneAbandoned",
+      "$id": "urn:ipproto:schema:0.9:milestoneAbandoned",
       "title": "Milestone Abandoned",
       "path": "schemas/messages/milestone-abandoned.schema.json",
       "messageType": "urn:ipproto:message:milestoneAbandoned"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:milestoneCompleted",
+      "$id": "urn:ipproto:schema:0.9:milestoneCompleted",
       "title": "Milestone Completed",
       "path": "schemas/messages/milestone-completed.schema.json",
       "messageType": "urn:ipproto:message:milestoneCompleted"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:milestoneFailed",
+      "$id": "urn:ipproto:schema:0.9:milestoneFailed",
       "title": "Milestone Failed",
       "path": "schemas/messages/milestone-failed.schema.json",
       "messageType": "urn:ipproto:message:milestoneFailed"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:milestoneStarted",
+      "$id": "urn:ipproto:schema:0.9:milestoneStarted",
       "title": "Milestone Started",
       "path": "schemas/messages/milestone-started.schema.json",
       "messageType": "urn:ipproto:message:milestoneStarted"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:orchestrationCommitted",
+      "$id": "urn:ipproto:schema:0.9:orchestrationCommitted",
       "title": "Orchestration Committed",
       "path": "schemas/messages/orchestration-committed.schema.json",
       "messageType": "urn:ipproto:message:orchestrationCommitted"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:paymentAuthorized",
+      "$id": "urn:ipproto:schema:0.9:paymentAuthorized",
       "title": "Payment Authorized",
       "path": "schemas/messages/payment-authorized.schema.json",
       "messageType": "urn:ipproto:message:paymentAuthorized"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:paymentExecuted",
+      "$id": "urn:ipproto:schema:0.9:paymentExecuted",
       "title": "Payment Executed",
       "path": "schemas/messages/payment-executed.schema.json",
       "messageType": "urn:ipproto:message:paymentExecuted"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:recordUpdate",
+      "$id": "urn:ipproto:schema:0.9:recordUpdate",
       "title": "Record Update",
       "path": "schemas/messages/record-update.schema.json",
       "messageType": "urn:ipproto:message:recordUpdate"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:registerEvent",
+      "$id": "urn:ipproto:schema:0.9:registerEvent",
       "title": "Register Event",
       "path": "schemas/messages/register-event.schema.json",
       "messageType": "urn:ipproto:message:registerEvent"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:requestDeclined",
+      "$id": "urn:ipproto:schema:0.9:requestDeclined",
       "title": "Request Declined",
       "path": "schemas/messages/request-declined.schema.json",
       "messageType": "urn:ipproto:message:requestDeclined"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:requesterDisclosed",
+      "$id": "urn:ipproto:schema:0.9:requesterDisclosed",
       "title": "Requester Disclosed",
       "path": "schemas/messages/requester-disclosed.schema.json",
       "messageType": "urn:ipproto:message:requesterDisclosed"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:serviceDeliverable",
+      "$id": "urn:ipproto:schema:0.9:serviceDeliverable",
       "title": "Service Deliverable",
       "path": "schemas/messages/service-deliverable.schema.json",
       "messageType": "urn:ipproto:message:serviceDeliverable"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:serviceFinding",
+      "$id": "urn:ipproto:schema:0.9:serviceFinding",
       "title": "Service Finding",
       "path": "schemas/messages/service-finding.schema.json",
       "messageType": "urn:ipproto:message:serviceFinding"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:serviceSubscriptionStarted",
+      "$id": "urn:ipproto:schema:0.9:serviceSubscriptionStarted",
       "title": "Service Subscription Started",
       "path": "schemas/messages/service-subscription-started.schema.json",
       "messageType": "urn:ipproto:message:serviceSubscriptionStarted"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:serviceSubscriptionTerminated",
+      "$id": "urn:ipproto:schema:0.9:serviceSubscriptionTerminated",
       "title": "Service Subscription Terminated",
       "path": "schemas/messages/service-subscription-terminated.schema.json",
       "messageType": "urn:ipproto:message:serviceSubscriptionTerminated"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:workInstruction",
+      "$id": "urn:ipproto:schema:0.9:workInstruction",
       "title": "Work Instruction",
       "path": "schemas/messages/work-instruction.schema.json",
       "messageType": "urn:ipproto:message:workInstruction"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:workRequested",
+      "$id": "urn:ipproto:schema:0.9:workRequested",
       "title": "Work Requested",
       "path": "schemas/messages/work-requested.schema.json",
       "messageType": "urn:ipproto:message:workRequested"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:workstreamAbandoned",
+      "$id": "urn:ipproto:schema:0.9:workstreamAbandoned",
       "title": "Workstream Abandoned",
       "path": "schemas/messages/workstream-abandoned.schema.json",
       "messageType": "urn:ipproto:message:workstreamAbandoned"
     },
     {
-      "$id": "urn:ipproto:schema:0.8:workstreamCompleted",
+      "$id": "urn:ipproto:schema:0.9:workstreamCompleted",
       "title": "Workstream Completed",
       "path": "schemas/messages/workstream-completed.schema.json",
       "messageType": "urn:ipproto:message:workstreamCompleted"

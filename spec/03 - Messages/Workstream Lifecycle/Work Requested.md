@@ -1,7 +1,7 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.6
+status: v0.9
 ---
 
 # Work Requested
@@ -35,14 +35,14 @@ Type: structured, required
 Same shape as in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md): `goalText`, optional `goalCategory`, optional `goalConstraints`.
 
 ### `assetReferences`
-Type: array of [Asset Reference](../../02%20-%20Foundational%20Structures/Asset%20Reference.md) URIs, conditional (at least one entry)
+Type: array of [Asset Reference](../../02%20-%20Foundational%20Structures/Asset%20Reference.md) URIs, optional (at least one entry when present)
 
-The existing assets the work is on. Required unless `prospectiveRights` is present. In 0.2 the field was required without exception.
+The existing assets the work is on. In 0.2 the field was required without exception; from 0.3 to 0.8 it was required unless `prospectiveRights` was present. Since 0.9 a request may carry neither, for advisory work that concerns no right of its own, such as a freedom-to-operate opinion on a product (decision 107, following decision 106 on [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md)). A request about a specific right lists it.
 
 ### `prospectiveRights`
-Type: array of structured entries, conditional (at least one entry)
+Type: array of structured entries, optional (at least one entry when present)
 
-Added in 0.3. The rights the work is to create or prepare where no asset exists yet: a first filing, or an application to be drafted. Required unless `assetReferences` is present. Same shape as in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md): `assetType`, `workingTitle`, optional `intendedJurisdictions`, optional `applicant`. `resultingAssetReferences` is not used in a request.
+Added in 0.3. The rights the work is to create or prepare where no asset exists yet: a first filing, or an application to be drafted. From 0.3 to 0.8 required unless `assetReferences` was present; optional since 0.9 (decision 107). Same shape as in [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md): `assetType`, `workingTitle`, optional `intendedJurisdictions`, optional `applicant`. `resultingAssetReferences` is not used in a request.
 
 An `applicant` who is neither the requester nor the beneficiary is a further party a supplier would act for. Where the request leads to bids, the orchestrator lists it among the `conflictParties` of every [Bid Invitation](../Procurement/Bid%20Invitation.md) (stated in 0.4.1).
 
