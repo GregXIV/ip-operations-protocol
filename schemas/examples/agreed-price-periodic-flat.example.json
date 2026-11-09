@@ -1,0 +1,18 @@
+{
+  "amount": 2500.0,
+  "currency": "EUR",
+  "priceBasis": "periodicFlat",
+  "periodicity": "monthly",
+  "lineItems": [
+    {
+      "lineItemType": "urn:ipproto:lineItem:professionalFee",
+      "amount": 2500.0,
+      "note": "Conduct of the matter, per month"
+    }
+  ],
+  "budget": {
+    "amount": 30000.0,
+    "onExceeding": "notify"
+  },
+  "officialFeesIncluded": false
+}
