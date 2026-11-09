@@ -1,6 +1,6 @@
 ---
 type: decisions
-status: v0.5
+status: v0.8
 ---
 
 # Open Questions for Consortium
@@ -9,7 +9,9 @@ status: v0.5
 >
 > **v0.1 status:** questions 1 to 6 below have been ratified by the maintainer with their recommended defaults, and are reopenable when a consortium forms. The original framing is preserved as the record for that future discussion.
 >
-> **Question 7**, added in 0.3, is open. Its default is provisional and has not been ratified; 0.5 added one provisional value to it.
+> **Question 7**, added in 0.3, was ratified by the maintainer in 0.8 (decision 102), with the answer recorded under it. Like questions 1 to 6 it is reopenable when a consortium forms, and its original framing is kept below.
+>
+> No question is open since 0.8.
 
 These are questions where consortium-member input materially affects how the protocol should be specified, and where unilateral disposition would be inappropriate. Each has a recommended default but is positioned for consortium discussion before v1.0 ratification.
 
@@ -75,7 +77,7 @@ These are questions where consortium-member input materially affects how the pro
 
 ## 7. Tax treatment vocabulary on invoices
 
-Added in 0.3. **Open: not ratified.**
+Added in 0.3. **Ratified in 0.8** (decision 102). The framing below is the one of 0.3 to 0.7; the answer follows it.
 
 **Default (provisional):** `taxHandling.taxTreatment` in [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md) has five standard values, `taxed`, `reverseCharge`, `exempt`, `outsideScope` and, since 0.5, `notStated` (the sender does not know the treatment; the invoice document says what applies), and accepts custom values as namespaced URNs. `taxRatePercent` and `taxAmount` are optional. Invoice lines are net of tax.
 
@@ -83,7 +85,18 @@ Added in 0.3. **Open: not ratified.**
 
 **Why this is open:** The four values were written during the 0.2.0 build and were not reviewed by anyone who issues invoices. `notStated` was added in 0.5 for an implementation that records invoices from documents without their tax position (decision 61); it is provisional on the same terms and does not settle this question. Tax handling differs by jurisdiction, and getting it wrong in a standard is worse than leaving it open.
 
-**Recommendation:** Keep the field as it is, marked provisional, until practitioners who issue cross-border invoices have reviewed it. Until then implementers treat the invoice document as authoritative for tax, and the structured field as a convenience. A change to the standard values before 1.0 is to be expected.
+**Recommendation (0.3 to 0.7):** Keep the field as it is, marked provisional, until practitioners who issue cross-border invoices have reviewed it. Until then implementers treat the invoice document as authoritative for tax, and the structured field as a convenience. A change to the standard values before 1.0 is to be expected.
+
+**Answer (ratified in 0.8).** The maintainer decided the question in 0.8, once providers that invoice their clients directly could conform (the provider profile of 0.6). Each open point has this answer:
+
+- **The values.** `taxed`, `reverseCharge`, `exempt`, `outsideScope` and `notStated` are kept as they are, so that no invoice sent since 0.2 changes meaning. `perLine` is added for an invoice whose lines are treated differently. The vocabulary stays open to custom values.
+- **One treatment per invoice is not enough, and is not replaced.** Each line may carry a VAT category and rate, and the invoice a breakdown per category and rate (decision 98). The invoice-level treatment stays required and summarises: one treatment where one applies, `perLine` where the lines differ.
+- **An official fee passed on at cost** is a pass-through line, outside the payee's VAT base (decision 99).
+- **More than one rate** is one breakdown entry per rate.
+- **Alignment with an e-invoicing code list.** The line categories are the VAT category codes of EN 16931, adopted as a closed list; the table in [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md), *Tax*, maps each to the treatment it usually goes with. Where the invoice document is an EN 16931 instance, the document wins (decision 101).
+- **Withholding tax** stays outside the breakdown. A payee states it with a custom treatment or in the document. Should practice show a need, a later version may add it; it is not an open question of the consortium.
+
+The invoice document remains the invoice in the legal sense. What changed is that the structured data can now say what the document says about tax, line by line, and must not contradict a structured document.
 
 ## See also
 

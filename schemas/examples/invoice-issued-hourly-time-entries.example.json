@@ -1,0 +1,177 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceIssued-example-0010",
+  "messageType": "urn:ipproto:message:invoiceIssued",
+  "protocolVersion": "0.8",
+  "originatingActor": "urn:ipproto:actor:woodgrove-ip",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:woodgrove-provider-inf-0001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:payor"
+    }
+  ],
+  "producedAt": "2027-02-03T09:00:00Z",
+  "confidentiality": {
+    "level": "confidential"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:inf-0001",
+    "milestoneUri": "urn:ipproto:milestone:inf-0001-m1-claim"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:woodgrove-2027-0042",
+    "invoiceNumber": "WG-2027-0042",
+    "payee": {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:woodgrove-provider-inf-0001",
+      "taxIdentifier": {
+        "scheme": "urn:ipproto:scheme:vat",
+        "value": "DE000000000"
+      }
+    },
+    "payor": {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+      "taxIdentifier": {
+        "scheme": "urn:ipproto:scheme:vat",
+        "value": "DE999999999"
+      }
+    },
+    "issueDate": "2027-02-03",
+    "buyerReference": "NW-LEGAL-2026-091",
+    "invoiceLines": [
+      {
+        "lineId": "T-0001",
+        "milestoneReference": "urn:ipproto:milestone:inf-0001-m1-claim",
+        "lineItemType": "urn:ipproto:lineItem:professionalFee",
+        "quantity": 3.5,
+        "unit": "hour",
+        "unitPrice": 520.0,
+        "amount": 1820.0,
+        "serviceDate": "2027-01-12",
+        "timekeeper": "WG-003",
+        "rateRole": "urn:ipproto:rateRole:partner",
+        "billingCodes": [
+          {
+            "codeSet": "urn:example-billing:codeSet:utbms-litigation",
+            "codeType": "task",
+            "code": "L210"
+          },
+          {
+            "codeSet": "urn:example-billing:codeSet:utbms-litigation",
+            "codeType": "activity",
+            "code": "A104"
+          }
+        ],
+        "taxCategory": {
+          "categoryCode": "S",
+          "ratePercent": 19.0
+        },
+        "description": "Review of the infringement analysis; strategy for the statement of claim"
+      },
+      {
+        "lineId": "T-0002",
+        "milestoneReference": "urn:ipproto:milestone:inf-0001-m1-claim",
+        "lineItemType": "urn:ipproto:lineItem:professionalFee",
+        "quantity": 6.0,
+        "unit": "hour",
+        "unitPrice": 380.0,
+        "amount": 2280.0,
+        "serviceDate": "2027-01-14",
+        "timekeeper": "WG-017",
+        "rateRole": "urn:ipproto:rateRole:associate",
+        "billingCodes": [
+          {
+            "codeSet": "urn:example-billing:codeSet:utbms-litigation",
+            "codeType": "task",
+            "code": "L210"
+          },
+          {
+            "codeSet": "urn:example-billing:codeSet:utbms-litigation",
+            "codeType": "activity",
+            "code": "A103"
+          }
+        ],
+        "taxCategory": {
+          "categoryCode": "S",
+          "ratePercent": 19.0
+        },
+        "description": "Drafting the statement of claim, sections on infringement"
+      },
+      {
+        "lineId": "T-0003",
+        "milestoneReference": "urn:ipproto:milestone:inf-0001-m1-claim",
+        "lineItemType": "urn:ipproto:lineItem:professionalFee",
+        "quantity": 1.5,
+        "unit": "hour",
+        "unitPrice": 140.0,
+        "amount": 210.0,
+        "serviceDate": "2027-01-15",
+        "timekeeper": "WG-031",
+        "rateRole": "urn:ipproto:rateRole:paralegal",
+        "billingCodes": [
+          {
+            "codeSet": "urn:example-billing:codeSet:utbms-litigation",
+            "codeType": "task",
+            "code": "L210"
+          },
+          {
+            "codeSet": "urn:example-billing:codeSet:utbms-litigation",
+            "codeType": "activity",
+            "code": "A110"
+          }
+        ],
+        "taxCategory": {
+          "categoryCode": "S",
+          "ratePercent": 19.0
+        },
+        "description": "Compiling the exhibit list"
+      },
+      {
+        "lineId": "E-0001",
+        "milestoneReference": "urn:ipproto:milestone:inf-0001-m1-claim",
+        "lineItemType": "urn:ipproto:lineItem:disbursement",
+        "quantity": 1,
+        "unit": "item",
+        "unitPrice": 48.0,
+        "amount": 48.0,
+        "serviceDate": "2027-01-15",
+        "billingCodes": [
+          {
+            "codeSet": "urn:example-billing:codeSet:utbms-litigation",
+            "codeType": "expense",
+            "code": "E107"
+          }
+        ],
+        "taxCategory": {
+          "categoryCode": "S",
+          "ratePercent": 19.0
+        },
+        "description": "Courier, exhibit originals to the Client"
+      }
+    ],
+    "totalAmount": {
+      "amount": 5186.02,
+      "currency": "EUR"
+    },
+    "taxHandling": {
+      "taxTreatment": "taxed",
+      "taxRatePercent": 19.0,
+      "taxAmount": 828.02
+    },
+    "taxBreakdown": [
+      {
+        "categoryCode": "S",
+        "ratePercent": 19.0,
+        "taxableAmount": 4358.0,
+        "taxAmount": 828.02
+      }
+    ],
+    "dueDate": "2027-03-05",
+    "invoiceDocument": "urn:ipproto:document:woodgrove-inv-2027-0042",
+    "invoiceDocumentSyntax": "en16931Cii",
+    "supportingDocuments": [
+      "urn:ipproto:document:woodgrove-billing-detail-2027-0042"
+    ]
+  }
+}

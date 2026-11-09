@@ -1,7 +1,7 @@
 ---
 type: message
 category: payments
-status: v0.5
+status: v0.8
 ---
 
 # Payment Authorized
@@ -67,6 +67,15 @@ Type: structured, required
 - `internalMatterReference` — optional
 - `costAllocationDetails` — optional structured (free-form for finance systems)
 - `payorTaxIdentification` — optional
+
+### `invoiceReferences`
+Type: array of structured entries, optional (at least one entry when present)
+
+Added in 0.8 (decision 104). The invoices the payment settles. Each entry:
+- `invoiceReference` — URI, required. The `invoiceReference` of an [Invoice Issued](Invoice%20Issued.md)
+- `appliedAmount` — money, optional. The part of the payment applied to that invoice, where the payment settles several invoices or part of one
+
+Until 0.8 a payment could name the milestone or subscription it was for, but not the invoice, so a payment of an invoice with lines on several milestones, or of several invoices at once, could not be matched to them. Where the payment settles invoices, the payor names them here. The `appliedAmount`s, where given, add up to `paymentAmount`. A payment of an office fee or of anything not invoiced in the protocol carries no entry.
 
 ### `executionWindow`
 Type: structured, required
@@ -147,7 +156,7 @@ The agent executes the payment through their banking infrastructure and produces
 
 ## Related messages
 
-- May follow an [Invoice Issued](Invoice%20Issued.md), which states what is owed (added in 0.2)
+- May follow an [Invoice Issued](Invoice%20Issued.md), which states what is owed (added in 0.2), and since 0.8 names it in `invoiceReferences`
 - Followed by [Payment Executed](Payment%20Executed.md)
 - Office-fee payments: confirmed by [Register Event](../Steady-State%20Events/Register%20Event.md)
 - Divergence: [Action Confirmation Dispute](../Disputes/Action%20Confirmation%20Dispute.md)

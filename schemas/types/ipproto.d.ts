@@ -1,4 +1,4 @@
-/* IP Operations Protocol v0.7 — TypeScript types.
+/* IP Operations Protocol v0.8 — TypeScript types.
  * GENERATED from the JSON Schemas. Do not edit by hand; regenerate when the spec versions.
  */
 
@@ -844,11 +844,19 @@ export interface Milestone {
       actorUri: string;
       roleDeclarationUri: string;
       assignmentType: "primary" | "delegatedFrom" | "accountableTo" | "payor" | "observer";
+      /**
+       * Added in 0.8. Only on a payor assignment: this payor's share, in percent, of the charges for the milestone or subscription. The shares of all payor assignments add up to 100 (a spec rule).
+       */
+      payorShare?: number;
     },
     ...{
       actorUri: string;
       roleDeclarationUri: string;
       assignmentType: "primary" | "delegatedFrom" | "accountableTo" | "payor" | "observer";
+      /**
+       * Added in 0.8. Only on a payor assignment: this payor's share, in percent, of the charges for the milestone or subscription. The shares of all payor assignments add up to 100 (a spec rule).
+       */
+      payorShare?: number;
     }[]
   ];
   executionMode: "serviceProviderManaged" | "selfService" | "thirdPartyRfp";

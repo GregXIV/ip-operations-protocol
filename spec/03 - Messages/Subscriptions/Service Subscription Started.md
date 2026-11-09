@@ -1,7 +1,7 @@
 ---
 type: message
 category: subscriptions
-status: v0.4
+status: v0.8
 ---
 
 # Service Subscription Started
@@ -48,7 +48,7 @@ Type: structured, required
 ### `actorAssignments`
 Type: array, required
 
-Each entry: `actorUri`, `roleDeclarationUri`, `assignmentType` (`subscriptionProvider`, `subscriptionContractHolder`, `subscriptionOperator`, `subscriber`, `payor`, `accountableTo`).
+Each entry: `actorUri`, `roleDeclarationUri`, `assignmentType` (`subscriptionProvider`, `subscriptionContractHolder`, `subscriptionOperator`, `subscriber`, `payor`, `accountableTo`), and since 0.8 an optional `payorShare` on a `payor` entry, with the meaning and rules it has on a [Milestone](../../02%20-%20Foundational%20Structures/Milestone.md) (decision 103).
 
 For delegation patterns (Meridian IP Group holds, D&A operates), separate `subscriptionContractHolder` and `subscriptionOperator` entries.
 

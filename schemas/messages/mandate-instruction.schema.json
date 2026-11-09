@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.7:mandateInstruction",
+  "$id": "urn:ipproto:schema:0.8:mandateInstruction",
   "title": "Mandate Instruction",
   "description": "A work requester instructs a work provider to handle a whole matter: one workstream, within a stated scope, rather than one milestone. Added in 0.6.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.7:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.8:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,7 +17,7 @@
       "type": "object",
       "properties": {
         "workstreamReference": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
         },
         "instruction": {
           "type": "object",
@@ -42,33 +42,33 @@
             "milestoneCategories": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
               }
             },
             "jurisdictionCodes": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/st3Code"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/st3Code"
               }
             },
             "assetReferences": {
               "type": "array",
               "items": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
               }
             },
             "prospectiveRights": {
               "type": "array",
               "minItems": 1,
               "items": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/prospectiveRight"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/prospectiveRight"
               }
             },
             "excludedWork": {
               "type": "string"
             },
             "validUntil": {
-              "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDate"
+              "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDate"
             }
           },
           "required": [
@@ -78,31 +78,31 @@
         "conflictParties": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/conflictParty"
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/conflictParty"
           }
         },
         "agreedPrice": {
-          "$ref": "urn:ipproto:schema:0.7:agreedPrice"
+          "$ref": "urn:ipproto:schema:0.8:agreedPrice"
         },
         "serviceLevels": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.7:serviceLevel"
+            "$ref": "urn:ipproto:schema:0.8:serviceLevel"
           }
         },
         "responseDeadline": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
         },
         "deadlines": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.7:deadline"
+            "$ref": "urn:ipproto:schema:0.8:deadline"
           }
         },
         "providedDocuments": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
           }
         },
         "expectedDeliverables": {
@@ -111,10 +111,10 @@
             "type": "object",
             "properties": {
               "deliverableType": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
               },
               "documentType": {
-                "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+                "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
               }
             },
             "anyOf": [

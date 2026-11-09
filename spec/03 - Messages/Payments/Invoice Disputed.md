@@ -1,7 +1,7 @@
 ---
 type: message
 category: payments
-status: v0.5
+status: v0.8
 ---
 
 # Invoice Disputed
@@ -53,10 +53,11 @@ Closed enumeration.
 Type: array, optional (at least one entry when present)
 
 The lines the dispute concerns, where it does not concern the whole invoice. Each entry:
-- `lineIndex` — integer, required. The position of the line in the invoice's `invoiceLines`, counted from 0
+- `lineIndex` — integer, conditional. The position of the line in the invoice's `invoiceLines`, counted from 0
+- `lineId` — string, conditional. Added in 0.8. The `lineId` the payee gave the line
 - `note` — optional string
 
-Invoice lines carry no identifier of their own, so a line is named by its position in the message that issued it.
+Each entry names its line by `lineIndex`, `lineId` or both. Until 0.8 invoice lines carried no identifier of their own, so a line was named by its position in the message that issued it, and `lineIndex` was required. Since 0.8 an invoice line may carry a `lineId` (decision 95), and a line that has one may be named by it (decision 96). `lineIndex` keeps working for every invoice, with or without `lineId`s. Where an entry carries both, they name the same line; a payee that finds they do not follows `lineId`. A line without a `lineId` can only be named by `lineIndex`.
 
 ### `disputedAmount`
 Type: money, optional
@@ -89,6 +90,38 @@ The orchestrator cannot book an agent's invoice that applies the reverse charge 
 ```
 
 The full message is `invoice-disputed.example.json` in `schemas/examples/`.
+
+## Worked example — a time entry disputed by its `lineId`
+
+Added in 0.8. The client accepts four of the six hours an associate charged for a section of the statement of claim and disputes the rest. The line is named by its `lineId`, and by its position as well, so that a payee that does not use `lineId`s still finds it. The disputed amount includes the tax on the two hours.
+
+```json
+{
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "addressedTo": [
+    {"actorUri": "urn:ipproto:actor:woodgrove-ip", "expectedRole": "urn:ipproto:role:workProvider"}
+  ],
+  "confidentiality": {"level": "confidential"},
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:invoiceIssued-example-0010",
+    "workstreamUri": "urn:ipproto:workstream:inf-0001"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:woodgrove-2027-0042",
+    "disputedAt": "2027-02-10T08:40:00Z",
+    "disputeReason": {
+      "reasonCategory": "amountNotAgreed",
+      "reasonNarrative": "We agreed four hours for this section of the statement of claim. We accept 4.0 of the 6.0 hours charged."
+    },
+    "disputedLines": [
+      {"lineId": "T-0002", "lineIndex": 1, "note": "2.0 hours above the agreed estimate"}
+    ],
+    "disputedAmount": {"amount": 904.40, "currency": "EUR"}
+  }
+}
+```
+
+The full message is `invoice-disputed-by-line-id.example.json` in `schemas/examples/`.
 
 ## Behavior on receipt
 

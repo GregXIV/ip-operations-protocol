@@ -145,7 +145,11 @@ status: v0.5
 
 **Parent milestone link** — The optional `parentMilestoneUri` of a milestone. Links it to the milestone in another workstream on whose behalf it is performed; the way work is passed on without showing the customer who performs it. Added in 0.2. See [Milestone](spec/02%20-%20Foundational%20Structures/Milestone.md).
 
+**Pass-through line** — An invoice line that passes on, at cost, an amount the payee paid in the payor's name and outside its own VAT base, such as a court fee advanced on filing. It carries no tax category and is part of the total. Added in 0.8. See [Invoice Issued](spec/03%20-%20Messages/Payments/Invoice%20Issued.md).
+
 **Payor** — The actor financially responsible for a milestone. May or may not be the same as the corporate.
+
+**Payor share** — The share, in percent, of a milestone's or subscription's charges that one of several payors bears; each payor then receives its own invoice with an allocation naming its share and the sibling invoices. Added in 0.8. See [Invoice Issued](spec/03%20-%20Messages/Payments/Invoice%20Issued.md), `allocation`.
 
 **Payment agent** — The actor authorized to execute payments on the payor's behalf.
 
@@ -192,6 +196,10 @@ status: v0.5
 **Subscription** — A long-running service. See [Service Subscription Started](spec/03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md).
 
 ## U
+
+**Tax category** — The VAT category of an invoice line, one of the EN 16931 VAT category codes, with its rate; an invoice that carries them carries a breakdown per category and rate. Added in 0.8. See [Invoice Issued](spec/03%20-%20Messages/Payments/Invoice%20Issued.md), *Tax*.
+
+**Time entry** — An invoice line that charges time: hours to one decimal, the rate, and the timekeeper and role of the rate table. Added in 0.8. See [Invoice Issued](spec/03%20-%20Messages/Payments/Invoice%20Issued.md), *Line detail*.
 
 **Ultimate beneficiary** — The role of the beneficiary of a workstream. See *Beneficiary*.
 

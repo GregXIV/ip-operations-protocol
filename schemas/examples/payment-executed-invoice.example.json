@@ -1,0 +1,51 @@
+{
+  "messageUri": "urn:ipproto:message:paymentExecuted-example-0001",
+  "messageType": "urn:ipproto:message:paymentExecuted",
+  "protocolVersion": "0.8",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-work-requester-b",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2026-12-04T14:10:00Z",
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:paymentAuthorized-example-0002",
+    "workstreamUri": "urn:ipproto:workstream:b-agent-es-001"
+  },
+  "payload": {
+    "paymentReference": "urn:ipproto:payment:meridian-ap-2026-11873",
+    "authorizationReference": "urn:ipproto:message:paymentAuthorized-example-0002",
+    "executedAt": "2026-12-04T14:02:00Z",
+    "executedAmount": {
+      "amount": 1490.0,
+      "currency": "EUR"
+    },
+    "invoiceReferences": [
+      {
+        "invoiceReference": "urn:ipproto:invoice:fabrikam-2026-3402",
+        "appliedAmount": {
+          "amount": 1490.0,
+          "currency": "EUR"
+        }
+      }
+    ],
+    "executionEvidence": {
+      "evidenceItems": [
+        {
+          "evidenceType": "urn:ipproto:evidence:bankingTransactionReference",
+          "evidenceContent": {
+            "transactionReference": "MIG-TX-2026-12-04-00217",
+            "evidenceCapturedAt": "2026-12-04T14:02:00Z"
+          },
+          "evidenceProvenance": {
+            "captureMethod": "automatedSystemExport"
+          }
+        }
+      ]
+    },
+    "executionOutcome": "successfullyExecuted"
+  }
+}

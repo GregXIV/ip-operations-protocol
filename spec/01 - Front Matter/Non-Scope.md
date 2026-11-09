@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.3
+status: v0.8
 ---
 
 # Non-Scope
@@ -49,6 +49,8 @@ What stays out of scope:
 - **Subscription pricing of a platform.** Only the fact and terms of one subscription are exchanged, in [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md).
 - **Conflict-check methods.** Only the attestation is exchanged, in [Conflict Check Attested](../03%20-%20Messages/Procurement/Conflict%20Check%20Attested.md).
 - **The consequence of a missed service level.** Only the clock is exchanged — see [Service Level](../02%20-%20Foundational%20Structures/Service%20Level.md).
+- **Tax law and electronic invoicing obligations.** An invoice carries the tax treatment, categories and identifiers the payee applied, in the terms of EN 16931 since 0.8. The protocol does not decide what treatment applies, which amounts may be passed on outside the VAT base, or whether an invoice must be issued as an electronic invoice; that is the law that applies to the payee. Where the invoice document is an EN 16931 instance, the document wins over the message (decision 101).
+- **The payment status of an invoice.** A payment names the invoices it settles (decision 104). Whether an invoice is paid, part paid or overdue is not tracked in the protocol, and the payee has no message to confirm receipt.
 
 Pricing is competitive and confidential. Trying to standardize it would either produce a watered-down cost message or a multi-year argument about whether hourly billing should be in the spec. Service providers may expose whatever cost structures their commercial contracts support; the protocol just carries the resulting numbers cleanly.
 

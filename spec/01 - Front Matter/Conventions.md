@@ -1,6 +1,6 @@
 ---
 type: front-matter
-status: v0.7
+status: v0.8
 ---
 
 # Conventions
@@ -58,6 +58,8 @@ Several controlled vocabularies live in URN namespaces:
 - `urn:ipproto:rateRole:` — roles whose time a rate table prices: `partner`, `counsel`, `seniorAssociate`, `associate`, `patentAttorney`, `trainee`, `paralegal`, `technicalExpert` (added in 0.7; see [Agreed Price](../02%20-%20Foundational%20Structures/Agreed%20Price.md))
 - `urn:ipproto:proceedingType:` — kinds of proceeding: `infringement`, `revocation`, `counterclaimForRevocation`, `declarationOfNonInfringement`, `provisionalMeasures`, `opposition`, `appeal`, `other` (added in 0.7; see [Workstream](../02%20-%20Foundational%20Structures/Workstream.md), `proceedings`)
 - `urn:ipproto:proceduralPosition:` — a party's position in a proceeding: `claimant`, `defendant`, `applicant`, `respondent`, `appellant`, `opponent`, `proprietor`, `intervener` (added in 0.7; see the same)
+
+Some vocabularies are plain values rather than URN namespaces, and accept namespaced URNs as custom values. Added in 0.8: the `unit` of an invoice line (`hour`, `day`, `item`, `page`, `word`) and the `invoiceDocumentSyntax` of an invoice (`en16931Cii`, `en16931Ubl`); see [Invoice Issued](../03%20-%20Messages/Payments/Invoice%20Issued.md). The VAT category codes of an invoice line are those of EN 16931 and form a closed enumeration the protocol does not extend. Billing code sets, such as task, activity and expense codes, have no standard values: a code set is named by a namespaced URN of the authority that defines it.
 
 The URIs of proceedings have the form `urn:ipproto:proceeding:{uuid}` and of deadlines `urn:ipproto:deadline:{uuid}`, like any URI the protocol assigns. Forums and statutory fee schedules have no standard values: a court or tribunal is named by an [Entity Reference](../02%20-%20Foundational%20Structures/Entity%20Reference.md), a fee schedule by a namespaced URN of the authority that defines it.
 

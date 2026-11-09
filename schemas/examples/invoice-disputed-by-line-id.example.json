@@ -1,0 +1,45 @@
+{
+  "messageUri": "urn:ipproto:message:invoiceDisputed-example-0002",
+  "messageType": "urn:ipproto:message:invoiceDisputed",
+  "protocolVersion": "0.8",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-requester-inf-0001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:woodgrove-ip",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2027-02-10T08:45:00Z",
+  "userContext": {
+    "userIdentifier": "legal@northwind-industries.example",
+    "roleAtActor": "Head of IP"
+  },
+  "confidentiality": {
+    "level": "confidential"
+  },
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:invoiceIssued-example-0010",
+    "workstreamUri": "urn:ipproto:workstream:inf-0001",
+    "milestoneUri": "urn:ipproto:milestone:inf-0001-m1-claim"
+  },
+  "payload": {
+    "invoiceReference": "urn:ipproto:invoice:woodgrove-2027-0042",
+    "disputedAt": "2027-02-10T08:40:00Z",
+    "disputeReason": {
+      "reasonCategory": "amountNotAgreed",
+      "reasonNarrative": "We agreed four hours for this section of the statement of claim. We accept 4.0 of the 6.0 hours charged."
+    },
+    "disputedLines": [
+      {
+        "lineId": "T-0002",
+        "lineIndex": 1,
+        "note": "2.0 hours above the agreed estimate"
+      }
+    ],
+    "disputedAmount": {
+      "amount": 904.4,
+      "currency": "EUR"
+    }
+  }
+}

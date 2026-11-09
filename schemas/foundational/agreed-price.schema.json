@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.7:agreedPrice",
+  "$id": "urn:ipproto:schema:0.8:agreedPrice",
   "title": "Agreed Price",
   "description": "A binding price for a unit of work, as opposed to an estimate. Carried on a milestone, in a work instruction and a mandate instruction, and as the price of a bid.",
   "type": "object",
@@ -9,7 +9,7 @@
       "type": "number"
     },
     "currency": {
-      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/iso4217"
+      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/iso4217"
     },
     "priceBasis": {
       "enum": [
@@ -25,7 +25,7 @@
         "type": "object",
         "properties": {
           "lineItemType": {
-            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
           },
           "amount": {
             "type": "number"
@@ -59,7 +59,7 @@
         "type": "object",
         "properties": {
           "rateRole": {
-            "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
           },
           "timekeeper": {
             "type": "string"
@@ -121,10 +121,10 @@
       "type": "object",
       "properties": {
         "feeSchedule": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/uri"
         },
         "valueOfMatter": {
-          "$ref": "urn:ipproto:schema:0.7:defs#/$defs/money"
+          "$ref": "urn:ipproto:schema:0.8:defs#/$defs/money"
         },
         "note": {
           "type": "string"
@@ -138,7 +138,7 @@
       "type": "boolean"
     },
     "bindingUntil": {
-      "$ref": "urn:ipproto:schema:0.7:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.8:defs#/$defs/isoDateTime"
     },
     "agreementReference": {
       "type": "string"
