@@ -1,0 +1,25 @@
+{
+  "deadlineUri": "urn:ipproto:deadline:opp-ep9900001-oral-proceedings-2",
+  "deadlineKind": "hearing",
+  "title": "Oral proceedings before the Opposition Division, postponed",
+  "basis": {
+    "basisDocument": "urn:ipproto:document:ep9900001-summons-2"
+  },
+  "supersedes": {
+    "deadlineUri": "urn:ipproto:deadline:opp-ep9900001-oral-proceedings-1",
+    "grantingDocument": "urn:ipproto:document:ep9900001-postponement"
+  },
+  "dueDate": "2027-11-11",
+  "dueAt": "2027-11-11T09:00:00+01:00",
+  "jurisdictionCode": "EP",
+  "appointment": {
+    "startsAt": "2027-11-11T09:00:00+01:00",
+    "endsAt": "2027-11-11T17:00:00+01:00",
+    "location": "Opposition Division, room to be announced",
+    "attendanceMode": "remote"
+  },
+  "status": "open",
+  "milestoneReferences": [
+    "urn:ipproto:milestone:opp-m5-oral-proceedings"
+  ]
+}

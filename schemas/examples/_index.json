@@ -1,10 +1,11 @@
 {
-  "actor-reference-supplier.example.json": "urn:ipproto:schema:0.5:actorReference",
-  "agreed-price.example.json": "urn:ipproto:schema:0.5:agreedPrice",
-  "document-reference-draft.example.json": "urn:ipproto:schema:0.5:documentReference",
-  "milestone-delegated.example.json": "urn:ipproto:schema:0.5:milestone",
-  "resolution-provenance.example.json": "urn:ipproto:schema:0.5:resolutionProvenance",
-  "resolved-asset.example.json": "urn:ipproto:schema:0.5:resolvedAsset",
-  "service-level.example.json": "urn:ipproto:schema:0.5:serviceLevel",
-  "workstream-first-filing.example.json": "urn:ipproto:schema:0.5:workstream"
+  "actor-reference-supplier.example.json": "urn:ipproto:schema:0.6:actorReference",
+  "agreed-price.example.json": "urn:ipproto:schema:0.6:agreedPrice",
+  "deadline-hearing.example.json": "urn:ipproto:schema:0.6:deadline",
+  "document-reference-draft.example.json": "urn:ipproto:schema:0.6:documentReference",
+  "milestone-delegated.example.json": "urn:ipproto:schema:0.6:milestone",
+  "resolution-provenance.example.json": "urn:ipproto:schema:0.6:resolutionProvenance",
+  "resolved-asset.example.json": "urn:ipproto:schema:0.6:resolvedAsset",
+  "service-level.example.json": "urn:ipproto:schema:0.6:serviceLevel",
+  "workstream-first-filing.example.json": "urn:ipproto:schema:0.6:workstream"
 }

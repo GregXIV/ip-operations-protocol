@@ -1,0 +1,63 @@
+{
+  "messageUri": "urn:ipproto:message:conflictCheckAttested-example-0002",
+  "messageType": "urn:ipproto:message:conflictCheckAttested",
+  "protocolVersion": "0.6",
+  "originatingActor": "urn:ipproto:actor:woodgrove-ip",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:woodgrove-work-provider-opp-001",
+  "addressedTo": [],
+  "producedAt": "2026-11-02T10:06:00Z",
+  "confidentiality": {
+    "level": "privileged"
+  },
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:mandateInstruction-example-0001",
+    "workstreamUri": "urn:ipproto:workstream:opp-ep9900001-001"
+  },
+  "payload": {
+    "subjectReference": {
+      "subjectType": "mandateInstruction",
+      "reference": "urn:ipproto:message:mandateInstruction-example-0001"
+    },
+    "checkedParties": [
+      {
+        "partyRole": "beneficiary",
+        "party": {
+          "literal": {
+            "value": "Northwind Industries SE",
+            "source": {
+              "sourceType": "selfDeclaration"
+            }
+          }
+        }
+      },
+      {
+        "partyRole": "adverseParty",
+        "party": {
+          "literal": {
+            "value": "Wingtip Components GmbH",
+            "source": {
+              "sourceType": "register",
+              "sourceActorUri": "urn:ipproto:actor:epo"
+            }
+          },
+          "identifiers": [
+            {
+              "scheme": "urn:ipproto:scheme:companyRegister",
+              "value": "HRB 000000",
+              "registrationAuthority": "RA000000"
+            }
+          ],
+          "aliases": [
+            "Wingtip Components"
+          ]
+        }
+      }
+    ],
+    "checkedAt": "2026-11-02T10:05:00Z",
+    "outcome": "clearedAfterReview",
+    "attestedBy": {
+      "userIdentifier": "conflicts@woodgrove-ip.example",
+      "roleAtActor": "Conflicts Partner"
+    }
+  }
+}
