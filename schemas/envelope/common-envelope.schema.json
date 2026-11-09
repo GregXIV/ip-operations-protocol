@@ -1,23 +1,25 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.5:commonEnvelope",
+  "$id": "urn:ipproto:schema:0.6:commonEnvelope",
   "title": "Common Envelope",
   "type": "object",
   "properties": {
     "messageUri": {
-      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
     },
     "messageType": {
-      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
     },
     "protocolVersion": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "MAJOR.MINOR without the patch number. Pattern added in 0.6."
     },
     "originatingActor": {
-      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
     },
     "originatingRoleDeclaration": {
-      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
     },
     "addressedTo": {
       "type": "array",
@@ -25,10 +27,10 @@
         "type": "object",
         "properties": {
           "actorUri": {
-            "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
           },
           "expectedRole": {
-            "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
           }
         },
         "required": [
@@ -37,50 +39,101 @@
       }
     },
     "producedAt": {
-      "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
+      "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
     },
     "userContext": {
-      "$ref": "urn:ipproto:schema:0.5:userContext"
+      "$ref": "urn:ipproto:schema:0.6:userContext"
     },
     "recordedBy": {
       "description": "Added in 0.5. The actor that entered this message on the originating actor's behalf, with the originator's consent. The originating actor stays the originator.",
       "type": "object",
       "properties": {
         "actorUri": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "userContext": {
-          "$ref": "urn:ipproto:schema:0.5:userContext"
+          "$ref": "urn:ipproto:schema:0.6:userContext"
         }
       },
       "required": [
         "actorUri"
       ]
     },
+    "recordedFrom": {
+      "description": "Added in 0.6. How a message recorded by another actor reached it. Used only together with recordedBy.",
+      "type": "object",
+      "properties": {
+        "channel": {
+          "anyOf": [
+            {
+              "enum": [
+                "email",
+                "letter",
+                "telephone",
+                "inPerson",
+                "fax",
+                "portal",
+                "other"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "^urn:[A-Za-z0-9][A-Za-z0-9-]{0,31}:.+$",
+              "description": "Custom channel: a namespaced URN identifying the defining authority"
+            }
+          ]
+        },
+        "sourceDocument": {
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+        },
+        "receivedAt": {
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
+        }
+      }
+    },
+    "confidentiality": {
+      "description": "Added in 0.6. How the content of the message may be handled. Under privileged: no broadcast, no bootstrap subscription invitations, resolution only for originator and addressees, no forwarding, no third-party asset lookup.",
+      "type": "object",
+      "properties": {
+        "level": {
+          "enum": [
+            "privileged",
+            "confidential",
+            "normal"
+          ]
+        },
+        "basis": {
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+        }
+      },
+      "required": [
+        "level"
+      ]
+    },
     "correlation": {
       "type": "object",
       "properties": {
         "correlatedToMessageUri": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "workstreamUri": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "milestoneUri": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "subscriptionUri": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "eventChainUri": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         }
       }
     },
     "assertions": {
       "type": "array",
       "items": {
-        "$ref": "urn:ipproto:schema:0.5:dataAssertion"
+        "$ref": "urn:ipproto:schema:0.6:dataAssertion"
       }
     },
     "payload": {
@@ -96,5 +149,10 @@
     "addressedTo",
     "producedAt",
     "payload"
-  ]
+  ],
+  "dependentRequired": {
+    "recordedFrom": [
+      "recordedBy"
+    ]
+  }
 }

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ipproto:schema:0.6:mandateInstruction",
+  "title": "Mandate Instruction",
+  "description": "A work requester instructs a work provider to handle a whole matter: one workstream, within a stated scope, rather than one milestone. Added in 0.6.",
+  "allOf": [
+    {
+      "$ref": "urn:ipproto:schema:0.6:commonEnvelope"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "messageType": {
+      "const": "urn:ipproto:message:mandateInstruction"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "workstreamReference": {
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+        },
+        "instruction": {
+          "type": "object",
+          "properties": {
+            "instructionText": {
+              "type": "string"
+            },
+            "instructionConstraints": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "instructionText"
+          ]
+        },
+        "mandateScope": {
+          "type": "object",
+          "properties": {
+            "scopeText": {
+              "type": "string"
+            },
+            "milestoneCategories": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+              }
+            },
+            "jurisdictionCodes": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/st3Code"
+              }
+            },
+            "assetReferences": {
+              "type": "array",
+              "items": {
+                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+              }
+            },
+            "prospectiveRights": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/prospectiveRight"
+              }
+            },
+            "excludedWork": {
+              "type": "string"
+            },
+            "validUntil": {
+              "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDate"
+            }
+          },
+          "required": [
+            "scopeText"
+          ]
+        },
+        "conflictParties": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/conflictParty"
+          }
+        },
+        "agreedPrice": {
+          "$ref": "urn:ipproto:schema:0.6:agreedPrice"
+        },
+        "serviceLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.6:serviceLevel"
+          }
+        },
+        "responseDeadline": {
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
+        },
+        "deadlines": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.6:deadline"
+          }
+        },
+        "providedDocuments": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+          }
+        },
+        "expectedDeliverables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "deliverableType": {
+                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+              },
+              "documentType": {
+                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "deliverableType"
+                ]
+              },
+              {
+                "required": [
+                  "documentType"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "workstreamReference",
+        "instruction",
+        "mandateScope"
+      ]
+    }
+  },
+  "required": [
+    "payload"
+  ]
+}

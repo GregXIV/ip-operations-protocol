@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.5:defs",
+  "$id": "urn:ipproto:schema:0.6:defs",
   "title": "Common Defs",
   "$defs": {
     "uri": {
@@ -41,7 +41,7 @@
           "type": "number"
         },
         "currency": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/iso4217"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/iso4217"
         }
       },
       "required": [
@@ -53,10 +53,10 @@
       "type": "object",
       "properties": {
         "actorUri": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "roleDeclarationUri": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         }
       },
       "required": [
@@ -85,16 +85,16 @@
         "intendedJurisdictions": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.5:defs#/$defs/st3Code"
+            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/st3Code"
           }
         },
         "applicant": {
-          "$ref": "urn:ipproto:schema:0.5:entityReference"
+          "$ref": "urn:ipproto:schema:0.6:entityReference"
         },
         "resultingAssetReferences": {
           "type": "array",
           "items": {
-            "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+            "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
           }
         }
       },
@@ -102,6 +102,74 @@
         "assetType",
         "workingTitle"
       ]
+    },
+    "conflictParty": {
+      "type": "object",
+      "description": "A party to be checked for conflicts of interest, with its role in the work. Shared by Bid Invitation, Work Instruction, Mandate Instruction and Conflict Check Attested. partyRole adds applicant and namespaced URNs in 0.6.",
+      "properties": {
+        "partyRole": {
+          "anyOf": [
+            {
+              "enum": [
+                "beneficiary",
+                "applicant",
+                "adverseParty",
+                "other"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "^urn:[A-Za-z0-9][A-Za-z0-9-]{0,31}:.+$",
+              "description": "Custom party role: a namespaced URN identifying the defining authority"
+            }
+          ]
+        },
+        "party": {
+          "$ref": "urn:ipproto:schema:0.6:entityReference"
+        }
+      },
+      "required": [
+        "partyRole",
+        "party"
+      ]
+    },
+    "identifier": {
+      "type": "object",
+      "description": "An identifier of an organization or a person, as on Actor Reference. Added to defs in 0.6 for Entity Reference.",
+      "properties": {
+        "scheme": {
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+        },
+        "value": {
+          "type": "string"
+        },
+        "verifiedAt": {
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
+        },
+        "registrationAuthority": {
+          "type": "string",
+          "description": "The register that issued the identifier; required with the scheme urn:ipproto:scheme:companyRegister."
+        }
+      },
+      "required": [
+        "scheme",
+        "value"
+      ],
+      "if": {
+        "properties": {
+          "scheme": {
+            "const": "urn:ipproto:scheme:companyRegister"
+          }
+        },
+        "required": [
+          "scheme"
+        ]
+      },
+      "then": {
+        "required": [
+          "registrationAuthority"
+        ]
+      }
     }
   }
 }

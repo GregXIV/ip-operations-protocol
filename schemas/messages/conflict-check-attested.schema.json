@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.5:conflictCheckAttested",
+  "$id": "urn:ipproto:schema:0.6:conflictCheckAttested",
   "title": "Conflict Check Attested",
-  "description": "A bidder attests the outcome of its conflict check against the parties named in a bid invitation. Only the attestation is exchanged, not the method.",
+  "description": "A provider attests the outcome of its conflict check against the parties of the work it is asked to take: a bid invitation, a work instruction, a mandate instruction or a request. Only the attestation is exchanged, not the method. Generalised in 0.6.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.6:commonEnvelope"
     }
   ],
   "type": "object",
@@ -16,31 +16,74 @@
     "payload": {
       "type": "object",
       "properties": {
+        "subjectReference": {
+          "description": "Added in 0.6. What the attestation is about.",
+          "type": "object",
+          "properties": {
+            "subjectType": {
+              "enum": [
+                "bidInvitation",
+                "workInstruction",
+                "mandateInstruction",
+                "request"
+              ]
+            },
+            "reference": {
+              "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
+            }
+          },
+          "required": [
+            "subjectType",
+            "reference"
+          ]
+        },
         "invitationReference": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "checkedParties": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "urn:ipproto:schema:0.5:entityReference"
+            "anyOf": [
+              {
+                "$ref": "urn:ipproto:schema:0.6:entityReference"
+              },
+              {
+                "$ref": "urn:ipproto:schema:0.6:defs#/$defs/conflictParty"
+              }
+            ]
           }
+        },
+        "checkedAt": {
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
         },
         "outcome": {
           "enum": [
             "clear",
+            "clearedAfterReview",
             "conflict"
           ]
         },
         "attestedBy": {
-          "$ref": "urn:ipproto:schema:0.5:userContext"
+          "$ref": "urn:ipproto:schema:0.6:userContext"
         }
       },
       "required": [
-        "invitationReference",
         "checkedParties",
         "outcome",
         "attestedBy"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "subjectReference"
+          ]
+        },
+        {
+          "required": [
+            "invitationReference"
+          ]
+        }
       ]
     }
   },

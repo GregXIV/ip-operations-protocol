@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ipproto:schema:0.5:invoiceDisputed",
+  "$id": "urn:ipproto:schema:0.6:invoiceDisputed",
   "title": "Invoice Disputed",
   "description": "Added in 0.5. The payor disputes an invoice it received, with the reason. Acceptance of an invoice has no message.",
   "allOf": [
     {
-      "$ref": "urn:ipproto:schema:0.5:commonEnvelope"
+      "$ref": "urn:ipproto:schema:0.6:commonEnvelope"
     }
   ],
   "type": "object",
@@ -17,10 +17,10 @@
       "type": "object",
       "properties": {
         "invoiceReference": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/uri"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/uri"
         },
         "disputedAt": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/isoDateTime"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/isoDateTime"
         },
         "disputeReason": {
           "type": "object",
@@ -64,7 +64,7 @@
           }
         },
         "disputedAmount": {
-          "$ref": "urn:ipproto:schema:0.5:defs#/$defs/money"
+          "$ref": "urn:ipproto:schema:0.6:defs#/$defs/money"
         }
       },
       "required": [
