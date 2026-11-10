@@ -24,7 +24,7 @@ effect.
 ## Versions covered
 
 The commitment covers these versions of the specification, each as tagged in this
-repository: 0.1.0, 0.2.0, 0.3.0, 0.4.0, 0.4.1, 0.5.0, 0.6.0, 0.7.0, 0.8.0 and 0.9.0.
+repository: 0.1.0, 0.2.0, 0.3.0, 0.4.0, 0.4.1, 0.5.0, 0.6.0, 0.7.0, 0.8.0, 0.9.0 and 0.9.1.
 
 A later version is covered once the maintainer adds it to this list. The release step in
 [VERSIONING.md](VERSIONING.md) adds it before the version is tagged; a version that is not

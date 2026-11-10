@@ -3,14 +3,20 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
-## [Unreleased]
+## [0.9.1] — 2026-11-10 (working draft)
 
-Repository and release-record changes. Nothing changes in the specification's rules, the
-schemas or the examples.
+A patch release: the release record, the full licence texts, the maintainer's patent
+commitment and the rules for contributions. Nothing changes in the specification's rules, the
+schemas or the examples. `protocolVersion` stays `0.9`, every schema identifier stays
+`urn:ipproto:schema:0.9:<name>`, and a 0.9.0 implementation needs no change.
 
 ### Added
 - `PATENTS.md`: the maintainer makes the Open Web Foundation Final Specification Agreement 1.0
-  (OWFa 1.0) for versions 0.1.0 to 0.9.0; a later version is covered once it is listed there.
+  (OWFa 1.0) for versions 0.1.0 to 0.9.1; a later version is covered once it is listed there.
+- A `validate` check on every pull request and every push to main: each example against its
+  schema, the generated types against the schemas, and one version in `VERSION`,
+  `schemas/package.json`, its lockfile and `CITATION.cff`. `ajv` and `ajv-formats` are pinned
+  as development dependencies with a committed `schemas/package-lock.json`.
 - `CONTRIBUTING.md`: a Developer Certificate of Origin sign-off on every commit, checked by the
   new `dco` workflow, and the OWF Contributor License Agreement 1.0 (Copyright and Patent) for
   changes to specification text. `SECURITY.md`: private reporting.
@@ -25,6 +31,9 @@ schemas or the examples.
 - `GOVERNANCE.md`: the maintainer ratifies every release; contributions follow
   `CONTRIBUTING.md`. `VERSIONING.md`: the release step names `CITATION.cff` and `PATENTS.md`,
   and says which releases a Zenodo DOI exists for.
+- GitHub Releases now exist for every tag: v0.2.0 to v0.5.0 were added, each with its
+  changelog section and a `SHA256SUMS` manifest, and the notes of v0.1.0, which described
+  0.5.0, were replaced with its own.
 
 ## [0.9.0] — 2026-11-09 (working draft)
 

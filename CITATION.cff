@@ -13,8 +13,8 @@ abstract: >-
 authors:
   - given-names: Jonas
     family-names: Block
-version: "0.9.0"
-date-released: "2026-11-09"
+version: "0.9.1"
+date-released: "2026-11-10"
 license: CC-BY-4.0
 repository-code: "https://github.com/GregXIV/ip-operations-protocol"
 url: "https://guardianlabs.io"
