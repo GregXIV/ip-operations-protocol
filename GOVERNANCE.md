@@ -8,9 +8,9 @@ This is a deliberate posture, not a placeholder. An independent, openly licensed
 
 ## How decisions are made today
 
-For v0.1, the maintainer is the ratifier. Decisions fall into three records under [`spec/05 - Decisions/`](spec/05%20-%20Decisions/):
+The maintainer ratifies every release. Decisions fall into three records under [`spec/05 - Decisions/`](spec/05%20-%20Decisions/):
 
-- **Ratified Decisions** — settled defaults for v0.1.
+- **Ratified Decisions** — the decisions behind each release, numbered and recorded per version.
 - **Open Questions for Consortium** — decisions that materially benefit from multi-stakeholder input. For v0.1 these have been ratified with recommended defaults and are explicitly **reopenable** when a governance body forms.
 - **Deferred to v1.x** — features deliberately out of v0.1 scope.
 
@@ -27,6 +27,12 @@ Nothing in this document asserts that a consortium currently exists. It describe
 ## Contributing
 
 Implementation feedback, issues, and proposals are welcome via the repository. Substantive protocol changes are evaluated against the single scoping principle in [Non-Scope](spec/01%20-%20Front%20Matter/Non-Scope.md): *the protocol standardizes the IP-operations data layer and nothing else.*
+
+[CONTRIBUTING.md](CONTRIBUTING.md) says how to contribute: every commit carries a Developer Certificate of Origin sign-off, and a change to specification text comes with the contributor's OWF Contributor License Agreement 1.0 (Copyright and Patent). Security problems are reported privately, as [SECURITY.md](SECURITY.md) describes.
+
+## Patent commitment
+
+The specification is royalty free to implement. The maintainer makes the Open Web Foundation Final Specification Agreement 1.0 (OWFa 1.0) for every version listed in [PATENTS.md](PATENTS.md), and contributions to specification text are taken only with the contributor's matching commitment. The schemas under `schemas/` are licensed under Apache-2.0, which carries its own patent licence.
 
 ## WIPO coordination
 

@@ -3,7 +3,30 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
-## [0.9.0] — 2026-11 (working draft)
+## [Unreleased]
+
+Repository and release-record changes. Nothing changes in the specification's rules, the
+schemas or the examples.
+
+### Added
+- `PATENTS.md`: the maintainer makes the Open Web Foundation Final Specification Agreement 1.0
+  (OWFa 1.0) for versions 0.1.0 to 0.9.0; a later version is covered once it is listed there.
+- `CONTRIBUTING.md`: a Developer Certificate of Origin sign-off on every commit, checked by the
+  new `dco` workflow, and the OWF Contributor License Agreement 1.0 (Copyright and Patent) for
+  changes to specification text. `SECURITY.md`: private reporting.
+- `CITATION.cff`, the citation metadata GitHub shows and a Zenodo archive reads.
+
+### Changed
+- `LICENSE` and `schemas/LICENSE` carry the full CC-BY-4.0 and Apache-2.0 texts. The notes
+  they held moved to `NOTICE`, which also names the licence of `scripts/` and `.github/`
+  (Apache-2.0).
+- Every version header carries the full date of its tagged commit. 0.1.0 is dated 2026-07-30,
+  the date of its tagged commit, where it said 2026-06.
+- `GOVERNANCE.md`: the maintainer ratifies every release; contributions follow
+  `CONTRIBUTING.md`. `VERSIONING.md`: the release step names `CITATION.cff` and `PATENTS.md`,
+  and says which releases a Zenodo DOI exists for.
+
+## [0.9.0] — 2026-11-09 (working draft)
 
 Fixes found in a provider-side implementation of 0.8, decided by the maintainer on
 2026-11-09 (Ratified Decisions 106 to 111). A provider-side implementation, pinned to v0.8.0
@@ -58,7 +81,7 @@ A minor version that **relaxes three rules and tightens two, neither in a schema
   `XX 0 000 003 B1`; the EP post-grant running example uses numbers that cannot exist
   (`EP 0 000 000`, application `21000000.0`, DOCDB family `00000000`). Decision 111.
 
-## [0.8.0] — 2026-11 (working draft)
+## [0.8.0] — 2026-11-09 (working draft)
 
 Invoicing for firms, decided by the maintainer on 2026-11-09 (Ratified Decisions 95 to
 105), the last of three releases. A provider could conform and price a matter, but its
@@ -140,7 +163,7 @@ schema identifier is re-issued as `urn:ipproto:schema:0.8:<name>`.
 - **Required `issueDate`** for every invoice (decision 97): it would invalidate every invoice
   valid since 0.2.
 
-## [0.7.0] — 2026-11 (working draft)
+## [0.7.0] — 2026-11-09 (working draft)
 
 The litigation module and mandate pricing, decided by the maintainer on 2026-11-09
 (Ratified Decisions 82 to 94), the second of three releases. A provider instructed with a
@@ -223,7 +246,7 @@ conditional module and vocabulary values; none binds an actor that does not go t
   split payers, payments linked to invoices) is the scope of the next release. No invoice
   schema changes in 0.7.
 
-## [0.6.0] — 2026-11 (working draft)
+## [0.6.0] — 2026-11-09 (working draft)
 
 What a provider instructed directly by its client needs in order to conform, decided by the
 maintainer on 2026-11-09 (Ratified Decisions 68 to 81). Until 0.6 a firm that does the work,
@@ -313,7 +336,7 @@ as `urn:ipproto:schema:0.6:<name>`.
 - **Duplicate profile.** The root-level `Asset-Identification-and-Resolution.md` had stayed at
   the state of v0.1; it now points to the profile under `spec/`, the only copy. Decision 78.
 
-## [0.5.0] — 2026-10 (working draft)
+## [0.5.0] — 2026-10-04 (working draft)
 
 Twelve points from the first conformance reading of an orchestrator implementation against
 0.4.1, decided by the maintainer on 2026-10-04 (Ratified Decisions 56 to 67, numbered in the
@@ -431,7 +454,7 @@ identifier is re-issued as `urn:ipproto:schema:0.5:<name>`.
   Deliverable Acknowledged says that the schema does not check its two conditional fields.
   Decision 58.
 
-## [0.4.1] — 2026-10 (working draft)
+## [0.4.1] — 2026-10-02 (working draft)
 
 Three rules for the sender of a Bid Invitation, decided by the maintainer on 2026-10-02
 (Ratified Decisions 53 to 55). They settle points that the 0.4.0 build had left open and
@@ -474,7 +497,7 @@ instead of passing as editorial. `protocolVersion` stays `0.4`, and the identifi
   only the jurisdiction it covers.
 - **Decisions.** Ratified Decisions 53 to 55.
 
-## [0.4.0] — 2026-10 (working draft)
+## [0.4.0] — 2026-10-02 (working draft)
 
 The six points that 0.3.0 left open, decided by the maintainer on 2026-10-02 (Ratified
 Decisions 47 to 52): three optional fields and three clarifications. No message type is
@@ -545,7 +568,7 @@ and no rule of 0.3 is relaxed or tightened.
   a real company's head office and an identifier in LEI format. Both are replaced by
   values that are plainly invented; the identifier fails the LEI check digits.
 
-## [0.3.0] — 2026-10 (working draft)
+## [0.3.0] — 2026-10-02 (working draft)
 
 Follow-up to 0.2.0, agreed by the maintainer on 2026-10-02 (Ratified Decisions 37 to 46).
 It makes first filings and drafting jobs requestable, closes three gaps in the 0.2.0
@@ -619,7 +642,7 @@ rules a 0.2 receiver could rely on are relaxed.
   `Asset-Identification-and-Resolution.md`, and a stray line `EOF` at the end of the EP
   Post-Grant Flow Walkthrough.
 
-## [0.2.0] — 2026-10 (working draft)
+## [0.2.0] — 2026-10-02 (working draft)
 
 A minor version: additions only. Nothing existing is renamed or removed. A 0.1 receiver
 that degrades on unknown message types, fields and values, as VERSIONING.md requires,
@@ -674,7 +697,7 @@ now has 39 message types in 12 categories.
   in new messages is `0.2`.
 - **Generated TypeScript types** regenerated from the 0.2 schemas.
 
-## [0.1.0] — 2026-06 (working draft)
+## [0.1.0] — 2026-07-30 (working draft)
 
 First public release of the working draft.
 

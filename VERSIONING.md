@@ -70,6 +70,11 @@ message type from a newer MINOR version as "unknown", not as an error.
 - **Release checksums.** Since 0.6 every release publishes a SHA-256 checksum of its
   contents, so that an implementer who pins a release can verify what it pinned
   independently of tag objects (Ratified Decision 81). The release step:
+  0. In the release commit, `VERSION`, `schemas/package.json`, `schemas/package-lock.json`
+     and `CITATION.cff` (`version` and `date-released`) name the new version; the `validate`
+     check fails while they disagree. The version's changelog header carries the release
+     date, and the maintainer adds the version to `PATENTS.md` when making the patent
+     commitment for it.
   1. Tag the release.
   2. Run `scripts/release-checksums.sh v<version>`. It prints a `SHA256SUMS` manifest, one
      SHA-256 per file of the tagged tree with paths sorted bytewise, and a last line with
@@ -86,8 +91,10 @@ message type from a newer MINOR version as "unknown", not as an error.
 - **Decision records** live under `spec/05 - Decisions/` (Ratified / Open /
   Deferred). These carry the *why* behind changes — the most valuable history to
   preserve. Entries are dated; as the set grows, prefer one decision per file.
-- **Permanent citable snapshots:** each GitHub Release is intended to mint a
-  Zenodo DOI, giving every version an immutable, citable archive record.
+- **Permanent citable snapshots:** the repository is archived on Zenodo, which mints a
+  DOI for each GitHub Release published after the repository was connected to it, from
+  the release's `CITATION.cff`. Releases published before the connection have no DOI;
+  they stay pinned by tag, commit and checksum.
 
 ## Versioned, stable URLs
 
