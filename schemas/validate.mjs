@@ -1,5 +1,5 @@
 // Reference validator for the IP Operations Protocol schema set.
-// Requires: npm install ajv@8 ajv-formats
+// Requires: npm ci (installs the pinned ajv and ajv-formats from package-lock.json)
 // Usage: node validate.mjs            (validates schemas/examples/*)
 //        node validate.mjs <file>     (validates one instance)
 // Message examples resolve by their messageType; structure examples resolve via
