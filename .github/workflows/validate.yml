@@ -1,0 +1,39 @@
+# Validates the schema set on every pull request and every push to main:
+# every example against its schema (schemas/validate.mjs, ajv + ajv-formats),
+# the generated TypeScript types against the schemas, and the release metadata
+# (VERSION, schemas/package.json, the lockfile and CITATION.cff name one version).
+# No path filter: this is a required check, so it has to report on every pull
+# request, including those that touch only the specification text.
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: schemas/package-lock.json
+      - name: Install the pinned validator dependencies
+        working-directory: schemas
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Validate every example against its schema
+        working-directory: schemas
+        run: node validate.mjs
+      - name: Check the generated types are up to date
+        working-directory: schemas
+        run: node generate-types.mjs --check
+      - name: Check the release metadata names one version
+        run: node scripts/check-release-metadata.mjs

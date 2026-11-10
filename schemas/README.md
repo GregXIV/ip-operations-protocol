@@ -54,10 +54,15 @@ schemas/
 ## Validate
 
 ```bash
-npm install ajv@8 ajv-formats@3
+npm ci                                  # the pinned ajv, ajv-formats and generator
 node validate.mjs                       # validates examples/*
 node validate.mjs path/to/message.json  # validates one message by its messageType
 ```
+
+The `validate` workflow runs these checks, and the types check below, on every pull request
+and every push to main. `ajv` and `ajv-formats` stay peer
+dependencies for consumers of the package and are pinned as development dependencies here,
+with `package-lock.json`, so a clean checkout validates with the same versions as CI.
 
 Since 0.9 CI also validates every example with Python `jsonschema` 4.26 without format
 checking (no `rfc3339-validator`), with the same mapping (`messageType`, then
@@ -77,7 +82,7 @@ import type { GoalDecomposition, Milestone, CommonEnvelope } from "@ipproto/sche
 Types are generated from the schemas — regenerate them when the spec versions; never hand-edit.
 
 ```bash
-npm install json-schema-to-typescript@15.0.4
+npm ci                            # installs json-schema-to-typescript 15.0.4
 npm run generate-types            # rewrites types/ipproto.d.ts
 node generate-types.mjs --check   # exits 1 if the committed types are out of date
 ```
