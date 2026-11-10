@@ -1,0 +1,51 @@
+# Developer Certificate of Origin: every non-merge commit of a pull request
+# carries a "Signed-off-by:" line with its author's email (see CONTRIBUTING.md).
+# Pull requests the repository owner opens pass without a sign-off: the
+# maintainer holds the copyright and made the patent commitment in PATENTS.md.
+name: dco
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  dco:
+    name: dco
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check the sign-off on every commit of the pull request
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+          ASSOCIATION: ${{ github.event.pull_request.author_association }}
+        run: |
+          if [ "$ASSOCIATION" = "OWNER" ]; then
+            echo "dco: pull request opened by the repository owner, no sign-off needed"
+            exit 0
+          fi
+          python3 - <<'PY'
+          import os, re, subprocess, sys
+
+          rng = f"{os.environ['BASE']}..{os.environ['HEAD']}"
+          out = subprocess.run(
+              ["git", "log", "--no-merges", "--format=%H%x00%ae%x00%B%x01", rng],
+              capture_output=True, check=True).stdout.decode("utf-8", "replace")
+          missing = []
+          for entry in filter(None, (e.strip() for e in out.split("\x01"))):
+              sha, email, body = entry.split("\x00", 2)
+              signed = {m.lower() for m in re.findall(
+                  r"^Signed-off-by:.*<([^>]+)>\s*$", body, re.MULTILINE)}
+              if email.lower() not in signed:
+                  missing.append(sha[:7])
+          if missing:
+              print("::error::commits without a sign-off by their author: " + ", ".join(missing))
+              print("Add one with: git commit --amend -s (or git rebase --signoff), see CONTRIBUTING.md")
+              sys.exit(1)
+          print("dco: every commit is signed off by its author")
+          PY

@@ -39,7 +39,12 @@ Full table of contents: [spec/README.md](spec/README.md).
 ip-operations-protocol/
 ├── README.md            ← you are here (public landing)
 ├── LICENSE              ← CC-BY-4.0 (specification text)
+├── NOTICE               ← copyright, which licence covers which part
+├── PATENTS.md           ← the maintainer's patent commitment (OWFa 1.0)
+├── CITATION.cff         ← how to cite the protocol
 ├── GOVERNANCE.md        ← how decisions are made and how that opens up over time
+├── CONTRIBUTING.md      ← how to contribute (DCO sign-off, contributor commitment)
+├── SECURITY.md          ← how to report a security problem privately
 ├── VERSIONING.md        ← version scheme, compatibility rule, how history is kept
 ├── AUTHORS.md           ← authorship and provenance
 ├── CHANGELOG.md         ← version history
@@ -58,9 +63,13 @@ The **specification text** (everything under `spec/` and this README) is license
 
 The **JSON Schemas and reference implementation** (everything under `schemas/`) are licensed under the [Apache License 2.0](schemas/LICENSE), whose explicit patent grant is deliberate for a standard in the patent domain.
 
+The specification is **royalty free to implement**: the maintainer makes the Open Web Foundation Agreement 1.0 (OWFa 1.0) for the versions listed in [PATENTS.md](PATENTS.md). [NOTICE](NOTICE) says which licence covers which part of the repository.
+
 ## Citation
 
 > IP Operations Protocol, v0.9. Dr. Jonas Block, 2026. Licensed CC-BY-4.0. https://github.com/GregXIV/ip-operations-protocol
+
+[CITATION.cff](CITATION.cff) holds the same in machine-readable form; GitHub offers it under *Cite this repository*.
 
 ## Governance
 

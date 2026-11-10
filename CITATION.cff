@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you refer to the IP Operations Protocol, please cite it by name and version as below."
+type: software
+title: "IP Operations Protocol"
+abstract: >-
+  A standard for operational data exchange between actors working on patent and
+  other IP assets: the messages exchanged when work is done on an asset, from
+  bootstrapping it from a register to requesting, instructing, invoicing and
+  paying for work, with JSON Schemas and validated examples. The specification
+  text is licensed under CC-BY-4.0; the JSON Schemas, examples and reference
+  validator under schemas/ are licensed under Apache-2.0. The maintainer has made
+  the Open Web Foundation Agreement 1.0 for the specification (see PATENTS.md).
+authors:
+  - given-names: Jonas
+    family-names: Block
+version: "0.9.0"
+date-released: "2026-11-09"
+license: CC-BY-4.0
+repository-code: "https://github.com/GregXIV/ip-operations-protocol"
+url: "https://guardianlabs.io"
+keywords:
+  - intellectual property
+  - patents
+  - data exchange
+  - JSON Schema
+  - WIPO standards
+  - open standard

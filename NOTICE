@@ -1,8 +1,31 @@
 IP Operations Protocol
 Copyright 2026 Dr. Jonas Block
 
-Specification text (spec/ and repository root): licensed under CC-BY-4.0.
-Schemas and reference implementation (schemas/): licensed under Apache-2.0.
+Licences
+
+- Specification text (spec/ and the repository-root documentation) is licensed
+  under the Creative Commons Attribution 4.0 International License (CC-BY-4.0).
+  The full legal code is in LICENSE; a summary is at
+  https://creativecommons.org/licenses/by/4.0/. You may share and adapt the text,
+  including for commercial purposes, if you give appropriate credit, link to the
+  licence and indicate whether you made changes. Credit names the specification
+  and its version, for example "IP Operations Protocol 0.9.0, Dr. Jonas Block".
+
+- JSON Schemas, examples, generated types and the reference validator (schemas/)
+  and the repository tooling (scripts/, .github/) are licensed under the Apache
+  License, Version 2.0 (Apache-2.0). The full text is in schemas/LICENSE.
+  Apache-2.0 is used here, rather than a licence without a patent clause,
+  deliberately: it carries an express grant of patent rights from contributors
+  to users, which is appropriate for a standard in the patent domain.
+
+Patent commitment
+
+The maintainer has made the Open Web Foundation Final Specification Agreement,
+version 1.0 (OWFa 1.0), for the specification versions listed in PATENTS.md.
+PATENTS.md names the agreement, the versions it covers and how contributions
+are covered.
+
+Standards referenced
 
 This product references, aligns with, or scopes around standards published by
 WIPO and ISO. Those standards remain the property of their respective bodies;
