@@ -3,11 +3,11 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
-## [0.9.1] — 2026-11-10 (working draft)
+## [0.9.1] — 2026-11-11 (working draft)
 
 A patch release: the release record, the full licence texts, the maintainer's patent
 commitment and the rules for contributions. Nothing changes in the specification's rules, the
-schemas or the examples. `protocolVersion` stays `0.9`, every schema identifier stays
+schemas or the schema examples. `protocolVersion` stays `0.9`, every schema identifier stays
 `urn:ipproto:schema:0.9:<name>`, and a 0.9.0 implementation needs no change.
 
 ### Added
@@ -27,13 +27,18 @@ schemas or the examples. `protocolVersion` stays `0.9`, every schema identifier 
   they held moved to `NOTICE`, which also names the licence of `scripts/` and `.github/`
   (Apache-2.0).
 - Every version header carries the full date of its tagged commit. 0.1.0 is dated 2026-07-30,
-  the date of its tagged commit, where it said 2026-06.
+  the date of its tagged commit, where it said 2026-06; its header also records that its text
+  was first committed on 2026-06-23.
 - `GOVERNANCE.md`: the maintainer ratifies every release; contributions follow
   `CONTRIBUTING.md`. `VERSIONING.md`: the release step names `CITATION.cff` and `PATENTS.md`,
   and says which releases a Zenodo DOI exists for.
 - GitHub Releases now exist for every tag: v0.2.0 to v0.5.0 were added, each with its
   changelog section and a `SHA256SUMS` manifest, and the notes of v0.1.0, which described
   0.5.0, were replaced with its own.
+
+### Fixed
+- Service Finding: the opponent in the *opposition filed* worked example is now a placeholder
+  organization, `Opposing Party GmbH`, as in every other example.
 
 ## [0.9.0] — 2026-11-09 (working draft)
 
@@ -706,7 +711,7 @@ now has 39 message types in 12 categories.
   in new messages is `0.2`.
 - **Generated TypeScript types** regenerated from the 0.2 schemas.
 
-## [0.1.0] — 2026-07-30 (working draft)
+## [0.1.0] — 2026-07-30 (working draft; first committed 2026-06-23)
 
 First public release of the working draft.
 

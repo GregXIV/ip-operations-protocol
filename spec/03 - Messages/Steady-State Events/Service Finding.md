@@ -115,7 +115,7 @@ Each entry: `actionDescription`, `actionCategory` (`urn:ipproto:findingAction:in
     "findingSeverity": "critical",
     "findingContent": {
       "targetAsset": "urn:ipproto:asset:7c4f9a82-...",
-      "opponent": { /* Entity Reference for Henkel AG */ },
+      "opponent": { /* Entity Reference for Opposing Party GmbH */ },
       "oppositionFilingDate": "2027-02-08",
       "oppositionDocumentReference": "urn:ipproto:document:opposition-notice-...",
       "responseDeadline": "2027-06-08"
