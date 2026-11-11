@@ -14,6 +14,7 @@ authors:
   - given-names: Jonas
     family-names: Block
 version: "0.9.1"
+doi: "10.5281/zenodo.24147248"
 date-released: "2026-11-11"
 license: CC-BY-4.0
 repository-code: "https://github.com/GregXIV/ip-operations-protocol"

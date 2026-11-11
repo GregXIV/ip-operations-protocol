@@ -93,8 +93,10 @@ message type from a newer MINOR version as "unknown", not as an error.
   preserve. Entries are dated; as the set grows, prefer one decision per file.
 - **Permanent citable snapshots:** the repository is archived on Zenodo, which mints a
   DOI for each GitHub Release published after the repository was connected to it, from
-  the release's `CITATION.cff`. Releases published before the connection have no DOI;
-  they stay pinned by tag, commit and checksum.
+  the release's `CITATION.cff`. The first archived release is v0.9.1. The concept DOI
+  [10.5281/zenodo.24147248](https://doi.org/10.5281/zenodo.24147248) names every version and resolves to the newest;
+  each archived release also has a DOI of its own. Releases published before the
+  connection (v0.1.0 to v0.9.0) have no DOI; they stay pinned by tag, commit and checksum.
 
 ## Versioned, stable URLs
 

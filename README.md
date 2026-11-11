@@ -1,5 +1,7 @@
 # IP Operations Protocol
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24147248.svg)](https://doi.org/10.5281/zenodo.24147248)
+
 A standard for **operational data exchange between actors working on patent and other IP assets** — corporate IP departments, service providers, external counsel, and registers.
 
 **Version:** 0.9 (working draft) · **Spec license:** CC-BY-4.0 · **Schema license:** Apache-2.0 · **Status:** open for implementation feedback
@@ -67,9 +69,9 @@ The specification is **royalty free to implement**: the maintainer makes the Ope
 
 ## Citation
 
-> IP Operations Protocol, v0.9. Dr. Jonas Block, 2026. Licensed CC-BY-4.0. https://github.com/GregXIV/ip-operations-protocol
+> IP Operations Protocol, v0.9. Dr. Jonas Block, 2026. Licensed CC-BY-4.0. https://doi.org/10.5281/zenodo.24147248
 
-[CITATION.cff](CITATION.cff) holds the same in machine-readable form; GitHub offers it under *Cite this repository*.
+The DOI [10.5281/zenodo.24147248](https://doi.org/10.5281/zenodo.24147248) cites every version and resolves to the newest one archived on Zenodo; each release from v0.9.1 on also has a DOI of its own, listed on that record. [CITATION.cff](CITATION.cff) holds the same in machine-readable form; GitHub offers it under *Cite this repository*.
 
 ## Governance
 
