@@ -29,8 +29,7 @@ This protocol references existing standards in three modes. Each external refere
 | WIPO ST.96 | IP information XML — document content | Scope demarcation |
 | WIPO ST.97 | IP data in JSON | Structural alignment, as for ST.96 bibliographic data |
 | WIPO ST.90 | Web APIs for IP data | Scope demarcation (transport) |
-| ISO 8601 | Dates and times | Incorporation, in the RFC 3339 profile |
-| RFC 3339 | Date and date-time values | Incorporation |
+| ISO 8601 | Dates and times | Incorporation |
 | ISO 4217 | Currency codes | Incorporation |
 | ISO 17442 | Legal Entity Identifier (LEI) | Incorporation when present |
 | ISO 639-1 | Language codes | Incorporation |
@@ -61,9 +60,9 @@ Application numbers in the protocol use ST.13 as the recommended format but acco
 
 ST.97 gives the JSON form of ST.96 data, so the alignment of [Asset Reference](../02%20-%20Foundational%20Structures/Asset%20Reference.md) with ST.96 holds for it as well: an adapter maps ST.97 bibliographic data the way it maps ST.96. ST.90 recommends how IP data is exchanged over Web APIs. The protocol does not bind a transport ([Non-Scope](Non-Scope.md)); an implementation that offers an HTTP API may follow ST.90.
 
-### ISO 8601 and RFC 3339
+### ISO 8601 and the schemas' date formats
 
-Dates and date-times are written in the RFC 3339 profile of ISO 8601, for example `2026-04-28` and `2026-04-28T07:20:00Z`. That profile is what the `date` and `date-time` formats of JSON Schema 2020-12 name, and so what the published schemas check where a validator asserts formats.
+This note is informative. The published schemas check dates and date-times with the `date` and `date-time` formats of JSON Schema 2020-12, which are defined by RFC 3339, a profile of ISO 8601. A validator that asserts formats, as the reference validator does, therefore rejects ISO 8601 forms outside that profile, such as a date-time without an offset. The specification's rule stays ISO 8601, as the field pages state.
 
 ### EN 16931 and ISO 20022
 

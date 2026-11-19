@@ -87,7 +87,7 @@ Then either:
 
 Every page starts with a short metadata block:
 
-- `type` — the kind of page: `front-matter`, `foundational`, `profile`, `message`, `worked-example`, `decisions` or `index`. Message pages also carry their `category`.
+- `type` — the kind of page: `front-matter`, `foundational`, `profile`, `message`, `worked-example`, `decisions`, `index`, or `reference` for the [Glossary](../Glossary.md). Message pages also carry their `category`.
 - `since` — the release that added the page.
 - `changed` — the last release in which the page's text changed, metadata aside. `unreleased` marks a page changed since the last release; the release that carries the change replaces it with its version.
 

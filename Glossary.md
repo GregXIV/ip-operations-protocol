@@ -1,6 +1,7 @@
 ---
 type: reference
-status: v0.5
+since: 0.1.0
+changed: 0.8.0
 ---
 
 # Glossary

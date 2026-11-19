@@ -9,10 +9,11 @@ Editorial: no rule of the specification and no schema changes. `protocolVersion`
 and every schema identifier stays `urn:ipproto:schema:0.9:<name>`.
 
 ### Added
-- Reference Standards lists WIPO ST.97 and ST.90, RFC 3339, ISO 3166-1, RFC 9562, JSON
-  Schema 2020-12, EN 16931 and ISO 20022, each with its referencing mode and a note on how
-  it applies. Each one is a standard the pages or the schemas already use or rely on; none
-  adds a requirement.
+- Reference Standards lists WIPO ST.97 and ST.90, ISO 3166-1, RFC 9562, JSON Schema
+  2020-12, EN 16931 and ISO 20022, each with its referencing mode and a note on how it
+  applies. Each one is a standard the pages or the schemas already use or rely on; none
+  adds a requirement. An informative note says that the schemas' `date` and `date-time`
+  formats are those of RFC 3339; the rule for senders stays ISO 8601.
 - Open Questions for Consortium: question 8, a vocabulary for licence terms, with W3C ODRL
   2.2 as the candidate. It is open.
 - Issue forms for specification defects, schema bugs, vocabulary requests and
