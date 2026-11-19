@@ -7,7 +7,7 @@ not certify it. To add one, use the *Implementation report* issue form or open a
 
 | Implementation | Implementer | Protocol version | Profiles | Report |
 |---|---|---|---|---|
-| Reference resolver (`resolver.guardianlabs.io`) | the maintainer | v0.8.0 | Asset identification: representational (partly met); resolving (not claimed) | [below](#reference-resolver) |
+| Reference resolver (`resolver.guardianlabs.io`) | the maintainer | v0.8.0 | Asset identification: neither level claimed (points 1, 2 and 4 met) | [below](#reference-resolver) |
 
 ## Reference resolver
 

@@ -3,7 +3,19 @@
   "version": "0.9.1",
   "description": "JSON Schemas, validated examples, generated TypeScript types, and a reference validator for the IP Operations Protocol v0.9.",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GregXIV/ip-operations-protocol.git",
+    "directory": "schemas"
+  },
+  "homepage": "https://guardianlabs.io",
+  "bugs": {
+    "url": "https://github.com/GregXIV/ip-operations-protocol/issues"
+  },
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "types": "./types/ipproto.d.ts",
   "exports": {
     "./index": "./index.json",

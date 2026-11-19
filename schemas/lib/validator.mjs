@@ -75,8 +75,28 @@ export function createValidator({ root = packageRoot } = {}) {
     return { valid, schemaId, errors: valid ? [] : fn.errors };
   }
 
+  /**
+   * Checks index.json against the package: every entry's path exists relative to the package
+   * root and holds the schema with the entry's $id, and every schema of the package is listed.
+   * @returns {string[]} the problems found; empty when the index is consistent
+   */
+  function checkIndex() {
+    const problems = [];
+    const listed = new Set();
+    for (const entry of index.schemas) {
+      listed.add(entry.$id);
+      let schema;
+      try { schema = JSON.parse(readFileSync(join(root, entry.path), "utf8")); }
+      catch { problems.push(`${entry.$id}: ${entry.path} does not exist in the package`); continue; }
+      if (schema.$id !== entry.$id) problems.push(`${entry.path} holds ${schema.$id}, not ${entry.$id}`);
+    }
+    for (const id of schemas.keys()) if (!listed.has(id)) problems.push(`${id} is not listed in index.json`);
+    return problems;
+  }
+
   return {
     protocolVersion: index.protocolVersion,
+    checkIndex,
     schemaIds: [...schemas.keys()],
     messageTypes: [...messageTypes.keys()],
     schemaIdFor,

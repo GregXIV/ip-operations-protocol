@@ -236,7 +236,7 @@ How the provider runs its conflict check (only its outcome is exchanged); how it
 
 ## Evidence for an attestation
 
-Informative. A requirement verified by attestation is met when the implementer documents it with this evidence:
+Informative. For a requirement verified by attestation, this is the evidence an implementer can document to support it:
 
 | Requirement | Evidence |
 |---|---|

@@ -37,6 +37,12 @@ new examples. `protocolVersion` stays `0.9` and every schema identifier stays
   Deliverable Acknowledged, Identity Resolution Dispute, Service Finding and Service
   Subscription Terminated. They say `"0.9"`, follow the worked example of their page, and
   each page names its file. 74 examples in all.
+- **Typed payloads.** `types/ipproto.d.ts` types each message's payload, as
+  `CommonEnvelope & { messageType; payload }`, and adds `IpprotoMessage`, the union of all
+  messages discriminated on `messageType`. Every message example type-checks against it.
+- `@ipproto/schemas` names its repository, homepage, issue tracker and Node.js engine
+  (18 or later). `validate.mjs` first checks `index.json` against the package: every path
+  exists and holds the listed `$id`, and every schema is listed.
 - Conformance: a *Verified by* column on every requirement (schema, message trace,
   resolution probe or attestation), the points of the asset identification profile with
   theirs, and the evidence that settles each attestation. Informative.
@@ -66,6 +72,9 @@ new examples. `protocolVersion` stays `0.9` and every schema identifier stays
   `jsonc`; the 75 complete ones validate.
 - Conformance: a note on checking G1 for a message of an earlier version against that
   version's schema set.
+
+- `index.json` paths are relative to the package (`defs/common-defs.schema.json`), so they
+  resolve from an installed `@ipproto/schemas`; they were relative to the repository root.
 
 ### Fixed
 - Non-Scope, *Transport*: ePCT is WIPO's online PCT service, not an EPO one. The paragraph
