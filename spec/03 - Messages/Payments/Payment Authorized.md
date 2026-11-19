@@ -2,7 +2,7 @@
 type: message
 category: payments
 since: 0.1.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # Payment Authorized
@@ -119,8 +119,8 @@ For payments where an external system (typically the office's register) confirms
     },
     "paymentAgent": {
       "agentActorReference": "urn:ipproto:actor:meridian-ip-group",
-      "agentRoleDeclaration": "urn:ipproto:roleDeclaration:dm-payment-agent-...",
-      "executionAuthorityReference": "Northwind Industries-DM-MSA-2024-EU#payment-mandate"
+      "agentRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-payment-agent-...",
+      "executionAuthorityReference": "Northwind Industries-MIP-MSA-2024-EU#payment-mandate"
     },
     "payorReferences": {
       "purchaseOrderReference": "Northwind Industries-PO-2026-04473",

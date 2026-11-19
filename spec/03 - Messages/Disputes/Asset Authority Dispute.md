@@ -2,7 +2,7 @@
 type: message
 category: disputes
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Asset Authority Dispute
@@ -94,7 +94,7 @@ Type: ISO 8601 datetime, required
     "disputedRecord": "urn:ipproto:asset:7c4f9a82-...",
     "disputedSectionPath": "/serviceEngagements",
     "competingClaims": [
-      "urn:ipproto:authorityClaim:dm-engagement-001",
+      "urn:ipproto:authorityClaim:meridian-engagement-001",
       "urn:ipproto:authorityClaim:lawfirm-x-engagement-002"
     ],
     "conflictType": "overlappingExclusive",

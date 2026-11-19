@@ -1,7 +1,7 @@
 ---
 type: foundational
 since: 0.1.0
-changed: 0.3.0
+changed: unreleased
 ---
 
 # Actor Role Declaration
@@ -67,7 +67,7 @@ Type: array, optional
 
 When the role is delegated. Each entry: `delegatingActorUri`, `delegatedRoleUri`, `delegationBasis` (URN), `delegationReference` (optional, contractual reference).
 
-The Meridian IP Group & Associates pattern — D&A operates under Meridian IP Group's contract — is modeled here. The role declaration for D&A's `subscriptionOperator` role carries a delegation chain showing Meridian IP Group as the upstream contract holder.
+The Meridian IP Group & Associates pattern — Meridian Associates operates under Meridian IP Group's contract — is modeled here. The role declaration for Meridian Associates' `subscriptionOperator` role carries a delegation chain showing Meridian IP Group as the upstream contract holder.
 
 ## Worked example
 
@@ -86,7 +86,7 @@ The Meridian IP Group & Associates pattern — D&A operates under Meridian IP Gr
       "delegatingActorUri": "urn:ipproto:actor:meridian-ip-group",
       "delegatedRoleUri": "urn:ipproto:role:subscriptionContractHolder",
       "delegationBasis": "urn:ipproto:basis:partnerNetworkAgreement",
-      "delegationReference": "DM-DA-PNA-2024"
+      "delegationReference": "MIP-MA-PNA-2024"
     }
   ]
 }

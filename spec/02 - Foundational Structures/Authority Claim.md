@@ -1,7 +1,7 @@
 ---
 type: foundational
 since: 0.1.0
-changed: 0.4.0
+changed: unreleased
 ---
 
 # Authority Claim
@@ -69,7 +69,7 @@ When the claim expires. Omitted for indefinite claims.
 ### `claimAgreementReference`
 Type: string, optional
 
-Reference to the underlying contract or agreement supporting the claim. `Northwind Industries-DM-MSA-2024-EU#payment-mandate`.
+Reference to the underlying contract or agreement supporting the claim. `Northwind Industries-MIP-MSA-2024-EU#payment-mandate`.
 
 ### `supersedes`
 Type: array of claimUris, optional
