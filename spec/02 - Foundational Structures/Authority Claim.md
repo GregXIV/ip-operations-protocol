@@ -1,6 +1,7 @@
 ---
 type: foundational
-status: v0.4
+since: 0.1.0
+changed: 0.4.0
 ---
 
 # Authority Claim

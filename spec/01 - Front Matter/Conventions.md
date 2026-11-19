@@ -1,6 +1,7 @@
 ---
 type: front-matter
-status: v0.9
+since: 0.1.0
+changed: 0.9.0
 ---
 
 # Conventions

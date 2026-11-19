@@ -1,7 +1,8 @@
 ---
 type: message
 category: payments
-status: v0.8
+since: 0.2.0
+changed: 0.8.0
 ---
 
 # Invoice Issued

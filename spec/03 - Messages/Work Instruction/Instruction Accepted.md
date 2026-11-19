@@ -1,7 +1,8 @@
 ---
 type: message
 category: work-instruction
-status: v0.6
+since: 0.2.0
+changed: 0.6.0
 ---
 
 # Instruction Accepted

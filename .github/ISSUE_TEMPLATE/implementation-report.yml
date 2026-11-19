@@ -1,0 +1,48 @@
+name: Implementation report
+description: Report how an implementation conforms to a profile of a released version.
+title: "implementation report: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Reports are recorded by the maintainer. Name your implementation as you want it published; do not name clients, counterparties or matters.
+  - type: input
+    id: implementation
+    attributes:
+      label: Implementation
+      description: Name, version, and a link if it is public.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Protocol version
+      placeholder: v0.9.1
+    validations:
+      required: true
+  - type: dropdown
+    id: profile
+    attributes:
+      label: Profile
+      description: The profiles are listed in spec/01 - Front Matter/Conformance.md.
+      multiple: true
+      options:
+        - Asset Identification and Resolution, representational
+        - Asset Identification and Resolution, resolving
+        - Orchestrator
+        - Provider
+        - Other (say which below)
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: Results per requirement
+      description: For each requirement of the profile, met, partly met, not met or not applicable, with the evidence (a test, a message log, a probe), as Conformance, Claiming conformance, describes.
+    validations:
+      required: true
+  - type: textarea
+    id: gaps
+    attributes:
+      label: Gaps and questions
+      description: Requirements that could not be tested, and anything in the specification that was unclear.

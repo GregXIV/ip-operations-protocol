@@ -1,0 +1,36 @@
+name: Specification defect
+description: A rule in the specification is wrong, unclear, contradicts another page, or cannot be implemented.
+title: "spec: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Use neutral placeholders (Office, Applicant, Service Provider) and `.example` domains; do not name clients, firms or matters.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The release you read, as its tag.
+      placeholder: v0.9.1
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page and section
+      placeholder: "spec/03 - Messages/Payments/Invoice Issued.md, Tax"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: Quote the text, and say what is wrong with it or what it contradicts.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Optional. A change to what a sender or a receiver does is a MINOR (VERSIONING.md).

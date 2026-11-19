@@ -1,6 +1,7 @@
 ---
 type: foundational
-status: v0.7
+since: 0.6.0
+changed: 0.9.0
 ---
 
 # Deadline

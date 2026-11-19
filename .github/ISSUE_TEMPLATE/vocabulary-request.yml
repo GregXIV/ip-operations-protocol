@@ -1,0 +1,30 @@
+name: Vocabulary or extension request
+description: Ask for a new value in an open vocabulary (a scheme, a milestone category, a role) or register a namespaced extension.
+title: "vocabulary: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Custom values already work without a request: namespaced URNs degrade to "unknown" at receivers that do not know them (Conventions). Ask here when a value should become a seeded standard value. A new value is a MINOR change.
+  - type: input
+    id: field
+    attributes:
+      label: Field or vocabulary
+      placeholder: "Asset Reference identifiers[].scheme"
+    validations:
+      required: true
+  - type: input
+    id: value
+    attributes:
+      label: Proposed value
+      placeholder: "urn:ipproto:scheme:..."
+    validations:
+      required: true
+  - type: textarea
+    id: meaning
+    attributes:
+      label: Meaning and use
+      description: What the value means, who sends it, and why the existing values do not cover it.
+    validations:
+      required: true

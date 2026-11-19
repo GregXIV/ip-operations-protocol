@@ -1,6 +1,7 @@
 ---
 type: foundational
-status: v0.3
+since: 0.1.0
+changed: 0.3.0
 ---
 
 # Actor Role Declaration

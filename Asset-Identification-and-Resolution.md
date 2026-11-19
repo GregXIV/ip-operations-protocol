@@ -1,8 +1,3 @@
----
-type: profile
-status: v0.6
----
-
 # Asset Identification and Resolution
 
 This page moved. The profile is maintained at

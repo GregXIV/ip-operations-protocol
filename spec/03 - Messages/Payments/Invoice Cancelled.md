@@ -1,7 +1,8 @@
 ---
 type: message
 category: payments
-status: v0.5
+since: 0.5.0
+changed: 0.5.0
 ---
 
 # Invoice Cancelled

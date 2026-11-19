@@ -1,6 +1,7 @@
 ---
 type: profile
-status: v0.9
+since: 0.1.0
+changed: unreleased
 ---
 
 # Asset Identification and Resolution
@@ -42,7 +43,7 @@ Each office number is recorded as an entry in the Asset Reference `identifiers[]
 
 **Identifiers are append-mostly.** As an asset progresses, new identifiers accrue. A superseded identifier is flagged (via the relationship and document-status mechanisms), not deleted — historical references must keep resolving.
 
-### Scheme vocabulary (v0.1)
+### Scheme vocabulary (since 0.1)
 
 A small recommended set is seeded; the field stays open to namespaced custom schemes, following the same lightweight, opt-in, not-enforced pattern as custom milestone categories.
 
@@ -80,7 +81,7 @@ The `assetUri` is identical regardless of which identifiers are present; the ide
 
 Cross-asset links are carried in the Asset Reference `relationships[]` array, each entry referencing a related asset by its own `assetUri` with a `relationshipType` (`parent`, `divisional`, `continuation`, `nationalPhase`, `validation`, `priorityClaim`, …) and an optional `effectiveDate`.
 
-**DOCDB family is the canonical family backbone for v0.1.** Family membership and relationships are anchored on the DOCDB (simple/extended) family model, available through EPO OPS. National registers — including JPO and other national sources — provide *enrichment*: additional identifiers, status, and links layered onto the DOCDB-anchored family. This keeps v0.1 to a single consistent family model and avoids premature multi-family reconciliation. Treating national families as co-equal is deferred to a later version, to be revisited once real usage shows where the DOCDB backbone is insufficient.
+**DOCDB family is the canonical family backbone (since 0.1).** Family membership and relationships are anchored on the DOCDB (simple/extended) family model, available through EPO OPS. National registers — including JPO and other national sources — provide *enrichment*: additional identifiers, status, and links layered onto the DOCDB-anchored family. This keeps the protocol to a single consistent family model and avoids premature multi-family reconciliation. Treating national families as co-equal is deferred to a later version, to be revisited once real usage shows where the DOCDB backbone is insufficient.
 
 ### Family-derived relationships
 
@@ -96,7 +97,7 @@ Resolution is the operation of turning observed identifiers into a canonical `as
 
 ### Resolution provenance (required)
 
-Every resolution records its confidence and method, mirroring how [Entity Reference](Entity%20Reference.md) already treats identity resolution. This makes a weak or automated match visible and auditable rather than silent. It is schematized as the `Resolution Provenance` structure (`urn:ipproto:schema:0.1:resolutionProvenance`); a resolver's full emission — the Asset Reference plus its provenance — validates as `Resolved Asset` (`urn:ipproto:schema:0.1:resolvedAsset`). The fields:
+Every resolution records its confidence and method, mirroring how [Entity Reference](Entity%20Reference.md) already treats identity resolution. This makes a weak or automated match visible and auditable rather than silent. It is schematized as the `Resolution Provenance` structure (`urn:ipproto:schema:0.9:resolutionProvenance`); a resolver's full emission — the Asset Reference plus its provenance — validates as `Resolved Asset` (`urn:ipproto:schema:0.9:resolvedAsset`). The fields:
 
 - `resolvedAssetUri` — the canonical asset the identifiers were resolved to
 - `resolvedAt` — ISO 8601 datetime
@@ -104,7 +105,7 @@ Every resolution records its confidence and method, mirroring how [Entity Refere
 - `resolutionMethod` — `deterministicIdentifier` · `familyLookup` · `attributeMatching` · `humanReview` · `priorAssertion`
 - `resolutionBasis` — narrative or structured basis for the match
 
-The **derivation rubric** — which evidence yields which `confidenceLevel` and `resolutionMethod` — is implementation-defined in v0.1; a canonical rubric is deferred to a governance body. Recommended baseline: `deterministicIdentifier` + `exact` for a direct ST.3/ST.16 hit; `familyLookup` for a match resolved via the DOCDB family; `priorAssertion` when an existing store already binds the identifier to an `assetUri`; `attributeMatching` or `humanReview` with `high`/`medium`/`low` as confidence degrades. A resolver SHOULD document its rubric.
+The **derivation rubric** — which evidence yields which `confidenceLevel` and `resolutionMethod` — is implementation-defined (since 0.1); a canonical rubric is deferred to a governance body. Recommended baseline: `deterministicIdentifier` + `exact` for a direct ST.3/ST.16 hit; `familyLookup` for a match resolved via the DOCDB family; `priorAssertion` when an existing store already binds the identifier to an `assetUri`; `attributeMatching` or `humanReview` with `high`/`medium`/`low` as confidence degrades. A resolver SHOULD document its rubric.
 
 Not every identifier type resolves directly. Family lookup commonly keys on a **publication** number; resolving from a bare application number may require a pre-step (e.g. application → publication via a register search). A resolver documents which inputs it supports; an unsupported input is a documented limitation, not a conformance failure.
 
@@ -139,15 +140,15 @@ Two levels are recognised. A **representational** conformance covers points 1–
 
 Since 0.5 the protocol's profiles are listed together in [Conformance](../01%20-%20Front%20Matter/Conformance.md), with this one and the orchestrator profile.
 
-## Profile decisions (v0.1)
+## Profile decisions (since 0.1)
 
-Ratified by the maintainer for v0.1, reopenable when a governance body forms:
+Ratified by the maintainer for 0.1 and still in force, reopenable when a governance body forms:
 
 - **Scheme vocabulary** — seed a small recommended set; keep the field open to namespaced custom schemes.
 - **Resolution provenance** — confidence level and method are required on every resolution.
-- **Family backbone** — DOCDB family anchors v0.1; national registers enrich; co-equal national families deferred.
+- **Family backbone** — DOCDB family anchors the family model; national registers enrich; co-equal national families deferred.
 - **Family-derived relationships** — resolvers assert structural family membership (shared `docdb-family` identifier; optional `docdbFamilyMember` relationship), never unverified semantic types.
-- **Confidence rubric** — the fields are required; the derivation rubric is implementation-defined for v0.1 with a recommended baseline; a canonical rubric is deferred.
+- **Confidence rubric** — the fields are required; the derivation rubric is implementation-defined, with a recommended baseline; a canonical rubric is deferred.
 
 ## See also
 

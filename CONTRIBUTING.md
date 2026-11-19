@@ -8,8 +8,9 @@ send them and on what terms they are accepted.
 - **Scope.** A change is weighed against the single scoping principle in
   [Non-Scope](spec/01%20-%20Front%20Matter/Non-Scope.md): the protocol standardizes the
   IP-operations data layer and nothing else.
-- **Questions and defects** go in an issue. Say which version you read (the tag, for
-  example `v0.9.0`) and which page or schema.
+- **Questions and defects** go in an issue; the issue forms ask for what is needed. Say
+  which version you read (the tag, for example `v0.9.1`) and which page or schema.
+- **Implementation reports** use the *Implementation report* issue form.
 - **Security reports** never go in a public issue; see [SECURITY.md](SECURITY.md).
 
 ## Making a change
@@ -19,7 +20,8 @@ send them and on what terms they are accepted.
    never define behaviour the pages do not state.
 2. **Versioning.** [VERSIONING.md](VERSIONING.md) decides whether a change is a MAJOR, a
    MINOR or a PATCH. A change to what a sender or a receiver does is never a PATCH. Add an
-   entry to [CHANGELOG.md](CHANGELOG.md).
+   entry under `[Unreleased]` in [CHANGELOG.md](CHANGELOG.md), and mark each page whose
+   text you change `changed: unreleased`.
 3. **Examples stay neutral.** Use placeholder actors and `.example` domains, as the
    existing examples do. Do not name real organizations, clients or matters.
 4. **Checks.** From `schemas/`, run:

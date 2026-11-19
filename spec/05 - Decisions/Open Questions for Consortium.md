@@ -1,6 +1,7 @@
 ---
 type: decisions
-status: v0.8
+since: 0.1.0
+changed: unreleased
 ---
 
 # Open Questions for Consortium
@@ -11,7 +12,7 @@ status: v0.8
 >
 > **Question 7**, added in 0.3, was ratified by the maintainer in 0.8 (decision 102), with the answer recorded under it. Like questions 1 to 6 it is reopenable when a consortium forms, and its original framing is kept below.
 >
-> No question is open since 0.8.
+> **Question 8**, on a vocabulary for licence terms, was added after 0.9.1 and is open.
 
 These are questions where consortium-member input materially affects how the protocol should be specified, and where unilateral disposition would be inappropriate. Each has a recommended default but is positioned for consortium discussion before v1.0 ratification.
 
@@ -97,6 +98,18 @@ Added in 0.3. **Ratified in 0.8** (decision 102). The framing below is the one o
 - **Withholding tax** stays outside the breakdown. A payee states it with a custom treatment or in the document. Should practice show a need, a later version may add it; it is not an open question of the consortium.
 
 The invoice document remains the invoice in the legal sense. What changed is that the structured data can now say what the document says about tax, line by line, and must not contradict a structured document.
+
+## 8. A vocabulary for licence terms
+
+Added after 0.9.1. **Open.**
+
+**Default:** The protocol carries no licence terms. A licence agreement is a document, referenced through [Document Reference](../02%20-%20Foundational%20Structures/Document%20Reference.md); a matter about a licence is a workstream like any other.
+
+**The question:** If a later version adds messages that offer, grant or record a licence, which vocabulary expresses the permissions, prohibitions and duties of a licence? The W3C Open Digital Rights Language (ODRL) 2.2 is the candidate: a W3C Recommendation for exactly this, with a JSON-LD serialisation and a profile mechanism for domain terms such as territory, field of use and royalty duties.
+
+**Why this is for the consortium:** Licence terms are commercial terms, which the protocol keeps out of scope today ([Non-Scope](../01%20-%20Front%20Matter/Non-Scope.md)). Whether the protocol carries them at all, and in whose vocabulary, depends on how licensors, licensees and clearing services want to use it.
+
+**Recommendation:** Add no licence messages before practitioners ask for them. If they are added, use ODRL 2.2 with a protocol profile for patent licence terms rather than a vocabulary of the protocol's own.
 
 ## See also
 

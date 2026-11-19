@@ -1,6 +1,7 @@
 ---
 type: worked-example
-status: v0.1
+since: 0.1.0
+changed: 0.1.0
 ---
 
 # Phase-by-Phase Reference
