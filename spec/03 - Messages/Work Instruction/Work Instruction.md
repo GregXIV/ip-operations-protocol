@@ -2,7 +2,7 @@
 type: message
 category: work-instruction
 since: 0.2.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # Work Instruction
@@ -81,7 +81,7 @@ Added in 0.6. The parties the provider checks for conflicts of interest before i
 
 ## Worked example — validation in Spain passed to an agent
 
-```json
+```jsonc
 {
   "originatingActor": "urn:ipproto:actor:meridian-ip-group",
   "addressedTo": [

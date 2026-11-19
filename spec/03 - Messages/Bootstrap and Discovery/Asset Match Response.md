@@ -2,7 +2,7 @@
 type: message
 category: bootstrap
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Asset Match Response
@@ -54,7 +54,7 @@ New claims the receiver registers. For `confirmedWithEnrichment`, typically an `
 
 ## Worked example — confirmedWithEnrichment
 
-```json
+```jsonc
 {
   "userContext": { /* corporate user */ },
   "payload": {

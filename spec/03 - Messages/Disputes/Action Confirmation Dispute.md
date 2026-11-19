@@ -72,7 +72,9 @@ Type: ISO 8601 datetime, required
 
 ## Worked example
 
-```json
+The full message is `action-confirmation-dispute.example.json` in `schemas/examples/`.
+
+```jsonc
 {
   "payload": {
     "disputeReference": "urn:ipproto:dispute:conf-001-...",

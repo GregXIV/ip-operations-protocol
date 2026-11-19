@@ -2,7 +2,7 @@
 type: message
 category: workstream-lifecycle
 since: 0.1.0
-changed: 0.2.0
+changed: unreleased
 ---
 
 # Orchestration Committed
@@ -68,7 +68,9 @@ Conditional based on `commitmentDecision`.
 
 ## Worked example — committedWithRouteSelection
 
-```json
+The full message is `orchestration-committed.example.json` in `schemas/examples/`.
+
+```jsonc
 {
   "userContext": {
     "userIdentifier": "counsel@northwind.example",
@@ -87,7 +89,7 @@ Conditional based on `commitmentDecision`.
 
 ## Worked example — committedWithModifications
 
-```json
+```jsonc
 {
   "payload": {
     "proposalReference": "urn:ipproto:message:gd-001-...",

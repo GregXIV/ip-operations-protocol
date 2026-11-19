@@ -1,7 +1,7 @@
 ---
 type: foundational
 since: 0.1.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # Data Assertion
@@ -40,7 +40,7 @@ Type: structured, required
 What the assertion says. Two forms:
 
 **`fullValue`** — the assertion sets the section to a complete value, replacing any prior content:
-```json
+```jsonc
 {
   "contentType": "fullValue",
   "value": "Northwind Industries-2021-0473-EP"
@@ -48,7 +48,7 @@ What the assertion says. Two forms:
 ```
 
 **`patches`** — the assertion modifies the section through JSON Patch operations (RFC 6902, subset):
-```json
+```jsonc
 {
   "contentType": "patches",
   "operations": [

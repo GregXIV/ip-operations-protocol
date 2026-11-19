@@ -1,0 +1,83 @@
+{
+  "messageUri": "urn:ipproto:message:e81fdaac-a980-4d4a-bd59-be68ea2c0a00",
+  "messageType": "urn:ipproto:message:actionConfirmationDispute",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:orchestrator-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:clientExecutor"
+    }
+  ],
+  "producedAt": "2026-06-26T14:35:00Z",
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:d94f0699-71e7-4df4-befd-fae5bffd298c",
+    "workstreamUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+    "milestoneUri": "urn:ipproto:milestone:m3-client-filing"
+  },
+  "payload": {
+    "disputeReference": "urn:ipproto:dispute:0f0b1a0c-e124-455f-a7ae-1b7649b8cbeb",
+    "claimingMessage": "urn:ipproto:message:d94f0699-71e7-4df4-befd-fae5bffd298c",
+    "expectedConfirmation": {
+      "expectedRegisterEventType": "urn:ipproto:registerEvent:postGrantFilingReceived",
+      "expectedActorReference": "urn:ipproto:actor:epo",
+      "windowStartedAt": "2026-06-12T14:30:00Z",
+      "windowExpectedAt": "2026-06-15T14:30:00Z",
+      "windowExpiredAt": "2026-06-26T14:30:00Z"
+    },
+    "divergenceDetectedAt": "2026-06-26T14:35:00Z",
+    "partialEvidence": {
+      "originalEvidence": [
+        {
+          "evidenceType": "urn:ipproto:evidence:epoConfirmationNumber",
+          "evidenceContent": {
+            "confirmationNumber": "EPO-FILING-2026-12345-DE",
+            "evidenceCapturedAt": "2026-06-12T14:31:00Z"
+          },
+          "evidenceProvenance": {
+            "captureMethod": "automatedSystemExport"
+          }
+        },
+        {
+          "evidenceType": "urn:ipproto:evidence:epoConfirmationNumber",
+          "evidenceContent": {
+            "confirmationNumber": "EPO-FILING-2026-12346-FR"
+          }
+        },
+        {
+          "evidenceType": "urn:ipproto:evidence:epoConfirmationNumber",
+          "evidenceContent": {
+            "confirmationNumber": "EPO-FILING-2026-12347-GB"
+          }
+        },
+        {
+          "evidenceType": "urn:ipproto:evidence:epoSignedReceipt",
+          "evidenceContent": {
+            "documentReference": "urn:ipproto:document:34482811-b7e1-44e7-9607-49bf6b70446b"
+          }
+        }
+      ],
+      "evidenceGaps": "Confirmation numbers and signed receipts received, but no register-side postGrantFilingReceived event detected for any of the three jurisdictions."
+    },
+    "disputeRoutingTarget": {
+      "targetActorUri": "urn:ipproto:actor:meridian-ip-group",
+      "targetRoleDeclaration": "urn:ipproto:roleDeclaration:13f19cd1-c4c4-4fc5-8f62-575d4d56f9eb",
+      "routingBasis": "Escalation path named in the Artifact Ready for the filings: Meridian IP Group's case team investigates with the EPO directly."
+    },
+    "disputeImpact": {
+      "blockedMilestones": [
+        "urn:ipproto:milestone:m3-client-filing",
+        "urn:ipproto:milestone:m4-grant-fee"
+      ]
+    },
+    "investigativeActions": [
+      {
+        "actionDescription": "Direct EPO inquiry on filing status using captured confirmation numbers.",
+        "actionExecutor": "urn:ipproto:actor:meridian-ip-group",
+        "expectedOutcome": "The EPO states the status of the three filings, which shows whether the register event is only late or the filings have to be made again."
+      }
+    ],
+    "responseDeadline": "2026-07-03T17:00:00Z"
+  }
+}

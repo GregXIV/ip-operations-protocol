@@ -1,0 +1,58 @@
+{
+  "messageUri": "urn:ipproto:message:22c82366-2178-420c-8e66-0af14c2b866b",
+  "messageType": "urn:ipproto:message:serviceSubscriptionTerminated",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:fdbfdfaa-95ae-4955-ad58-5f9968ba3463",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:subscriber"
+    },
+    {
+      "actorUri": "urn:ipproto:actor:meridian-associates",
+      "expectedRole": "urn:ipproto:role:subscriptionOperator"
+    }
+  ],
+  "producedAt": "2027-05-13T08:00:00Z",
+  "correlation": {
+    "subscriptionUri": "urn:ipproto:subscription:opposition-watch-001"
+  },
+  "payload": {
+    "subscriptionReference": "urn:ipproto:subscription:opposition-watch-001",
+    "terminationDate": "2027-05-12T23:59:59Z",
+    "terminationReason": {
+      "reasonCategory": "scopeNaturalCompletion",
+      "reasonNarrative": "EP opposition window closed 2027-05-12 with no oppositions filed.",
+      "terminationInitiator": "urn:ipproto:actor:meridian-ip-group",
+      "terminationUserContext": {
+        "userIdentifier": "watch-services@meridian-ip-group.example",
+        "roleAtActor": "Watch Services Lead"
+      }
+    },
+    "effectiveTerminationTiming": {
+      "terminationType": "customDate",
+      "effectiveDate": "2027-05-12T23:59:59Z"
+    },
+    "finalSettlement": {
+      "outstandingObligations": [
+        {
+          "obligationType": "noObligation",
+          "obligationDescription": "Subscription prepaid; no refund."
+        }
+      ],
+      "finalReportProduction": {
+        "finalReportRequired": true,
+        "finalReportDeliverableType": "urn:ipproto:deliverable:oppositionWatchSummary"
+      }
+    },
+    "postTerminationObligations": [
+      {
+        "obligationType": "auditTrailRetention",
+        "obligationDescription": "Watch findings retained for 7 years post-termination per MSA Section 8.3.",
+        "obligationOwner": "urn:ipproto:actor:meridian-ip-group",
+        "obligationDueUntil": "2034-05-12"
+      }
+    ]
+  }
+}

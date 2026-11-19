@@ -1,7 +1,7 @@
 ---
 type: foundational
 since: 0.1.0
-changed: 0.7.0
+changed: unreleased
 ---
 
 # Common Envelope
@@ -132,7 +132,7 @@ The message-type-specific content. Each message specification defines the shape 
 
 ## Worked example skeleton
 
-```json
+```jsonc
 {
   "messageUri": "urn:ipproto:message:c2e8f1a3-...",
   "messageType": "urn:ipproto:message:assetMatchInquiry",

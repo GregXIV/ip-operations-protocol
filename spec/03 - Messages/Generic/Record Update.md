@@ -2,7 +2,7 @@
 type: message
 category: generic
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Record Update
@@ -51,7 +51,7 @@ The assertions being made — the actual content change. Carried in the envelope
 
 ## Worked example — internal reference correction
 
-```json
+```jsonc
 {
   "userContext": {"userIdentifier": "ip-operations@northwind.example", "roleAtActor": "IP Operations"},
   "payload": {

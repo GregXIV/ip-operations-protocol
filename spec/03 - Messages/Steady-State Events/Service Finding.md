@@ -2,7 +2,7 @@
 type: message
 category: steady-state-events
 since: 0.1.0
-changed: 0.9.1
+changed: unreleased
 ---
 
 # Service Finding
@@ -74,6 +74,8 @@ Each entry: `actionDescription`, `actionCategory` (`urn:ipproto:findingAction:in
 
 ## Worked example — renewal deadline approaching
 
+The full message is `service-finding.example.json` in `schemas/examples/`.
+
 ```json
 {
   "payload": {
@@ -109,7 +111,7 @@ Each entry: `actionDescription`, `actionCategory` (`urn:ipproto:findingAction:in
 
 ## Worked example — opposition filed
 
-```json
+```jsonc
 {
   "payload": {
     "findingCategory": "urn:ipproto:finding:oppositionFiled",

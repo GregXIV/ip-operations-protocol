@@ -101,7 +101,7 @@ Type: array of [Authority Claim](../../02%20-%20Foundational%20Structures/Author
 
 ## Worked example — Phase 7 renewal monitoring
 
-```json
+```jsonc
 {
   "payload": {
     "subscriptionReference": "urn:ipproto:subscription:renewal-mon-001",
@@ -156,7 +156,7 @@ Type: array of [Authority Claim](../../02%20-%20Foundational%20Structures/Author
 
 For a delegation chain where Meridian IP Group holds the contract and Meridian Associates operates:
 
-```json
+```jsonc
 {
   "payload": {
     "subscriptionReference": "urn:ipproto:subscription:opposition-watch-001",
@@ -176,7 +176,7 @@ The operator's [Actor Role Declaration](../../02%20-%20Foundational%20Structures
 
 Added in 0.2. A customer licenses a translation application through a contract holder. The application's provider is paid 70 percent of what the customer is billed; the first month is a trial that converts. This is the copy between contract holder and provider. The subscriber's copy for the same subscription follows it.
 
-```json
+```jsonc
 {
   "payload": {
     "subscriptionReference": "urn:ipproto:subscription:litware-translate-nw-001",
@@ -200,7 +200,7 @@ Added in 0.2. A customer licenses a translation application through a contract h
 
 The copy addressed to the subscriber, under the same `subscriptionReference`. It states what the subscriber pays and says nothing about the share:
 
-```json
+```jsonc
 {
   "addressedTo": [
     {"actorUri": "urn:ipproto:actor:northwind-industries", "expectedRole": "urn:ipproto:role:subscriber"}

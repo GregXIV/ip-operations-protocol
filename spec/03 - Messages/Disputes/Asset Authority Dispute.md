@@ -87,6 +87,8 @@ Type: ISO 8601 datetime, required
 
 ## Worked example
 
+The full message is `asset-authority-dispute.example.json` in `schemas/examples/`.
+
 ```json
 {
   "payload": {

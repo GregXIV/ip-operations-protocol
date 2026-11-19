@@ -2,7 +2,7 @@
 type: message
 category: work-instruction
 since: 0.6.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # Mandate Instruction
@@ -151,7 +151,7 @@ The client instructs its counsel by e-mail to oppose a competitor's European pat
 
 Added in 0.7. The client instructs its counsel to bring an infringement action before a court. The envelope's assertions open the workstream with the proceeding and the role of each patent (see [Workstream](../../02%20-%20Foundational%20Structures/Workstream.md), `proceedings` and `assetRoles`, and the litigation module of the provider profile). The full message is `mandate-instruction-litigation-rate-table.example.json` in `schemas/examples/`; the price is the first worked example of [Agreed Price](../../02%20-%20Foundational%20Structures/Agreed%20Price.md).
 
-```json
+```jsonc
 {
   "payload": {
     "workstreamReference": "urn:ipproto:workstream:inf-0001",

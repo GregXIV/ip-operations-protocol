@@ -1,0 +1,50 @@
+{
+  "rule": "G6",
+  "description": "A jurisdiction as an ISO 3166-1 alpha-3 code; jurisdictions are two-letter ST.3 codes.",
+  "schema": "actorReference",
+  "expect": [
+    {
+      "instancePath": "/jurisdictionCode",
+      "keyword": "maxLength"
+    }
+  ],
+  "instance": {
+    "actorUri": "urn:ipproto:actor:fabrikam-patentes",
+    "actorType": "serviceProvider",
+    "identifiers": [
+      {
+        "scheme": "urn:ipproto:scheme:vat",
+        "value": "ESB00000000",
+        "verifiedAt": "2026-09-14T08:00:00Z"
+      },
+      {
+        "scheme": "urn:ipproto:scheme:companyRegister",
+        "value": "M-000000",
+        "registrationAuthority": "RA999999"
+      },
+      {
+        "scheme": "urn:ipproto:scheme:epoRepNumber",
+        "value": "000000"
+      }
+    ],
+    "legalName": "Fabrikam Patentes S.L.",
+    "jurisdictionCode": "DEU",
+    "addresses": [
+      {
+        "addressType": "principalOffice",
+        "addressLines": [
+          "Calle Ejemplo 1"
+        ],
+        "city": "Ciudad Ejemplo",
+        "postalCode": "00000",
+        "countryCode": "ES"
+      },
+      {
+        "addressType": "electronic",
+        "electronicAddressType": "urn:ipproto:address:recordResolution",
+        "electronicAddressValue": "https://ipproto.fabrikam-patentes.example/records"
+      }
+    ],
+    "displayLabel": "Fabrikam Patentes"
+  }
+}

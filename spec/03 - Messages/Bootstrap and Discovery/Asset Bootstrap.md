@@ -2,7 +2,7 @@
 type: message
 category: bootstrap
 since: 0.1.0
-changed: 0.6.0
+changed: unreleased
 ---
 
 # Asset Bootstrap
@@ -59,7 +59,7 @@ Not used where the bootstrap is marked `privileged` or made for a privileged wor
 
 ## Worked example — Phase 0 register-initiated bootstrap
 
-```json
+```jsonc
 {
   "messageUri": "urn:ipproto:message:a8e2c91a-...",
   "messageType": "urn:ipproto:message:assetBootstrap",

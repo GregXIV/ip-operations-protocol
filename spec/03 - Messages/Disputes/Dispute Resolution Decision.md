@@ -2,7 +2,7 @@
 type: message
 category: disputes
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Dispute Resolution Decision
@@ -100,7 +100,7 @@ Downstream actions resulting from the decision:
 
 ## Worked example — late register arrival
 
-```json
+```jsonc
 {
   "payload": {
     "disputeReference": "urn:ipproto:dispute:conf-001-...",

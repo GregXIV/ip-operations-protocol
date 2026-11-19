@@ -1,0 +1,55 @@
+{
+  "messageUri": "urn:ipproto:message:19586b81-6581-42ae-8de8-f2ed9339665c",
+  "messageType": "urn:ipproto:message:serviceFinding",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:a55b1267-4c0e-4da2-9679-a22615ab12cc",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:subscriber"
+    }
+  ],
+  "producedAt": "2027-01-15T08:00:00Z",
+  "correlation": {
+    "subscriptionUri": "urn:ipproto:subscription:renewal-mon-001"
+  },
+  "payload": {
+    "findingReference": "urn:ipproto:finding:4864e639-e5a8-4c43-828a-5efae2da9ced",
+    "producingSubscription": "urn:ipproto:subscription:renewal-mon-001",
+    "findingCategory": "urn:ipproto:finding:renewalDeadlineApproaching",
+    "relatedAssetReferences": [
+      "urn:ipproto:asset:4ec51ba8-4645-4520-9d68-adaa39eb84ba"
+    ],
+    "findingSeverity": "warning",
+    "findingTimestamp": "2027-01-15T08:00:00Z",
+    "findingContent": {
+      "targetAsset": "urn:ipproto:asset:4ec51ba8-4645-4520-9d68-adaa39eb84ba",
+      "renewalYear": 7,
+      "deadlineDate": "2027-04-15",
+      "daysUntilDeadline": 90,
+      "currentRenewalFee": {
+        "amount": 220.00,
+        "currency": "EUR",
+        "jurisdiction": "DE"
+      },
+      "lateRenewalSurcharge": {
+        "amount": 50.00,
+        "currency": "EUR",
+        "graceWindowEndDate": "2027-10-15"
+      },
+      "recommendedAction": "Authorize payment of 7th-year renewal fee for DE validation."
+    },
+    "findingSource": {
+      "sourceType": "automatedAnalysis"
+    },
+    "recommendedActions": [
+      {
+        "actionDescription": "Authorize payment of DE 7th-year renewal fee",
+        "actionCategory": "urn:ipproto:findingAction:authorizePayment",
+        "recommendedDeadline": "2027-04-01T17:00:00Z",
+        "recommendedExecutor": "urn:ipproto:actor:northwind-industries"
+      }
+    ]
+  }
+}

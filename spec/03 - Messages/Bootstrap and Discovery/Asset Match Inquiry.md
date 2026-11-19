@@ -2,7 +2,7 @@
 type: message
 category: bootstrap
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Asset Match Inquiry
@@ -63,7 +63,9 @@ Why the inquiry is being made:
 
 ## Worked example — Phase 0a
 
-```json
+The full message is `asset-match-inquiry.example.json` in `schemas/examples/`.
+
+```jsonc
 {
   "payload": {
     "assetReference": "urn:ipproto:asset:7c4f9a82-...",

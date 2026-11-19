@@ -1,7 +1,7 @@
 ---
 type: foundational
 since: 0.2.0
-changed: 0.2.0
+changed: unreleased
 ---
 
 # Service Level
@@ -43,7 +43,7 @@ The terms the level comes from.
 
 ## Worked example
 
-```json
+```jsonc
 [
   {
     "serviceLevelKind": "urn:ipproto:serviceLevel:acknowledgement",

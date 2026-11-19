@@ -2,7 +2,7 @@
 type: message
 category: workstream-lifecycle
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Workstream Abandoned
@@ -57,7 +57,9 @@ Obligations triggered by abandonment — partial-work invoices, refunds, notific
 
 ## Worked example — assetStatusChange
 
-```json
+The full message is `workstream-abandoned.example.json` in `schemas/examples/`.
+
+```jsonc
 {
   "userContext": {
     "userIdentifier": "counsel@northwind.example",

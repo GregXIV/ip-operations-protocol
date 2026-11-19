@@ -1,0 +1,38 @@
+{
+  "messageUri": "urn:ipproto:message:b8a4d39b-8cd3-4900-93f4-4cbdb72baa4d",
+  "messageType": "urn:ipproto:message:deliverableAcknowledged",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:ac7eee23-93a8-463c-aaab-98aa4bcff782",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2026-05-06T11:15:00Z",
+  "userContext": {
+    "userIdentifier": "counsel@northwind.example",
+    "roleAtActor": "Senior IP Counsel"
+  },
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:7fe07e81-8b6d-4e7f-98cd-cfadeef287b7",
+    "workstreamUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+    "milestoneUri": "urn:ipproto:milestone:m1-validation-analysis"
+  },
+  "payload": {
+    "deliverableReference": "urn:ipproto:deliverable:5d7d1034-a402-4c79-9292-fcca6befd91d",
+    "acknowledgmentType": "simpleAcknowledgment",
+    "acknowledgedAt": "2026-05-06T11:15:00Z",
+    "receiverUserContext": {
+      "userIdentifier": "counsel@northwind.example",
+      "roleAtActor": "Senior IP Counsel"
+    },
+    "reviewSummary": "Analysis reviewed; recommendations align with strategy. Proceeding.",
+    "downstreamMilestoneRelease": {
+      "releasedMilestones": [
+        "urn:ipproto:milestone:m2-doc-prep"
+      ]
+    }
+  }
+}

@@ -2,7 +2,7 @@
 type: message
 category: prepared-action-handoff
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Client Action Completed
@@ -96,7 +96,7 @@ Required when `actionOutcome != successfullyPerformed`. Per outcome:
 
 ## Worked example — partial outcome
 
-```json
+```jsonc
 {
   "payload": {
     "actionOutcome": "partiallyPerformed",

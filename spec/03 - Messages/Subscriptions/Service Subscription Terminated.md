@@ -2,7 +2,7 @@
 type: message
 category: subscriptions
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Service Subscription Terminated
@@ -56,6 +56,8 @@ Type: array, optional
 Obligations surviving termination — audit-trail retention, late-arriving findings forwarding.
 
 ## Worked example — natural completion
+
+The full message is `service-subscription-terminated.example.json` in `schemas/examples/`.
 
 ```json
 {

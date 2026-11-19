@@ -80,6 +80,9 @@ Then either:
 - [Open Questions for Consortium](05%20-%20Decisions/Open%20Questions%20for%20Consortium.md)
 - [Deferred to v1-x](05%20-%20Decisions/Deferred%20to%20v1-x.md)
 
+### Implementations
+- [Implementation Report Template](06%20-%20Implementations/Implementation%20Report%20Template.md) (added after 0.9.1); the reports received are listed in [IMPLEMENTATIONS.md](../IMPLEMENTATIONS.md)
+
 ### Reference
 - [Glossary](../Glossary.md)
 
@@ -87,9 +90,9 @@ Then either:
 
 Every page starts with a short metadata block:
 
-- `type` — the kind of page: `front-matter`, `foundational`, `profile`, `message`, `worked-example`, `decisions`, `index`, or `reference` for the [Glossary](../Glossary.md). Message pages also carry their `category`.
+- `type` — the kind of page: `front-matter`, `foundational`, `profile`, `message`, `worked-example`, `decisions`, `implementation`, `index`, or `reference` for the [Glossary](../Glossary.md). Message pages also carry their `category`.
 - `since` — the release that added the page.
-- `changed` — the last release in which the page's text changed, metadata aside. `unreleased` marks a page changed since the last release; the release that carries the change replaces it with its version.
+- `changed` — the last release in which the page's text changed, metadata aside. `unreleased` marks a page changed since the last release, and in `since` a page added since then; the release that carries the change replaces it with its version.
 
 The version of the specification as a whole is the release you read: the tag, and `VERSION` at the repository root.
 

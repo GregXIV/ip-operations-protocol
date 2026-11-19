@@ -1,7 +1,7 @@
 ---
 type: front-matter
 since: 0.1.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # Conventions
@@ -107,6 +107,11 @@ Fields marked **optional** may be omitted; receivers must handle absence cleanly
 Where the protocol defines enumerated types, custom values are allowed through namespaced URNs unless the field is explicitly marked as a closed enumeration. The set of standard values is defined in the spec; custom extensions live in custom namespaces.
 
 ## Worked examples
+
+Two kinds of JSON block appear in the pages:
+
+- A block marked `json` is a complete instance. On a message page it may leave out envelope fields, which the page does not need to show; with them filled in, it is valid against the schema of the page's message. Every `json` block is checked against the schema set on every change to the specification (`scripts/check-spec-examples.mjs`).
+- A block marked `jsonc` is an excerpt. It leaves out fields, possibly required ones, or elides parts with `/* comments */`, and it is not checked. Where a page says so, the complete message is in `schemas/examples/`.
 
 Throughout the spec, JSON examples use the following stylistic conventions:
 

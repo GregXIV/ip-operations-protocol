@@ -1,54 +1,49 @@
-// Reference validator for the IP Operations Protocol schema set.
+#!/usr/bin/env node
+// Reference validator for the IP Operations Protocol schema set (command line).
 // Requires: npm ci (installs the pinned ajv and ajv-formats from package-lock.json)
 // Usage: node validate.mjs            (validates schemas/examples/*)
 //        node validate.mjs <file>     (validates one instance)
 // Message examples resolve by their messageType; structure examples resolve via
 // examples/_index.json (filename -> schema $id).
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+// Every instance is validated against the schema set of this package, whatever its
+// protocolVersion says; a message of an earlier version is checked against that version's
+// own set from its release (see Conformance, G1).
+// For use from code, import createValidator from "@ipproto/schemas/validator"
+// (lib/validator.mjs); importing this file runs nothing and exits nothing.
+import { readFileSync, readdirSync, existsSync, realpathSync } from "node:fs";
 import { join, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
-import Ajv2020 from "ajv/dist/2020.js";
-import addFormats from "ajv-formats";
+import { createValidator } from "./lib/validator.mjs";
+
+export { createValidator };
 
 const here = dirname(fileURLToPath(import.meta.url));
-const ajv = new Ajv2020({ strict: false, allErrors: true });
-addFormats(ajv);
 
-const collect = (d) =>
-  readdirSync(d, { withFileTypes: true }).flatMap((e) =>
-    e.isDirectory() ? collect(join(d, e.name)) : e.name.endsWith(".schema.json") ? [join(d, e.name)] : []);
+function main(arg) {
+  const v = createValidator();
+  const exDir = join(here, "examples");
+  const structMap = existsSync(join(exDir, "_index.json"))
+    ? JSON.parse(readFileSync(join(exDir, "_index.json"), "utf8")) : {};
+  const idFor = (path, inst) => v.schemaIdFor(inst) || structMap[basename(path)] || null;
 
-const byId = {}, typeToId = {};
-for (const f of collect(here)) {
-  const s = JSON.parse(readFileSync(f, "utf8"));
-  ajv.addSchema(s, s.$id);
-  byId[s.$id] = s;
-  const mt = s?.properties?.messageType?.const;
-  if (mt) typeToId[mt] = s.$id;
+  const targets = arg
+    ? [arg]
+    : readdirSync(exDir).filter((n) => n.endsWith(".example.json")).map((n) => join(exDir, n));
+
+  let fail = 0, earlier = 0;
+  for (const t of targets) {
+    const inst = JSON.parse(readFileSync(t, "utf8"));
+    const id = idFor(t, inst);
+    if (!id) { fail++; console.log(`FAIL  ${basename(t)}: no schema mapping`); continue; }
+    if (inst.protocolVersion && inst.protocolVersion !== v.protocolVersion) earlier++;
+    const r = v.validate(inst, id);
+    if (r.valid) console.log(`PASS  ${basename(t)}  ->  ${id}`);
+    else { fail++; console.log(`FAIL  ${basename(t)}`); console.log(JSON.stringify(r.errors, null, 2)); }
+  }
+  console.log(`\n${targets.length - fail} passed, ${fail} failed (${v.schemaIds.length} schemas registered)`);
+  if (earlier) console.log(`${earlier} of them carry an earlier protocolVersion and were validated against the ${v.protocolVersion} set.`);
+  return fail ? 1 : 0;
 }
 
-const exDir = join(here, "examples");
-const structMap = existsSync(join(exDir, "_index.json"))
-  ? JSON.parse(readFileSync(join(exDir, "_index.json"), "utf8")) : {};
-
-function idFor(path, inst) {
-  if (inst.messageType && typeToId[inst.messageType]) return typeToId[inst.messageType];
-  return structMap[basename(path)] || null;
-}
-
-const arg = process.argv[2];
-const targets = arg
-  ? [arg]
-  : readdirSync(exDir).filter((n) => n.endsWith(".example.json")).map((n) => join(exDir, n));
-
-let fail = 0;
-for (const t of targets) {
-  const inst = JSON.parse(readFileSync(t, "utf8"));
-  const id = idFor(t, inst);
-  if (!id) { fail++; console.log(`FAIL  ${basename(t)}: no schema mapping`); continue; }
-  const v = ajv.getSchema(id);
-  if (v(inst)) console.log(`PASS  ${basename(t)}  ->  ${id}`);
-  else { fail++; console.log(`FAIL  ${basename(t)}`); console.log(JSON.stringify(v.errors, null, 2)); }
-}
-console.log(`\n${targets.length - fail} passed, ${fail} failed (${Object.keys(byId).length} schemas registered)`);
-process.exit(fail ? 1 : 0);
+const invokedDirectly = process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url);
+if (invokedDirectly) process.exit(main(process.argv[2]));

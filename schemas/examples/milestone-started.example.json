@@ -1,0 +1,67 @@
+{
+  "messageUri": "urn:ipproto:message:27cf8782-ef22-41ed-84f8-840c7b8e049e",
+  "messageType": "urn:ipproto:message:milestoneStarted",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:f68a07a5-6091-4be1-964a-a65ee2a3f7e8",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:decisionAuthority"
+    }
+  ],
+  "producedAt": "2026-04-29T13:32:00Z",
+  "userContext": {
+    "userIdentifier": "validation-analyst@meridian-ip-group.example",
+    "roleAtActor": "Senior Validation Analyst"
+  },
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:d771956b-e08b-4120-9797-02e45c5c2976",
+    "workstreamUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+    "milestoneUri": "urn:ipproto:milestone:m1-validation-analysis"
+  },
+  "payload": {
+    "milestoneReference": "urn:ipproto:milestone:m1-validation-analysis",
+    "startedAt": "2026-04-29T13:30:00Z",
+    "actualResources": {
+      "assignedUsers": [
+        {
+          "userIdentifier": "validation-analyst@meridian-ip-group.example",
+          "roleAtActor": "Senior Validation Analyst"
+        }
+      ],
+      "expectedCompletionEstimate": {
+        "estimatedCompletionDate": "2026-05-04T17:00:00Z",
+        "confidenceLevel": "high"
+      }
+    }
+  },
+  "assertions": [
+    {
+      "assertionUri": "urn:ipproto:assertion:f07afe1a-52f5-471c-b8ee-54a4785486f6",
+      "recordUri": "urn:ipproto:milestone:m1-validation-analysis",
+      "sectionPath": "/milestoneStatus",
+      "asserter": {
+        "actorUri": "urn:ipproto:actor:meridian-ip-group",
+        "roleDeclarationUri": "urn:ipproto:roleDeclaration:f68a07a5-6091-4be1-964a-a65ee2a3f7e8"
+      },
+      "assertionContent": {
+        "contentType": "patches",
+        "operations": [
+          {
+            "op": "test",
+            "path": "",
+            "value": "ready"
+          },
+          {
+            "op": "replace",
+            "path": "",
+            "value": "inProgress"
+          }
+        ]
+      },
+      "claimReference": "urn:ipproto:authorityClaim:07d3418c-a9a8-4d5e-97cd-8234d6f9a032",
+      "assertedAt": "2026-04-29T13:30:00Z"
+    }
+  ]
+}

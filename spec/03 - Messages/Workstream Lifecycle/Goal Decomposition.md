@@ -2,7 +2,7 @@
 type: message
 category: workstream-lifecycle
 since: 0.1.0
-changed: 0.2.0
+changed: unreleased
 ---
 
 # Goal Decomposition
@@ -62,7 +62,7 @@ By when the corporate must respond before the proposal expires.
 
 ## Worked example skeleton
 
-```json
+```jsonc
 {
   "payload": {
     "proposedWorkstream": {

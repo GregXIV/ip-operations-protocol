@@ -2,7 +2,7 @@
 type: message
 category: workstream-lifecycle
 since: 0.1.0
-changed: 0.6.0
+changed: unreleased
 ---
 
 # Workstream Completed
@@ -47,7 +47,9 @@ Type: structured, required
 
 ## Worked example — full success
 
-```json
+The full message is `workstream-completed.example.json` in `schemas/examples/`.
+
+```jsonc
 {
   "payload": {
     "workstreamReference": "urn:ipproto:workstream:8a4b1c92-...",

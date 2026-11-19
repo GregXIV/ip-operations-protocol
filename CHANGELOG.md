@@ -5,8 +5,9 @@ This project aims to follow semantic-ish versioning at the specification level.
 
 ## [Unreleased]
 
-Editorial: no rule of the specification and no schema changes. `protocolVersion` stays `0.9`
-and every schema identifier stays `urn:ipproto:schema:0.9:<name>`.
+No rule of the specification and no schema changes: editorial fixes, a conformance kit and
+new examples. `protocolVersion` stays `0.9` and every schema identifier stays
+`urn:ipproto:schema:0.9:<name>`.
 
 ### Added
 - Reference Standards lists WIPO ST.97 and ST.90, ISO 3166-1, RFC 9562, JSON Schema
@@ -19,6 +20,29 @@ and every schema identifier stays `urn:ipproto:schema:0.9:<name>`.
 - Issue forms for specification defects, schema bugs, vocabulary requests and
   implementation reports; a security problem goes to private reporting.
 - `CLAUDE.md`: the push and release procedure for coding agents working in the repository.
+- **Conformance kit.**
+  - `@ipproto/schemas/validator` (`schemas/lib/validator.mjs`): `createValidator()` returns
+    `validate`, `getSchema` and `schemaIdFor` over the schema set. Importing it runs and exits
+    nothing. `validate.mjs` is now a command line on top of it, safe to import, and the
+    package's `ipproto-validate` command.
+  - `schemas/conformance/invalid/`: 13 must-fail fixtures, each an instance that breaks one
+    of G1, G2, G5 or G6, with the errors a validator must report for it.
+    `scripts/check-conformance-fixtures.mjs` checks that each is rejected for that reason.
+  - `scripts/check-spec-examples.mjs` validates every `json` block of the specification
+    against the schema set.
+  - The `validate` check runs both on every pull request.
+- Examples for the 12 message types that had none, so every message type now has one:
+  Milestone Started, Workstream Completed, Workstream Abandoned, Orchestration Committed,
+  Action Confirmation Dispute, Artifact Ready, Asset Authority Dispute, Asset Match Inquiry,
+  Deliverable Acknowledged, Identity Resolution Dispute, Service Finding and Service
+  Subscription Terminated. They say `"0.9"`, follow the worked example of their page, and
+  each page names its file. 74 examples in all.
+- Conformance: a *Verified by* column on every requirement (schema, message trace,
+  resolution probe or attestation), the points of the asset identification profile with
+  theirs, and the evidence that settles each attestation. Informative.
+- `spec/06 - Implementations/Implementation Report Template.md`, and `IMPLEMENTATIONS.md`
+  with the first report: the reference resolver, against 0.8.0, meets points 1, 2 and 4 of
+  the asset identification profile and claims neither level.
 
 ### Changed
 - Example placeholder names made consistent.
@@ -35,6 +59,13 @@ and every schema identifier stays `urn:ipproto:schema:0.9:<name>`.
   profile, no longer carries profile metadata.
 - VERSIONING.md, CONTRIBUTING.md: a change marks its pages `changed: unreleased`, and the
   release names its version there.
+
+- Worked examples: a block fenced `json` is a complete instance and is validated; an
+  excerpt is fenced `jsonc` (Conventions, *Worked examples*). 36 blocks that left out
+  required fields or elided parts with comments, 12 of them not JSON at all, are now
+  `jsonc`; the 75 complete ones validate.
+- Conformance: a note on checking G1 for a message of an earlier version against that
+  version's schema set.
 
 ### Fixed
 - Non-Scope, *Transport*: ePCT is WIPO's online PCT service, not an EPO one. The paragraph
