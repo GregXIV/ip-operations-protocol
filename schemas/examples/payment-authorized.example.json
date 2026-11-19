@@ -30,7 +30,7 @@
     "paymentAgent": {
       "agentActorReference": "urn:ipproto:actor:meridian-ip-group",
       "agentRoleDeclaration": "urn:ipproto:roleDeclaration:rd-001",
-      "executionAuthorityReference": "Northwind Industries-DM-MSA-2024-EU#payment-mandate"
+      "executionAuthorityReference": "Northwind Industries-MIP-MSA-2024-EU#payment-mandate"
     },
     "payorReferences": {
       "purchaseOrderReference": "Northwind Industries-PO-2026-04473",

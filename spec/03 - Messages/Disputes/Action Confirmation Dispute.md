@@ -2,7 +2,7 @@
 type: message
 category: disputes
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Action Confirmation Dispute
@@ -91,7 +91,7 @@ Type: ISO 8601 datetime, required
     },
     "disputeRoutingTarget": {
       "targetActorUri": "urn:ipproto:actor:meridian-ip-group",
-      "targetRoleDeclaration": "urn:ipproto:roleDeclaration:dm-case-team"
+      "targetRoleDeclaration": "urn:ipproto:roleDeclaration:meridian-case-team"
     },
     "investigativeActions": [
       {"actionDescription": "Direct EPO inquiry on filing status using captured confirmation numbers.", "actionExecutor": "urn:ipproto:actor:meridian-ip-group"}

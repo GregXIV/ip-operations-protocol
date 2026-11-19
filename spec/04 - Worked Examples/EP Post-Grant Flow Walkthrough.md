@@ -1,7 +1,7 @@
 ---
 type: worked-example
 since: 0.1.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # EP Post-Grant Flow Walkthrough
@@ -122,7 +122,7 @@ The renewal monitoring subscription:
 
 m5 transitions to `completed`.
 
-m6 (opposition watch) becomes `ready`. Here the delegation pattern: Meridian IP Group holds the contract; Meridian IP Group & Associates operates. **[Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md)** is produced with separate `subscriptionContractHolder` (Meridian IP Group) and `subscriptionOperator` (D&A) entries. The operator's [Actor Role Declaration](../02%20-%20Foundational%20Structures/Actor%20Role%20Declaration.md) carries the delegation chain.
+m6 (opposition watch) becomes `ready`. Here the delegation pattern: Meridian IP Group holds the contract; Meridian IP Group & Associates operates. **[Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md)** is produced with separate `subscriptionContractHolder` (Meridian IP Group) and `subscriptionOperator` (Meridian Associates) entries. The operator's [Actor Role Declaration](../02%20-%20Foundational%20Structures/Actor%20Role%20Declaration.md) carries the delegation chain.
 
 m6 transitions to `completed`.
 

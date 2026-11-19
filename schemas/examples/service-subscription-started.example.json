@@ -48,7 +48,7 @@
         "period": "annual"
       },
       "billingCadence": "inAdvance",
-      "commercialAgreementReference": "Northwind Industries-DM-MSA-2024-EU#renewal"
+      "commercialAgreementReference": "Northwind Industries-MIP-MSA-2024-EU#renewal"
     },
     "findingsConfiguration": {
       "findingDeliveryMethod": "serviceFinding",

@@ -21,6 +21,7 @@ and every schema identifier stays `urn:ipproto:schema:0.9:<name>`.
 - `CLAUDE.md`: the push and release procedure for coding agents working in the repository.
 
 ### Changed
+- Example placeholder names made consistent.
 - Page metadata: `status:` is replaced on every page by `since:`, the release that added the
   page, and `changed:`, the last release that changed its text. Both are computed from the
   release tags, and spec/README.md defines them (*Page metadata*). Several `status:` values
