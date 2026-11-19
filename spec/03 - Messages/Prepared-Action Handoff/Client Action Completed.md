@@ -96,7 +96,7 @@ Required when `actionOutcome != successfullyPerformed`. Per outcome:
 
 ## Worked example — partial outcome
 
-```json
+```jsonc
 {
   "payload": {
     "actionOutcome": "partiallyPerformed",

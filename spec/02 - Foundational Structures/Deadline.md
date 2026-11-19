@@ -127,7 +127,7 @@ A change to a deadline that an actor has shared, such as a status moving to `met
 
 ## Worked example — a statutory deadline, extended
 
-```json
+```jsonc
 [
   {
     "deadlineUri": "urn:ipproto:deadline:d-71-3-001",

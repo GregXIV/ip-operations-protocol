@@ -68,7 +68,7 @@ Conditional based on `commitmentDecision`.
 
 ## Worked example — committedWithRouteSelection
 
-```json
+```jsonc
 {
   "userContext": {
     "userIdentifier": "counsel@northwind.example",
@@ -87,7 +87,7 @@ Conditional based on `commitmentDecision`.
 
 ## Worked example — committedWithModifications
 
-```json
+```jsonc
 {
   "payload": {
     "proposalReference": "urn:ipproto:message:gd-001-...",

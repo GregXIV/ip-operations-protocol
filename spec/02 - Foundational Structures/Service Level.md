@@ -43,7 +43,7 @@ The terms the level comes from.
 
 ## Worked example
 
-```json
+```jsonc
 [
   {
     "serviceLevelKind": "urn:ipproto:serviceLevel:acknowledgement",

@@ -9,7 +9,11 @@
     "./index": "./index.json",
     "./types": "./types/ipproto.d.ts",
     "./validate": "./validate.mjs",
+    "./validator": "./lib/validator.mjs",
     "./schemas/*": "./*"
+  },
+  "bin": {
+    "ipproto-validate": "./validate.mjs"
   },
   "files": [
     "defs",
@@ -19,6 +23,8 @@
     "examples",
     "types",
     "index.json",
+    "lib",
+    "conformance",
     "validate.mjs",
     "README.md"
   ],

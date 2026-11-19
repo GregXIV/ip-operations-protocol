@@ -82,7 +82,7 @@ The envelope's `assertions` array carries the assertion setting `/milestoneStatu
 
 ## Worked example — awaitingExternalAction
 
-```json
+```jsonc
 {
   "payload": {
     "milestoneReference": "urn:ipproto:milestone:m2-doc-prep",

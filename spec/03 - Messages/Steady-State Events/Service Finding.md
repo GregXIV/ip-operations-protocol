@@ -109,7 +109,7 @@ Each entry: `actionDescription`, `actionCategory` (`urn:ipproto:findingAction:in
 
 ## Worked example — opposition filed
 
-```json
+```jsonc
 {
   "payload": {
     "findingCategory": "urn:ipproto:finding:oppositionFiled",

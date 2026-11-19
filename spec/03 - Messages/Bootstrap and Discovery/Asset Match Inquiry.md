@@ -63,7 +63,7 @@ Why the inquiry is being made:
 
 ## Worked example — Phase 0a
 
-```json
+```jsonc
 {
   "payload": {
     "assetReference": "urn:ipproto:asset:7c4f9a82-...",

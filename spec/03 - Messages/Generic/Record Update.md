@@ -51,7 +51,7 @@ The assertions being made — the actual content change. Carried in the envelope
 
 ## Worked example — internal reference correction
 
-```json
+```jsonc
 {
   "userContext": {"userIdentifier": "ip-operations@northwind.example", "roleAtActor": "IP Operations"},
   "payload": {

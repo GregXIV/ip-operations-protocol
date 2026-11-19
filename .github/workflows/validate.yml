@@ -1,7 +1,10 @@
 # Validates the schema set on every pull request and every push to main:
 # every example against its schema (schemas/validate.mjs, ajv + ajv-formats),
-# the generated TypeScript types against the schemas, and the release metadata
-# (VERSION, schemas/package.json, the lockfile and CITATION.cff name one version).
+# the generated TypeScript types against the schemas, every ```json block of the
+# specification (scripts/check-spec-examples.mjs), the must-fail fixtures under
+# schemas/conformance/invalid (scripts/check-conformance-fixtures.mjs), and the
+# release metadata (VERSION, schemas/package.json, the lockfile and CITATION.cff
+# name one version).
 # No path filter: this is a required check, so it has to report on every pull
 # request, including those that touch only the specification text.
 name: validate
@@ -35,5 +38,9 @@ jobs:
       - name: Check the generated types are up to date
         working-directory: schemas
         run: node generate-types.mjs --check
+      - name: Validate every json block of the specification
+        run: node scripts/check-spec-examples.mjs
+      - name: Check every must-fail fixture is rejected for its stated reason
+        run: node scripts/check-conformance-fixtures.mjs
       - name: Check the release metadata names one version
         run: node scripts/check-release-metadata.mjs

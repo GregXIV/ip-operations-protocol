@@ -102,7 +102,7 @@ The envelope's `assertions` array carries the [Data Assertion](../../02%20-%20Fo
 
 ## Worked example — grant fee received
 
-```json
+```jsonc
 {
   "payload": {
     "registerEventCategory": "urn:ipproto:registerEvent:grantFeeReceived",

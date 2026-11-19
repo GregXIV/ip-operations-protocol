@@ -316,7 +316,7 @@ Added in 0.3. The contract holder invoices the subscriber for the first paid mon
 
 Added in 0.8. Counsel instructed directly under a mandate priced by the hour with a rate table (see the worked example in [Mandate Instruction](../Work%20Instruction/Mandate%20Instruction.md)) invoices the client for the first month's work on the statement of claim. Each time entry is a line, with its hours to one decimal, the rate of the table, the timekeeper by the firm's own identifier and its role, and task and activity codes from a code set the parties agreed. Associate `WG-017` is charged at the individually agreed 380.00, not the role rate of 340.00, because a timekeeper entry of the table takes precedence. Every line is taxed at the standard rate, so the treatment stays `taxed` and the breakdown has one entry. The document is an EN 16931 instance, so it wins over the message, and the line detail also travels as a billing file.
 
-```json
+```jsonc
 {
   "originatingActor": "urn:ipproto:actor:woodgrove-ip",
   "addressedTo": [
@@ -520,7 +520,7 @@ The full message is `invoice-issued-pass-through-court-fee.example.json` in `sch
 
 Added in 0.8. Two companies oppose a patent jointly through the same counsel and share its fixed fee of 8,000.00 and the opposition fee of 880.00, 60 to 40, as the milestone's payor assignments state (`milestone-split-payors.example.json`). Each receives its own invoice for its share, naming the other in `allocation`. The first payor is taxed at the standard rate; the second is established in another Member State and the reverse charge applies to it. Only the payload parts that differ are shown.
 
-```json
+```jsonc
 {
   "invoiceReference": "urn:ipproto:invoice:woodgrove-2027-0060",
   "payor": {
@@ -584,7 +584,7 @@ Added in 0.8. Two companies oppose a patent jointly through the same counsel and
 }
 ```
 
-```json
+```jsonc
 {
   "invoiceReference": "urn:ipproto:invoice:woodgrove-2027-0061",
   "payor": {

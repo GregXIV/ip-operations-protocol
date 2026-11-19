@@ -202,7 +202,7 @@ A document of a workstream that has no asset yet, such as a draft application or
 
 A workstream for a first filing, before the filing:
 
-```json
+```jsonc
 {
   "workstreamUri": "urn:ipproto:workstream:d-trademark-filing-001",
   "workstreamType": "urn:ipproto:workstream:nationalProsecution",
@@ -227,7 +227,7 @@ A workstream for a first filing, before the filing:
 
 After the application at the EUIPO has been filed and bootstrapped, the same workstream carries:
 
-```json
+```jsonc
 {
   "assetReferences": ["urn:ipproto:asset:3b9e61c0-..."],
   "prospectiveRights": [
@@ -262,7 +262,7 @@ The provider profile of [Conformance](../01%20-%20Front%20Matter/Conformance.md)
 
 Added in 0.7. An infringement action, with a counterclaim for revocation raised by the defendant. The client is the claimant; its counsel holds the status claim in a direct engagement. All names and numbers are fictional.
 
-```json
+```jsonc
 {
   "workstreamUri": "urn:ipproto:workstream:inf-0001",
   "workstreamType": "urn:ipproto:workstream:infringementAction",
@@ -303,7 +303,7 @@ The full workstream is `workstream-litigation.example.json` in `schemas/examples
 
 ## Worked example skeleton
 
-```json
+```jsonc
 {
   "workstreamUri": "urn:ipproto:workstream:8a4b1c92-...",
   "workstreamType": "urn:ipproto:workstream:epPostGrantValidation",

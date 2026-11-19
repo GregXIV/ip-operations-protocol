@@ -47,7 +47,7 @@ Type: structured, required
 
 ## Worked example — full success
 
-```json
+```jsonc
 {
   "payload": {
     "workstreamReference": "urn:ipproto:workstream:8a4b1c92-...",

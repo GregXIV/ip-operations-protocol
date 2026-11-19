@@ -118,7 +118,7 @@ Required when `executionOutcome != successfullyExecuted`:
 
 ## Worked example — execution failure
 
-```json
+```jsonc
 {
   "payload": {
     "paymentReference": "urn:ipproto:payment:p-001-grant-fee-...",
@@ -138,7 +138,7 @@ Required when `executionOutcome != successfullyExecuted`:
 
 Added in 0.8. The orchestrator pays the agent's replacement invoice and tells the agent, naming the invoice. The full message is `payment-executed-invoice.example.json` in `schemas/examples/`.
 
-```json
+```jsonc
 {
   "originatingActor": "urn:ipproto:actor:meridian-ip-group",
   "addressedTo": [

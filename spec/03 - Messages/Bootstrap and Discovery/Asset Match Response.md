@@ -54,7 +54,7 @@ New claims the receiver registers. For `confirmedWithEnrichment`, typically an `
 
 ## Worked example — confirmedWithEnrichment
 
-```json
+```jsonc
 {
   "userContext": { /* corporate user */ },
   "payload": {

@@ -57,7 +57,7 @@ Obligations triggered by abandonment — partial-work invoices, refunds, notific
 
 ## Worked example — assetStatusChange
 
-```json
+```jsonc
 {
   "userContext": {
     "userIdentifier": "counsel@northwind.example",

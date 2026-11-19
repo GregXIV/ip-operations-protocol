@@ -62,7 +62,7 @@ By when the corporate must respond before the proposal expires.
 
 ## Worked example skeleton
 
-```json
+```jsonc
 {
   "payload": {
     "proposedWorkstream": {

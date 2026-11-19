@@ -100,7 +100,7 @@ Downstream actions resulting from the decision:
 
 ## Worked example — late register arrival
 
-```json
+```jsonc
 {
   "payload": {
     "disputeReference": "urn:ipproto:dispute:conf-001-...",

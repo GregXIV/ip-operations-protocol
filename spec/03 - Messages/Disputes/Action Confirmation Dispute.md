@@ -72,7 +72,7 @@ Type: ISO 8601 datetime, required
 
 ## Worked example
 
-```json
+```jsonc
 {
   "payload": {
     "disputeReference": "urn:ipproto:dispute:conf-001-...",

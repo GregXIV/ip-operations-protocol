@@ -27,9 +27,11 @@ schemas/
 │                    and requester disclosed; since 0.5 invoice disputed
 │                    and invoice cancelled
 ├── examples/        complete, validated message instances
+├── conformance/     invalid/: must-fail fixtures, one broken requirement each
+├── lib/             validator.mjs — the validator as a library (createValidator)
 ├── types/           ipproto.d.ts — TypeScript types GENERATED from the schemas
 ├── index.json       manifest: messageType / structure -> $id -> path
-├── validate.mjs     reference validator (ajv)
+├── validate.mjs     reference validator, command line (ajv); bin ipproto-validate
 ├── generate-types.mjs   generator for types/ipproto.d.ts
 └── package.json     @ipproto/schemas
 ```
@@ -58,6 +60,29 @@ npm ci                                  # the pinned ajv, ajv-formats and genera
 node validate.mjs                       # validates examples/*
 node validate.mjs path/to/message.json  # validates one message by its messageType
 ```
+
+From code, use the library; importing it runs nothing and exits nothing:
+
+```js
+import { createValidator } from "@ipproto/schemas/validator";
+const v = createValidator();
+const { valid, errors } = v.validate(message);            // a message, by its messageType
+v.validate(assetReference, "urn:ipproto:schema:0.9:assetReference");   // anything else, by $id
+```
+
+Every instance is checked against this release's 0.9 set, whatever its `protocolVersion`
+says. A message of an earlier version is checked for conformance against that version's
+set, from its release tag (Conformance, G1).
+
+From the repository root, two more checks use the library:
+
+```bash
+node scripts/check-spec-examples.mjs         # every json block of the specification
+node scripts/check-conformance-fixtures.mjs  # conformance/invalid: each is rejected, for its stated reason
+```
+
+`conformance/README.md` describes the fixture format, so that another validator can run
+the same cases.
 
 The `validate` workflow runs these checks, and the types check below, on every pull request
 and every push to main. `ajv` and `ajv-formats` stay peer

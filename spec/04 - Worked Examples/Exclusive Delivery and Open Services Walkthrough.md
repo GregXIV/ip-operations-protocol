@@ -56,7 +56,7 @@ Contoso Legal sends **[Work Requested](../03%20-%20Messages/Workstream%20Lifecyc
 
 Meridian IP Group's orchestrator produces **[Goal Decomposition](../03%20-%20Messages/Workstream%20Lifecycle/Goal%20Decomposition.md)** for workstream A, correlated to the request. One milestone per country, Meridian IP Group as `primary` actor of each, and a binding price each:
 
-```json
+```jsonc
 {
   "milestoneUri": "urn:ipproto:milestone:a1-es-validation",
   "milestoneTitle": "EP validation in Spain",
@@ -99,6 +99,7 @@ Meridian IP Group opens workstream B and sends **[Work Instruction](../03%20-%20
 
 The envelope's assertions establish the milestone record for the agent, with `parentMilestoneUri` pointing at `a1-es-validation`. Fabrikam Patentes's role declaration carries the delegation:
 
+<!-- schema: actorRoleDeclaration -->
 ```json
 {
   "roleDeclarationUri": "urn:ipproto:roleDeclaration:fabrikam-work-provider-b",
