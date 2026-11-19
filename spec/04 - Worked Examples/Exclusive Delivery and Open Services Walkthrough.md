@@ -1,7 +1,7 @@
 ---
 type: worked-example
 since: 0.2.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # Exclusive Delivery and Open Services Walkthrough

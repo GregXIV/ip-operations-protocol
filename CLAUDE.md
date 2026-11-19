@@ -20,6 +20,8 @@ repository is public and every release is archived with a DOI.
 
    ```bash
    cd schemas && npm ci --ignore-scripts && node validate.mjs && node generate-types.mjs --check && cd ..
+   node scripts/check-spec-examples.mjs
+   node scripts/check-conformance-fixtures.mjs
    node scripts/check-release-metadata.mjs
    ```
 
@@ -37,7 +39,10 @@ the `banned-terms` check on the pull request as the only gate: nothing merges un
   [VERSIONING.md](VERSIONING.md) decides its bump. A change to what a sender or a receiver
   does is never a PATCH.
 - A page whose text you change gets `changed: unreleased` in its metadata block
-  ([spec/README.md](spec/README.md), *Page metadata*).
+  ([spec/README.md](spec/README.md), *Page metadata*), a new page `since: unreleased` too.
+- A ```` ```json ```` block in a page is a complete instance and must validate; an excerpt is
+  fenced ```` ```jsonc ```` ([Conventions](spec/01%20-%20Front%20Matter/Conventions.md),
+  *Worked examples*).
 - Schema `$id`s are `urn:ipproto:schema:<MAJOR.MINOR>:<name>`, never reused across versions.
   `additionalProperties` stays open on published schemas.
 - Examples use neutral placeholders (*Office*, *Applicant*, *Service Provider*,
@@ -52,8 +57,8 @@ maintainer's explicit go. Agents prepare them and hand over the exact commands.
 
 1. A release pull request sets one version in `VERSION`, `schemas/package.json`,
    `schemas/package-lock.json` and `CITATION.cff` (`version`, `date-released`), turns
-   `[Unreleased]` into the dated version header, replaces `changed: unreleased` on every page
-   with the version, and adds the version to `PATENTS.md`.
+   `[Unreleased]` into the dated version header, replaces `since: unreleased` and `changed: unreleased`
+   on every page with the version, and adds the version to `PATENTS.md`.
 2. After it merges: `git tag -a v<x.y.z> -m "IP Operations Protocol <x.y.z>" <merge sha>` and
    `git push origin v<x.y.z>`. Then `sh scripts/release-checksums.sh v<x.y.z>` prints the
    manifest followed by one line `# release <tag> <commit> <digest>`. Save the manifest

@@ -1,7 +1,7 @@
 ---
 type: foundational
 since: 0.1.0
-changed: 0.7.0
+changed: unreleased
 ---
 
 # Common Envelope

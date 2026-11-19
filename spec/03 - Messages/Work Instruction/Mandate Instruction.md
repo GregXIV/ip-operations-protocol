@@ -2,7 +2,7 @@
 type: message
 category: work-instruction
 since: 0.6.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # Mandate Instruction

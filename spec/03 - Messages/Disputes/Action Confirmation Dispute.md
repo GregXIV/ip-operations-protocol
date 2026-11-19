@@ -2,7 +2,7 @@
 type: message
 category: disputes
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Action Confirmation Dispute
