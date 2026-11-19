@@ -1143,6 +1143,7 @@ export type ServiceSubscriptionStarted = CommonEnvelope & {
       feeStructure: "flatPeriodicFee" | "perFindingFee" | "tieredFee" | "revenueShare" | "custom";
       feeAmount?: {
         sharePercent?: number;
+        [k: string]: unknown;
       };
       billingCadence: "inAdvance" | "inArrears" | "perFinding" | "custom";
       commercialAgreementReference?: string;
@@ -2097,6 +2098,7 @@ export interface Workstream {
        * Since 0.6 an array of Deadline structures: the deadlines the goal must observe.
        */
       deadlineConstraints?: Deadline[];
+      [k: string]: unknown;
     };
   };
   instructingCapacity?: "own" | "onBehalf";

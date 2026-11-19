@@ -61,6 +61,23 @@ function rewrite(node) {
   return out;
 }
 
+// Objects whose fields the specification leaves open beyond what the schema declares. The
+// types close every other object (additionalProperties: false), and a closed type would
+// reject messages the schemas accept. Each stays open until its schema declares the fields.
+//   Workstream goalConstraints: costCeiling and executionModeConstraints (Workstream page).
+//   Service Subscription Started feeAmount: "type-specific"; a flat fee has amount,
+//   currency and period, a revenue share sharePercent.
+const OPEN_OBJECTS = [
+  ["urn:ipproto:schema:" + index.protocolVersion + ":workstream", ["properties", "goalStatement", "properties", "goalConstraints"]],
+  ["urn:ipproto:schema:" + index.protocolVersion + ":serviceSubscriptionStarted", ["properties", "payload", "properties", "commercialTerms", "properties", "feeAmount"]],
+];
+for (const [id, path] of OPEN_OBJECTS) {
+  const schema = [...foundational, ...messages].find((s) => s.$id === id);
+  const node = path.reduce((n, k) => n?.[k], schema);
+  if (!node || node.type !== "object") throw new Error(`OPEN_OBJECTS: no object at ${id} ${path.join("/")}`);
+  node.additionalProperties = true;
+}
+
 const definitions = {};
 for (const [k, d] of Object.entries(defs.$defs)) if (isObjectDef(d)) definitions[defName(k)] = rewrite(d);
 definitions[nameById[envelope.$id]] = rewrite(envelope);

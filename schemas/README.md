@@ -30,7 +30,7 @@ schemas/
 ├── conformance/     invalid/: must-fail fixtures, one broken requirement each
 ├── lib/             validator.mjs — the validator as a library (createValidator)
 ├── types/           ipproto.d.ts — TypeScript types GENERATED from the schemas
-├── index.json       manifest: messageType / structure -> $id -> path
+├── index.json       manifest: messageType / structure -> $id -> path (relative to this package)
 ├── validate.mjs     reference validator, command line (ajv); bin ipproto-validate
 ├── generate-types.mjs   generator for types/ipproto.d.ts
 └── package.json     @ipproto/schemas
@@ -57,7 +57,7 @@ schemas/
 
 ```bash
 npm ci                                  # the pinned ajv, ajv-formats and generator
-node validate.mjs                       # validates examples/*
+node validate.mjs                       # checks index.json, then validates examples/*
 node validate.mjs path/to/message.json  # validates one message by its messageType
 ```
 
@@ -112,9 +112,23 @@ npm run generate-types            # rewrites types/ipproto.d.ts
 node generate-types.mjs --check   # exits 1 if the committed types are out of date
 ```
 
-The generator version is pinned because its output is committed. Every message type comes out
-as an alias of `CommonEnvelope`; payloads are not typed. Rules that say "at least one of" or
-"exactly one of" several fields are left to the validator, and those fields are optional in the types.
+The generator version is pinned because its output is committed. Every message type is
+`CommonEnvelope & { messageType: "<its URN>"; payload: <its payload> }`, and `IpprotoMessage`
+is the union of all of them, discriminated on `messageType`:
+
+```ts
+import type { IpprotoMessage } from "@ipproto/schemas/types";
+function handle(m: IpprotoMessage) {
+  if (m.messageType === "urn:ipproto:message:milestoneCompleted") m.payload.completedAt; // typed
+}
+```
+
+Rules that say "at least one of" or "exactly one of" several fields are left to the validator,
+and those fields are optional in the types. The types close every object, where the schemas
+leave them open, except two objects whose fields the specification leaves open beyond what
+the schema declares: a workstream's `goalConstraints` and the `feeAmount` of Service
+Subscription Started (listed in `generate-types.mjs`). Every message example type-checks
+against `IpprotoMessage`.
 
 ## Coverage
 
