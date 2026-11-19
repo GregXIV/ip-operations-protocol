@@ -125,7 +125,7 @@ subscriptions, steady-state events (register events, service findings), the full
 machinery, and the generic record update. That is 63 schema files: common defs, the envelope,
 17 under `foundational/` and 44 under `messages/`.
 
-Sixty-two complete examples (messages + structures) validate against the set. The thirteen
+Seventy-four complete examples (messages + structures) validate against the set, and every message type has at least one. The thirteen
 carried over from 0.1 keep `"protocolVersion": "0.1"` and the eighteen added in 0.2 keep
 `"protocolVersion": "0.2"` on purpose: they show that a 0.1 or 0.2 message validates
 unchanged against the 0.9 schemas. The six added in 0.3 cover the two messages of 0.3, a
@@ -156,7 +156,9 @@ breakdown and an EN 16931 invoice document; an invoice that passes on a court fe
 the VAT base; a pair of invoices that share one charge between two payors, one taxed and
 one reverse-charged, and the milestone that states the payors' shares; a dispute that names
 a line by `lineId`; and a payment executed that names the invoice it settles. The one added
-in 0.9 is a workstream for a freedom-to-operate opinion that names no asset.
+in 0.9 is a workstream for a freedom-to-operate opinion that names no asset. The twelve
+added after 0.9.1 say `"0.9"` and give each message type that had no example one: they
+follow the worked examples of their pages along the EP post-grant flow.
 
 **Fictional patent numbers** (since 0.9, decision 111). Every patent number in an example is
 fictional and must not be real. It uses the ST.3 code `XX`, which names no office, in the

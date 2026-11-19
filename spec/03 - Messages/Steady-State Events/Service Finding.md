@@ -74,6 +74,8 @@ Each entry: `actionDescription`, `actionCategory` (`urn:ipproto:findingAction:in
 
 ## Worked example — renewal deadline approaching
 
+The full message is `service-finding.example.json` in `schemas/examples/`.
+
 ```json
 {
   "payload": {

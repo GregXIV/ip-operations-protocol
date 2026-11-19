@@ -68,6 +68,8 @@ Conditional based on `commitmentDecision`.
 
 ## Worked example — committedWithRouteSelection
 
+The full message is `orchestration-committed.example.json` in `schemas/examples/`.
+
 ```jsonc
 {
   "userContext": {

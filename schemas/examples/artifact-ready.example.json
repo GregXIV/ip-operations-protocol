@@ -1,0 +1,92 @@
+{
+  "messageUri": "urn:ipproto:message:885d5c23-9941-4218-9baf-89ec031ee358",
+  "messageType": "urn:ipproto:message:artifactReady",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:f68a07a5-6091-4be1-964a-a65ee2a3f7e8",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:clientExecutor"
+    }
+  ],
+  "producedAt": "2026-06-05T10:00:00Z",
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:829e2c7a-170a-4cd2-8648-60145818e450",
+    "workstreamUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+    "milestoneUri": "urn:ipproto:milestone:m3-client-filing"
+  },
+  "payload": {
+    "artifactReference": {
+      "documentReferences": [
+        "urn:ipproto:document:epo-terminal-doc-de",
+        "urn:ipproto:document:epo-terminal-doc-fr",
+        "urn:ipproto:document:epo-terminal-doc-gb"
+      ]
+    },
+    "actionDeclaration": {
+      "actionCategory": "urn:ipproto:action:officeFiling",
+      "actionTarget": {
+        "targetSystem": "urn:ipproto:system:epoTerminal",
+        "targetUri": "https://filing.office.example/applications/EP21000000"
+      },
+      "actionInstructions": {
+        "steps": [
+          {
+            "stepNumber": 1,
+            "stepDescription": "Log in to MyEPO with representative credentials."
+          },
+          {
+            "stepNumber": 2,
+            "stepDescription": "Navigate to post-grant validation submission."
+          },
+          {
+            "stepNumber": 3,
+            "stepDescription": "Upload prepared DE validation package.",
+            "stepReference": {
+              "documentReference": "urn:ipproto:document:epo-terminal-doc-de"
+            },
+            "stepValidation": "EPO confirmation number displayed."
+          },
+          {
+            "stepNumber": 4,
+            "stepDescription": "Repeat upload for FR and GB."
+          },
+          {
+            "stepNumber": 5,
+            "stepDescription": "Submit and capture confirmation receipts."
+          }
+        ]
+      },
+      "actionDeadline": {
+        "deadlineDate": "2026-08-28T21:59:59Z",
+        "deadlineSource": "urn:ipproto:deadline:8c4942f4-19f5-4f12-b773-ae3a7738af66",
+        "deadlineImpact": "bindingLegal"
+      }
+    },
+    "expectedConfirmation": {
+      "confirmationMessage": "clientActionCompleted",
+      "confirmationDeadline": "2026-06-30T17:00:00Z",
+      "evidenceExpectations": {
+        "evidenceTypes": [
+          "urn:ipproto:evidence:epoConfirmationNumber",
+          "urn:ipproto:evidence:epoSignedReceipt"
+        ],
+        "evidenceMandatory": "required"
+      }
+    },
+    "expectedRegisterConfirmation": {
+      "expectedRegisterEventType": "urn:ipproto:registerEvent:postGrantFilingReceived",
+      "expectedRegisterEventWindow": {
+        "minimumDelayDays": 1,
+        "expectedDelayDays": 3,
+        "maximumDelayDays": 14
+      },
+      "divergenceHandling": {
+        "divergenceMessageType": "actionConfirmationDispute",
+        "divergenceRoutingTarget": "urn:ipproto:actor:meridian-ip-group",
+        "escalationPath": "If register confirmation does not arrive within 14 days, Meridian IP Group's case team investigates with EPO directly."
+      }
+    }
+  }
+}

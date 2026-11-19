@@ -2,7 +2,7 @@
 type: message
 category: milestone-lifecycle
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Milestone Started
@@ -41,6 +41,8 @@ Type: structured, optional
 Type: string, optional
 
 ## Worked example
+
+The full message is `milestone-started.example.json` in `schemas/examples/`.
 
 ```json
 {

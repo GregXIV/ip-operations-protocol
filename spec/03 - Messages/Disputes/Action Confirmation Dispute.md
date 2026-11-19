@@ -72,6 +72,8 @@ Type: ISO 8601 datetime, required
 
 ## Worked example
 
+The full message is `action-confirmation-dispute.example.json` in `schemas/examples/`.
+
 ```jsonc
 {
   "payload": {

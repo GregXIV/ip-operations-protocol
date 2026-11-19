@@ -57,6 +57,8 @@ Obligations triggered by abandonment — partial-work invoices, refunds, notific
 
 ## Worked example — assetStatusChange
 
+The full message is `workstream-abandoned.example.json` in `schemas/examples/`.
+
 ```jsonc
 {
   "userContext": {

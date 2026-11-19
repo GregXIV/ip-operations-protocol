@@ -1,0 +1,93 @@
+{
+  "messageUri": "urn:ipproto:message:0dc2a299-6a4e-4184-bfbd-e1e0dc7ca7b1",
+  "messageType": "urn:ipproto:message:workstreamCompleted",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:orchestrator-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:decisionAuthority"
+    },
+    {
+      "actorUri": "urn:ipproto:actor:meridian-associates",
+      "expectedRole": "urn:ipproto:role:subscriptionOperator"
+    }
+  ],
+  "producedAt": "2026-08-14T10:00:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14"
+  },
+  "payload": {
+    "workstreamReference": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+    "completionSummary": {
+      "completionOutcome": "fullSuccess",
+      "aggregatedActuals": {
+        "totalActualCost": {
+          "amount": 5340.00,
+          "currency": "EUR"
+        },
+        "totalEstimatedCost": {
+          "amount": 5460.00,
+          "currency": "EUR"
+        },
+        "totalActualDays": 28,
+        "totalEstimatedDays": 30,
+        "varianceNotes": "Cost slightly under estimate."
+      },
+      "outputArtifacts": [
+        "urn:ipproto:document:9c2e4f81-validation-analysis",
+        "urn:ipproto:document:0ed0c7e6-c392-443c-acc0-39cd3259b005",
+        "urn:ipproto:document:099cedd2-c52e-45dc-809c-654c7f1cdc21"
+      ],
+      "subscriptionsCreated": [
+        "urn:ipproto:subscription:renewal-mon-001",
+        "urn:ipproto:subscription:opposition-watch-001"
+      ],
+      "derivedAssetsCreated": [
+        "urn:ipproto:asset:4ec51ba8-4645-4520-9d68-adaa39eb84ba",
+        "urn:ipproto:asset:d5e07d0a-de7d-4707-9d13-babfea4d628b",
+        "urn:ipproto:asset:676f0d33-4780-4627-986b-7c42afffc433"
+      ]
+    },
+    "completionAssertions": [
+      {
+        "assertionUri": "urn:ipproto:assertion:932f85b3-7a87-48a9-981d-e2f225cc0d9d",
+        "recordUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+        "sectionPath": "/workstreamStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:meridian-ip-group",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:orchestrator-001"
+        },
+        "assertionContent": {
+          "contentType": "patches",
+          "operations": [
+            {
+              "op": "test",
+              "path": "",
+              "value": "inProgress"
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": "completed"
+            }
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:07d3418c-a9a8-4d5e-97cd-8234d6f9a032",
+        "assertedAt": "2026-08-14T10:00:00Z"
+      }
+    ],
+    "postCompletionState": {
+      "assetStateNotes": "EP grant validated in DE, FR, GB. Renewal monitoring active. Opposition watch active through 2027-05-12.",
+      "outstandingObligations": [
+        {
+          "obligationType": "renewalDeadline",
+          "obligationDescription": "DE first renewal due 2027-04-15",
+          "obligationOwner": "urn:ipproto:actor:meridian-ip-group"
+        }
+      ],
+      "auditCompletionDate": "2026-08-14"
+    }
+  }
+}

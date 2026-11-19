@@ -31,6 +31,12 @@ new examples. `protocolVersion` stays `0.9` and every schema identifier stays
   - `scripts/check-spec-examples.mjs` validates every `json` block of the specification
     against the schema set.
   - The `validate` check runs both on every pull request.
+- Examples for the 12 message types that had none, so every message type now has one:
+  Milestone Started, Workstream Completed, Workstream Abandoned, Orchestration Committed,
+  Action Confirmation Dispute, Artifact Ready, Asset Authority Dispute, Asset Match Inquiry,
+  Deliverable Acknowledged, Identity Resolution Dispute, Service Finding and Service
+  Subscription Terminated. They say `"0.9"`, follow the worked example of their page, and
+  each page names its file. 74 examples in all.
 - Conformance: a *Verified by* column on every requirement (schema, message trace,
   resolution probe or attestation), the points of the asset identification profile with
   theirs, and the evidence that settles each attestation. Informative.

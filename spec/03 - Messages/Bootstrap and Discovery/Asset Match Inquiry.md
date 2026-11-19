@@ -63,6 +63,8 @@ Why the inquiry is being made:
 
 ## Worked example — Phase 0a
 
+The full message is `asset-match-inquiry.example.json` in `schemas/examples/`.
+
 ```jsonc
 {
   "payload": {

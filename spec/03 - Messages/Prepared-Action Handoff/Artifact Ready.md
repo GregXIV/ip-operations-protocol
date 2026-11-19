@@ -2,7 +2,7 @@
 type: message
 category: prepared-action-handoff
 since: 0.1.0
-changed: 0.9.0
+changed: unreleased
 ---
 
 # Artifact Ready
@@ -55,6 +55,8 @@ The protocol-level expectation about register confirmation:
 - `divergenceHandling` — `divergenceMessageType` (typically `actionConfirmationDispute`), `divergenceRoutingTarget`, `escalationPath`
 
 ## Worked example — Phase 4 EPO terminal filing
+
+The full message is `artifact-ready.example.json` in `schemas/examples/`.
 
 ```json
 {

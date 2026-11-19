@@ -1,0 +1,213 @@
+{
+  "messageUri": "urn:ipproto:message:d771956b-e08b-4120-9797-02e45c5c2976",
+  "messageType": "urn:ipproto:message:orchestrationCommitted",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:orchestrator"
+    }
+  ],
+  "producedAt": "2026-04-29T09:40:00Z",
+  "userContext": {
+    "userIdentifier": "counsel@northwind.example",
+    "roleAtActor": "Senior IP Counsel"
+  },
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:64399131-de09-46bd-8121-8b47a1e1b4e7",
+    "workstreamUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14"
+  },
+  "payload": {
+    "proposalReference": "urn:ipproto:message:64399131-de09-46bd-8121-8b47a1e1b4e7",
+    "commitmentDecision": "committedWithRouteSelection",
+    "selectedRoute": {
+      "routeName": "Balanced"
+    },
+    "commitmentAssertions": [
+      {
+        "assertionUri": "urn:ipproto:assertion:bf461efb-67f6-424b-88d3-195125da137b",
+        "recordUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+        "sectionPath": "/workstreamStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "patches",
+          "operations": [
+            {
+              "op": "test",
+              "path": "",
+              "value": "proposed"
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": "committed"
+            }
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-04-29T09:40:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:853bbd65-06e1-4edc-8641-c6b2153577dc",
+        "recordUri": "urn:ipproto:milestone:m1-validation-analysis",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "patches",
+          "operations": [
+            {
+              "op": "test",
+              "path": "",
+              "value": "proposed"
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": "ready"
+            }
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-04-29T09:40:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:b1121123-bb4b-4316-a020-0db29a87c329",
+        "recordUri": "urn:ipproto:milestone:m2-doc-prep",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "patches",
+          "operations": [
+            {
+              "op": "test",
+              "path": "",
+              "value": "proposed"
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": "committed"
+            }
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-04-29T09:40:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:a60580ea-9f1c-4fc0-805d-821813d4a3c8",
+        "recordUri": "urn:ipproto:milestone:m3-client-filing",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "patches",
+          "operations": [
+            {
+              "op": "test",
+              "path": "",
+              "value": "proposed"
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": "committed"
+            }
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-04-29T09:40:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:b7104206-7446-4d92-802e-5e67dc5e3827",
+        "recordUri": "urn:ipproto:milestone:m4-grant-fee",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "patches",
+          "operations": [
+            {
+              "op": "test",
+              "path": "",
+              "value": "proposed"
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": "committed"
+            }
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-04-29T09:40:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:ca60aca3-4a85-4304-998b-b45ff99b386f",
+        "recordUri": "urn:ipproto:milestone:m5-renewal-monitoring",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "patches",
+          "operations": [
+            {
+              "op": "test",
+              "path": "",
+              "value": "proposed"
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": "committed"
+            }
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-04-29T09:40:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:98f62aa3-a0f8-411c-8bf7-71f2112818e3",
+        "recordUri": "urn:ipproto:milestone:m6-opposition-watch",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "patches",
+          "operations": [
+            {
+              "op": "test",
+              "path": "",
+              "value": "proposed"
+            },
+            {
+              "op": "replace",
+              "path": "",
+              "value": "committed"
+            }
+          ]
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-04-29T09:40:00Z"
+      }
+    ]
+  }
+}

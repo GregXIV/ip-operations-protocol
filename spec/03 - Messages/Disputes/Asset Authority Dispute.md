@@ -2,7 +2,7 @@
 type: message
 category: disputes
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Asset Authority Dispute
@@ -86,6 +86,8 @@ The disputing actor's proposal:
 Type: ISO 8601 datetime, required
 
 ## Worked example
+
+The full message is `asset-authority-dispute.example.json` in `schemas/examples/`.
 
 ```json
 {

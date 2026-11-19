@@ -2,7 +2,7 @@
 type: message
 category: deliverable-handoff
 since: 0.1.0
-changed: 0.5.0
+changed: unreleased
 ---
 
 # Deliverable Acknowledged
@@ -79,6 +79,8 @@ Type: structured, required
 - `blockedMilestones` — array still blocked, with `blockingReason`
 
 ## Worked example — simple acknowledgment
+
+The full message is `deliverable-acknowledged.example.json` in `schemas/examples/`.
 
 ```json
 {

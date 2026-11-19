@@ -47,6 +47,8 @@ Type: structured, required
 
 ## Worked example — full success
 
+The full message is `workstream-completed.example.json` in `schemas/examples/`.
+
 ```jsonc
 {
   "payload": {

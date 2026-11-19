@@ -1,0 +1,50 @@
+{
+  "messageUri": "urn:ipproto:message:5e02c666-570b-4695-b319-2539d3912f92",
+  "messageType": "urn:ipproto:message:assetAuthorityDispute",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:orchestrator-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:decisionAuthority"
+    },
+    {
+      "actorUri": "urn:ipproto:actor:tailspin-legal",
+      "expectedRole": "urn:ipproto:role:workProvider"
+    }
+  ],
+  "producedAt": "2026-05-07T09:00:00Z",
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14"
+  },
+  "payload": {
+    "disputeReference": "urn:ipproto:dispute:f13a2758-729c-4cd6-9e35-308de91d1edf",
+    "disputedRecord": "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8",
+    "disputedSectionPath": "/serviceEngagements",
+    "competingClaims": [
+      "urn:ipproto:authorityClaim:60aa373e-5a2f-4de0-88cb-95be08b2008b",
+      "urn:ipproto:authorityClaim:dcd0c080-ff4b-4387-a3bc-1470719fb7cb"
+    ],
+    "conflictType": "overlappingExclusive",
+    "disputeNarrative": "Both Meridian IP Group and external counsel Tailspin Legal claim exclusive engagement over EP post-grant validation. Northwind Industries appears to have authorized both independently.",
+    "disputeRoutingTarget": {
+      "targetActorUri": "urn:ipproto:actor:northwind-industries",
+      "targetRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority",
+      "routingBasis": "Northwind Industries granted both engagement claims and holds decisionAuthority over the workstream."
+    },
+    "disputeImpact": {
+      "blockedMilestones": [
+        "urn:ipproto:milestone:m2-doc-prep"
+      ],
+      "blockedWorkstreams": [
+        "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14"
+      ]
+    },
+    "proposedResolution": {
+      "resolutionType": "revokeClaim",
+      "resolutionDescription": "Northwind Industries confirms which of the two providers holds the engagement and revokes the other claim."
+    },
+    "responseDeadline": "2026-05-15T17:00:00Z"
+  }
+}

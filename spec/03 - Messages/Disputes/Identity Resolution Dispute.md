@@ -2,7 +2,7 @@
 type: message
 category: disputes
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Identity Resolution Dispute
@@ -62,6 +62,8 @@ Often omitted — the protocol may route to no specific actor, leaving each disp
 Type: ISO 8601 datetime, optional
 
 ## Worked example
+
+The full message is `identity-resolution-dispute.example.json` in `schemas/examples/`.
 
 ```json
 {

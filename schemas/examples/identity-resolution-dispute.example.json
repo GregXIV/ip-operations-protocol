@@ -1,0 +1,62 @@
+{
+  "messageUri": "urn:ipproto:message:3473dcd9-b756-45a1-bea2-46cd5aaebb6a",
+  "messageType": "urn:ipproto:message:identityResolutionDispute",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:meridian-ip-group",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:orchestrator-001",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:northwind-industries",
+      "expectedRole": "urn:ipproto:role:assetOwner"
+    }
+  ],
+  "producedAt": "2026-04-28T09:05:00Z",
+  "correlation": {
+    "correlatedToMessageUri": "urn:ipproto:message:47b69d24-8194-4be5-acb6-0145b9ff00c5"
+  },
+  "payload": {
+    "disputeReference": "urn:ipproto:dispute:7dc42566-524d-4a83-9f8a-97ef9a53cb10",
+    "disputedLiteral": {
+      "literal": {
+        "value": "Northwind Industries SE",
+        "source": {
+          "sourceType": "register",
+          "sourceActorUri": "urn:ipproto:actor:epo",
+          "sourcePublicationDate": "2026-04-28"
+        }
+      },
+      "appearanceContext": {
+        "appearedInMessages": [
+          "urn:ipproto:message:a8e2c91a-df06-4902-8204-ef91da2a9c66"
+        ],
+        "appearedInRecords": [
+          "urn:ipproto:asset:7c4f9a82-3e15-4d0a-9f62-1b8c5e23a4d8"
+        ]
+      }
+    },
+    "competingResolutions": [
+      {
+        "assertingActorUri": "urn:ipproto:actor:meridian-ip-group",
+        "resolvedEntityUri": "urn:meridian-ip-group:entity:northwind-industries-se",
+        "resolutionMethod": "deterministicIdentifier",
+        "confidenceLevel": "exact",
+        "resolutionBasis": "Matched on legalName and jurisdictionCode."
+      },
+      {
+        "assertingActorUri": "urn:ipproto:actor:northwind-industries",
+        "resolvedEntityUri": "urn:northwind-industries:entity:northwind-industries-se-coatings-licensing",
+        "resolutionMethod": "humanReview",
+        "confidenceLevel": "high",
+        "resolutionBasis": "Internal entity graph identifies licensing-active subsidiary Northwind Industries Coatings Licensing as the operative entity for this asset family."
+      }
+    ],
+    "materialImpact": {
+      "impactDescription": "Routing of opposition watch findings depends on which entity is treated as canonical.",
+      "affectedAssertions": [
+        "urn:ipproto:assertion:18355414-28ad-4a97-8c0d-bc19c0e5c9cb"
+      ],
+      "affectedDecisions": "Which Northwind Industries entity receives the findings of the opposition watch once it is enrolled."
+    },
+    "disputeNarrative": "Meridian IP Group resolves to top-level Northwind Industries SE; Northwind Industries resolves to operating subsidiary Northwind Industries Coatings Licensing."
+  }
+}

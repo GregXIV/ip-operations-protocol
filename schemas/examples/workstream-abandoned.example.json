@@ -1,0 +1,174 @@
+{
+  "messageUri": "urn:ipproto:message:44f6bf27-e414-43b8-9994-8c0d89fee391",
+  "messageType": "urn:ipproto:message:workstreamAbandoned",
+  "protocolVersion": "0.9",
+  "originatingActor": "urn:ipproto:actor:northwind-industries",
+  "originatingRoleDeclaration": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority",
+  "addressedTo": [
+    {
+      "actorUri": "urn:ipproto:actor:meridian-ip-group",
+      "expectedRole": "urn:ipproto:role:orchestrator"
+    }
+  ],
+  "producedAt": "2026-06-22T09:00:00Z",
+  "userContext": {
+    "userIdentifier": "counsel@northwind.example",
+    "roleAtActor": "Senior IP Counsel"
+  },
+  "correlation": {
+    "workstreamUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14"
+  },
+  "payload": {
+    "workstreamReference": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+    "abandonmentReason": {
+      "reasonType": "assetStatusChange",
+      "reasonNarrative": "Underlying EP application withdrawn 2026-06-20. Validation workstream no longer applicable.",
+      "abandonmentInitiator": "urn:ipproto:actor:northwind-industries",
+      "abandonmentUserContext": {
+        "userIdentifier": "counsel@northwind.example",
+        "roleAtActor": "Senior IP Counsel"
+      }
+    },
+    "milestoneStateAtAbandonment": [
+      {
+        "milestoneUri": "urn:ipproto:milestone:m1-validation-analysis",
+        "statusAtAbandonment": "completed",
+        "dispositionAfterAbandonment": "completedBeforeAbandonment"
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:m2-doc-prep",
+        "statusAtAbandonment": "inProgress",
+        "dispositionAfterAbandonment": "cancelled"
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:m3-client-filing",
+        "statusAtAbandonment": "committed",
+        "dispositionAfterAbandonment": "cancelled"
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:m4-grant-fee",
+        "statusAtAbandonment": "committed",
+        "dispositionAfterAbandonment": "cancelled"
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:m5-renewal-monitoring",
+        "statusAtAbandonment": "committed",
+        "dispositionAfterAbandonment": "cancelled"
+      },
+      {
+        "milestoneUri": "urn:ipproto:milestone:m6-opposition-watch",
+        "statusAtAbandonment": "committed",
+        "dispositionAfterAbandonment": "cancelled"
+      }
+    ],
+    "partialOutcomes": {
+      "outputArtifacts": [
+        "urn:ipproto:document:9c2e4f81-validation-analysis"
+      ],
+      "costsIncurred": {
+        "amount": 1850.00,
+        "currency": "EUR"
+      }
+    },
+    "abandonmentAssertions": [
+      {
+        "assertionUri": "urn:ipproto:assertion:32baede6-361e-4d09-b773-8a54eb7a4d2d",
+        "recordUri": "urn:ipproto:workstream:8a4b1c92-7908-4179-8d3b-b4f19af89f14",
+        "sectionPath": "/workstreamStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "fullValue",
+          "value": "abandoned"
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-06-22T09:00:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:bb8b15dd-5e8f-47f3-ba55-9c05df9c95f7",
+        "recordUri": "urn:ipproto:milestone:m2-doc-prep",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "fullValue",
+          "value": "abandoned"
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-06-22T09:00:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:554a93ca-7e76-439e-b8f9-ee79bb90feab",
+        "recordUri": "urn:ipproto:milestone:m3-client-filing",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "fullValue",
+          "value": "abandoned"
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-06-22T09:00:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:4c27a446-1d5e-4fd0-9d32-9a39a3748661",
+        "recordUri": "urn:ipproto:milestone:m4-grant-fee",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "fullValue",
+          "value": "abandoned"
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-06-22T09:00:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:9d8c735a-8466-4cd6-b73b-bdc57215ce85",
+        "recordUri": "urn:ipproto:milestone:m5-renewal-monitoring",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "fullValue",
+          "value": "abandoned"
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-06-22T09:00:00Z"
+      },
+      {
+        "assertionUri": "urn:ipproto:assertion:20e660e1-025e-4117-9788-3e81ba4b58c9",
+        "recordUri": "urn:ipproto:milestone:m6-opposition-watch",
+        "sectionPath": "/milestoneStatus",
+        "asserter": {
+          "actorUri": "urn:ipproto:actor:northwind-industries",
+          "roleDeclarationUri": "urn:ipproto:roleDeclaration:northwind-industries-decisionAuthority"
+        },
+        "assertionContent": {
+          "contentType": "fullValue",
+          "value": "abandoned"
+        },
+        "claimReference": "urn:ipproto:authorityClaim:774fc7b5-ebb3-4e80-9b51-4dcf56a9bd28",
+        "assertedAt": "2026-06-22T09:00:00Z"
+      }
+    ],
+    "unwindObligations": [
+      {
+        "obligationType": "partialWorkInvoice",
+        "obligationDescription": "Invoice for validation analysis (completed) and document prep partial.",
+        "obligationOwner": "urn:ipproto:actor:meridian-ip-group",
+        "dueBy": "2026-07-15"
+      }
+    ]
+  }
+}
