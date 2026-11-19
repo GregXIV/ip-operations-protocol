@@ -45,6 +45,7 @@ new examples. `protocolVersion` stays `0.9` and every schema identifier stays
   the asset identification profile and claims neither level.
 
 ### Changed
+- Example placeholder names made consistent.
 - Page metadata: `status:` is replaced on every page by `since:`, the release that added the
   page, and `changed:`, the last release that changed its text. Both are computed from the
   release tags, and spec/README.md defines them (*Page metadata*). Several `status:` values

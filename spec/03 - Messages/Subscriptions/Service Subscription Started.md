@@ -51,7 +51,7 @@ Type: array, required
 
 Each entry: `actorUri`, `roleDeclarationUri`, `assignmentType` (`subscriptionProvider`, `subscriptionContractHolder`, `subscriptionOperator`, `subscriber`, `payor`, `accountableTo`), and since 0.8 an optional `payorShare` on a `payor` entry, with the meaning and rules it has on a [Milestone](../../02%20-%20Foundational%20Structures/Milestone.md) (decision 103).
 
-For delegation patterns (Meridian IP Group holds, D&A operates), separate `subscriptionContractHolder` and `subscriptionOperator` entries.
+For delegation patterns (Meridian IP Group holds, Meridian Associates operates), separate `subscriptionContractHolder` and `subscriptionOperator` entries.
 
 ### `cadence`
 Type: structured, required
@@ -136,7 +136,7 @@ Type: array of [Authority Claim](../../02%20-%20Foundational%20Structures/Author
       "feeStructure": "flatPeriodicFee",
       "feeAmount": {"amount": 280.00, "currency": "EUR", "period": "annual", "perAssetBasis": true},
       "billingCadence": "inAdvance",
-      "commercialAgreementReference": "Northwind Industries-DM-MSA-2024-EU#renewal-monitoring"
+      "commercialAgreementReference": "Northwind Industries-MIP-MSA-2024-EU#renewal-monitoring"
     },
     "findingsConfiguration": {
       "findingDeliveryMethod": "serviceFinding",
@@ -154,7 +154,7 @@ Type: array of [Authority Claim](../../02%20-%20Foundational%20Structures/Author
 
 ## Worked example — opposition watch with delegation
 
-For a delegation chain where Meridian IP Group holds the contract and D&A operates:
+For a delegation chain where Meridian IP Group holds the contract and Meridian Associates operates:
 
 ```jsonc
 {
@@ -170,7 +170,7 @@ For a delegation chain where Meridian IP Group holds the contract and D&A operat
 }
 ```
 
-The operator's [Actor Role Declaration](../../02%20-%20Foundational%20Structures/Actor%20Role%20Declaration.md) carries the delegation chain showing D&A operates under Meridian IP Group's contract.
+The operator's [Actor Role Declaration](../../02%20-%20Foundational%20Structures/Actor%20Role%20Declaration.md) carries the delegation chain showing Meridian Associates operates under Meridian IP Group's contract.
 
 ## Worked example — application licence with revenue share and trial
 

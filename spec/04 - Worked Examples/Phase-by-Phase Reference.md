@@ -1,7 +1,7 @@
 ---
 type: worked-example
 since: 0.1.0
-changed: 0.1.0
+changed: unreleased
 ---
 
 # Phase-by-Phase Reference
@@ -87,7 +87,7 @@ m4 transitions to `completed`. m5 becomes `ready`.
 | Producer | Message |
 |---|---|
 | Meridian IP Group | [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md) (renewal monitoring) |
-| Meridian IP Group | [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md) (opposition watch, with D&A delegation) |
+| Meridian IP Group | [Service Subscription Started](../03%20-%20Messages/Subscriptions/Service%20Subscription%20Started.md) (opposition watch, with Meridian Associates delegation) |
 
 m5 and m6 close.
 
@@ -106,8 +106,8 @@ Indefinite. Examples:
 | Producer | Message | Trigger |
 |---|---|---|
 | Meridian IP Group | [Service Finding](../03%20-%20Messages/Steady-State%20Events/Service%20Finding.md) (renewalDeadlineApproaching) | 90 days before renewal due |
-| D&A (operator) | [Service Finding](../03%20-%20Messages/Steady-State%20Events/Service%20Finding.md) (oppositionWindowClosed) | 9 months post-grant |
-| D&A (operator) | [Service Finding](../03%20-%20Messages/Steady-State%20Events/Service%20Finding.md) (oppositionFiled) | If opposition is ever filed |
+| Meridian Associates (operator) | [Service Finding](../03%20-%20Messages/Steady-State%20Events/Service%20Finding.md) (oppositionWindowClosed) | 9 months post-grant |
+| Meridian Associates (operator) | [Service Finding](../03%20-%20Messages/Steady-State%20Events/Service%20Finding.md) (oppositionFiled) | If opposition is ever filed |
 
 ## Total message count for the happy-path scenario
 

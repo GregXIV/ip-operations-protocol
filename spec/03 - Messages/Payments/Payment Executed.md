@@ -97,7 +97,7 @@ Required when `executionOutcome != successfullyExecuted`:
         {
           "evidenceType": "urn:ipproto:evidence:bankingTransactionReference",
           "evidenceContent": {
-            "transactionReference": "DM-TX-2026-07-02-09431",
+            "transactionReference": "MIP-TX-2026-07-02-09431",
             "evidenceCapturedAt": "2026-07-02T11:25:00Z",
             "bankingProvider": "the firm's commercial bank"
           },
