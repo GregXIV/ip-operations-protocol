@@ -3,7 +3,7 @@
 //           (pinned: the output is committed, and another version may format it differently)
 // Usage: node generate-types.mjs            (rewrites types/ipproto.d.ts)
 //        node generate-types.mjs --check    (exits 1 if types/ipproto.d.ts is out of date)
-// Every message type comes out as an alias of CommonEnvelope; payloads are not typed.
+// Every message type is CommonEnvelope & { messageType; payload }, and IpprotoMessage is their union.
 import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -65,7 +65,19 @@ const definitions = {};
 for (const [k, d] of Object.entries(defs.$defs)) if (isObjectDef(d)) definitions[defName(k)] = rewrite(d);
 definitions[nameById[envelope.$id]] = rewrite(envelope);
 for (const s of foundational) definitions[nameById[s.$id]] = rewrite(s);
-for (const s of messages) definitions[nameById[s.$id]] = rewrite(s);
+// A message is the envelope plus its own messageType and payload. The schemas say so with an
+// allOf next to properties; the generator does not merge the two, so the message is written
+// as an intersection: CommonEnvelope & { messageType: "<its URN>"; payload: <its payload> }.
+for (const s of messages) {
+  const { allOf, properties, required, title, ...rest } = s;
+  const own = { type: "object", properties: { messageType: properties.messageType, payload: properties.payload }, required: ["messageType", "payload"] };
+  definitions[nameById[s.$id]] = rewrite({ ...rest, allOf: [...allOf, own] });
+}
+// Every message, discriminated on messageType.
+definitions.IpprotoMessage = {
+  description: "Any message of this version, discriminated on messageType.",
+  anyOf: messages.map((s) => ({ $ref: `#/definitions/${nameById[s.$id]}` })),
+};
 for (const d of Object.values(definitions)) delete d.title;
 
 const banner = `/* IP Operations Protocol v${index.protocolVersion} — TypeScript types.
