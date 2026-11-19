@@ -1,7 +1,8 @@
 ---
 type: message
 category: milestone-lifecycle
-status: v0.5
+since: 0.1.0
+changed: 0.5.0
 ---
 
 # Milestone Abandoned

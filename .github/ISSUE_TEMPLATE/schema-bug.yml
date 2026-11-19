@@ -1,0 +1,38 @@
+name: Schema or example bug
+description: A schema, example or the generated types disagree with the specification, or the validator misbehaves.
+title: "schema: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The specification pages decide; a schema that disagrees with them is the bug. Use neutral placeholders and `.example` domains.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: v0.9.1
+    validations:
+      required: true
+  - type: input
+    id: schema
+    attributes:
+      label: Schema $id or file
+      placeholder: "urn:ipproto:schema:0.9:invoiceIssued"
+    validations:
+      required: true
+  - type: textarea
+    id: instance
+    attributes:
+      label: Instance and validator output
+      description: The smallest message or structure that shows the problem, and what the validator said.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What the specification says
+      description: The page and the rule the result contradicts.
+    validations:
+      required: true

@@ -1,7 +1,8 @@
 ---
 type: message
 category: procurement
-status: v0.2
+since: 0.2.0
+changed: 0.2.0
 ---
 
 # Bid Withdrawn

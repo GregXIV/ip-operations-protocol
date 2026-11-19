@@ -1,7 +1,8 @@
 ---
 type: message
 category: steady-state-events
-status: v0.1
+since: 0.1.0
+changed: 0.9.1
 ---
 
 # Service Finding

@@ -1,7 +1,8 @@
 ---
 type: message
 category: subscriptions
-status: v0.1
+since: 0.1.0
+changed: 0.1.0
 ---
 
 # Service Subscription Terminated

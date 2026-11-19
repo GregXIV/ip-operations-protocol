@@ -1,6 +1,7 @@
 ---
 type: foundational
-status: v0.8
+since: 0.1.0
+changed: 0.8.0
 ---
 
 # Milestone

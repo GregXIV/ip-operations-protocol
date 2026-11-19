@@ -73,8 +73,8 @@ message type from a newer MINOR version as "unknown", not as an error.
   0. In the release commit, `VERSION`, `schemas/package.json`, `schemas/package-lock.json`
      and `CITATION.cff` (`version` and `date-released`) name the new version; the `validate`
      check fails while they disagree. The version's changelog header carries the release
-     date, and the maintainer adds the version to `PATENTS.md` when making the patent
-     commitment for it.
+     date, every page marked `changed: unreleased` names the new version instead, and the
+     maintainer adds the version to `PATENTS.md` when making the patent commitment for it.
   1. Tag the release.
   2. Run `scripts/release-checksums.sh v<version>`. It prints a `SHA256SUMS` manifest, one
      SHA-256 per file of the tagged tree with paths sorted bytewise, and a last line with

@@ -3,6 +3,44 @@
 All notable changes to the IP Operations Protocol are recorded here.
 This project aims to follow semantic-ish versioning at the specification level.
 
+## [Unreleased]
+
+Editorial: no rule of the specification and no schema changes. `protocolVersion` stays `0.9`
+and every schema identifier stays `urn:ipproto:schema:0.9:<name>`.
+
+### Added
+- Reference Standards lists WIPO ST.97 and ST.90, RFC 3339, ISO 3166-1, RFC 9562, JSON
+  Schema 2020-12, EN 16931 and ISO 20022, each with its referencing mode and a note on how
+  it applies. Each one is a standard the pages or the schemas already use or rely on; none
+  adds a requirement.
+- Open Questions for Consortium: question 8, a vocabulary for licence terms, with W3C ODRL
+  2.2 as the candidate. It is open.
+- Issue forms for specification defects, schema bugs, vocabulary requests and
+  implementation reports; a security problem goes to private reporting.
+- `CLAUDE.md`: the push and release procedure for coding agents working in the repository.
+
+### Changed
+- Page metadata: `status:` is replaced on every page by `since:`, the release that added the
+  page, and `changed:`, the last release that changed its text. Both are computed from the
+  release tags, and spec/README.md defines them (*Page metadata*). Several `status:` values
+  had not followed the page's changes: Common Envelope said 0.6 and last changed in 0.7.0,
+  Artifact Ready said 0.1 and last changed in 0.9.0.
+- Asset Identification and Resolution: section 4 names the 0.9 schema identifiers, where it
+  named the 0.1 ones. Headings and sentences that said "v0.1" about rules still in force
+  say "since 0.1".
+- spec/README.md no longer refers to an executive summary that is not part of the
+  repository. The root `Asset-Identification-and-Resolution.md`, which only points to the
+  profile, no longer carries profile metadata.
+- VERSIONING.md, CONTRIBUTING.md: a change marks its pages `changed: unreleased`, and the
+  release names its version there.
+
+### Fixed
+- Non-Scope, *Transport*: ePCT is WIPO's online PCT service, not an EPO one. The paragraph
+  now says what ST.96, ST.90 and ePCT each do.
+- The `resolutionBasis.docdbFamilyId` of the resolution-provenance and resolved-asset
+  examples is the bare family id, `00000000`, as the profile's `docdb-family` identifier
+  has it. It carried a `DOCDB-` prefix.
+
 ## [0.9.1] — 2026-11-11 (working draft)
 
 A patch release: the release record, the full licence texts, the maintainer's patent

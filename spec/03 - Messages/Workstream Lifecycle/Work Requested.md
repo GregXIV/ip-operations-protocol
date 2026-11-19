@@ -1,7 +1,8 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.9
+since: 0.2.0
+changed: 0.9.0
 ---
 
 # Work Requested

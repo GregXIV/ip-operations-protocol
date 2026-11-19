@@ -1,7 +1,8 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.2
+since: 0.1.0
+changed: 0.2.0
 ---
 
 # Goal Decomposition

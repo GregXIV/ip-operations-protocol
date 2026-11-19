@@ -1,7 +1,8 @@
 ---
 type: message
 category: workstream-lifecycle
-status: v0.6
+since: 0.3.0
+changed: 0.6.0
 ---
 
 # Request Declined

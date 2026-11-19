@@ -1,7 +1,8 @@
 ---
 type: message
 category: milestone-lifecycle
-status: v0.1
+since: 0.1.0
+changed: 0.1.0
 ---
 
 # Milestone Completed

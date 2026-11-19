@@ -1,6 +1,7 @@
 ---
 type: decisions
-status: v0.1
+since: 0.1.0
+changed: 0.1.0
 ---
 
 # Deferred to v1.x

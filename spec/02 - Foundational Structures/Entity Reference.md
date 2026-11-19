@@ -1,6 +1,7 @@
 ---
 type: foundational
-status: v0.7
+since: 0.1.0
+changed: 0.7.0
 ---
 
 # Entity Reference

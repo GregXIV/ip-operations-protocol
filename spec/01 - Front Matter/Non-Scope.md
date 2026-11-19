@@ -1,6 +1,7 @@
 ---
 type: front-matter
-status: v0.8
+since: 0.1.0
+changed: unreleased
 ---
 
 # Non-Scope
@@ -27,7 +28,7 @@ The protocol identifies actors through [actorUris](../02%20-%20Foundational%20St
 
 The protocol defines message shapes and authority semantics. **Transport** — synchronous APIs, asynchronous queues, signed payloads, mail-based exchanges, portal-based exchanges — is an implementation choice.
 
-WIPO ST.96 made the choice to constrain transport (XML over specific channels) and gained limited adoption outside specific office workflows. ePCT made the opposite choice and is mostly an EPO thing. This protocol takes the ST.96-pre-transport approach: define the data, leave the wire to implementations.
+WIPO ST.96 defines XML representations of IP data, and WIPO ST.90 recommends how IP data is exchanged over Web APIs. Online services such as WIPO's ePCT bind the exchange to one portal. This protocol, like ST.96, defines the data and leaves the wire to implementations. An implementation that offers an HTTP API may follow ST.90; the recommended HTTPS shape for resolving records is in [Conventions](Conventions.md), *Record resolution*.
 
 ## Document content
 
